@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Screens/StaffDashboard/HospitalStaffManagementScreen.dart';
+import 'package:mediverse/Screens/StaffDashboard/HospitalStaffManagementScreenAddDoctors.dart';
 
 import 'package:mediverse/Screens/StaffDashboard/LabStaffMainScreen.dart';
 
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LabStaffScreen(),
+      home: const HospitalStaffManagementScreenAddDoctors(),
     );
   }
 }

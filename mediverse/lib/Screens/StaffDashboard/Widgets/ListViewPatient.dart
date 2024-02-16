@@ -9,7 +9,9 @@ class ListViewPatient extends StatelessWidget {
     return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
-        return const PatientCard();
+        return const MedicalCard(
+          name: "Randy Orton",
+        );
       },
     );
   }

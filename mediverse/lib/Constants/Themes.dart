@@ -18,6 +18,11 @@ class Themes {
     color: Colors.black,
     fontSize: 22,
   );
+  static TextStyle titleLarge = const TextStyle(
+    fontFamily: 'Outfit',
+    color: Colors.black,
+    fontSize: 22,
+  );
   static TextStyle primaryText = const TextStyle(
     fontFamily: 'Outfit',
     color: Colors.black,
@@ -40,5 +45,15 @@ class Themes {
     color: Color(0xFF14181B),
     fontSize: 16,
     fontWeight: FontWeight.w600,
+  );
+  static TextStyle labelMedium = const TextStyle(
+    fontFamily: 'Readex Pro',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle error = const TextStyle(
+    fontFamily: 'Readex Pro',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
   );
 }
