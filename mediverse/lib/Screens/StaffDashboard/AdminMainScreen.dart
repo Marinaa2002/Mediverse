@@ -38,7 +38,7 @@ class _AdminMainScreenWidgetState extends State<AdminMainScreenWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kSecondryBackgroundColor,
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,

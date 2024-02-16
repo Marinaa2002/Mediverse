@@ -22,7 +22,7 @@ class HospitalStaffManagementScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: const Icon(
           Icons.chevron_left,
-          color: Colors.white,
+          color: kSecondryBackgroundColor,
           size: 24,
         ),
         title: Text('Available Slots', style: Themes.headlineMedium),

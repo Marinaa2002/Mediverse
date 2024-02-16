@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../Constants/Themes.dart';
+import '../../../Constants/constant.dart';
 import 'RateWidget.dart';
 
 class DrInformation extends StatelessWidget {
@@ -19,7 +20,7 @@ class DrInformation extends StatelessWidget {
             width: 140,
             height: 140,
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: kSecondryBackgroundColor,
               shape: BoxShape.circle,
             ),
             alignment: const AlignmentDirectional(0, 0),

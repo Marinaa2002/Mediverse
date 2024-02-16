@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../Constants/Themes.dart';
+import '../../../Constants/constant.dart';
 
 class DrAvailableTime extends StatelessWidget {
   const DrAvailableTime({super.key});
@@ -24,7 +25,7 @@ class DrAvailableTime extends StatelessWidget {
                 width: 100,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: kSecondryBackgroundColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Align(
@@ -63,7 +64,7 @@ class DrAvailableTime extends StatelessWidget {
                 width: 100,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: kSecondryBackgroundColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
@@ -95,7 +96,7 @@ class DrAvailableTime extends StatelessWidget {
                 width: 100,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: kSecondryBackgroundColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
@@ -127,7 +128,7 @@ class DrAvailableTime extends StatelessWidget {
                 width: 100,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: kSecondryBackgroundColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(

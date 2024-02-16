@@ -47,7 +47,7 @@ class LabRequestAccountWidget extends StatelessWidget {
                         'Organization Name',
                         style: TextStyle(
                           fontFamily: 'Readex Pro',
-                          color: Colors.white,
+                          color: kSecondryBackgroundColor,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

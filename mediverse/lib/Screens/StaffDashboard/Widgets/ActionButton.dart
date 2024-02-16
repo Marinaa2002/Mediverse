@@ -24,13 +24,13 @@ class ActionButton extends StatelessWidget {
       },
       icon: Icon(
         iconData,
-        color: Colors.white,
+        color: kSecondryBackgroundColor,
         size: 20.0,
       ),
       label: Text(
         action,
         style: const TextStyle(
-          color: Colors.white,
+          color: kSecondryBackgroundColor,
         ),
       ), // <-- Text
     );
