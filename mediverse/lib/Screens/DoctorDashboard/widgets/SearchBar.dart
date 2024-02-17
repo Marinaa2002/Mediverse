@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constants.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBarCustom extends StatelessWidget {
   static final _textController = TextEditingController();
 
   @override
@@ -15,7 +15,7 @@ class SearchBar extends StatelessWidget {
           padding: const EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
           child: Center(
             child: Container(
-              width: 320,
+              width: 350,
               height: 50,
               decoration: BoxDecoration(
                 color: kSecondryBackgroundColor,
@@ -33,7 +33,7 @@ class SearchBar extends StatelessWidget {
                 ),
               ),
               alignment: const AlignmentDirectional(0, 0),
-              child:  Padding(
+              child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                 child: TextFormField(
                   controller: _textController,
@@ -88,14 +88,14 @@ class SearchBar extends StatelessWidget {
             color: const Color(0xFFF1F4F8),
             elevation: 1,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
+              borderRadius: BorderRadius.circular(60),
             ),
             child: const Padding(
               padding: EdgeInsets.all(4),
               child: Icon(
                 Icons.search,
                 color: Color(0xFF57636C),
-                size: 24,
+                size: 35,
               ),
             ),
           ),

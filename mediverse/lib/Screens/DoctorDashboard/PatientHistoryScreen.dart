@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constants.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/HistoryCard.dart';
+import 'package:mediverse/screens/DoctorDashboard/widgets/SearchBar.dart';
 
 class PatientHistory extends StatefulWidget {
   const PatientHistory({super.key});
@@ -54,7 +55,7 @@ class _PatientHistory extends State<PatientHistory> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        const SearchBar(),
+                        SearchBarCustom(),
                         HistoryCard(),
                       ],
                     ),
