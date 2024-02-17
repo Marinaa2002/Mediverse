@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constants.dart';
+import 'package:mediverse/screens/DoctorDashboard/ViewMedicalHistory.dart';
 
 class HistoryCard extends StatelessWidget {
   @override
@@ -78,6 +79,10 @@ class HistoryCard extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               print('Button pressed ...');
+
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (ctx) => ViewHistory()));
                             },
                             child: Text('View'),
                             style: ElevatedButton.styleFrom(

@@ -11,10 +11,15 @@ class ViewHistory extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        leading: const Icon(
-          Icons.chevron_left,
-          color: Colors.white,
-          size: 24,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.chevron_left,
+            color: Colors.white,
+            size: 24,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         title: Text(
           'Medical History',
@@ -99,9 +104,8 @@ class ViewHistory extends StatelessWidget {
                   padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                   child: Text(
                     'Medical History:',
-                    style: Themes.bodyMedium.copyWith(
-                      decoration: TextDecoration.underline
-                    ),
+                    style: Themes.bodyMedium
+                        .copyWith(decoration: TextDecoration.underline),
                   ),
                 ),
               ),
