@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../Widgets/CustomAdviceWidget.dart';
-import '../../../Widgets/CustomDateWidget.dart';
+import 'package:mediverse/Constants/constant.dart';
+
+import '../Widgets/CustomAdviceWidget.dart';
+import '../Widgets/CustomDateWidget.dart';
 
 class DrNotesScreen extends StatelessWidget {
   DrNotesScreen({super.key});
@@ -9,12 +11,11 @@ class DrNotesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
         leading: Icon(
           Icons.chevron_left,
@@ -55,7 +56,7 @@ class DrNotesScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Colors.indigo,
+                    color: kprimaryColor,
                     //Color.fromRGBO(255, 192, 203, 3),
                     borderRadius: BorderRadius.circular(16),
                   ),

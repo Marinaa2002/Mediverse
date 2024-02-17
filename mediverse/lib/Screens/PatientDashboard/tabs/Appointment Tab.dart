@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Screens/PatientDashboard/Appointment/AppointmentDetailsScreen.dart';
 
-import '../../../Widgets/CustomCardRatings.dart';
+import '../Widgets/CustomCardRatings.dart';
+
 
 class AppointmentTab extends StatelessWidget {
   AppointmentTab({super.key});
@@ -10,7 +12,6 @@ class AppointmentTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //return Scaffold();
     return  Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -24,10 +25,8 @@ class AppointmentTab extends StatelessWidget {
                 children: [
                   SingleChildScrollView(
                     child: Column(
-                      //mainAxisSize: MainAxisSize.max,
                       children: [
                         Row(
-                          //mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional
@@ -50,7 +49,7 @@ class AppointmentTab extends StatelessWidget {
                                   BorderRadius.circular(
                                       20),
                                   border: Border.all(
-                                    color: Colors.indigo,
+                                    color: kprimaryColor,
                                   ),
                                 ),
                                 alignment:
@@ -70,7 +69,7 @@ class AppointmentTab extends StatelessWidget {
                                       UnderlineInputBorder(
                                         borderSide:
                                         BorderSide(
-                                          color: Colors.black,
+                                          color: kprimaryColor,
                                           width: 2,
                                         ),
                                         borderRadius:
@@ -81,7 +80,7 @@ class AppointmentTab extends StatelessWidget {
                                       UnderlineInputBorder(
                                         borderSide:
                                         BorderSide(
-                                          color: Colors.indigo,
+                                          color: kprimaryColor,
                                           width: 2,
                                         ),
                                         borderRadius:

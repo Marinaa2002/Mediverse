@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 
-import '../../../Widgets/CustomButtonWidget.dart';
-import '../../../Widgets/CustomDateWidget.dart';
-import '../../../Widgets/CustomPictureWidget.dart';
+import '../Widgets/CustomButtonWidget.dart';
+import '../Widgets/CustomDateWidget.dart';
+import '../Widgets/CustomPictureWidget.dart';
+
 
 class MedicalPrescriptionsScreen extends StatelessWidget {
   MedicalPrescriptionsScreen({super.key});
@@ -14,9 +16,9 @@ class MedicalPrescriptionsScreen extends StatelessWidget {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
         leading: Icon(
           Icons.chevron_left,

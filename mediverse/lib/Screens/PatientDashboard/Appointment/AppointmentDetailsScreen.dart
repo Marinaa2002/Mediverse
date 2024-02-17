@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Screens/PatientDashboard/Appointment/PatientChatScreen.dart';
 import 'package:mediverse/Screens/PatientDashboard/Appointment/RatingsScreen.dart';
-import 'package:mediverse/Widgets/CustomDayWidget.dart';
-import 'package:mediverse/Widgets/CustomTimeWidget.dart';
+import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomButtonAppointmentDetails.dart';
+import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomRatingIcon.dart';
 
+import '../Widgets/CustomDayWidget.dart';
+import '../Widgets/CustomTimeWidget.dart';
 import 'BookingScreen.dart';
 
 class AppointmentDetailsScreen extends StatelessWidget {
@@ -15,20 +19,20 @@ class AppointmentDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
         leading: Icon(
           Icons.chevron_left,
-          color: Colors.white,
+          color: kSecondryBackgroundColor,
           size: 24,
         ),
         title: Text(
           'Details',
           style: TextStyle(
             fontFamily: 'Outfit',
-            color: Colors.white,
+            color: kSecondryBackgroundColor,
             fontSize: 20,
           ),
         ),
@@ -73,7 +77,6 @@ class AppointmentDetailsScreen extends StatelessWidget {
                               alignment: Alignment(0, 0),
                             ),
                           ),
-
                         ),
                       ),
                     ),
@@ -88,30 +91,17 @@ class AppointmentDetailsScreen extends StatelessWidget {
                             Text(
                               'Dr. Janny Wilson',
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: Themes.bodyMedium
                             ),
                             Text(
                               'Dentist',
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.black,
-                                fontSize: 16,
-                              ),
+                              style: Themes.labelMedium
                             ),
                             Text(
                               'Works at Tiba Dental Care',
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.black,
-                                fontSize: 16,
-                              ),
+                              style: Themes.labelMedium
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -121,39 +111,14 @@ class AppointmentDetailsScreen extends StatelessWidget {
                                       0, 0, 8, 0),
                                   child: Text(
                                     '4.1',
-                                    style: TextStyle(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                                    style: Themes.labelMedium
                                   ),
                                 ),
-                                Icon(
-                                  Icons.star_rate_sharp,
-                                  color: Colors.yellow,
-                                  size: 24,
-                                ),
-                                Icon(
-                                  Icons.star_rate_sharp,
-                                  color: Colors.yellow,
-                                  size: 24,
-                                ),
-                                Icon(
-                                  Icons.star_rate_sharp,
-                                  color: Colors.yellow,
-                                  size: 24,
-                                ),
-                                Icon(
-                                  Icons.star_rate_sharp,
-                                  color: Colors.yellow,
-                                  size: 24,
-                                ),
-                                Icon(
-                                  Icons.star_rate_sharp,
-                                  color: Colors.grey,
-                                  size: 24,
-                                ),
+                                CustomRatingIconWidget(color: Colors.yellow),
+                                CustomRatingIconWidget(color: Colors.yellow),
+                                CustomRatingIconWidget(color: Colors.yellow),
+                                CustomRatingIconWidget(color: Colors.yellow),
+                                CustomRatingIconWidget(color: Colors.grey),
                               ],
                             ),
                           ],
@@ -170,11 +135,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
                 padding: EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
                 child: Text(
                   'Cost For Booking: 150.00 L.E',
-                  style: TextStyle(
-                    fontFamily: 'Readex Pro',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Themes.labelLarge18
                 ),
               ),
             ),
@@ -184,11 +145,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
                 padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
                 child: Text(
                   'Day',
-                  style: TextStyle(
-                    fontFamily: 'Readex Pro',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Themes.bodyMedium
                 ),
               ),
             ),
@@ -213,11 +170,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
                 padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
                 child: Text(
                   'Time',
-                  style: TextStyle(
-                    fontFamily: 'Readex Pro',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Themes.bodyMedium
                 ),
               ),
             ),
@@ -242,79 +195,15 @@ class AppointmentDetailsScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => PatientChatScreen(),));
-                      },
-                      child: Container(
-                        height: 40,
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.indigo,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.chat, size: 15,color: Colors.white,),
-                            SizedBox(width: 10,),
-                            Text('Chat', style: TextStyle(color: Colors.white, fontFamily: 'Readex Pro',),),
-
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BookingScreen(),));
-                      },
-                      child: Container(
-                        height: 40,
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.indigo,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.book, size: 15,color: Colors.white,),
-                            SizedBox(width: 10,),
-                            Text('Book', style: TextStyle(color: Colors.white, fontFamily: 'Readex Pro',),),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => RatingsScreen(),));
-                      },
-                      child: Container(
-                        height: 40,
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.indigo,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.star_rate_sharp, size: 15,color: Colors.white,),
-                            SizedBox(width: 10,),
-                            Text('Rate', style: TextStyle(color: Colors.white, fontFamily: 'Readex Pro',),),
-
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  CustomButtonAppointmentDetails(onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PatientChatScreen(),));
+                  }, buttonName: 'Chat', icon: Icons.chat,),
+                  CustomButtonAppointmentDetails(onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookingScreen(),));
+                  }, buttonName: 'Book', icon: Icons.book,),
+                  CustomButtonAppointmentDetails(onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => RatingsScreen(),));
+                  }, buttonName: 'Rate', icon: Icons.star_rate_sharp,),
                 ],
               ),
             ),

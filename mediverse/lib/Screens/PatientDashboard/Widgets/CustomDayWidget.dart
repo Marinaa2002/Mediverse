@@ -47,7 +47,7 @@ class CustomDayWidget extends StatelessWidget {
                   '$date',
                   style: TextStyle(
                     fontFamily: 'Readex Pro',
-                    color: Colors.white,
+                    color: colorText,
                   ),
                 ),
               ],

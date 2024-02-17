@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomRatingIcon.dart';
 
-import '../../../Widgets/CustomCardRatings.dart';
+import '../Widgets/CustomCardRatings.dart';
+
 
 class RatingsScreen extends StatelessWidget {
   RatingsScreen({super.key});
@@ -12,9 +16,9 @@ class RatingsScreen extends StatelessWidget {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
         leading: Icon(
           Icons.chevron_left,
@@ -69,15 +73,12 @@ class RatingsScreen extends StatelessWidget {
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                                 child: Text(
                                   '2,503',
-                                  style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold
-                                  ),
+                                  style: Themes.labelLarge26
                                 ),
                               ),
                               Text(
                                 '# of Ratings',
+                                  style: Themes.label12
                               ),
                             ],
                           ),
@@ -93,30 +94,19 @@ class RatingsScreen extends StatelessWidget {
                                         0, 0, 0, 12),
                                     child: Text(
                                       '4.6',
-                                      style: TextStyle(
-                                          fontFamily: 'Outfit',
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.bold
-                                      ),
+                                      style: Themes.labelLarge26
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         4, 0, 0, 12),
-                                    child: Icon(
-                                      Icons.star_rounded,
-                                      color: Colors.yellow,
-                                      size: 28,
-                                    ),
+                                    child: CustomRatingIconWidget(color: Colors.yellow,)
                                   ),
                                 ],
                               ),
                               Text(
                                 'Avg. Rating',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 12,
-                                ),
+                                style: Themes.label12
                               ),
                             ],
                           ),
@@ -133,11 +123,7 @@ class RatingsScreen extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Text(
                           'Add Your Review :',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Themes.labelLarge18
                         ),
                       ),
                     ),
@@ -147,10 +133,7 @@ class RatingsScreen extends StatelessWidget {
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 15, 0),
                         child: Text(
                           'Tell others what you think',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.black,
-                          ),
+                          style: Themes.label14
                         ),
                       ),
                     ),
@@ -158,31 +141,11 @@ class RatingsScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.star_rate_sharp,
-                          color: Colors.grey,
-                          size: 24,
-                        ),
-                        Icon(
-                          Icons.star_rate_sharp,
-                          color: Colors.grey,
-                          size: 24,
-                        ),
-                        Icon(
-                          Icons.star_rate_sharp,
-                          color: Colors.grey,
-                          size: 24,
-                        ),
-                        Icon(
-                          Icons.star_rate_sharp,
-                          color: Colors.grey,
-                          size: 24,
-                        ),
-                        Icon(
-                          Icons.star_rate_sharp,
-                          color: Colors.grey,
-                          size: 24,
-                        ),
+                        CustomRatingIconWidget(color: Colors.grey),
+                        CustomRatingIconWidget(color: Colors.grey),
+                        CustomRatingIconWidget(color: Colors.grey),
+                        CustomRatingIconWidget(color: Colors.grey),
+                        CustomRatingIconWidget(color: Colors.grey),
                       ],
                     ),
                     Align(
@@ -239,8 +202,6 @@ class RatingsScreen extends StatelessWidget {
               CustomCardRatings(name: 'Vacation Home'),
               CustomCardRatings(name: 'Vacation Home'),
               CustomCardRatings(name: 'Vacation Home'),
-
-
             ],
           ),
         ),

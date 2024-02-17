@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
 
 class CustomAdviceWidget extends StatelessWidget {
   CustomAdviceWidget({super.key, required this.advice});
@@ -31,8 +32,7 @@ class CustomAdviceWidget extends StatelessWidget {
                 '$advice',
                 textAlign: TextAlign.start,
                 maxLines: 50,
-                style: TextStyle(fontFamily: 'Readex Pro', color: Colors.black,
-                  fontSize: 12,)
+                style: Themes.label12
             ),
           ),
         ),

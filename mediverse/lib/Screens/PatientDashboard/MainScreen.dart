@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Screens/PatientDashboard/tabs/Appointment%20Tab.dart';
 import 'package:mediverse/Screens/PatientDashboard/tabs/MedicalBlogsTab.dart';
 import 'package:mediverse/Screens/PatientDashboard/tabs/MedicalRecordTab.dart';
@@ -10,18 +11,15 @@ class MainScreenWidget extends StatelessWidget {
   MainScreenWidget({super.key});
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  //TabController _tabController = new TabController(length: 3, vsync: this, initialIndex: 1);
   @override
   Widget build(BuildContext context) {
-
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.indigo,
+          backgroundColor: kprimaryColor,
           automaticallyImplyLeading: false,
           title: Align(
             alignment: AlignmentDirectional(0, 0),
@@ -104,7 +102,7 @@ class MainScreenWidget extends StatelessWidget {
                       alignment: Alignment(0, 0),
                       child: TabBar(
                         isScrollable: true,
-                        labelColor: Colors.indigo,
+                        labelColor: kprimaryColor,
                         unselectedLabelColor: Colors.grey,
                         labelStyle:
                         TextStyle(
@@ -117,7 +115,6 @@ class MainScreenWidget extends StatelessWidget {
                         tabs: [
                           Tab(
                             text: 'Appointment',
-
                           ),
                           Tab(
                             text: 'Medical Record',
@@ -131,7 +128,6 @@ class MainScreenWidget extends StatelessWidget {
                         },
                       ),
                     ),
-
                     //Appointment Tab
                     Expanded(
                       child: TabBarView(
@@ -139,7 +135,6 @@ class MainScreenWidget extends StatelessWidget {
                           AppointmentTab(),
                           MedicalRecordTab(),
                           MedicalBlogsTab()
-
                         ],
                       ),
                     ),

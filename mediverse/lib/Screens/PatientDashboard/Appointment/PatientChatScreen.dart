@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomMyMessageWidget.dart';
+import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomNotMyMessageWidget.dart';
 
 class PatientChatScreen extends StatelessWidget {
   PatientChatScreen({super.key});
@@ -9,9 +13,9 @@ class PatientChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
         leading: Icon(
           Icons.chevron_left,
@@ -28,8 +32,7 @@ class PatientChatScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body:
-      Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,64 +41,25 @@ class PatientChatScreen extends StatelessWidget {
               child: ListView(
                 children: [
                   Center(
-                    child: Text(
-                      '12/5/2022',
-                      style: TextStyle(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.black,
-                        fontSize: 12,
-                      ),
-                    ),
+                    child: Text('12/5/2022', style: Themes.DateText),
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(-1, 0),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                      child: Container(
-                        width: 80,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(224, 157, 108, 2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Text(
-                            'Hello',
-                            maxLines: 10,
-                          ),
-                        ),
-                      ),
-                    ),
+                  CustomMyMessageWidget(
+                      height: 45, width: 100, message: 'Hello Doctor'),
+                  CustomNotMyMessageWidget(
+                    message: 'Hello',
+                    width: 80,
+                    height: 45,
+                  ),
+                  CustomMyMessageWidget(
+                    width: 250,
+                    height: 60,
+                    message:
+                        'I will send lab results, Can you see it and tell me how is it?',
                   ),
                   Align(
                     alignment: AlignmentDirectional(1, 0),
                     child: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Container(
-                        width: 250,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
-                          borderRadius: BorderRadius.circular(12),
-                          shape: BoxShape.rectangle,
-                        ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            'I will send lab results, Can you see it and tell me how is it?',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(1, 0),
-                    child: Padding(
-                      padding:
-                      EdgeInsetsDirectional.fromSTEB(12, 0, 12, 12),
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 12),
                       child: Material(
                         color: Colors.transparent,
                         elevation: 5,
@@ -133,87 +97,22 @@ class PatientChatScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(-1, 0),
-                    child: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Container(
-                        width: 150,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(224, 157, 108, 2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Text(
-                          'Okay, I will see it ',
-                          maxLines: 10,
-                        ),
-                      ),
-                    ),
+                  CustomNotMyMessageWidget(
+                    message: 'Okay, I will see it',
+                    width: 150,
+                    height: 50,
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(-1, 0),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Container(
-                        width: 240,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(224, 157, 108, 2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            'You have to visit me in my clinic ',
-                          ),
-                        ),
-                      ),
-                    ),
+                  CustomNotMyMessageWidget(
+                    message: 'You have to visit me in my clinic',
+                    width: 240,
+                    height: 50,
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(1, 0),
-                    child: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Container(
-                        width: 260,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            'Okay, I will book and visit you ASAP',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(1, 0),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Container(
-                        width: 100,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Text(
-                            'Thank you',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  CustomMyMessageWidget(
+                      height: 50,
+                      width: 260,
+                      message: 'Okay, I will book and visit you ASAP'),
+                  CustomMyMessageWidget(
+                      height: 45, width: 100, message: 'Thank you'),
                   Align(
                     alignment: AlignmentDirectional(-1, 0),
                     child: Padding(
@@ -263,7 +162,7 @@ class PatientChatScreen extends StatelessWidget {
                               errorBorder: InputBorder.none,
                               focusedErrorBorder: InputBorder.none,
                               contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
                             ),
                           ),
                         ),
@@ -279,8 +178,7 @@ class PatientChatScreen extends StatelessWidget {
                       Align(
                         alignment: AlignmentDirectional(1, 0),
                         child: Padding(
-                          padding:
-                          EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                           child: Icon(
                             Icons.send,
                             color: Colors.black,

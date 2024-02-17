@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomRatingIcon.dart';
 
 class CustomCardRatings extends StatelessWidget {
   CustomCardRatings({super.key, required this.name});
@@ -57,31 +58,11 @@ class CustomCardRatings extends StatelessWidget {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Icon(
-                                      Icons.star_rate_sharp,
-                                      color: Colors.yellow,
-                                      size: 24,
-                                    ),
-                                    Icon(
-                                      Icons.star_rate_sharp,
-                                      color: Colors.yellow,
-                                      size: 24,
-                                    ),
-                                    Icon(
-                                      Icons.star_rate_sharp,
-                                      color: Colors.yellow,
-                                      size: 24,
-                                    ),
-                                    Icon(
-                                      Icons.star_rate_sharp,
-                                      color: Colors.yellow,
-                                      size: 24,
-                                    ),
-                                    Icon(
-                                      Icons.star_rate_sharp,
-                                      color: Colors.yellow,
-                                      size: 24,
-                                    ),
+                                    CustomRatingIconWidget(color: Colors.yellow),
+                                    CustomRatingIconWidget(color: Colors.yellow),
+                                    CustomRatingIconWidget(color: Colors.yellow),
+                                    CustomRatingIconWidget(color: Colors.yellow),
+                                    CustomRatingIconWidget(color: Colors.yellow),
                                   ],
                                 ),
                               ),
