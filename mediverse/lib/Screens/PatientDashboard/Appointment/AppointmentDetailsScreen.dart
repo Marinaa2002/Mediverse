@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Screens/PatientDashboard/Appointment/PatientChatScreen.dart';
 import 'package:mediverse/Screens/PatientDashboard/Appointment/RatingsScreen.dart';
+import 'package:mediverse/Widgets/CustomDayWidget.dart';
+import 'package:mediverse/Widgets/CustomTimeWidget.dart';
 
 import 'BookingScreen.dart';
 
@@ -197,165 +199,10 @@ class AppointmentDetailsScreen extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 100,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            color: Colors.indigo,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(0, 0),
-                                  child: Text(
-                                    'Saturday',
-                                    style: TextStyle(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '4 October',
-                                  style: TextStyle(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 100,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Monday',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                '6 October',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 100,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Tuesday',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                '7 October',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 100,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Thursday',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                '9 October',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    CustomDayWidget(day: 'Saturday', date: '4 October', colorBox: Colors.indigo, colorText: Colors.white),
+                    CustomDayWidget(day: 'Monday', date: '6 October', colorBox: Colors.white, colorText: Colors.black),
+                    CustomDayWidget(day: 'Tuesday', date: '7 October', colorBox: Colors.white, colorText: Colors.black),
+                    CustomDayWidget(day: 'Thursday', date: '9 October', colorBox: Colors.white, colorText: Colors.black),
                   ],
                 ),
               ),
@@ -381,125 +228,11 @@ class AppointmentDetailsScreen extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 120,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.indigo,
-                            borderRadius: BorderRadius.circular(16),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Text(
-                              '7:00 PM',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 120,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Text(
-                              '7:30 PM',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 120,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Text(
-                              '8:00 PM',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Container(
-                          width: 120,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Text(
-                              '8:30 PM',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                    CustomTimeWidget(time: '7:00 Pm', colorBox: Colors.indigo, colorText: Colors.white),
+                    CustomTimeWidget(time: '7:30 Pm', colorBox: Colors.white, colorText: Colors.black),
+                    CustomTimeWidget(time: '8:00 Pm', colorBox: Colors.white, colorText: Colors.black),
+                    CustomTimeWidget(time: '8:30 Pm', colorBox: Colors.white, colorText: Colors.black),
+              ],
                 ),
               ),
             ),
@@ -552,7 +285,6 @@ class AppointmentDetailsScreen extends StatelessWidget {
                             Icon(Icons.book, size: 15,color: Colors.white,),
                             SizedBox(width: 10,),
                             Text('Book', style: TextStyle(color: Colors.white, fontFamily: 'Readex Pro',),),
-
                           ],
                         ),
                       ),
