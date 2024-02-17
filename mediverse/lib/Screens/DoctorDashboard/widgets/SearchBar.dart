@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constants.dart';
 
 class SearchBar extends StatelessWidget {
   static final _textController = TextEditingController();
@@ -7,82 +9,88 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
-          child: Container(
-            width: 320,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.indigo,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 4,
-                  color: Color(0x33000000),
-                  offset: Offset(0, 2),
-                  spreadRadius: 3,
-                )
-              ],
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: Colors.indigo,
-              ),
-            ),
-            alignment: AlignmentDirectional(0, 0),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-              child: TextFormField(
-                controller: _textController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Search ',
-                  labelStyle: Theme.of(context).textTheme.labelMedium,
-                  hintStyle: Theme.of(context).textTheme.labelMedium,
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.indigo,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  errorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.red,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedErrorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.red,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  contentPadding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
+          child: Center(
+            child: Container(
+              width: 320,
+              height: 50,
+              decoration: BoxDecoration(
+                color: kSecondryBackgroundColor,
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 4,
+                    color: Color(0x33000000),
+                    offset: Offset(0, 2),
+                    spreadRadius: 3,
+                  )
+                ],
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: kprimaryColor,
                 ),
-                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              alignment: const AlignmentDirectional(0, 0),
+              child:  Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                child: TextFormField(
+                  controller: _textController,
+                  style: Themes.bodyMedium.copyWith(fontSize: 15),
+                  cursorHeight: 20,
+                  autofocus: true,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelText: 'Search ',
+                    labelStyle: Themes.labelMedium,
+                    hintStyle: Themes.labelMedium,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.white,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: kprimaryColor,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.red,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedErrorBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.red,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    contentPadding:
+                        const EdgeInsetsDirectional.fromSTEB(10, 0, 8, 0),
+                  ),
+                ),
               ),
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(8, 15, 0, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            color: Color(0xFFF1F4F8),
+            color: const Color(0xFFF1F4F8),
             elevation: 1,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
             ),
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.all(4),
               child: Icon(
                 Icons.search,

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constants.dart';
 
 class HistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
       child: Container(
         width: MediaQuery.sizeOf(context).width * 0.96,
         decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
+          color: kSecondryBackgroundColor,
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4,
               color: Color(0x33000000),
@@ -46,7 +47,7 @@ class HistoryCard extends StatelessWidget {
                       ),
                       Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: Colors.indigo,
+                        color: kprimaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40),
                         ),
@@ -81,18 +82,17 @@ class HistoryCard extends StatelessWidget {
                             child: Text('View'),
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                              backgroundColor: Colors.indigo,
+                              backgroundColor: kprimaryColor,
                               textStyle: Theme.of(context)
                                   .textTheme
                                   .titleSmall!
                                   .copyWith(
                                     fontFamily: 'Readex Pro',
-                                    color: Colors.white,
+                                    color: kSecondryBackgroundColor,
                                     fontSize: 18,
                                   ),
                               elevation: 3,
