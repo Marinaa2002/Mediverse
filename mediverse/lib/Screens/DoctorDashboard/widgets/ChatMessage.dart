@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 
 class ChatMessage extends StatelessWidget {
-  ChatMessage({super.key, required this.message, required this.isMe});
-  String message;
-  double? width;
-  double? height;
+  const ChatMessage({super.key, required this.message, required this.isMe});
+  final String message;
 
 // Controls how the MessageBubble will be aligned.
   final bool isMe;
