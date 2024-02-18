@@ -3,6 +3,8 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constants.dart';
 
 class DoctorProfile extends StatelessWidget {
+  const DoctorProfile({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,23 +28,24 @@ class DoctorProfile extends StatelessWidget {
             color: backgroundColor,
           ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 2,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0, 0),
+        alignment: const AlignmentDirectional(0, 0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
+            SizedBox(
               width: 140,
               child: Stack(
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                       child: Material(
                         color: Colors.transparent,
                         elevation: 3,
@@ -59,12 +62,12 @@ class DoctorProfile extends StatelessWidget {
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(2),
+                            padding: const EdgeInsets.all(2),
                             child: Container(
                               width: 50,
                               height: 50,
                               clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
                               child: Image.asset(
@@ -78,9 +81,10 @@ class DoctorProfile extends StatelessWidget {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(1, 0),
+                    alignment: const AlignmentDirectional(1, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                       child: ClipOval(
                         child: Container(
                           width: 43,
@@ -94,7 +98,7 @@ class DoctorProfile extends StatelessWidget {
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(7),
+                            padding: const EdgeInsets.all(7),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0),
                               child: Image.asset(
@@ -113,7 +117,7 @@ class DoctorProfile extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
               child: Text(
                 'Dr. Nader Nabil',
                 textAlign: TextAlign.center,
@@ -131,20 +135,20 @@ class DoctorProfile extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 32),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 32),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0, 0, 0, 12),
                             child: Material(
                               color: Colors.transparent,
                               elevation: 3,
@@ -160,8 +164,8 @@ class DoctorProfile extends StatelessWidget {
                                     width: 2,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Icon(
+                                alignment: const AlignmentDirectional(0, 0),
+                                child: const Icon(
                                   Icons.notifications_outlined,
                                   color: Colors.black,
                                   size: 24,
@@ -186,7 +190,8 @@ class DoctorProfile extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                           child: Material(
                             color: Colors.transparent,
                             elevation: 3,
@@ -202,8 +207,8 @@ class DoctorProfile extends StatelessWidget {
                                   width: 2,
                                 ),
                               ),
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Icon(
+                              alignment: const AlignmentDirectional(0, 0),
+                              child: const Icon(
                                 Icons.help_outline_outlined,
                                 color: Colors.black,
                                 size: 24,
@@ -229,7 +234,7 @@ class DoctorProfile extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 400,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kSecondryBackgroundColor,
                   boxShadow: [
                     BoxShadow(
@@ -251,14 +256,15 @@ class DoctorProfile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 12),
                               child: Text(
                                 'Settings',
                                 style: Themes.headlineSmall.copyWith(
@@ -267,13 +273,13 @@ class DoctorProfile extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 8),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
@@ -284,8 +290,9 @@ class DoctorProfile extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 12, 0),
                                       child: Text(
                                         'Phone Number',
                                         textAlign: TextAlign.start,
@@ -305,13 +312,13 @@ class DoctorProfile extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 8),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
@@ -322,8 +329,9 @@ class DoctorProfile extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 12, 0),
                                       child: Text(
                                         'Language',
                                         textAlign: TextAlign.start,
@@ -343,13 +351,13 @@ class DoctorProfile extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 8),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
@@ -360,8 +368,9 @@ class DoctorProfile extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 12, 0),
                                       child: Text(
                                         'Speciality',
                                         textAlign: TextAlign.start,
@@ -381,13 +390,13 @@ class DoctorProfile extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 8),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
@@ -398,8 +407,9 @@ class DoctorProfile extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 12, 0),
                                       child: Text(
                                         'Currency',
                                         textAlign: TextAlign.start,
@@ -419,13 +429,13 @@ class DoctorProfile extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 8),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
@@ -436,8 +446,9 @@ class DoctorProfile extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 12, 0),
                                       child: Text(
                                         'Profile Settings',
                                         textAlign: TextAlign.start,
@@ -457,13 +468,13 @@ class DoctorProfile extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 8),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
@@ -474,8 +485,9 @@ class DoctorProfile extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 12, 0),
                                       child: Text(
                                         'Notification Settings',
                                         textAlign: TextAlign.start,
@@ -483,7 +495,7 @@ class DoctorProfile extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.chevron_right_rounded,
                                     color: kSecondaryTextColor,
                                     size: 24,
@@ -492,13 +504,13 @@ class DoctorProfile extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 8),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
@@ -509,8 +521,9 @@ class DoctorProfile extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 12, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 12, 0),
                                       child: Text(
                                         'Log out of account',
                                         textAlign: TextAlign.start,

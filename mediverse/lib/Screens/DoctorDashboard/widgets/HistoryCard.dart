@@ -3,6 +3,8 @@ import 'package:mediverse/Constants/constants.dart';
 import 'package:mediverse/screens/DoctorDashboard/ViewMedicalHistory.dart';
 
 class HistoryCard extends StatelessWidget {
+  const HistoryCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,13 +23,13 @@ class HistoryCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
-          padding: EdgeInsets.all(2),
+          padding: const EdgeInsets.all(2),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,13 +68,13 @@ class HistoryCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         child: SizedBox(
                           width: 150,
                           height: 50,
@@ -80,17 +82,15 @@ class HistoryCard extends StatelessWidget {
                             onPressed: () {
                               print('Button pressed ...');
 
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (ctx) => ViewHistory()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => ViewHistory()));
                             },
-                            child: Text('View'),
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24, 0, 24, 0),
                               backgroundColor: kprimaryColor,
                               textStyle: Theme.of(context)
                                   .textTheme
@@ -102,6 +102,7 @@ class HistoryCard extends StatelessWidget {
                                   ),
                               elevation: 3,
                             ),
+                            child: Text('View'),
                           ),
                         ),
                       ),

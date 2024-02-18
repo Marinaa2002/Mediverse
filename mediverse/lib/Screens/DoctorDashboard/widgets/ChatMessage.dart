@@ -11,20 +11,23 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: isMe ? AlignmentDirectional(1, 0) : AlignmentDirectional(-1, 0),
+      alignment: isMe
+          ? const AlignmentDirectional(1, 0)
+          : const AlignmentDirectional(-1, 0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 8),
+        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 8),
         child: Container(
-          constraints: BoxConstraints(maxWidth: 200),
+          constraints: const BoxConstraints(maxWidth: 200),
           // width: width,
           // height: height,
           decoration: BoxDecoration(
-            color: isMe ? Color.fromARGB(224, 57, 210, 192) : Color.fromARGB(224, 238, 139, 96),
+            color: isMe
+                ? const Color.fromARGB(224, 57, 210, 192)
+                : const Color.fromARGB(224, 238, 139, 96),
             borderRadius: BorderRadius.circular(12),
             shape: BoxShape.rectangle,
-            
           ),
-          alignment: AlignmentDirectional(0, 0),
+          alignment: const AlignmentDirectional(0, 0),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text(

@@ -4,6 +4,8 @@ import 'package:mediverse/Constants/constants.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/ChatHead.dart';
 
 class ChatsList extends StatelessWidget {
+  const ChatsList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,7 @@ class ChatsList extends StatelessWidget {
             color: backgroundColor,
           ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 2,
       ),
@@ -43,7 +45,7 @@ class ChatsList extends StatelessWidget {
                 child: ListView(
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
-                  children: [
+                  children: const [
                     ChatHead(),
                     ChatHead(),
                   ],

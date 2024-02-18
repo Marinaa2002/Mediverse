@@ -36,7 +36,7 @@ class _PatientHistory extends State<PatientHistory> {
                 fontSize: 22,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 0,
       ),
@@ -50,7 +50,7 @@ class _PatientHistory extends State<PatientHistory> {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                children: [
+                children: const [
                   SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,

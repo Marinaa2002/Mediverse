@@ -3,7 +3,9 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constants.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/ChatMessage.dart';
 
-class ChatScreen extends StatelessWidget {
+class DoctorChat extends StatelessWidget {
+  const DoctorChat({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,7 @@ class ChatScreen extends StatelessWidget {
             color: backgroundColor,
           ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 2,
       ),
@@ -42,33 +44,35 @@ class ChatScreen extends StatelessWidget {
                   Center(
                     child: Text('12/5/2022', style: Themes.DateText),
                   ),
-                  ChatMessage(
+                  const ChatMessage(
                       message:
                           'hello this is the doctor talking how are you sdjflksdjflksddflsjdflsdlfkj sljskdjflksdf sdflksdjf',
                       isMe: true),
-                  ChatMessage(
+                  const ChatMessage(
                       message: 'Hi doctor i am fine thank you', isMe: false),
                 ],
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0, 0),
+              alignment: const AlignmentDirectional(0, 0),
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
                 child: Container(
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(241, 211, 189, 2),
+                    color: const Color.fromRGBO(241, 211, 189, 2),
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  alignment: AlignmentDirectional(0, 0),
+                  alignment: const AlignmentDirectional(0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                           child: TextFormField(
                             decoration: const InputDecoration(
                               hintText: 'Send Message',
@@ -95,9 +99,10 @@ class ChatScreen extends StatelessWidget {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1, 0),
+                        alignment: const AlignmentDirectional(1, 0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                           child: IconButton(
                             icon: const Icon(
                               Icons.send,

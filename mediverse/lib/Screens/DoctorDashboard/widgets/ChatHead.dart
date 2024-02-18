@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constants.dart';
+import 'package:mediverse/screens/DoctorDashboard/DoctorChat.dart';
 
 class ChatHead extends StatelessWidget {
+  const ChatHead({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +24,7 @@ class ChatHead extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Row(
             children: [
               ClipRRect(
@@ -39,14 +42,16 @@ class ChatHead extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                       child: Text(
                         'Randy Rudolph',
                         style: Themes.bodyLarge,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                       child: Text(
                         'Hello, Can you please check my la...',
                         style: Themes.labelMedium,
@@ -57,20 +62,23 @@ class ChatHead extends StatelessWidget {
               ),
               Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: Color(0xFFF1F4F8),
+                color: const Color(0xFFF1F4F8),
                 elevation: 1,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(4),
                   child: IconButton(
                     icon: const Icon(
                       Icons.keyboard_arrow_right_rounded,
                       color: Color(0xFF57636C),
                       size: 24,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const DoctorChat()));
+                    },
                   ),
                 ),
               ),

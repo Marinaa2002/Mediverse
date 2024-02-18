@@ -3,24 +3,25 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constants.dart';
 
 class InfoRow extends StatelessWidget {
+  const InfoRow({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
             child: Text(
               'Patient Weight :',
-              style: Themes.bodyLarge.copyWith(
-                decoration: TextDecoration.underline
-              ),
+              style: Themes.bodyLarge
+                  .copyWith(decoration: TextDecoration.underline),
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(48, 0, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(48, 0, 0, 0),
             child: Container(
               width: 100,
               height: 20,
@@ -37,9 +38,9 @@ class InfoRow extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                   child: Text(
                     '70 Kg',
                     style: Themes.bodyLarge,

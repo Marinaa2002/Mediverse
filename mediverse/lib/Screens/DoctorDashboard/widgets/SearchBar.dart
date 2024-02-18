@@ -5,6 +5,8 @@ import 'package:mediverse/Constants/constants.dart';
 class SearchBarCustom extends StatelessWidget {
   static final _textController = TextEditingController();
 
+  const SearchBarCustom({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +36,7 @@ class SearchBarCustom extends StatelessWidget {
               ),
               alignment: const AlignmentDirectional(0, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                 child: TextFormField(
                   controller: _textController,
                   style: Themes.bodyMedium.copyWith(fontSize: 15),
