@@ -44,37 +44,12 @@ class SearchBarCustom extends StatelessWidget {
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Search ',
-                    labelStyle: Themes.labelMedium,
+                    hintText: 'Search ',
                     hintStyle: Themes.labelMedium,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: kprimaryColor,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.red,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.red,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    focusedErrorBorder: InputBorder.none,
                     contentPadding:
                         const EdgeInsetsDirectional.fromSTEB(10, 0, 8, 0),
                   ),
