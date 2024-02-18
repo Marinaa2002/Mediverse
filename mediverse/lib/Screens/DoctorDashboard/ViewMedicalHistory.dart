@@ -64,6 +64,7 @@ class ViewHistory extends StatelessWidget {
                           ),
                           child: Image.asset(
                             'assets/images/Human.jpg',
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),

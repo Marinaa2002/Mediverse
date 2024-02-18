@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Screens/DoctorDashboard/PatientHistoryScreen.dart';
+import 'package:mediverse/screens/DoctorDashboard/ChatsList.dart';
 import 'package:mediverse/screens/DoctorDashboard/ViewMedicalHistory.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PatientHistory(),
+      home: ChatsList(),
     );
   }
 
