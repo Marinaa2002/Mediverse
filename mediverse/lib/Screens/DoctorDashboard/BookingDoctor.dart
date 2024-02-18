@@ -41,14 +41,22 @@ class BookingDoctor extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             SearchBarCustom(),
-            SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  BookingCard(),
-                  BookingCard(),
-                ],
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    BookingCard(),
+                    BookingCard(),
+                    BookingCard(),
+                    BookingCard(),
+                    BookingCard(),
+                    BookingCard(),
+                    BookingCard(),
+                    
+                  ],
+                ),
               ),
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constants.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/HistoryCard.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/SearchBar.dart';
@@ -26,44 +27,43 @@ class _PatientHistory extends State<PatientHistory> {
             color: Colors.white,
             size: 24,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         title: Text(
-          'Patient\'s History',
-          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontFamily: 'Outfit',
-                color: Colors.white,
-                fontSize: 22,
-              ),
+          'Patients\' History',
+          style: Themes.headlineMedium.copyWith(
+            color: backgroundColor,
+          ),
         ),
         actions: const [],
         centerTitle: true,
-        elevation: 0,
+        elevation: 2,
       ),
-      body: SafeArea(
+      body: const SafeArea(
         top: true,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: const [
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        SearchBarCustom(),
-                        HistoryCard(),
-                      ],
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SearchBarCustom(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    HistoryCard(),
+                    HistoryCard(),
+                    HistoryCard(),
+                    HistoryCard(),
+                    HistoryCard(),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/screens/DoctorDashboard/BookingDoctor.dart';
 import 'package:mediverse/screens/DoctorDashboard/DoctorChat.dart';
+import 'package:mediverse/screens/DoctorDashboard/PatientHistoryScreen.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/BookingCard.dart';
 
 void main() {
