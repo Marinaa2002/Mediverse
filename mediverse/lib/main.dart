@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/screens/DoctorDashboard/BookingDoctor.dart';
 import 'package:mediverse/screens/DoctorDashboard/DoctorChat.dart';
+import 'package:mediverse/screens/DoctorDashboard/MainScreen2.dart';
 import 'package:mediverse/screens/DoctorDashboard/PatientHistoryScreen.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/BookingCard.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BookingDoctor(),
+      home: MainScreen2(),
     );
   }
 }

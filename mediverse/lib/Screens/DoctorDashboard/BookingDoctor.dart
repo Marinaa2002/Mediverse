@@ -4,9 +4,14 @@ import 'package:mediverse/Constants/constants.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/BookingCard.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/SearchBar.dart';
 
-class BookingDoctor extends StatelessWidget {
+class BookingDoctor extends StatefulWidget {
   const BookingDoctor({super.key});
 
+  @override
+  State<BookingDoctor> createState() => _BookingDoctorState();
+}
+
+class _BookingDoctorState extends State<BookingDoctor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
