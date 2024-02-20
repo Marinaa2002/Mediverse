@@ -54,7 +54,7 @@ class MainScreen2 extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [

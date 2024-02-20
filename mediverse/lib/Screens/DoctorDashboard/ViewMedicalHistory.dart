@@ -50,16 +50,16 @@ class ViewHistory extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(12),
                       child: Container(
-                        width: 140,
-                        height: 140,
+                        width: 120,
+                        height: 120,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
                         ),
                         alignment: const AlignmentDirectional(0, 0),
                         child: Container(
-                          width: 140,
-                          height: 140,
+                          width: 120,
+                          height: 120,
                           clipBehavior: Clip.antiAlias,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
