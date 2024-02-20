@@ -20,10 +20,15 @@ class MedicalPrescriptionsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        leading: Icon(
-          Icons.chevron_left,
-          color: Colors.white,
-          size: 24,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.chevron_left,
+            color: kSecondryBackgroundColor,
+            size: 24,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         title: Text(
           'Medical Prescription',
