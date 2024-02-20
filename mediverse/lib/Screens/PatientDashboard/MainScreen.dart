@@ -133,7 +133,7 @@ class MainScreenWidget extends StatelessWidget {
                       child: TabBarView(
                         children: [
                           AppointmentTab(),
-                          MedicalRecordTab(),
+                          MedicalRecordsTab(),
                           MedicalBlogsTab()
                         ],
                       ),

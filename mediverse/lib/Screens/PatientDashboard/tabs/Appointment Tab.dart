@@ -29,8 +29,7 @@ class AppointmentTab extends StatelessWidget {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional
-                                  .fromSTEB(10, 15, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
                               child: Container(
                                 width: 320,
                                 height: 40,
@@ -46,20 +45,15 @@ class AppointmentTab extends StatelessWidget {
                                     )
                                   ],
                                   borderRadius:
-                                  BorderRadius.circular(
-                                      20),
+                                  BorderRadius.circular(20),
                                   border: Border.all(
                                     color: kprimaryColor,
                                   ),
                                 ),
                                 alignment:
-                                AlignmentDirectional(
-                                    0, 0),
+                                AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding:
-                                  EdgeInsetsDirectional
-                                      .fromSTEB(
-                                      8, 0, 8, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                   child: TextFormField(
                                     obscureText: false,
                                     decoration:

@@ -68,6 +68,10 @@ flutter:
     - assets/images/image.jpg
     - assets/images/medical-prescription-ocr.webp
     - assets/images/Sample-prescription-used-as-input-to-the-GUI-developed-in-the-present-work.png
+    - assets/images/payment.png
+    - assets/images/booking.jpg
+    - assets/images/Human.jpg
+    - assets/images/draw.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
