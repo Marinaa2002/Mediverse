@@ -63,16 +63,19 @@ class DoctorProfile extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(2),
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/Human.jpg',
-                                fit: BoxFit.cover,
+                            child: Hero(
+                              tag: 'profile',
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.asset(
+                                  'assets/images/Human.jpg',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
