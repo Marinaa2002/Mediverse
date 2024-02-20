@@ -74,6 +74,7 @@ class DoctorChat extends StatelessWidget {
                           padding:
                               const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                           child: TextFormField(
+                            // don't forget controller
                             decoration: const InputDecoration(
                               hintText: 'Send Message',
                               enabledBorder: InputBorder.none,

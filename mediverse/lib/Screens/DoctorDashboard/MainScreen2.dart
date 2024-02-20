@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constants.dart';
 import 'package:mediverse/screens/DoctorDashboard/DoctorProfile.dart';
+import 'package:mediverse/screens/DoctorDashboard/tabs/BlogsTab.dart';
 import 'package:mediverse/screens/DoctorDashboard/tabs/PatientsTab.dart';
 
 class MainScreen2 extends StatelessWidget {
@@ -112,9 +113,10 @@ class MainScreen2 extends StatelessWidget {
                     ),
                     Expanded(
                       child: TabBarView(children: [
+                        BlogsTab(),
                         PatientsTab(),
-                        PatientsTab(),
-                      ]),
+                        
+                      ],),
                     )
                   ],
                 ),
