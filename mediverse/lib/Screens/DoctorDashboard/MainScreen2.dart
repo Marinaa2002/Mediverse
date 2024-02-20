@@ -111,12 +111,13 @@ class MainScreen2 extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: TabBarView(children: [
-                        BlogsTab(),
-                        PatientsTab(),
-                        
-                      ],),
+                    const Expanded(
+                      child: TabBarView(
+                        children: [
+                          PatientsTab(),
+                          BlogsTab(),
+                        ],
+                      ),
                     )
                   ],
                 ),
