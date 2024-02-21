@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
+import '../conts/Themes.dart';
+import '../conts/consts.dart';
 
 class ChoiceButton extends StatelessWidget {
   final text;
@@ -15,34 +16,34 @@ class ChoiceButton extends StatelessWidget {
       alignment: AlignmentDirectional(0, 0),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-        child: FFButtonWidget(
+        child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>screen));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
           },
-          text: text,
-          options: FFButtonOptions(
+          style: ElevatedButton.styleFrom(
+            primary: M.primaryColor,
+            onPrimary: Colors.white, // Assuming text color should be white
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(
+                color: Colors.transparent,
+                width: 1,
+              ),
+            ),
+          ),
+          child: Container(
             width: 250,
             height: 70,
-            padding:
-            EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-            iconPadding:
-            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-            color: FlutterFlowTheme.of(context).primary,
-            textStyle: FlutterFlowTheme.of(context)
-                .titleSmall
-                .override(
-              fontFamily: 'Readex Pro',
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+            child: Center(
+              child: Text(
+                text,
+                style: Themes.labelMed
+              ),
             ),
-            elevation: 3,
-            borderSide: BorderSide(
-              color: Colors.transparent,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(20),
           ),
-        ),
+        )
       ),
     );
   }

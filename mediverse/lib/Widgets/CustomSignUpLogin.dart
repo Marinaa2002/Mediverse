@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
-
+import '../conts/Themes.dart';
 import '../conts/consts.dart';
 
 class CustomSignUpLogin extends StatelessWidget {
@@ -17,31 +16,35 @@ class CustomSignUpLogin extends StatelessWidget {
       alignment: AlignmentDirectional(0, 0),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-        child: FFButtonWidget(
+        child:ElevatedButton(
           onPressed: () {
-           // Navigator.push(context, MaterialPageRoute(builder: (context)=>screen));
+            // Navigator.push(context, MaterialPageRoute(builder: (context)=>screen));
           },
-          text: text,
-          options: FFButtonOptions(
+          style: ElevatedButton.styleFrom(
+            primary: M.primaryColor,
+            onPrimary: Colors.white, // Assuming text color should be white
+            elevation: 3,
+            padding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(
+                color: Colors.transparent,
+                width: 1,
+              ),
+            ),
+          ),
+          child: SizedBox(
             width: 230,
             height: 52,
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-            iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-            color: M.primaryColor,
-            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-              fontFamily: 'Plus Jakarta Sans',
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+            child: Center(
+              child: Text(
+                text,
+                style: Themes.titleSmall
+              ),
             ),
-            elevation: 3,
-            borderSide: BorderSide(
-              color: Colors.transparent,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(12),
           ),
-        ),
+        )
+
       ),
     );
   }

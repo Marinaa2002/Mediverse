@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '../../../Widgets/CustomChoiceButton.dart';
 import '../../../conts/consts.dart';
 import '../DoctorSignUp/DoctorSignUp.dart';
@@ -36,10 +35,10 @@ class RegisterChoice extends StatelessWidget{
     height: 100,
     decoration: BoxDecoration(
     gradient: LinearGradient(
-    colors: [
-    Color(0x00FFFFFF),
-    FlutterFlowTheme.of(context).secondaryBackground
-    ],
+      colors: [
+        M.cyan,
+        M.white
+      ],
     stops: [0, 1],
     begin: AlignmentDirectional(0, -1),
     end: AlignmentDirectional(0, 1),
@@ -64,7 +63,6 @@ class RegisterChoice extends StatelessWidget{
          ChoiceButton(text: 'Patient', screen: PatientSignUpScreen(),),
          ChoiceButton(text: 'Doctor', screen: DoctorSignUpScreen(),),
          ChoiceButton(text: 'Staff', screen: FormStaff(),),
-
             ]),
       ),
     ),),

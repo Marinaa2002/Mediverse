@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
+import '../conts/Themes.dart';
 import '../conts/consts.dart';
 
 class CustomTextFormField3 extends StatefulWidget {
@@ -34,12 +34,7 @@ class _CustomTextFormField3State extends State<CustomTextFormField3> {
               });
             },
           ),
-          labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-            fontFamily: 'Plus Jakarta Sans',
-            color: M.grey,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+          labelStyle: Themes.fieldText,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Color(0xFFE0E3E7),
@@ -72,12 +67,7 @@ class _CustomTextFormField3State extends State<CustomTextFormField3> {
           fillColor: Colors.white,
           contentPadding: EdgeInsets.all(16),
         ),
-        style: FlutterFlowTheme.of(context).bodyMedium.override(
-          fontFamily: 'Plus Jakarta Sans',
-          color: Color(0xFF101213),
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Themes.bodyMed
       ),
     );
   }

@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
-
 import '../../../Widgets/CustomSignUpLogin.dart';
 import '../../../Widgets/CustomTextFormField.dart';
 import '../../../Widgets/CustomTextFormField2.dart';
+import '../../../conts/Themes.dart';
 import '../../../conts/consts.dart';
 
 
@@ -36,8 +35,8 @@ class FormStaff extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0x00FFFFFF),
-                    FlutterFlowTheme.of(context).secondaryBackground,
+                    M.cyan,
+                    M.white
                   ],
                   stops: [0, 0.4],
                   begin: AlignmentDirectional(0, -1),
@@ -78,12 +77,7 @@ class FormStaff extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Text(
                               'Form Account Request',
-                              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Plus Jakarta Sans',
-                                color: M.black,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Themes.headline
                             ),
                           ),
                           SizedBox(height: 40,),
@@ -98,10 +92,7 @@ class FormStaff extends StatelessWidget {
                     padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 10),
                     child: Text(
                       'Choose Type Of Staff ',
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Themes.labelMed
                     ),
                   ),
                 ),
@@ -116,10 +107,7 @@ class FormStaff extends StatelessWidget {
                     padding: EdgeInsetsDirectional.fromSTEB(15, 10, 0, 10),
                     child: Text(
                       'Please Enter Required Data',
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Themes.labelMed
                     ),
                   ),
                 ),
@@ -144,6 +132,7 @@ class FormStaff extends StatelessWidget {
                   child: CustomTextFormField(text: "Email",),
                 ),
                 CustomSignUpLogin(text: "Request", screen: null,),
+                SizedBox(height: 30,)
               ],
             ),
           ),

@@ -1,8 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:mediverse/conts/Themes.dart';
 import '../../../conts/consts.dart';
 import '../LoginScreen/LoginScreen.dart';
 
@@ -50,8 +49,8 @@ class _SplashState extends State<SplashScreen> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0x00FFFFFF),
-                  FlutterFlowTheme.of(context).secondaryBackground
+                  M.cyan,
+                  M.white
                 ],
                 stops: [0, 1],
                 begin: AlignmentDirectional(0, -1),
@@ -78,13 +77,7 @@ class _SplashState extends State<SplashScreen> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
                     child: Text(
                       'Welcome to MediVerse!',
-                      style: FlutterFlowTheme.of(context)
-                          .displaySmall
-                          .override(
-                        fontFamily: 'Outfit',
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Themes.splashBoldTitle
                     ),
                   ),
                   Padding(
@@ -92,13 +85,8 @@ class _SplashState extends State<SplashScreen> {
                     child: Text(
                       'Better Health = Better Universe',
                       textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context)
-                          .labelMedium
-                          .override(
-                        fontFamily: 'Readex Pro',
-                        color: Color(0xBE0B00FF),
-                      ),),
-                  ),
+                      style: Themes.labelColored,
+                  ),),
                 ],),
             ),),
         ),),

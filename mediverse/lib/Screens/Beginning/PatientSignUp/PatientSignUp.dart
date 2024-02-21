@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:mediverse/conts/Themes.dart';
 import '../../../Widgets/CustomSignUpLogin.dart';
 import '../../../Widgets/CustomSignUpWith.dart';
 import '../../../Widgets/CustomTextFormField.dart';
@@ -35,8 +36,8 @@ class PatientSignUpScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0x00FFFFFF),
-                    FlutterFlowTheme.of(context).secondaryBackground,
+                    M.cyan,
+                    M.white
                   ],
                   stops: [0, 0.4],
                   begin: AlignmentDirectional(0, -1),
@@ -77,12 +78,7 @@ class PatientSignUpScreen extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Text(
                               'Patient Sign Up',
-                              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Plus Jakarta Sans',
-                                color: M.black,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style:Themes.headline
                             ),
                           ),
                           SizedBox(height: 40,),
@@ -115,31 +111,31 @@ class PatientSignUpScreen extends StatelessWidget {
                 CustomSignUpWith(),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                  child: FFButtonWidget(
+                  child:  ElevatedButton(
                     onPressed: () async {
 
                     },
-                    text: 'Continue with Google',
-                    icon: Image.asset("assets/icons/google.png",width: 23,height: 23,), // or Icons.android
-                    options: FFButtonOptions(
-                      width: 230,
-                      height: 44,
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      color: Colors.white,
-                      textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Plus Jakarta Sans',
-                        color: M.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      elevation: 0,
-                      borderSide: BorderSide(
-                        color: Color(0xFFE0E3E7),
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(12),
-                      hoverColor: Color(0xFFF1F4F8),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          "assets/icons/google.png",
+                          width: 23,
+                          height: 23,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                            'Continue with Google',
+                            style:Themes.textSmall
+                        ),
+                      ],
                     ),
                   ),
                 )

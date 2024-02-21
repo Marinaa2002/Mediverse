@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
-
-import '../conts/consts.dart';
+import '../conts/Themes.dart';
 
 class CustomSignUpWith extends StatelessWidget {
   const CustomSignUpWith({
@@ -17,12 +15,7 @@ class CustomSignUpWith extends StatelessWidget {
         child: Text(
           'Or sign up with',
           textAlign: TextAlign.center,
-          style: FlutterFlowTheme.of(context).labelMedium.override(
-            fontFamily: 'Plus Jakarta Sans',
-            color: M.grey,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+          style: Themes.fieldText
         ),
       ),
     );

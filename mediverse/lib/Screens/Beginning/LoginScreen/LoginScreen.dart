@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
+
 import '../../../Widgets/CustomSignUpLogin.dart';
 import '../../../Widgets/CustomTextFormField.dart';
 import '../../../Widgets/CustomTextFormField3.dart';
+import '../../../conts/Themes.dart';
 import '../../../conts/consts.dart';
 import '../RegisterChoice/RegisterChoiceScreen.dart';
+
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -35,8 +37,8 @@ class LoginScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0x00FFFFFF),
-                    FlutterFlowTheme.of(context).secondaryBackground,
+                    M.cyan,
+                    M.white
                   ],
                   stops: [0, 0.4],
                   begin: AlignmentDirectional(0, -1),
@@ -46,7 +48,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SingleChildScrollView(
-             child: Column(
+              child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -69,16 +71,11 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                    child: Text(
-                      'Login',
-                      style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Plus Jakarta Sans',
-                        color: Color(0xFF101213),
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      child: Text(
+                        'Login',
+                        style:Themes.headline
+                      )
                   ),
                   Align(
                     alignment: AlignmentDirectional(0, 0),
@@ -86,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                       child: Text(
                         'Welcome Back',
-                        style: FlutterFlowTheme.of(context).displaySmall,
+                        style: Themes.bigHeadline
                       ),
                     ),
                   ),
@@ -97,10 +94,7 @@ class LoginScreen extends StatelessWidget {
                       padding: EdgeInsetsDirectional.fromSTEB(15, 40, 0, 20),
                       child: Text(
                         'Please Enter Your Email and Password',
-                        style: FlutterFlowTheme.of(context).labelMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style:Themes.titleButton
                       ),
                     ),
                   ),
@@ -127,31 +121,25 @@ class LoginScreen extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: 'Don\'t have an account? ',
-                              style: TextStyle(),
+                              style: Themes.verySmallText,
                             ),
                             TextSpan(
                               text: ' Sign Up here',
-                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).primary,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => RegisterChoice(), // Navigate to your signup screen
-                                  ),
-                                );
-                              },
+                              style: Themes.labelColored,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => RegisterChoice(), // Navigate to your signup screen
+                                    ),
+                                  );
+                                },
                             ),
                           ],
-                          style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ),
                     ),
                   )
-
 
                 ],
               )
