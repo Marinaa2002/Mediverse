@@ -6,3 +6,4 @@ const kSecondryBackgroundColor = Colors.white;
 const kSecondaryTextColor = Color.fromARGB(255, 92, 104, 113);
 const accent1 = Color.fromARGB(255, 238, 139, 96);
 const accentBack = Color.fromARGB(255, 250, 220, 207);
+
