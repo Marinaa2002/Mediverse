@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
-import 'package:mediverse/Constants/constants.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/ChatMessage.dart';
 
 class DoctorChat extends StatelessWidget {

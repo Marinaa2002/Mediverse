@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
-import 'package:mediverse/Constants/constants.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/screens/DoctorDashboard/BookingDoctor.dart';
 import 'package:mediverse/screens/DoctorDashboard/ChatsList.dart';
 import 'package:mediverse/screens/DoctorDashboard/PatientHistoryScreen.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Constants/constants.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class Themes {
   static TextStyle headlineMedium = const TextStyle(
