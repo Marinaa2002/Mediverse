@@ -63,8 +63,8 @@ class BlogCardDoc extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(2),
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: 55,
+                          height: 55,
                           clipBehavior: Clip.antiAlias,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,

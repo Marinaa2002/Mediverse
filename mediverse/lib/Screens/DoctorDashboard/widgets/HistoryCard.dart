@@ -58,8 +58,8 @@ class HistoryCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(40),
                           child: Image.network(
                             'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
-                            width: 60,
-                            height: 60,
+                            width: 55,
+                            height: 55,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -83,7 +83,7 @@ class HistoryCard extends StatelessWidget {
                               print('Button pressed ...');
 
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => ViewHistory()));
+                                  builder: (ctx) => const ViewHistory()));
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -102,7 +102,7 @@ class HistoryCard extends StatelessWidget {
                                   ),
                               elevation: 3,
                             ),
-                            child: Text('View'),
+                            child: const Text('View'),
                           ),
                         ),
                       ),

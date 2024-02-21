@@ -17,19 +17,22 @@ class PatientsTab extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 5, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 8, 0),
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                   child: ElevatedButton(
                     onPressed: () {
                       print('Button pressed ...');
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const PatientHistory()));
+                          builder: (ctx) => const BookingDoctor()));
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(185, 37),
+                      minimumSize: Size(
+                        MediaQuery.sizeOf(context).width * 0.45,
+                        37,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -41,11 +44,11 @@ class PatientsTab extends StatelessWidget {
                       ),
                       elevation: 3,
                     ),
-                    child: const Text('Patients\' History'),
+                    child: const Text('Bookings'),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                   child: ElevatedButton(
                     onPressed: () {
                       print('Button pressed ...');
@@ -53,7 +56,10 @@ class PatientsTab extends StatelessWidget {
                           builder: (ctx) => const ChatsList()));
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(185, 37),
+                      minimumSize: Size(
+                        MediaQuery.sizeOf(context).width * 0.45,
+                        37,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -76,11 +82,14 @@ class PatientsTab extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 print('Button pressed ...');
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const BookingDoctor()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) => const PatientHistory()));
               },
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(185, 37),
+                minimumSize: Size(
+                  MediaQuery.sizeOf(context).width * 0.45,
+                  37,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -91,7 +100,7 @@ class PatientsTab extends StatelessWidget {
                 ),
                 elevation: 3,
               ),
-              child: const Text('Bookings'),
+              child: const Text('Patinets\' History'),
             ),
           ),
           const Padding(

@@ -91,10 +91,14 @@ class CurBookingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
+                          padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: 20),
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(120, 40),
+                              minimumSize: Size(
+                                MediaQuery.sizeOf(context).width * 0.3,
+                                40,
+                              ),
                               backgroundColor: kprimaryColor,
                             ),
                             onPressed: () {},
@@ -111,10 +115,14 @@ class CurBookingCard extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
+                          padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: 20),
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(120, 40),
+                              minimumSize: Size(
+                                MediaQuery.sizeOf(context).width * 0.3,
+                                40,
+                              ),
                               backgroundColor: kprimaryColor,
                             ),
                             onPressed: () {},

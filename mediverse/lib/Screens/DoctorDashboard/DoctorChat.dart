@@ -89,7 +89,7 @@ class DoctorChat extends StatelessWidget {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                            const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                         child: IconButton(
                           icon: const Icon(
                             Icons.camera_alt,
