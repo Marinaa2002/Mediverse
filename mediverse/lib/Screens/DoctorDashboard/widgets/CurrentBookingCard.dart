@@ -17,7 +17,7 @@ class CurBookingCard extends StatelessWidget {
         ),
         child: Container(
           width: 390,
-          height: 170,
+          height: 160,
           decoration: BoxDecoration(
             color: kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(12),
