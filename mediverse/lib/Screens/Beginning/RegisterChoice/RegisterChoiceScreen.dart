@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Widgets/BeginWidget.dart';
 import '../../../Widgets/CustomChoiceButton.dart';
-import '../../../conts/consts.dart';
 import '../DoctorSignUp/DoctorSignUp.dart';
 import '../FormStaff/FormStaff.dart';
 import '../PatientSignUp/PatientSignUp.dart';
