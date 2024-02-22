@@ -14,8 +14,6 @@ import 'package:mediverse/Screens/StaffDashboard/HospitalStaffManagementScreenAd
 import 'package:mediverse/Screens/StaffDashboard/LabStaffMainScreen.dart';
 
 
-void main() {
-
 import 'package:mediverse/Screens/PatientDashboard/MainScreen.dart';
 
 void main() async {

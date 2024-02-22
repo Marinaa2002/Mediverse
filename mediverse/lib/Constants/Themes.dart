@@ -85,12 +85,6 @@ class Themes {
     fontSize: 14,
     color: Colors.black,
   );
-  static TextStyle bodyXLarge = const TextStyle(
-    fontFamily: 'Plus Jakarta Sans',
-    color: Color(0xFF14181B),
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-  );
    static TextStyle bodysmall = const TextStyle(
     fontFamily: 'Plus Jakarta Sans',
     color: Color(0xFF14181B),
