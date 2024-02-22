@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/BookingCard.dart';
+import 'package:mediverse/screens/DoctorDashboard/widgets/PrevBookingsList.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/SearchBar.dart';
 
 class BookingDoctor extends StatefulWidget {
@@ -46,27 +46,11 @@ class _BookingDoctorState extends State<BookingDoctor> {
           mainAxisSize: MainAxisSize.max,
           children: [
             SearchBarCustom(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    BookingCard(),
-                    BookingCard(),
-                    BookingCard(),
-                    BookingCard(),
-                    BookingCard(),
-                    BookingCard(),
-                    BookingCard(),
-                    
-                  ],
-                ),
-              ),
-            ),
+            PrevBookingsList(),
           ],
         ),
       ),
     );
   }
 }
+

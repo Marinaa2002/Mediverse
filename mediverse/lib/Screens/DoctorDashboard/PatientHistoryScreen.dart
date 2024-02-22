@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/HistoryCard.dart';
+import 'package:mediverse/screens/DoctorDashboard/widgets/PrevPatientsList.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/SearchBar.dart';
 
 class PatientHistory extends StatefulWidget {
@@ -48,24 +48,12 @@ class _PatientHistory extends State<PatientHistory> {
           mainAxisSize: MainAxisSize.max,
           children: [
             SearchBarCustom(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    HistoryCard(),
-                    HistoryCard(),
-                    HistoryCard(),
-                    HistoryCard(),
-                    HistoryCard(),
-                  ],
-                ),
-              ),
-            ),
+            PrevPatientsList(),
           ],
         ),
       ),
     );
   }
 }
+
+

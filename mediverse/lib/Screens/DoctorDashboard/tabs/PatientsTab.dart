@@ -4,7 +4,7 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/screens/DoctorDashboard/BookingDoctor.dart';
 import 'package:mediverse/screens/DoctorDashboard/ChatsList.dart';
 import 'package:mediverse/screens/DoctorDashboard/PatientHistoryScreen.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/CurrentBookingCard.dart';
+import 'package:mediverse/screens/DoctorDashboard/widgets/CurBookingsList.dart';
 
 class PatientsTab extends StatelessWidget {
   const PatientsTab({super.key});
@@ -129,22 +129,11 @@ class PatientsTab extends StatelessWidget {
               ],
             ),
           ),
-          const Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  CurBookingCard(),
-                  CurBookingCard(),
-                  CurBookingCard(),
-                  CurBookingCard(),
-                ],
-              ),
-            ),
-          ),
+          CurBookingsList(),
         ],
       ),
     );
   }
 }
+
+
