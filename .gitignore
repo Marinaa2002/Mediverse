@@ -4,3 +4,4 @@ mediverse/windows/flutter/generated_plugin_registrant.cc
 mediverse/macos/Flutter/GeneratedPluginRegistrant.swift
 mediverse/linux/flutter/generated_plugins.cmake
 mediverse/pubspec.yaml
+mediverse/pubspec.lock
