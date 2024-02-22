@@ -17,15 +17,15 @@ class CurBookingCard extends StatelessWidget {
         ),
         child: Container(
           width: 390,
-          height: 160,
+          height: 170,
           decoration: BoxDecoration(
             color: kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(12),
           ),
           alignment: const AlignmentDirectional(0, 0),
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 4),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 4),
+            child: Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
