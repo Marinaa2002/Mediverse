@@ -21,8 +21,8 @@ class ChoiceButton extends StatelessWidget {
             Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
           },
           style: ElevatedButton.styleFrom(
-            primary: M.primaryColor,
-            onPrimary: Colors.white, // Assuming text color should be white
+            foregroundColor: Colors.white,
+            backgroundColor: M.primaryColor, // Assuming text color should be white
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
             elevation: 3,
             shape: RoundedRectangleBorder(

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/conts/Themes.dart';
+import '../../../Widgets/BeginWidget.dart';
 import '../../../conts/consts.dart';
 import '../LoginScreen/LoginScreen.dart';
 
@@ -26,70 +28,40 @@ class _SplashState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-      Center(
-        child:
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                M.primaryColor,
-                M.errorColor,
-                M.tertiary,
-              ],
-              stops: [0, 0.5, 1],
-              begin: AlignmentDirectional(-1, -1),
-              end: AlignmentDirectional(1, 1),
-            ),
-          ),
-          child: Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  M.cyan,
-                  M.white
-                ],
-                stops: [0, 1],
-                begin: AlignmentDirectional(0, -1),
-                end: AlignmentDirectional(0, 1),
+      BeginWidget(widget: Align(
+        alignment: AlignmentDirectional(0, 0),
+        child:Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                'assets/images/logo2.png',
+                width: 420,
+                height: 406,
+                fit: BoxFit.contain,
+                alignment: Alignment(0, 0),
               ),
             ),
-            child: Align(
-              alignment: AlignmentDirectional(0, 0),
-              child:Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      'assets/images/logo2.png',
-                      width: 420,
-                      height: 406,
-                      fit: BoxFit.contain,
-                      alignment: Alignment(0, 0),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
-                    child: Text(
-                      'Welcome to MediVerse!',
-                      style: Themes.splashBoldTitle
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(44, 8, 44, 0),
-                    child: Text(
-                      'Better Health = Better Universe',
-                      textAlign: TextAlign.center,
-                      style: Themes.labelColored,
-                  ),),
-                ],),
-            ),),
-        ),),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
+              child: Text(
+                  'Welcome to MediVerse!',
+                  style: Themes.splashBoldTitle
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(44, 8, 44, 0),
+              child: Text(
+                'Better Health = Better Universe',
+                textAlign: TextAlign.center,
+                style: Themes.labelColored,
+              ),),
+          ],),
+      ),),
     );
   }
 }
+
+
