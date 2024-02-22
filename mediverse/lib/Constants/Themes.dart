@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class Themes {
@@ -47,12 +46,14 @@ class Themes {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+
   static TextStyle bodyXLarge = const TextStyle(
     fontFamily: 'Plus Jakarta Sans',
     color: Color(0xFF14181B),
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
+
   static TextStyle labelMedium = const TextStyle(
     fontFamily: 'Readex Pro',
     fontSize: 14,
@@ -63,4 +64,39 @@ class Themes {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
+
+  static TextStyle labelLarge18 = const TextStyle(
+    fontFamily: 'Readex Pro',
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle labelLarge26 = const TextStyle(
+    fontFamily: 'Readex Pro',
+    fontSize: 26,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle label12 = const TextStyle(
+    fontFamily: 'Readex Pro',
+    fontSize: 12,
+    fontStyle: FontStyle.normal
+  );
+  static TextStyle label14 = const TextStyle(
+    fontFamily: 'Readex Pro',
+    fontSize: 14,
+    color: Colors.black,
+  );
+  static TextStyle bodyXLarge = const TextStyle(
+    fontFamily: 'Plus Jakarta Sans',
+    color: Color(0xFF14181B),
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+   static TextStyle bodysmall = const TextStyle(
+    fontFamily: 'Plus Jakarta Sans',
+    color: Color(0xFF14181B),
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+
 }
+
