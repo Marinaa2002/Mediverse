@@ -107,6 +107,8 @@ flutter:
     - assets/images/booking.jpg
     - assets/images/Human.jpg
     - assets/images/draw.png
+    - assets/images/logo2.png
+    - assets/icons/google.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
