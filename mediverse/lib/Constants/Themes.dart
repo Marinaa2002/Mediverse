@@ -122,31 +122,31 @@ class Themes {
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle labelMed = TextStyle(
+  static TextStyle labelMed = const TextStyle(
     fontFamily: 'Readex Pro',
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle titleButton = TextStyle(
+  static TextStyle titleButton = const TextStyle(
       fontFamily: 'Readex Pro',
       fontWeight: FontWeight.w600,
       color: Color(0xFF57636C),
       fontSize: 15);
 
-  static TextStyle title = TextStyle(
+  static TextStyle title = const TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle labelColored = TextStyle(
+  static TextStyle labelColored = const TextStyle(
     fontFamily: 'Readex Pro',
     color: Color(0xFF4B39EF),
     fontWeight: FontWeight.w500,
     fontSize: 17,
   );
 
-  static TextStyle splashBoldTitle = TextStyle(
+  static TextStyle splashBoldTitle = const TextStyle(
     fontFamily: 'Outfit',
     fontSize: 26,
     fontWeight: FontWeight.bold,

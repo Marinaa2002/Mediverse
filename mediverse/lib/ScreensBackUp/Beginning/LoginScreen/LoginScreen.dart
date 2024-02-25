@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
 import '../../../GlobalWidgets/CustomSignUpLogin.dart';
 import '../../../GlobalWidgets/CustomSignUpWith.dart';
 import '../../../GlobalWidgets/CustomTextFormField.dart';
@@ -10,7 +11,6 @@ import '../../../GlobalWidgets/LogoContainer.dart';
 import '../../../GlobalWidgets/StartingCont.dart';
 import '../../../GlobalWidgets/googleButton.dart';
 import '../../../GlobalWidgets/titleText.dart';
-import '../../../conts/Themes.dart';
 import '../RegisterChoice/RegisterChoiceScreen.dart';
 
 class LoginScreen extends StatelessWidget {

@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
-import '../conts/Themes.dart';
+import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class AlignText extends StatelessWidget {
   final text;
   const AlignText({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
 
   @override
@@ -14,10 +16,7 @@ class AlignText extends StatelessWidget {
       alignment: AlignmentDirectional(-1, -1),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 10),
-        child: Text(
-            text,
-            style: Themes.labelMed
-        ),
+        child: Text(text, style: Themes.labelMed),
       ),
     );
   }

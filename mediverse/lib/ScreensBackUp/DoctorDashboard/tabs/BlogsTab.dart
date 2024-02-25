@@ -118,9 +118,18 @@ class BlogsTab extends StatelessWidget {
                   ),
                 ),
               ),
-              const BlogCardDoc(),
-              const BlogCardDoc(),
-              const BlogCardDoc(),
+              const BlogCardDoc(
+                DrName: '',
+                title: '',
+              ),
+              const BlogCardDoc(
+                DrName: '',
+                title: '',
+              ),
+              const BlogCardDoc(
+                title: '',
+                DrName: '',
+              ),
             ],
           ),
         ),

@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mediverse/conts/Themes.dart';
+
+import 'package:mediverse/Constants/Themes.dart';
 import '../../../GlobalWidgets/BeginWidget.dart';
 import '../LoginScreen/LoginScreen.dart';
 
