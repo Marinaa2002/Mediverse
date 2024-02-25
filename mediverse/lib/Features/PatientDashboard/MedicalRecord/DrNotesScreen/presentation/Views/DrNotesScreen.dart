@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/SendAdviceBox.dart';
 
-import '../Widgets/CustomAdviceWidget.dart';
-import '../Widgets/CustomDateWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomAdviceWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomDateWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/SendAdviceBox.dart';
 
 class DrNotesScreen extends StatelessWidget {
   DrNotesScreen({super.key});
@@ -28,11 +28,12 @@ class DrNotesScreen extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(
-            'My Medical Notes',
-            style: TextStyle(fontFamily: 'Outfit', color: Colors.white,
-              fontSize: 20,)
-        ),
+        title: const Text('My Medical Notes',
+            style: TextStyle(
+              fontFamily: 'Outfit',
+              color: Colors.white,
+              fontSize: 20,
+            )),
         actions: [],
         centerTitle: true,
         elevation: 2,
@@ -46,15 +47,19 @@ class DrNotesScreen extends StatelessWidget {
               child: ListView(
                 children: [
                   CustomDateWidget(date: '8/8/2023'),
-                  CustomAdviceWidget(advice: ' Don\'t eat fatty foods for you cholestrol'),
+                  CustomAdviceWidget(
+                      advice: ' Don\'t eat fatty foods for you cholestrol'),
                   CustomDateWidget(date: '15/9/2023'),
-                  CustomAdviceWidget(advice: ' Drink about 2 litres of water per day'),
+                  CustomAdviceWidget(
+                      advice: ' Drink about 2 litres of water per day'),
                   CustomDateWidget(date: '20/9/2023'),
-                  CustomAdviceWidget(advice: 'Make sure to eat well before taking your medication'),
+                  CustomAdviceWidget(
+                      advice:
+                          'Make sure to eat well before taking your medication'),
                 ],
               ),
             ),
-            SendAdviceBox(),
+            const SendAdviceBox(),
           ],
         ),
       ),

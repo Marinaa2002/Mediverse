@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomRatingIcon.dart';
 
-import '../Widgets/CustomCardRatings.dart';
-import '../Widgets/ReviewPageBody.dart';
-
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/ReviewPageBody.dart';
 
 class RatingsScreen extends StatelessWidget {
   RatingsScreen({super.key});
@@ -14,7 +11,6 @@ class RatingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: backgroundColor,
@@ -31,7 +27,7 @@ class RatingsScreen extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(
+        title: const Text(
           'Review Page',
           style: TextStyle(
             fontFamily: 'Outfit',
@@ -43,7 +39,7 @@ class RatingsScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: SafeArea(
+      body: const SafeArea(
         top: true,
         child: SingleChildScrollView(
           child: ReviewPageBody(),

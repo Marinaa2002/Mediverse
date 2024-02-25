@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomMyMessageWidget.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomNotMyMessageWidget.dart';
 
-import '../Widgets/MessagesListWidget.dart';
-import '../Widgets/SendMessageBox.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/MessagesListWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/SendMessageBox.dart';
 
 class PatientChatScreen extends StatelessWidget {
   PatientChatScreen({super.key});
@@ -26,22 +24,22 @@ class PatientChatScreen extends StatelessWidget {
             color: Colors.white,
             size: 24,
           ),
-          onPressed: (){
+          onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         title: Text(
-            'Dr. Ashraf Hassan',
-            style: Themes.headlineMedium.copyWith(
-              color: backgroundColor,
-            ),
+          'Dr. Ashraf Hassan',
+          style: Themes.headlineMedium.copyWith(
+            color: backgroundColor,
+          ),
         ),
         actions: const [],
         centerTitle: true,
         elevation: 2,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

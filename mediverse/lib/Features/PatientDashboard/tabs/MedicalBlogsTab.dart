@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/BlogCard.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/SearchBoxAppointmentWidget.dart';
+
+import '../../DoctorDashboard/widgets/BlogCardDoc.dart';
+import '../Widgets/SearchBoxAppointmentWidget.dart';
 
 class MedicalBlogsTab extends StatelessWidget {
   MedicalBlogsTab({super.key});
@@ -19,15 +20,21 @@ class MedicalBlogsTab extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                children: [
+                children: const [
                   SingleChildScrollView(
                     child: SearchBoxAppointmentWidget(),
                   ),
                 ],
               ),
-              BlogCardDoc(title: 'How Much Coffee Is Too\nMuch Coffee?', DrName: 'Dr. Salem Ahmed'),
-              BlogCardDoc(title: 'Food Allergies and \nAnaphylactic Shocks', DrName: 'Dr. Waheed Amr'),
-              BlogCardDoc(title: 'What to do with \n a diabetes patient?', DrName: 'Dr. Hoda Raouf'),
+              const BlogCardDoc(
+                  title: 'How Much Coffee Is Too\nMuch Coffee?',
+                  DrName: 'Dr. Salem Ahmed'),
+              const BlogCardDoc(
+                  title: 'Food Allergies and \nAnaphylactic Shocks',
+                  DrName: 'Dr. Waheed Amr'),
+              const BlogCardDoc(
+                  title: 'What to do with \n a diabetes patient?',
+                  DrName: 'Dr. Hoda Raouf'),
             ],
           ),
         ),

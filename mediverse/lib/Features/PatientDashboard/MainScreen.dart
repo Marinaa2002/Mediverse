@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/PatientDashboard/tabs/Appointment%20Tab.dart';
-import 'package:mediverse/Screens/PatientDashboard/tabs/MedicalBlogsTab.dart';
-import 'package:mediverse/Screens/PatientDashboard/tabs/MedicalRecordTab.dart';
-import 'PatientProfileScreen.dart';
+import 'package:mediverse/ScreensBackUp/PatientDashboard/tabs/Appointment%20Tab.dart';
+
 import 'Widgets/CustomAppbarMainScreenPatient.dart';
+import 'tabs/MedicalBlogsTab.dart';
+import 'tabs/MedicalRecordTab.dart';
 
 class MainScreenWidget extends StatelessWidget {
   MainScreenWidget({super.key});
@@ -19,8 +19,8 @@ class MainScreenWidget extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        title: CustomAppbarMainScreenPatient(),
-        actions: [],
+        title: const CustomAppbarMainScreenPatient(),
+        actions: const [],
         centerTitle: false,
         elevation: 2,
       ),
@@ -35,20 +35,19 @@ class MainScreenWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Align(
-                      alignment: Alignment(0, 0),
+                      alignment: const Alignment(0, 0),
                       child: TabBar(
                         isScrollable: true,
                         labelColor: kprimaryColor,
                         unselectedLabelColor: Colors.grey,
-                        labelStyle:
-                        TextStyle(
+                        labelStyle: const TextStyle(
                           fontFamily: 'Readex Pro',
                           fontSize: 15,
                           fontWeight: FontWeight.normal,
                         ),
-                        unselectedLabelStyle: TextStyle(),
+                        unselectedLabelStyle: const TextStyle(),
                         indicatorColor: kprimaryColor,
-                        tabs: [
+                        tabs: const [
                           Tab(
                             text: 'Appointment',
                           ),
@@ -69,7 +68,7 @@ class MainScreenWidget extends StatelessWidget {
                       child: TabBarView(
                         children: [
                           AppointmentTab(),
-                          MedicalRecordsTab(),
+                          const MedicalRecordsTab(),
                           MedicalBlogsTab()
                         ],
                       ),

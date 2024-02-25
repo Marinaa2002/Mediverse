@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomRatingIcon.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/CustomRatingIcon.dart';
 
 class CustomCardRatings extends StatelessWidget {
   CustomCardRatings({super.key, required this.name});
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  String name;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,12 @@ class CustomCardRatings extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
           child: Container(
             width: MediaQuery.sizeOf(context).width * 0.96,
             decoration: BoxDecoration(
               color: Colors.white,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 4,
                   color: Color(0x33000000),
@@ -29,40 +29,43 @@ class CustomCardRatings extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Padding(
-              padding: EdgeInsets.all(2),
+              padding: const EdgeInsets.all(2),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          16, 12, 16, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                  '$name',
-                                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,)
-                              ),
+                              Text('$name',
+                                  style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                  )),
                               Padding(
-                                padding:
-                                EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0, 4, 0, 4),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    CustomRatingIconWidget(color: Colors.yellow),
-                                    CustomRatingIconWidget(color: Colors.yellow),
-                                    CustomRatingIconWidget(color: Colors.yellow),
-                                    CustomRatingIconWidget(color: Colors.yellow),
-                                    CustomRatingIconWidget(color: Colors.yellow),
+                                    CustomRatingIconWidget(
+                                        color: Colors.yellow),
+                                    CustomRatingIconWidget(
+                                        color: Colors.yellow),
+                                    CustomRatingIconWidget(
+                                        color: Colors.yellow),
+                                    CustomRatingIconWidget(
+                                        color: Colors.yellow),
+                                    CustomRatingIconWidget(
+                                        color: Colors.yellow),
                                   ],
                                 ),
                               ),
@@ -71,12 +74,12 @@ class CustomCardRatings extends StatelessWidget {
                           Container(
                             width: 50,
                             height: 50,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Container(
+                            alignment: const AlignmentDirectional(0, 0),
+                            child: SizedBox(
                               width: 150,
                               height: 150,
                               child: ClipRRect(
@@ -86,18 +89,16 @@ class CustomCardRatings extends StatelessWidget {
                                   width: 300,
                                   height: 200,
                                   fit: BoxFit.fill,
-                                  alignment: Alignment(0, 0),
+                                  alignment: const Alignment(0, 0),
                                 ),
                               ),
-
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          16, 4, 16, 12),
+                    const Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -122,4 +123,4 @@ class CustomCardRatings extends StatelessWidget {
       ],
     );
   }
-  }
+}

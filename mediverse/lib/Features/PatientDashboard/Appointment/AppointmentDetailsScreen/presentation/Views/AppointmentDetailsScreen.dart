@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/PatientDashboard/Appointment/PatientChatScreen.dart';
-import 'package:mediverse/Screens/PatientDashboard/Appointment/RatingsScreen.dart';
-import 'package:mediverse/Screens/PatientDashboard/Widgets/CustomButtonAppointmentDetails.dart';
-import '../Widgets/CustomDayWidget.dart';
-import '../Widgets/CustomDoctorDetails.dart';
-import '../Widgets/CustomTimeWidget.dart';
-import 'BookingScreen.dart';
+
+import '../../../../../../ScreensBackUp/PatientDashboard/Appointment/BookingScreen.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Appointment/PatientChatScreen.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Appointment/RatingsScreen.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomButtonAppointmentDetails.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomDayWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomDoctorDetails.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
 class AppointmentDetailsScreen extends StatelessWidget {
   AppointmentDetailsScreen({super.key});
@@ -32,7 +33,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(
+        title: const Text(
           'Details',
           style: TextStyle(
             fontFamily: 'Outfit',
@@ -49,82 +50,126 @@ class AppointmentDetailsScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            CustomDoctorDetails(),
+            const CustomDoctorDetails(),
             Align(
-              alignment: AlignmentDirectional(-1, 0),
+              alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
-                child: Text(
-                  'Cost For Booking: 150.00 L.E',
-                  style: Themes.labelLarge18
-                ),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
+                child: Text('Cost For Booking: 150.00 L.E',
+                    style: Themes.labelLarge18),
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(-1, 0),
+              alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
-                child: Text(
-                  'Day',
-                  style: Themes.bodyMedium
-                ),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                child: Text('Day', style: Themes.bodyMedium),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    CustomDayWidget(day: 'Saturday', date: '4 October', colorBox: Colors.indigo, colorText: Colors.white),
-                    CustomDayWidget(day: 'Monday', date: '6 October', colorBox: Colors.white, colorText: Colors.black),
-                    CustomDayWidget(day: 'Tuesday', date: '7 October', colorBox: Colors.white, colorText: Colors.black),
-                    CustomDayWidget(day: 'Thursday', date: '9 October', colorBox: Colors.white, colorText: Colors.black),
+                    CustomDayWidget(
+                        day: 'Saturday',
+                        date: '4 October',
+                        colorBox: Colors.indigo,
+                        colorText: Colors.white),
+                    CustomDayWidget(
+                        day: 'Monday',
+                        date: '6 October',
+                        colorBox: Colors.white,
+                        colorText: Colors.black),
+                    CustomDayWidget(
+                        day: 'Tuesday',
+                        date: '7 October',
+                        colorBox: Colors.white,
+                        colorText: Colors.black),
+                    CustomDayWidget(
+                        day: 'Thursday',
+                        date: '9 October',
+                        colorBox: Colors.white,
+                        colorText: Colors.black),
                   ],
                 ),
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(-1, 0),
+              alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
-                child: Text(
-                  'Time',
-                  style: Themes.bodyMedium
-                ),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                child: Text('Time', style: Themes.bodyMedium),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    CustomTimeWidget(time: '7:00 Pm', colorBox: Colors.indigo, colorText: Colors.white),
-                    CustomTimeWidget(time: '7:30 Pm', colorBox: Colors.white, colorText: Colors.black),
-                    CustomTimeWidget(time: '8:00 Pm', colorBox: Colors.white, colorText: Colors.black),
-                    CustomTimeWidget(time: '8:30 Pm', colorBox: Colors.white, colorText: Colors.black),
-              ],
+                    CustomTimeWidget(
+                        time: '7:00 Pm',
+                        colorBox: Colors.indigo,
+                        colorText: Colors.white),
+                    CustomTimeWidget(
+                        time: '7:30 Pm',
+                        colorBox: Colors.white,
+                        colorText: Colors.black),
+                    CustomTimeWidget(
+                        time: '8:00 Pm',
+                        colorBox: Colors.white,
+                        colorText: Colors.black),
+                    CustomTimeWidget(
+                        time: '8:30 Pm',
+                        colorBox: Colors.white,
+                        colorText: Colors.black),
+                  ],
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomButtonAppointmentDetails(onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PatientChatScreen(),));
-                  }, buttonName: 'Chat', icon: Icons.chat,),
-                  CustomButtonAppointmentDetails(onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookingScreen(),));
-                  }, buttonName: 'Book', icon: Icons.book,),
-                  CustomButtonAppointmentDetails(onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => RatingsScreen(),));
-                  }, buttonName: 'Rate', icon: Icons.star_rate_sharp,),
+                  CustomButtonAppointmentDetails(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PatientChatScreen(),
+                          ));
+                    },
+                    buttonName: 'Chat',
+                    icon: Icons.chat,
+                  ),
+                  CustomButtonAppointmentDetails(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const BookingScreen(),
+                          ));
+                    },
+                    buttonName: 'Book',
+                    icon: Icons.book,
+                  ),
+                  CustomButtonAppointmentDetails(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RatingsScreen(),
+                          ));
+                    },
+                    buttonName: 'Rate',
+                    icon: Icons.star_rate_sharp,
+                  ),
                 ],
               ),
             ),
@@ -134,5 +179,3 @@ class AppointmentDetailsScreen extends StatelessWidget {
     );
   }
 }
-
-

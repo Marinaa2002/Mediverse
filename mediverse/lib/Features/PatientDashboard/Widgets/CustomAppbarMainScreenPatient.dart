@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/PatientProfileScreen.dart';
 
 import '../../../Constants/constant.dart';
-import '../PatientProfileScreen.dart';
 
 class CustomAppbarMainScreenPatient extends StatelessWidget {
   const CustomAppbarMainScreenPatient({
@@ -18,8 +18,12 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PatientProfileScreen(),));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PatientProfileScreen(),
+                  ));
             },
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 10),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 
-import '../Widgets/CustomButtonWidget.dart';
-import '../Widgets/CustomDateWidget.dart';
-import '../Widgets/CustomPictureWidget.dart';
-
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomButtonWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomDateWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomPictureWidget.dart';
 
 class MedicalPrescriptionsScreen extends StatelessWidget {
   MedicalPrescriptionsScreen({super.key});
@@ -13,7 +12,6 @@ class MedicalPrescriptionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: backgroundColor,
@@ -51,11 +49,16 @@ class MedicalPrescriptionsScreen extends StatelessWidget {
               child: ListView(
                 children: [
                   CustomDateWidget(date: '16/9/2020'),
-                  CustomPictureWidget(pictureLink: 'assets/images/Sample-prescription-used-as-input-to-the-GUI-developed-in-the-present-work.png'),
+                  CustomPictureWidget(
+                      pictureLink:
+                          'assets/images/Sample-prescription-used-as-input-to-the-GUI-developed-in-the-present-work.png'),
                   CustomDateWidget(date: '20/10/2022'),
-                  CustomPictureWidget(pictureLink: 'assets/images/20180526152346127.jpg'),
+                  CustomPictureWidget(
+                      pictureLink: 'assets/images/20180526152346127.jpg'),
                   CustomDateWidget(date: '29/3/2023'),
-                  CustomPictureWidget(pictureLink: 'assets/images/medical-prescription-ocr.webp'),
+                  CustomPictureWidget(
+                      pictureLink:
+                          'assets/images/medical-prescription-ocr.webp'),
                 ],
               ),
             ),

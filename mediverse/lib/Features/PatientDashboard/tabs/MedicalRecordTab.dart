@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/PatientDashboard/MedicalRecord/DrNotesScreen.dart';
-import 'package:mediverse/Screens/PatientDashboard/MedicalRecord/LabResultsScreen.dart';
-import 'package:mediverse/Screens/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen.dart';
+
+import '../MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
+import '../MedicalRecord/LabResultsScreen/presentation/Views/LabResultsScreen.dart';
+import '../MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/MedicalPrescriptionsScreen.dart';
 import '../Widgets/CustomButtonMedicalRecord.dart';
 import '../Widgets/CustomMedicalRecordInfo.dart';
 
@@ -12,7 +13,7 @@ class MedicalRecordsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Expanded(
+    return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
@@ -21,12 +22,14 @@ class MedicalRecordsTab extends StatelessWidget {
             padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
             child: Row(
               children: [
-                CustomButtonMedicalRecord(text: 'Prescriptions',
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (ctx) => MedicalPrescriptionsScreen()));
-                }),
-                CustomButtonMedicalRecord(text: 'Lab Results',
+                CustomButtonMedicalRecord(
+                    text: 'Prescriptions',
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => MedicalPrescriptionsScreen()));
+                    }),
+                CustomButtonMedicalRecord(
+                    text: 'Lab Results',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (ctx) => LabResultsScreen()));
@@ -34,10 +37,11 @@ class MedicalRecordsTab extends StatelessWidget {
               ],
             ),
           ),
-          CustomButtonMedicalRecord(text: 'Dr. Notes',
+          CustomButtonMedicalRecord(
+              text: 'Dr. Notes',
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => DrNotesScreen()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (ctx) => DrNotesScreen()));
               }),
           const Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
@@ -50,8 +54,7 @@ class MedicalRecordsTab extends StatelessWidget {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
             child: GestureDetector(
-              onTap: () {
-              },
+              onTap: () {},
               child: Container(
                 height: 40,
                 width: 100,
@@ -63,7 +66,8 @@ class MedicalRecordsTab extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Edit',
+                    Text(
+                      'Edit',
                       style: Themes.titleLarge.copyWith(
                         color: Colors.white,
                         fontFamily: 'Readex Pro',
@@ -77,5 +81,5 @@ class MedicalRecordsTab extends StatelessWidget {
         ],
       ),
     );
-    }
+  }
 }

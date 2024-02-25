@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDateWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/CustomPictureWidget.dart';
 
-import '../Widgets/CustomButtonWidget.dart';
-import '../Widgets/CustomDateWidget.dart';
-import '../Widgets/CustomPictureWidget.dart';
+import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomButtonWidget.dart';
 
 class LabResultsScreen extends StatelessWidget {
   LabResultsScreen({super.key});
@@ -12,7 +12,6 @@ class LabResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: backgroundColor,
@@ -29,7 +28,7 @@ class LabResultsScreen extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(
+        title: const Text(
           'Lab Results',
           style: TextStyle(
             fontFamily: 'Outfit',
@@ -52,9 +51,13 @@ class LabResultsScreen extends StatelessWidget {
                   CustomDateWidget(date: '16/9/2020'),
                   CustomPictureWidget(pictureLink: 'assets/images/image.jpg'),
                   CustomDateWidget(date: '20/10/2022'),
-                  CustomPictureWidget(pictureLink: 'assets/images/GNU_Health_lab_report_sample.png'),
+                  CustomPictureWidget(
+                      pictureLink:
+                          'assets/images/GNU_Health_lab_report_sample.png'),
                   CustomDateWidget(date: '29/3/2023'),
-                  CustomPictureWidget(pictureLink: 'assets/images/GNU_Health_lab_report_sample.png'),
+                  CustomPictureWidget(
+                      pictureLink:
+                          'assets/images/GNU_Health_lab_report_sample.png'),
                 ],
               ),
             ),

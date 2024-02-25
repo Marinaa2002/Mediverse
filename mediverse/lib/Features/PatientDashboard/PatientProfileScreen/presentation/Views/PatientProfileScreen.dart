@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
-import 'Widgets/InfoProfileWidget.dart';
-import 'Widgets/PictureProfileWidget.dart';
-import 'Widgets/SettingsProfileWidget.dart';
+import '../../../Widgets/InfoProfileWidget.dart';
+import '../../../Widgets/PictureProfileWidget.dart';
+import '../../../Widgets/SettingsProfileWidget.dart';
 
 class PatientProfileScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -22,7 +22,7 @@ class PatientProfileScreen extends StatelessWidget {
             color: kSecondryBackgroundColor,
             size: 24,
           ),
-          onPressed: (){
+          onPressed: () {
             Navigator.of(context).pop();
           },
         ),
@@ -38,34 +38,34 @@ class PatientProfileScreen extends StatelessWidget {
         elevation: 2,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0, 0),
+        alignment: const AlignmentDirectional(0, 0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            PictureProfileWidget(),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
-                child: Text(
-                  'Dr. David Parker',
-                  textAlign: TextAlign.center,
-                  style: Themes.headlineSmall.copyWith(
-                    fontFamily: 'Outfit',
-                    color: kprimaryTextColor,
-                  ),
-                ),
-              ),
-              Text(
-                'David.parker@gmail.com',
-                style: Themes.titleSmall.copyWith(
+            const PictureProfileWidget(),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+              child: Text(
+                'Dr. David Parker',
+                textAlign: TextAlign.center,
+                style: Themes.headlineSmall.copyWith(
                   fontFamily: 'Outfit',
                   color: kprimaryTextColor,
                 ),
               ),
-              InfoProfileWidget(),
-              SettingsProfileWidget(),
-            ],
-          ),
+            ),
+            Text(
+              'David.parker@gmail.com',
+              style: Themes.titleSmall.copyWith(
+                fontFamily: 'Outfit',
+                color: kprimaryTextColor,
+              ),
+            ),
+            const InfoProfileWidget(),
+            const SettingsProfileWidget(),
+          ],
         ),
+      ),
     );
   }
 }
