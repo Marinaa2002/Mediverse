@@ -3,20 +3,20 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Constants/Themes.dart';
 
 class MedicalInfoRow extends StatelessWidget {
-  MedicalInfoRow({super.key, required this.text, required this.value});
+  const MedicalInfoRow({super.key, required this.text, required this.value});
 
-  String text, value;
+  final String text, value;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
             child: Text(
-              '$text',
+              text,
               style: Themes.labelLarge18.copyWith(
                 fontFamily: 'Readex Pro',
               ),
@@ -24,11 +24,11 @@ class MedicalInfoRow extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
               child: Container(
                 decoration: BoxDecoration(
                   color: kSecondryBackgroundColor,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 10,
                       color: Color(0x33000000),
@@ -41,9 +41,9 @@ class MedicalInfoRow extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                     child: Text(
-                      '$value',
+                      value,
                       style: Themes.bodysmall,
                     ),
                   ),
