@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/Screens/StaffDashboard/HospitalStaffManagementScreenAddDoctors.dart';
 
 import '../../../Constants/Themes.dart';
+import '../HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
 
 class MedicalCard extends StatelessWidget {
   const MedicalCard({super.key, required this.name});

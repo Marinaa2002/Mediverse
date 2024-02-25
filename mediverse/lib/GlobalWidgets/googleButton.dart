@@ -1,9 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../conts/Themes.dart';
-import '../conts/consts.dart';
+import '../Constants/Themes.dart';
+import '../Constants/constant.dart';
 
 class googleButton extends StatelessWidget {
   const googleButton({
@@ -13,14 +12,12 @@ class googleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
       child: ElevatedButton(
-        onPressed: () async {
-
-        },
+        onPressed: () async {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: M.white,
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          backgroundColor: white,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -33,17 +30,11 @@ class googleButton extends StatelessWidget {
               width: 23,
               height: 23,
             ),
-            SizedBox(width: 8),
-            Text(
-                'Continue with Google',
-                style:Themes.textSmall
-            ),
+            const SizedBox(width: 8),
+            Text('Continue with Google', style: Themes.textSmall),
           ],
         ),
       ),
     );
   }
 }
-
-
-

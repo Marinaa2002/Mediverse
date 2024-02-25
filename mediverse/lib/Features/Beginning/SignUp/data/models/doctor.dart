@@ -1,10 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:mediverse/models/blog.dart';
-import 'package:mediverse/models/booking.dart';
-import 'package:mediverse/models/patient.dart';
-import 'package:mediverse/models/review.dart';
+import 'package:mediverse/AllModels/blog.dart';
+import 'package:mediverse/AllModels/booking.dart';
+import 'package:mediverse/AllModels/patient.dart';
+import 'package:mediverse/AllModels/review.dart';
 
 class Doctor {
   const Doctor({

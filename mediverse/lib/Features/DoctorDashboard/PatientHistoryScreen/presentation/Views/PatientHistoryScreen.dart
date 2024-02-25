@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/PrevPatientsList.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/SearchBar.dart';
 import 'package:mediverse/screens/DoctorDashboard/widgets/PrevPatientsList.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/SearchBar.dart';
 
 class PatientHistory extends StatefulWidget {
   const PatientHistory({super.key});
@@ -55,5 +56,3 @@ class _PatientHistory extends State<PatientHistory> {
     );
   }
 }
-
-

@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mediverse/Widgets/StartingCont.dart';
-import '../../../Widgets/CustomPatientSignUp.dart';
-
+import 'package:mediverse/GlobalWidgets/CustomPatientSignUp.dart';
+import 'package:mediverse/GlobalWidgets/StartingCont.dart';
 
 class PatientSignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Stack(
         children: [
-          const startingCont(),
+          startingCont(),
           CustomPatientSignUp(),
         ],
       ),

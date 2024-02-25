@@ -1,4 +1,4 @@
-import 'package:mediverse/models/request.dart';
+import 'package:mediverse/AllModels/request.dart';
 
 class Admin {
   const Admin({

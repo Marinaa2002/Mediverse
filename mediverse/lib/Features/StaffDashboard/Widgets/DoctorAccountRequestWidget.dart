@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/ActionButton.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/ActionButton.dart';
 
 class DoctorAccountRequestWidget extends StatelessWidget {
   const DoctorAccountRequestWidget({super.key});

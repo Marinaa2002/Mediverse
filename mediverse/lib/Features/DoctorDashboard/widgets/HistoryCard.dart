@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/ViewMedicalHistory.dart';
+
+import '../ViewMedicalHistory/presentation/Views/ViewMedicalHistory.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key});

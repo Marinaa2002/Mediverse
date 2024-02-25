@@ -1,6 +1,6 @@
-import 'package:mediverse/models/patient.dart';
+import '../../../../../AllModels/patient.dart';
 
-class lab_staff{
+class lab_staff {
   const lab_staff({
     required this.id,
     required this.Lab_Name,

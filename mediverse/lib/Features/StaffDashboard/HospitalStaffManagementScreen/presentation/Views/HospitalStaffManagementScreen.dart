@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/ActionButton.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/DrAvailableSlots.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/DrAvailableTime.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/DrInformation.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/RateWidget.dart';
 
-import '../../Constants/Themes.dart';
+import '../../../Widgets/ActionButton.dart';
+import '../../../Widgets/DrAvailableSlots.dart';
+import '../../../Widgets/DrAvailableTime.dart';
+import '../../../Widgets/DrInformation.dart';
 
 class HospitalStaffManagementScreen extends StatelessWidget {
   const HospitalStaffManagementScreen({super.key});

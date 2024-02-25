@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../conts/Themes.dart';
-import '../conts/consts.dart';
+import 'package:mediverse/Constants/Themes.dart';
+
+import '../Constants/constant.dart';
 
 class CustomTextFormField3 extends StatefulWidget {
   final String text;
@@ -20,55 +21,55 @@ class _CustomTextFormField3State extends State<CustomTextFormField3> {
     return Container(
       width: 390,
       child: TextFormField(
-        controller: _controller,
-        autofocus: false,
-        autofillHints: [AutofillHints.email],
-        obscureText: _obscureText,
-        decoration: InputDecoration(
-          hintText: widget.text,
-          suffixIcon: IconButton(
-            icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
-            onPressed: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
-          ),
-          labelStyle: Themes.fieldText,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xFFE0E3E7),
-              width: 2,
+          controller: _controller,
+          autofocus: false,
+          autofillHints: const [AutofillHints.email],
+          obscureText: _obscureText,
+          decoration: InputDecoration(
+            hintText: widget.text,
+            suffixIcon: IconButton(
+              icon:
+                  Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
             ),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: M.grey,
-              width: 2,
+            labelStyle: Themes.fieldText,
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: Color(0xFFE0E3E7),
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(12),
             ),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: M.errorColor,
-              width: 2,
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: grey,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(12),
             ),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: M.errorColor,
-              width: 2,
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: errorColor,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(12),
             ),
-            borderRadius: BorderRadius.circular(12),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: errorColor,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.all(16),
           ),
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding: EdgeInsets.all(16),
-        ),
-        style: Themes.bodyMed
-      ),
+          style: Themes.bodyMed),
     );
   }
 

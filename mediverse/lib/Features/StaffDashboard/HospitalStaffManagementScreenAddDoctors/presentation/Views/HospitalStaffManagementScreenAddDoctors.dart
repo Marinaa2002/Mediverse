@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/AddDoctorsRequestWidget.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/PatientCard.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/SearchBar.dart';
+
+import '../../../Widgets/AddDoctorsRequestWidget.dart';
+import '../../../Widgets/PatientCard.dart';
+import '../../../Widgets/SearchBar.dart';
 
 class HospitalStaffManagementScreenAddDoctors extends StatefulWidget {
   const HospitalStaffManagementScreenAddDoctors({super.key});

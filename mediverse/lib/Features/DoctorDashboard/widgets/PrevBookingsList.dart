@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/BookingCard.dart';
+
+import 'BookingCard.dart';
 
 class PrevBookingsList extends StatelessWidget {
   const PrevBookingsList({

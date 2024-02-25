@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/BlogCardDoc.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/BlogCardDoc.dart';
 
 class BlogsTab extends StatelessWidget {
   const BlogsTab({super.key});
@@ -117,9 +117,18 @@ class BlogsTab extends StatelessWidget {
                   ),
                 ),
               ),
-              BlogCardDoc(),
-              BlogCardDoc(),
-              BlogCardDoc(),
+              const BlogCardDoc(
+                title: '',
+                DrName: '',
+              ),
+              const BlogCardDoc(
+                title: '',
+                DrName: '',
+              ),
+              const BlogCardDoc(
+                title: '',
+                DrName: '',
+              ),
             ],
           ),
         ),

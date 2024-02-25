@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../conts/consts.dart';
+import '../Constants/constant.dart';
 
 class startingCont extends StatelessWidget {
   const startingCont({
@@ -12,12 +12,12 @@ class startingCont extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            M.primaryColor,
-            M.errorColor,
-            M.tertiary,
+            primaryColor,
+            errorColor,
+            tertiary,
           ],
           stops: [0, 0.5, 1],
           begin: AlignmentDirectional(-1, -1),
@@ -27,12 +27,9 @@ class startingCont extends StatelessWidget {
       child: Container(
         width: 100,
         height: MediaQuery.of(context).size.height / 2,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              M.cyan,
-              M.white
-            ],
+            colors: [cyan, white],
             stops: [0, 0.4],
             begin: AlignmentDirectional(0, -1),
             end: AlignmentDirectional(0, 1),

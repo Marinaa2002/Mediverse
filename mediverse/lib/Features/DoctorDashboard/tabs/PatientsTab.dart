@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/BookingDoctor.dart';
-import 'package:mediverse/screens/DoctorDashboard/ChatsList.dart';
-import 'package:mediverse/screens/DoctorDashboard/PatientHistoryScreen.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/CurBookingsList.dart';
+
+import '../BookingDoctor/presentation/Views/BookingDoctor.dart';
+import '../ChatsList/presentation/Views/ChatsList.dart';
+import '../PatientHistoryScreen/presentation/Views/PatientHistoryScreen.dart';
+import '../widgets/CurBookingsList.dart';
 
 class PatientsTab extends StatelessWidget {
   const PatientsTab({super.key});
@@ -135,5 +136,3 @@ class PatientsTab extends StatelessWidget {
     );
   }
 }
-
-

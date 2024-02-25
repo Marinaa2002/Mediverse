@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/DoctorProfile.dart';
-import 'package:mediverse/screens/DoctorDashboard/tabs/BlogsTab.dart';
-import 'package:mediverse/screens/DoctorDashboard/tabs/PatientsTab.dart';
+
+import 'DoctorProfile/presentation/Views/DoctorProfile.dart';
+import 'tabs/BlogsTab.dart';
+import 'tabs/PatientsTab.dart';
 
 class MainScreen2 extends StatelessWidget {
   const MainScreen2({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/ChatHead.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/ChatHead.dart';
 
 class ChatsList extends StatelessWidget {
   const ChatsList({super.key});

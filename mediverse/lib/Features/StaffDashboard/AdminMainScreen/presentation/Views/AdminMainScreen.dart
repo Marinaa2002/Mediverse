@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/ActionButton.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/DoctorAccountRequestWidget.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/HospitalAddHideWidget.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/HospitalStaffAccount.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/LabAccountRequest.dart';
+
+import '../../../Widgets/DoctorAccountRequestWidget.dart';
+import '../../../Widgets/HospitalAddHideWidget.dart';
+import '../../../Widgets/HospitalStaffAccount.dart';
+import '../../../Widgets/LabAccountRequest.dart';
 
 class AdminMainScreenWidget extends StatefulWidget {
   const AdminMainScreenWidget({super.key});

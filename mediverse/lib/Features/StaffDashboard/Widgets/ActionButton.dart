@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/StaffDashboard/HospitalStaffManagementScreen.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/HospitalStaffAccount.dart';
+
+import '../HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 
 // ignore: must_be_immutable
 class ActionButton extends StatelessWidget {

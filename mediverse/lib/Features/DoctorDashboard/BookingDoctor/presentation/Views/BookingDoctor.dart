@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/PrevBookingsList.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/SearchBar.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/PrevBookingsList.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/SearchBar.dart';
 
 class BookingDoctor extends StatefulWidget {
   const BookingDoctor({super.key});
@@ -53,4 +53,3 @@ class _BookingDoctorState extends State<BookingDoctor> {
     );
   }
 }
-

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/ListViewPatient.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/PatientCard.dart';
+
+import '../../../Widgets/ListViewPatient.dart';
 
 class LabStaffScreen extends StatelessWidget {
   const LabStaffScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/CurrentBookingCard.dart';
+import 'package:mediverse/ScreensBackUp/DoctorDashboard/widgets/CurrentBookingCard.dart';
 
 class CurBookingsList extends StatelessWidget {
   const CurBookingsList({

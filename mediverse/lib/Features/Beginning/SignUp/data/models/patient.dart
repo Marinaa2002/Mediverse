@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:mediverse/models/booking.dart';
-import 'package:mediverse/models/doctor.dart';
+import 'package:mediverse/AllModels/booking.dart';
+import 'package:mediverse/AllModels/doctor.dart';
 
 class Patient {
   const Patient({

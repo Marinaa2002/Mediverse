@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/Screens/StaffDashboard/Widgets/PatientCard.dart';
+
+import 'PatientCard.dart';
 
 class ListViewPatient extends StatelessWidget {
   const ListViewPatient({super.key});
