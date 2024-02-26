@@ -15,14 +15,14 @@ class TextWidgetHorz extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Date Chosen',
+          leadingText,
           style: Themes.labelMedium.copyWith(
             fontFamily: 'Readex Pro',
             fontWeight: FontWeight.normal,
           ),
         ),
         Text(
-          'Sat, Oct 04 - 7:00pm',
+          secondryText,
           style: Themes.labelLarge18,
         ),
       ],
