@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/Notes.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/TextWidgetHorz.dart';
 
 import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
@@ -12,7 +15,6 @@ class BookingForm extends StatefulWidget {
 }
 
 class _BookingFormState extends State<BookingForm> {
-  String dropdownValue = paymentMethods.first;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -86,46 +88,19 @@ class _BookingFormState extends State<BookingForm> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Date Chosen',
-                          style: Themes.labelMedium.copyWith(
-                            fontFamily: 'Readex Pro',
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                        Text(
-                          'Sat, Oct 04 - 7:00pm',
-                          style: Themes.labelLarge18,
-                        ),
-                      ],
+                  const Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                    child: TextWidgetHorz(
+                      leadingText: "Date Chosen",
+                      secondryText: "Sat, Oct 04- 7:00pm",
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Location',
-                          style: Themes.labelMedium.copyWith(
-                            fontFamily: 'Readex Pro',
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                        Text(
-                          'Tiba Dental Care',
-                          style: Themes.labelLarge18,
-                        ),
-                      ],
-                    ),
-                  ),
+                  const Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: TextWidgetHorz(
+                        leadingText: "Location",
+                        secondryText: "Tiba Dental Care",
+                      )),
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 16),
@@ -196,69 +171,12 @@ class _BookingFormState extends State<BookingForm> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Amount',
-                                style: Themes.labelMedium.copyWith(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              Text(
-                                '150.00 L.E',
-                                style: Themes.labelLarge18,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Payment Method',
-                                style: Themes.labelMedium.copyWith(
-                                  fontFamily: 'Readex Pro',
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              DropdownButton<String>(
-                                value: dropdownValue,
-                                icon: const Icon(
-                                    Icons.keyboard_arrow_down_rounded),
-                                elevation: 16,
-                                style:
-                                    const TextStyle(color: kprimaryTextColor),
-                                underline: Container(
-                                  height: 2,
-                                  color: kprimaryColor,
-                                ),
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    dropdownValue = value!;
-                                  });
-                                },
-                                items: paymentMethods
-                                    .map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                              ),
-                            ],
-                          ),
-                        ),
+                        const Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                            child: TextWidgetHorz(
+                              leadingText: "Amount",
+                              secondryText: "150.00 L.E",
+                            )),
                         const Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                           child: Divider(
@@ -270,52 +188,18 @@ class _BookingFormState extends State<BookingForm> {
                           'Notes',
                           style: Themes.bodyXLarge,
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-                          child: Text(
-                            'To ensure smooth scheduling, it is important to note that doctor appointments must be modified, rescheduled, or canceled at least 24 hours before the scheduled time.',
-                            style: Themes.labelMedium,
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                          child: Text(
-                            'Please be aware that in the event of canceling a prepaid appointment, a cancellation fee of 50 L.E will be deducted.',
-                            style: Themes.labelMedium,
-                          ),
+                        const Notes(
+                            note:
+                                'To ensure smooth scheduling, it is important to note that doctor appointments must be modified, rescheduled, or canceled at least 24 hours before the scheduled time.'),
+                        const Notes(
+                          note: "Different Text",
                         ),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 60,
-                        width: double.infinity,
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: kprimaryColor,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Confirm Booking',
-                              style: Themes.titleLarge.copyWith(
-                                color: Colors.white,
-                                fontFamily: 'Readex Pro',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  const Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                    child: ConfirmButton(),
                   ),
                 ],
               ),
