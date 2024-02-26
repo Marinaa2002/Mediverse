@@ -4,12 +4,17 @@ import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 
 class ConfirmButton extends StatelessWidget {
-  const ConfirmButton({super.key});
-
+  const ConfirmButton({
+    super.key,
+    this.onTap,
+    required this.text,
+  });
+  final VoidCallback? onTap;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         height: 60,
         width: double.infinity,
@@ -22,7 +27,7 @@ class ConfirmButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Confirm Booking',
+              text,
               style: Themes.titleLarge.copyWith(
                 color: Colors.white,
                 fontFamily: 'Readex Pro',

@@ -5,6 +5,7 @@ import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/pr
 import 'package:mediverse/Features/PatientDashboard/Widgets/ActionDetailsWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Notes.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/PaymentMethodListView.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/RowImageAndText.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/TextWidgetHorz.dart';
 
@@ -121,13 +122,46 @@ class _BookingFormState extends State<BookingForm> {
                 ],
               ),
             ),
-            const SliverFillRemaining(
+            SliverFillRemaining(
                 hasScrollBody: false,
                 child: Align(
-                  child: ConfirmButton(),
+                  child: ConfirmButton(
+                    text: "Confirm Booking",
+                    onTap: () {
+                      showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        context: context,
+                        builder: (context) {
+                          return const PaymentBottomSheet();
+                        },
+                      );
+                    },
+                  ),
                 )),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class PaymentBottomSheet extends StatelessWidget {
+  const PaymentBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: PaymentMethodsListView(),
+          ),
+          ConfirmButton(text: "Continue"),
+        ],
       ),
     );
   }
