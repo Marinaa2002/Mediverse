@@ -39,6 +39,7 @@ dependencies:
   dio: ^5.4.1
   flutter_stripe: 10.0.0
   either_dart: ^1.0.0
+  flutter_bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:
