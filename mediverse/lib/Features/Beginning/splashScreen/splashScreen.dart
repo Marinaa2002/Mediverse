@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/GlobalWidgets/BeginWidget.dart';
-import 'package:mediverse/conts/Themes.dart';
 
 import '../LoginScreen/LoginScreen.dart';
 

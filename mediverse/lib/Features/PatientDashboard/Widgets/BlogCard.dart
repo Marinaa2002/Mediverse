@@ -112,7 +112,7 @@ class BlogCardDoc extends StatelessWidget {
                       ),
                       Padding(
                         padding:
-                        const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                            const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                         child: Text(
                           '45',
                           style: Themes.bodyLarge,
@@ -122,7 +122,6 @@ class BlogCardDoc extends StatelessWidget {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                         child: CircleAvatar(
-
                           backgroundColor: accentBack,
                           child: IconButton(
                             iconSize: 44,

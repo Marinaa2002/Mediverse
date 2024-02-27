@@ -16,8 +16,7 @@ class MessagesListWidget extends StatelessWidget {
         Center(
           child: Text('12/5/2022', style: Themes.DateText),
         ),
-        CustomMyMessageWidget(
-            height: 45, width: 100, message: 'Hello Doctor'),
+        CustomMyMessageWidget(height: 45, width: 100, message: 'Hello Doctor'),
         CustomNotMyMessageWidget(
           message: 'Hello',
           width: 80,
@@ -27,7 +26,7 @@ class MessagesListWidget extends StatelessWidget {
           width: 250,
           height: 60,
           message:
-          'I will send lab results, Can you see it and tell me how is it?',
+              'I will send lab results, Can you see it and tell me how is it?',
         ),
         Align(
           alignment: AlignmentDirectional(1, 0),
@@ -84,8 +83,7 @@ class MessagesListWidget extends StatelessWidget {
             height: 50,
             width: 260,
             message: 'Okay, I will book and visit you ASAP'),
-        CustomMyMessageWidget(
-            height: 45, width: 100, message: 'Thank you'),
+        CustomMyMessageWidget(height: 45, width: 100, message: 'Thank you'),
         Align(
           alignment: AlignmentDirectional(-1, 0),
           child: Padding(

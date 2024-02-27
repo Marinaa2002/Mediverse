@@ -11,7 +11,7 @@ class BookingForm extends StatefulWidget {
   State<BookingForm> createState() => _BookingFormState();
 }
 
-class _BookingFormState extends State<BookingForm>{
+class _BookingFormState extends State<BookingForm> {
   String dropdownValue = paymentMethods.first;
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,7 @@ class _BookingFormState extends State<BookingForm>{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding:
-              EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
+              padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,8 +50,7 @@ class _BookingFormState extends State<BookingForm>{
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ClipRRect(
-                                borderRadius:
-                                BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8),
                                 child: Image.asset(
                                   'assets/images/booking.jpg',
                                   width: 50,
@@ -61,15 +59,15 @@ class _BookingFormState extends State<BookingForm>{
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Align(
-                                      alignment:
-                                      AlignmentDirectional(0, 0),
+                                      alignment: AlignmentDirectional(0, 0),
                                       child: Text(
                                         'Booking Details',
                                         style: Themes.titleLarge.copyWith(
@@ -164,14 +162,18 @@ class _BookingFormState extends State<BookingForm>{
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12, 0, 0, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Align(
-                                            alignment: AlignmentDirectional(0, 0),
+                                            alignment:
+                                                AlignmentDirectional(0, 0),
                                             child: Text(
                                               'Payment Details',
                                               style: Themes.titleLarge.copyWith(
@@ -225,21 +227,22 @@ class _BookingFormState extends State<BookingForm>{
                               DropdownButton<String>(
                                 value: dropdownValue,
                                 icon: const Icon(
-                                    Icons.keyboard_arrow_down_rounded
-                                ),
+                                    Icons.keyboard_arrow_down_rounded),
                                 elevation: 16,
-                                style: const TextStyle(color: kprimaryTextColor),
+                                style:
+                                    const TextStyle(color: kprimaryTextColor),
                                 underline: Container(
                                   height: 2,
                                   color: kprimaryColor,
                                 ),
-                                onChanged: (String? value){
+                                onChanged: (String? value) {
                                   setState(() {
                                     dropdownValue = value!;
-                                  }
-                                  );
+                                  });
                                 },
-                                items: paymentMethods.map<DropdownMenuItem<String>>((String value){
+                                items: paymentMethods
+                                    .map<DropdownMenuItem<String>>(
+                                        (String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(value),
@@ -280,8 +283,7 @@ class _BookingFormState extends State<BookingForm>{
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                     child: GestureDetector(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 60,
                         width: double.infinity,
@@ -293,7 +295,8 @@ class _BookingFormState extends State<BookingForm>{
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Confirm Booking',
+                            Text(
+                              'Confirm Booking',
                               style: Themes.titleLarge.copyWith(
                                 color: Colors.white,
                                 fontFamily: 'Readex Pro',

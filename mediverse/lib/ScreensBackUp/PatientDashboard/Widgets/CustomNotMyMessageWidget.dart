@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomNotMyMessageWidget extends StatelessWidget {
-  CustomNotMyMessageWidget({super.key, required this.message, this.width, this.height});
+  CustomNotMyMessageWidget(
+      {super.key, required this.message, this.width, this.height});
   String message;
   double? width;
   double? height;
@@ -33,4 +34,4 @@ class CustomNotMyMessageWidget extends StatelessWidget {
       ),
     );
   }
-  }
+}

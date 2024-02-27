@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomTimeWidget extends StatelessWidget {
-  CustomTimeWidget({super.key, required this.time, required this.colorBox, required this.colorText});
+  CustomTimeWidget(
+      {super.key,
+      required this.time,
+      required this.colorBox,
+      required this.colorText});
   String time;
   Color colorBox;
   Color colorText;

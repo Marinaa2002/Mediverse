@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class CustomPictureWidget extends StatelessWidget {
   CustomPictureWidget({super.key, required this.pictureLink});
 
@@ -13,8 +12,7 @@ class CustomPictureWidget extends StatelessWidget {
     return Align(
       alignment: AlignmentDirectional(0, 0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(
-            12, 0, 12, 12),
+        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 12),
         child: Container(
           width: 300,
           height: 200,

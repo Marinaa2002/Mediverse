@@ -40,17 +40,10 @@ class ReviewPageBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding:
-                          EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                          child: Text(
-                              '2,503',
-                              style: Themes.labelLarge26
-                          ),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                          child: Text('2,503', style: Themes.labelLarge26),
                         ),
-                        Text(
-                            '# of Ratings',
-                            style: Themes.label12
-                        ),
+                        Text('# of Ratings', style: Themes.label12),
                       ],
                     ),
                     Column(
@@ -61,24 +54,19 @@ class ReviewPageBody extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0, 0, 0, 12),
-                              child: Text(
-                                  '4.6',
-                                  style: Themes.labelLarge26
-                              ),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                              child: Text('4.6', style: Themes.labelLarge26),
                             ),
                             Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    4, 0, 0, 12),
-                                child: CustomRatingIconWidget(color: Colors.yellow,)
-                            ),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 12),
+                                child: CustomRatingIconWidget(
+                                  color: Colors.yellow,
+                                )),
                           ],
                         ),
-                        Text(
-                            'Avg. Rating',
-                            style: Themes.label12
-                        ),
+                        Text('Avg. Rating', style: Themes.label12),
                       ],
                     ),
                   ],
@@ -92,20 +80,15 @@ class ReviewPageBody extends StatelessWidget {
                 alignment: AlignmentDirectional(-1, -1),
                 child: Padding(
                   padding: EdgeInsets.all(10),
-                  child: Text(
-                      'Add Your Review :',
-                      style: Themes.labelLarge18
-                  ),
+                  child: Text('Add Your Review :', style: Themes.labelLarge18),
                 ),
               ),
               Align(
                 alignment: AlignmentDirectional(-1, 0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 0, 15, 0),
-                  child: Text(
-                      'Tell others what you think',
-                      style: Themes.label14
-                  ),
+                  child:
+                      Text('Tell others what you think', style: Themes.label14),
                 ),
               ),
               Row(
@@ -145,8 +128,7 @@ class ReviewPageBody extends StatelessWidget {
                     child: Align(
                       alignment: AlignmentDirectional(0, 0),
                       child: Padding(
-                        padding:
-                        EdgeInsetsDirectional.fromSTEB(5, 8, 5, 8),
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 8, 5, 8),
                         child: TextFormField(
                           obscureText: false,
                           decoration: InputDecoration(
@@ -156,8 +138,7 @@ class ReviewPageBody extends StatelessWidget {
                             errorBorder: InputBorder.none,
                             focusedErrorBorder: InputBorder.none,
                             contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(
-                                8, 0, 8, 0),
+                                EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                           ),
                           maxLines: 10,
                         ),

@@ -22,7 +22,7 @@ class PatientProfileScreen extends StatelessWidget {
             color: kSecondryBackgroundColor,
             size: 24,
           ),
-          onPressed: (){
+          onPressed: () {
             Navigator.of(context).pop();
           },
         ),
@@ -43,29 +43,29 @@ class PatientProfileScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             PictureProfileWidget(),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
-                child: Text(
-                  'Dr. David Parker',
-                  textAlign: TextAlign.center,
-                  style: Themes.headlineSmall.copyWith(
-                    fontFamily: 'Outfit',
-                    color: kprimaryTextColor,
-                  ),
-                ),
-              ),
-              Text(
-                'David.parker@gmail.com',
-                style: Themes.titleSmall.copyWith(
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+              child: Text(
+                'Dr. David Parker',
+                textAlign: TextAlign.center,
+                style: Themes.headlineSmall.copyWith(
                   fontFamily: 'Outfit',
                   color: kprimaryTextColor,
                 ),
               ),
-              InfoProfileWidget(),
-              SettingsProfileWidget(),
-            ],
-          ),
+            ),
+            Text(
+              'David.parker@gmail.com',
+              style: Themes.titleSmall.copyWith(
+                fontFamily: 'Outfit',
+                color: kprimaryTextColor,
+              ),
+            ),
+            InfoProfileWidget(),
+            SettingsProfileWidget(),
+          ],
         ),
+      ),
     );
   }
 }

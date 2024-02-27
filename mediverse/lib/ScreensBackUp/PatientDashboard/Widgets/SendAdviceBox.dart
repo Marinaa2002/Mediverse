@@ -26,8 +26,7 @@ class SendAdviceBox extends StatelessWidget {
             children: [
               Expanded(
                 child: Padding(
-                  padding:
-                  EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                   child: TextField(
                     obscureText: false,
                     decoration: InputDecoration(
@@ -39,19 +38,19 @@ class SendAdviceBox extends StatelessWidget {
                       errorBorder: InputBorder.none,
                       focusedErrorBorder: InputBorder.none,
                       contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(
-                          12, 0, 8, 0),
+                          EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
                     ),
-                    style: TextStyle( color: Colors.white,
-                      fontSize: 12,),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ),
               Align(
                 alignment: AlignmentDirectional(1, 0),
                 child: Padding(
-                  padding:
-                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                   child: Icon(
                     Icons.send,
                     color: Colors.white,

@@ -40,9 +40,13 @@ class CustomMedicalRecordInfo extends StatelessWidget {
                   MedicalInfoRow(text: 'Weight :', value: '70 kg'),
                   MedicalInfoRow(text: 'Blood Type :', value: 'B+'),
                   MedicalInfoRow(text: 'Blood Pressure :', value: '120/90'),
-                  MedicalInfoRow(text: 'Blood Glucose Level :', value: '80 mg/dL'),
-                  MedicalInfoRow(text: 'Cholesterol levels :', value: '200 mg/dL'),
-                  MedicalInfoRow(text: 'Allergies :', value: 'Penicillin - Asprin - anesthics'),
+                  MedicalInfoRow(
+                      text: 'Blood Glucose Level :', value: '80 mg/dL'),
+                  MedicalInfoRow(
+                      text: 'Cholesterol levels :', value: '200 mg/dL'),
+                  MedicalInfoRow(
+                      text: 'Allergies :',
+                      value: 'Penicillin - Asprin - anesthics'),
                   MedicalInfoRow(text: 'Heart rate :', value: '80 bpm'),
                   MedicalInfoRow(text: 'Respiratory Rate:', value: '80 bpm'),
                   MedicalInfoRow(text: 'Temperature :', value: '37 C'),

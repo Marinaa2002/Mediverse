@@ -18,8 +18,12 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PatientProfileScreen(),));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PatientProfileScreen(),
+                  ));
             },
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 10),

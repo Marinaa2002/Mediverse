@@ -58,7 +58,7 @@ class SettingsProfileWidget extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.work_outline,
                               color: kSecondaryTextColor,
@@ -67,11 +67,12 @@ class SettingsProfileWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
                                 'Phone Number',
                                 textAlign: TextAlign.start,
-                                style:Themes.bodyXLarge,
+                                style: Themes.bodyXLarge,
                               ),
                             ),
                           ),
@@ -94,7 +95,7 @@ class SettingsProfileWidget extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.language_rounded,
                               color: kSecondaryTextColor,
@@ -103,11 +104,12 @@ class SettingsProfileWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
                                 'Language',
                                 textAlign: TextAlign.start,
-                                style:Themes.bodyXLarge,
+                                style: Themes.bodyXLarge,
                               ),
                             ),
                           ),
@@ -130,7 +132,7 @@ class SettingsProfileWidget extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.money_rounded,
                               color: kSecondaryTextColor,
@@ -139,7 +141,8 @@ class SettingsProfileWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
                                 'Currency',
                                 textAlign: TextAlign.start,
@@ -166,7 +169,7 @@ class SettingsProfileWidget extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.edit,
                               color: kSecondaryTextColor,
@@ -175,7 +178,8 @@ class SettingsProfileWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
                                 'Profile Settings',
                                 textAlign: TextAlign.start,
@@ -202,7 +206,7 @@ class SettingsProfileWidget extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.notifications_active,
                               color: kSecondaryTextColor,
@@ -211,7 +215,8 @@ class SettingsProfileWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
                                 'Notification Settings',
                                 textAlign: TextAlign.start,
@@ -235,7 +240,7 @@ class SettingsProfileWidget extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.login_rounded,
                               color: kSecondaryTextColor,
@@ -244,7 +249,8 @@ class SettingsProfileWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
                                 'Log out of account',
                                 textAlign: TextAlign.start,

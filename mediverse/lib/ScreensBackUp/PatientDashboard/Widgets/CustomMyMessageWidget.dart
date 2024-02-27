@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomMyMessageWidget extends StatelessWidget {
-  CustomMyMessageWidget({super.key, required this.message, this.width, this.height});
+  CustomMyMessageWidget(
+      {super.key, required this.message, this.width, this.height});
   String message;
   double? width;
   double? height;

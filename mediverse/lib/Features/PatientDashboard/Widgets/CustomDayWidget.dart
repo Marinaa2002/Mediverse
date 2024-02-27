@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomDayWidget extends StatelessWidget {
-  CustomDayWidget({super.key, required this.day, required this.date, required this.colorBox, required this.colorText});
+  CustomDayWidget(
+      {super.key,
+      required this.day,
+      required this.date,
+      required this.colorBox,
+      required this.colorText});
   String day;
   String date;
   Color colorBox;

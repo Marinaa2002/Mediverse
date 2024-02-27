@@ -12,7 +12,6 @@ class LabResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: backgroundColor,
@@ -52,9 +51,13 @@ class LabResultsScreen extends StatelessWidget {
                   CustomDateWidget(date: '16/9/2020'),
                   CustomPictureWidget(pictureLink: 'assets/images/image.jpg'),
                   CustomDateWidget(date: '20/10/2022'),
-                  CustomPictureWidget(pictureLink: 'assets/images/GNU_Health_lab_report_sample.png'),
+                  CustomPictureWidget(
+                      pictureLink:
+                          'assets/images/GNU_Health_lab_report_sample.png'),
                   CustomDateWidget(date: '29/3/2023'),
-                  CustomPictureWidget(pictureLink: 'assets/images/GNU_Health_lab_report_sample.png'),
+                  CustomPictureWidget(
+                      pictureLink:
+                          'assets/images/GNU_Health_lab_report_sample.png'),
                 ],
               ),
             ),

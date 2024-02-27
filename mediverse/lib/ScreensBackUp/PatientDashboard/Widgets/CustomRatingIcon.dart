@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomRatingIconWidget extends StatelessWidget {
   CustomRatingIconWidget({super.key, required this.color});
   Color color;

@@ -23,90 +23,64 @@ class SearchBoxAppointmentWidget extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 4,
-                      color:
-                      Color(0x33000000),
+                      color: Color(0x33000000),
                       offset: Offset(0, 2),
                       spreadRadius: 3,
                     )
                   ],
-                  borderRadius:
-                  BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: kprimaryColor,
                   ),
                 ),
-                alignment:
-                AlignmentDirectional(0, 0),
+                alignment: AlignmentDirectional(0, 0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                   child: TextFormField(
                     obscureText: false,
-                    decoration:
-                    InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'Search ',
-                      enabledBorder:
-                      UnderlineInputBorder(
-                        borderSide:
-                        BorderSide(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
                           color: kprimaryColor,
                           width: 2,
                         ),
-                        borderRadius:
-                        BorderRadius
-                            .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      focusedBorder:
-                      UnderlineInputBorder(
-                        borderSide:
-                        BorderSide(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
                           color: kprimaryColor,
                           width: 2,
                         ),
-                        borderRadius:
-                        BorderRadius
-                            .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      errorBorder:
-                      UnderlineInputBorder(
-                        borderSide:
-                        BorderSide(
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
                           width: 2,
                         ),
-                        borderRadius:
-                        BorderRadius
-                            .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      focusedErrorBorder:
-                      UnderlineInputBorder(
-                        borderSide:
-                        BorderSide(
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
                           width: 2,
                         ),
-                        borderRadius:
-                        BorderRadius
-                            .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       contentPadding:
-                      EdgeInsetsDirectional
-                          .fromSTEB(
-                          8, 0, 8, 0),
+                          EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                     ),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional
-                  .fromSTEB(0, 15, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
               child: Card(
-                clipBehavior: Clip
-                    .antiAliasWithSaveLayer,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: Color(0xFFF1F4F8),
                 elevation: 1,
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                  BorderRadius.circular(
-                      40),
+                  borderRadius: BorderRadius.circular(40),
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(4),

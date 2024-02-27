@@ -53,31 +53,18 @@ class CustomDoctorDetails extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                        'Dr. Janny Wilson',
-                        textAlign: TextAlign.start,
-                        style: Themes.bodyMedium
-                    ),
-                    Text(
-                        'Dentist',
-                        textAlign: TextAlign.start,
-                        style: Themes.labelMedium
-                    ),
-                    Text(
-                        'Works at Tiba Dental Care',
-                        textAlign: TextAlign.start,
-                        style: Themes.labelMedium
-                    ),
+                    Text('Dr. Janny Wilson',
+                        textAlign: TextAlign.start, style: Themes.bodyMedium),
+                    Text('Dentist',
+                        textAlign: TextAlign.start, style: Themes.labelMedium),
+                    Text('Works at Tiba Dental Care',
+                        textAlign: TextAlign.start, style: Themes.labelMedium),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0, 0, 8, 0),
-                          child: Text(
-                              '4.1',
-                              style: Themes.labelMedium
-                          ),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                          child: Text('4.1', style: Themes.labelMedium),
                         ),
                         CustomRatingIconWidget(color: Colors.yellow),
                         CustomRatingIconWidget(color: Colors.yellow),

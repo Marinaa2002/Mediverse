@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 
-
 class CustomButtonWidget extends StatelessWidget {
   CustomButtonWidget({super.key});
 
@@ -9,12 +8,10 @@ class CustomButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
       child: GestureDetector(
-        onTap: () {
-        },
+        onTap: () {},
         child: Container(
           height: 50,
           width: 130,
@@ -26,15 +23,25 @@ class CustomButtonWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.upload_sharp, size: 20,color: Colors.white,),
-              SizedBox(width: 15,),
-              Text('Upload', style: TextStyle(color: Colors.white, fontFamily: 'Readex Pro',),),
+              Icon(
+                Icons.upload_sharp,
+                size: 20,
+                color: Colors.white,
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                'Upload',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Readex Pro',
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
-
   }
-
 }

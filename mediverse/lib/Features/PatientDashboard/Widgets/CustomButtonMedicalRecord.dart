@@ -4,11 +4,8 @@ import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 
 class CustomButtonMedicalRecord extends StatelessWidget {
-  CustomButtonMedicalRecord({
-    super.key,
-    required this.onPressed,
-    required this.text
-  });
+  CustomButtonMedicalRecord(
+      {super.key, required this.onPressed, required this.text});
 
   void Function()? onPressed;
   String text;
@@ -24,8 +21,7 @@ class CustomButtonMedicalRecord extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          padding:
-          const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
           backgroundColor: kprimaryColor,
           textStyle: Themes.bodyXLarge.copyWith(
             color: backgroundColor,
