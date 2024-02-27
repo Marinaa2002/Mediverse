@@ -8,9 +8,11 @@ class ConfirmButton extends StatelessWidget {
     super.key,
     this.onTap,
     required this.text,
+    this.isLoading = false,
   });
   final VoidCallback? onTap;
   final String text;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,18 +25,20 @@ class ConfirmButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           color: kprimaryColor,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              text,
-              style: Themes.titleLarge.copyWith(
-                color: Colors.white,
-                fontFamily: 'Readex Pro',
+        child: isLoading
+            ? const CircularProgressIndicator()
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    text,
+                    style: Themes.titleLarge.copyWith(
+                      color: Colors.white,
+                      fontFamily: 'Readex Pro',
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

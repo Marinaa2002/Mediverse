@@ -8,8 +8,8 @@ import 'package:meta/meta.dart';
 
 import '../../../data/models/PaymentIndentInputModel.dart';
 
-class PaymentCubit extends Cubit<PaymentStripeState> {
-  PaymentCubit(this.checkoutRepo) : super(PaymentStripeInitial());
+class PaymentStripeCubit extends Cubit<PaymentStripeState> {
+  PaymentStripeCubit(this.checkoutRepo) : super(PaymentStripeInitial());
   final CheckoutRepo checkoutRepo;
   Future makePayment(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
