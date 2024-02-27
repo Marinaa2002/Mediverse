@@ -223,7 +223,7 @@ packages:
     source: hosted
     version: "4.0.1"
   flutter_stripe:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_stripe
       sha256: "3a88b6001e62d93588a8d11294027a8ad43a56ae94a65a98623edb368d5b2a06"
