@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/PaymentIndentInputModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_States.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/Thank_you_Screen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
 
 class CustomButtonBlocConsumer extends StatelessWidget {
@@ -19,7 +19,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         if (state is PaymentStripeSuccess) {
           Navigator.of(context)
               .pushReplacement(MaterialPageRoute(builder: (context) {
-            return const BookingScreen();
+            return const ThankYouView();
           }));
         }
         if (state is PaymentStripeFailure) {
