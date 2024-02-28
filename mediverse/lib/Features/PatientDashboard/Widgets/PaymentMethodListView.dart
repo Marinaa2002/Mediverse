@@ -11,8 +11,8 @@ class PaymentMethodsListView extends StatefulWidget {
 
 class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
   final List<String> paymentMethodsItems = const [
-    'assets/images/card.svg',
-    'assets/images/paypal.svg'
+    'assets/images/card.png',
+    'assets/images/paypal.png'
   ];
 
   int activeIndex = 0;
@@ -27,10 +27,13 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  activeIndex = index;
+                  setState(() {});
+                },
                 child: PaymentMethodItem(
                   isActive: activeIndex == index,
-                  image: "assets/images/paypal.svg",
+                  image: paymentMethodsItems[index],
                 ),
               ),
             );

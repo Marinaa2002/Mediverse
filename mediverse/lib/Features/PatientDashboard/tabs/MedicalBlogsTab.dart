@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/Constants/constant.dart';
 
 import '../../DoctorDashboard/widgets/BlogCardDoc.dart';
 import '../Widgets/SearchBoxAppointmentWidget.dart';

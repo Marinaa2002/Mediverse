@@ -3,7 +3,6 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/PrevPatientsList.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/SearchBar.dart';
-import 'package:mediverse/screens/DoctorDashboard/widgets/PrevPatientsList.dart';
 
 class PatientHistory extends StatefulWidget {
   const PatientHistory({super.key});

@@ -10,11 +10,11 @@ class CustomAdviceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
       child: Container(
         width: double.infinity,
         height: 50,
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           minHeight: 50,
           maxHeight: 100,
         ),
@@ -23,9 +23,9 @@ class CustomAdviceWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Align(
-          alignment: AlignmentDirectional(-1, 0),
+          alignment: const AlignmentDirectional(-1, 0),
           child: Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Text('$advice',
                 textAlign: TextAlign.start,
                 maxLines: 50,

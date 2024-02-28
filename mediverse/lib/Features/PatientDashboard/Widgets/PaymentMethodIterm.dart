@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 class PaymentMethodItem extends StatelessWidget {
   const PaymentMethodItem({
     super.key,
-    required this.isActive,
+    this.isActive = false,
     required this.image,
   });
 
@@ -37,7 +37,7 @@ class PaymentMethodItem extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15), color: Colors.white),
         child: Center(
-          child: SvgPicture.asset(
+          child: Image.asset(
             image,
           ),
         ),

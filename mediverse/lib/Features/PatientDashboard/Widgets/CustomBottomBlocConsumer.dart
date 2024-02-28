@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/PaymentIndentInputModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_States.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
@@ -30,17 +31,16 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is PaymentStripeLoading) {
-          return const ConfirmButton(
-            text: "Continue",
-            isLoading: true,
-          );
-        } else {
-          return const ConfirmButton(
-            text: "Continue",
-            isLoading: false,
-          );
-        }
+        return ConfirmButton(
+          text: "Continue",
+          isLoading: state is PaymentStripeLoading ? true : false,
+          onTap: () {
+            PaymentIntentInputModel paymentIntentInputModel =
+                PaymentIntentInputModel(amount: '100', currency: 'usd');
+            BlocProvider.of<PaymentStripeCubit>(context)
+                .makePayment(paymentIntentInputModel: paymentIntentInputModel);
+          },
+        );
       },
     );
   }

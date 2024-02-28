@@ -4,8 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/repos/Check_out_repo.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_States.dart';
 
-import 'package:meta/meta.dart';
-
 import '../../../data/models/PaymentIndentInputModel.dart';
 
 class PaymentStripeCubit extends Cubit<PaymentStripeState> {
