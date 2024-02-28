@@ -32,8 +32,7 @@ class ThankYouView extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: Transform.translate(
-          offset: const Offset(0, -16), child: const ThankYouViewBody()),
+      body: const ThankYouViewBody(),
     );
   }
 }

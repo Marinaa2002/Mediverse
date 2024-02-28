@@ -27,10 +27,12 @@ class ThankYouCard extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Themes.bodyMed,
             ),
-            Text(
-              'Your transaction was successful',
-              textAlign: TextAlign.center,
-              style: Themes.bodyMedium,
+            Center(
+              child: Text(
+                'Your transaction was successful',
+                textAlign: TextAlign.center,
+                style: Themes.bodyMedium,
+              ),
             ),
             const Spacer(),
             Row(
