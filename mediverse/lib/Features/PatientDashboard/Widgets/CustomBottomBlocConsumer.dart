@@ -23,6 +23,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           }));
         }
         if (state is PaymentStripeFailure) {
+          Navigator.of(context).pop();
           SnackBar snackBar = SnackBar(
               content: Text(
             state.errMessage,

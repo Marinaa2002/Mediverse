@@ -15,7 +15,7 @@ class CheckoutRepoImpl extends CheckoutRepo {
       return const Right(null);
     } catch (e) {
       return Left(
-        ServerFailure(errMsg: "Errorrr"),
+        ServerFailure(errMsg: e.toString()),
       );
     }
   }
