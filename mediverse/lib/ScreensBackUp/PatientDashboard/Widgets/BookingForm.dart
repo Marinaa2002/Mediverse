@@ -23,13 +23,13 @@ class _BookingFormState extends State<BookingForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -40,11 +40,11 @@ class _BookingFormState extends State<BookingForm> {
                           width: 2,
                         ),
                       ),
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       child: Align(
-                        alignment: AlignmentDirectional(0, 0),
+                        alignment: const AlignmentDirectional(0, 0),
                         child: Padding(
-                          padding: EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(12),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -59,15 +59,16 @@ class _BookingFormState extends State<BookingForm> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    12, 0, 0, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(0, 0),
+                                      alignment:
+                                          const AlignmentDirectional(0, 0),
                                       child: Text(
                                         'Booking Details',
                                         style: Themes.titleLarge.copyWith(
@@ -86,7 +87,7 @@ class _BookingFormState extends State<BookingForm> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,7 +107,7 @@ class _BookingFormState extends State<BookingForm> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,13 +127,15 @@ class _BookingFormState extends State<BookingForm> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 16),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 16),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
@@ -143,11 +146,11 @@ class _BookingFormState extends State<BookingForm> {
                                 width: 2,
                               ),
                             ),
-                            alignment: AlignmentDirectional(0, 0),
+                            alignment: const AlignmentDirectional(0, 0),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: const AlignmentDirectional(0, 0),
                               child: Padding(
-                                padding: EdgeInsets.all(12),
+                                padding: const EdgeInsets.all(12),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -155,15 +158,16 @@ class _BookingFormState extends State<BookingForm> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
                                       child: Image.asset(
-                                        'assets/images/payment.png',
+                                        'assets/images/Payment.png',
                                         width: 50,
                                         height: 50,
                                         fit: BoxFit.fill,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 0, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              12, 0, 0, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -173,7 +177,8 @@ class _BookingFormState extends State<BookingForm> {
                                         children: [
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0, 0),
+                                                const AlignmentDirectional(
+                                                    0, 0),
                                             child: Text(
                                               'Payment Details',
                                               style: Themes.titleLarge.copyWith(
@@ -192,7 +197,8 @@ class _BookingFormState extends State<BookingForm> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -212,7 +218,8 @@ class _BookingFormState extends State<BookingForm> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -252,7 +259,7 @@ class _BookingFormState extends State<BookingForm> {
                             ],
                           ),
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                           child: Divider(
                             thickness: 2,
@@ -264,14 +271,16 @@ class _BookingFormState extends State<BookingForm> {
                           style: Themes.bodyXLarge,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                           child: Text(
                             'To ensure smooth scheduling, it is important to note that doctor appointments must be modified, rescheduled, or canceled at least 24 hours before the scheduled time.',
                             style: Themes.labelMedium,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                           child: Text(
                             'Please be aware that in the event of canceling a prepaid appointment, a cancellation fee of 50 L.E will be deducted.',
                             style: Themes.labelMedium,
@@ -281,13 +290,14 @@ class _BookingFormState extends State<BookingForm> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                     child: GestureDetector(
                       onTap: () {},
                       child: Container(
                         height: 60,
                         width: double.infinity,
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: kprimaryColor,

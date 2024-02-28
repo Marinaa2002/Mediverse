@@ -94,7 +94,7 @@ class _BookingFormState extends State<BookingForm> {
                         padding: EdgeInsets.all(12),
                         child: RowImageAndText(
                           text: "Payment Details",
-                          imageUrl: "assets/images/payment.png",
+                          imageUrl: "assets/images/Payment.png",
                         ),
                       ),
                     ),
