@@ -1,6 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/PaymentIndentInputModel.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/amount_model/amount_model.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/amount_model/details.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/item_list_model/item_list_model.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/item_list_model/item_model.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_States.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/Thank_you_Screen.dart';
@@ -48,9 +56,92 @@ class CustomButtonBlocConsumer extends StatelessWidget {
                     customerId: 'cus_Pe80vi7rQ3kLfY');
             BlocProvider.of<PaymentStripeCubit>(context)
                 .makePayment(paymentIntentInputModel: paymentIntentInputModel);
+            getTranscationData();
           },
         );
       },
     );
   }
+
+ ({AmountModel amount, ItemListModel itemList}) getTranscationData() {
+    var amount = AmountModel(
+      total: "100",
+      currency: "egp",
+      details: Details(
+        shipping: "0",
+        shippingDiscount: 0,
+        subtotal: "100",
+      ),
+    );
+    List<OrderItemModel> orders = [
+      OrderItemModel(
+        name: "App",
+        quantity: 1,
+        currency: "egp",
+        price: "100",
+      ),
+    ];
+    ItemListModel itemListModel = ItemListModel(orders: orders);
+    return (amount: amount,itemList:itemListModel);
+  }
+  void excuteStripePayment(BuildContext context) {
+    PaymentIntentInputModel paymentIntentInputModel =
+                PaymentIntentInputModel(
+                    //7ottttttttttttttt hnaaaaaaaaaaaaaaaa al Customerrrrrrrrrrrrrrrrrr idddddddddddddddddd ali fe  fire store
+                    amount: '100',
+                    currency: 'egp',
+                    customerId: 'cus_Pe80vi7rQ3kLfY');
+            BlocProvider.of<PaymentStripeCubit>(context)
+                .makePayment(paymentIntentInputModel: paymentIntentInputModel);
+  }
+    void exceutePaypalPayment(BuildContext context,
+      ({AmountModel amount, ItemListModel itemList}) transctionsData) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: ApiKeys.clientID,
+        secretKey: ApiKeys.paypalSecretKey,
+        transactions: [
+          {
+            "amount": transctionsData.amount.toJson(),
+            "description": "The payment transaction description.",
+            "item_list": transctionsData.itemList.toJson(),
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          log("onSuccess: $params");
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return const ThankYouView();
+            }),
+            (route) {
+              if (route.settings.name == '/') {
+                return true;
+              } else {
+                return false;
+              }
+            },
+          );
+        },
+        onError: (error) {
+          SnackBar snackBar = SnackBar(content: Text(error.toString()));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return const MyCartView();
+            }),
+            (route) {
+              return false;
+            },
+          );
+        },
+        onCancel: () {
+          print('cancelled:');
+          Navigator.pop(context);
+        },
+      ),
+    ));
 }
