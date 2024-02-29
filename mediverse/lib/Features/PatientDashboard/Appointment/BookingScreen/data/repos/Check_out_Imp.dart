@@ -8,7 +8,6 @@ class CheckoutRepoImpl extends CheckoutRepo {
   @override
   Future<Either<Failure, void>> makePayment(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
-    // TODO: implement makePayment
     try {
       await service.makePayment(
           paymentIntentInputModel: paymentIntentInputModel);

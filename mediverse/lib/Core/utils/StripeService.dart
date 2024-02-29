@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
@@ -48,7 +50,8 @@ class StripeService {
     var ephermalKey = await createEphermalKey(
       customerId: paymentIntentInputModel.customerId,
     );
-
+    String customerId = createCustomerId(name: "Philo") as String;
+    print(customerId);
     var initPaymentSheetInputModel = InitiPaymentSheetInputModel(
       paymentIntentClientSecret: paymentIntentModel.clientSecret!,
       merchantDisplayName: 'Philo',

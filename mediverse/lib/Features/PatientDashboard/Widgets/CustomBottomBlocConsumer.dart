@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/PaymentIndentInputModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_States.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/Thank_you_Screen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
 
@@ -24,11 +23,16 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         }
         if (state is PaymentStripeFailure) {
           Navigator.of(context).pop();
-          SnackBar snackBar = SnackBar(
-              content: Text(
-            state.errMessage,
-          ));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          String errMessage = state.errMessage;
+          bool firstMatch = errMessage.contains("Canceled");
+          if (!firstMatch) {
+            SnackBar snackBar = SnackBar(
+                content: Text(
+              state.errMessage,
+            ));
+
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
         }
       },
       builder: (context, state) {
