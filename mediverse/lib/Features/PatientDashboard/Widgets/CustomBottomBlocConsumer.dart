@@ -11,14 +11,17 @@ import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/da
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/item_list_model/item_model.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_States.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/Thank_you_Screen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
 
 class CustomButtonBlocConsumer extends StatelessWidget {
   const CustomButtonBlocConsumer({
     super.key,
+    required this.isPaypal,
   });
 
+  final bool isPaypal;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentStripeCubit, PaymentStripeState>(
@@ -48,25 +51,22 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           text: "Continue",
           isLoading: state is PaymentStripeLoading ? true : false,
           onTap: () {
-            PaymentIntentInputModel paymentIntentInputModel =
-                PaymentIntentInputModel(
-                    //7ottttttttttttttt hnaaaaaaaaaaaaaaaa al Customerrrrrrrrrrrrrrrrrr idddddddddddddddddd ali fe  fire store
-                    amount: '100',
-                    currency: 'egp',
-                    customerId: 'cus_Pe80vi7rQ3kLfY');
-            BlocProvider.of<PaymentStripeCubit>(context)
-                .makePayment(paymentIntentInputModel: paymentIntentInputModel);
-            getTranscationData();
+            if (isPaypal) {
+              var transctionsData = getTranscationData();
+              exceutePaypalPayment(context, transctionsData);
+            } else {
+              excuteStripePayment(context);
+            }
           },
         );
       },
     );
   }
 
- ({AmountModel amount, ItemListModel itemList}) getTranscationData() {
+  ({AmountModel amount, ItemListModel itemList}) getTranscationData() {
     var amount = AmountModel(
       total: "100",
-      currency: "egp",
+      currency: "USD",
       details: Details(
         shipping: "0",
         shippingDiscount: 0,
@@ -77,24 +77,25 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       OrderItemModel(
         name: "App",
         quantity: 1,
-        currency: "egp",
+        currency: "USD",
         price: "100",
       ),
     ];
     ItemListModel itemListModel = ItemListModel(orders: orders);
-    return (amount: amount,itemList:itemListModel);
+    return (amount: amount, itemList: itemListModel);
   }
+
   void excuteStripePayment(BuildContext context) {
-    PaymentIntentInputModel paymentIntentInputModel =
-                PaymentIntentInputModel(
-                    //7ottttttttttttttt hnaaaaaaaaaaaaaaaa al Customerrrrrrrrrrrrrrrrrr idddddddddddddddddd ali fe  fire store
-                    amount: '100',
-                    currency: 'egp',
-                    customerId: 'cus_Pe80vi7rQ3kLfY');
-            BlocProvider.of<PaymentStripeCubit>(context)
-                .makePayment(paymentIntentInputModel: paymentIntentInputModel);
+    PaymentIntentInputModel paymentIntentInputModel = PaymentIntentInputModel(
+        //7ottttttttttttttt hnaaaaaaaaaaaaaaaa al Customerrrrrrrrrrrrrrrrrr idddddddddddddddddd ali fe  fire store
+        amount: '100',
+        currency: 'egp',
+        customerId: 'cus_Pe80vi7rQ3kLfY');
+    BlocProvider.of<PaymentStripeCubit>(context)
+        .makePayment(paymentIntentInputModel: paymentIntentInputModel);
   }
-    void exceutePaypalPayment(BuildContext context,
+
+  void exceutePaypalPayment(BuildContext context,
       ({AmountModel amount, ItemListModel itemList}) transctionsData) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
@@ -126,12 +127,13 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           );
         },
         onError: (error) {
+          log("onError $error");
           SnackBar snackBar = SnackBar(content: Text(error.toString()));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) {
-              return const MyCartView();
+              return const BookingScreen();
             }),
             (route) {
               return false;
@@ -144,4 +146,5 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         },
       ),
     ));
+  }
 }

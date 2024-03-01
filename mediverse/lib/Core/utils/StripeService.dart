@@ -50,7 +50,7 @@ class StripeService {
     var ephermalKey = await createEphermalKey(
       customerId: paymentIntentInputModel.customerId,
     );
-    String customerId = createCustomerId(name: "Philo") as String;
+    String customerId = await createCustomerId(name: "Philo");
     print(customerId);
     var initPaymentSheetInputModel = InitiPaymentSheetInputModel(
       paymentIntentClientSecret: paymentIntentModel.clientSecret!,
