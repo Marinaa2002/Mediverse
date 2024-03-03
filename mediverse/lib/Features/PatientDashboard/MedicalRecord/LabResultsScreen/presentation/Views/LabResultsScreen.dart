@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDateWidget.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/CustomPictureWidget.dart';
-
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomButtonWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/models/labResult_model.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Views/Widgets/LabResultDateWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Views/Widgets/LabResultErrorWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Views/Widgets/LabResultLoadingIndicator.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Views/Widgets/LabResultsPictureWidget.dart';
+import '../Manager/lab_result_cubit/lab_result_cubit.dart';
+import 'Widgets/LabResultButtonWidget.dart';
 
 class LabResultsScreen extends StatelessWidget {
   LabResultsScreen({super.key});
+  
+  bool isLoading = false;
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  List<LabResultModel> labModelList = [];
+  final now_date = DateFormat('d - M - yyyy ').format(DateTime.now());
+
+  // CollectionReference messages = FirebaseFirestore.instance.collection('labs');
+  ScrollController _scrollController = ScrollController();
+
+  static String id = 'LabResult';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      // key: scaffoldKey,
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: kprimaryColor,
@@ -28,7 +41,7 @@ class LabResultsScreen extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: const Text(
+        title: Text(
           'Lab Results',
           style: TextStyle(
             fontFamily: 'Outfit',
@@ -40,30 +53,44 @@ class LabResultsScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: ListView(
+      body: BlocBuilder<LabResultCubit, LabResultState>(
+        builder: (context, state) {
+          if (state is LabResultSuccess) {
+            labModelList = state.labModelList;
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomDateWidget(date: '16/9/2020'),
-                  CustomPictureWidget(pictureLink: 'assets/images/image.jpg'),
-                  CustomDateWidget(date: '20/10/2022'),
-                  CustomPictureWidget(
-                      pictureLink:
-                          'assets/images/GNU_Health_lab_report_sample.png'),
-                  CustomDateWidget(date: '29/3/2023'),
-                  CustomPictureWidget(
-                      pictureLink:
-                          'assets/images/GNU_Health_lab_report_sample.png'),
+                  Expanded(
+                    child: ListView.builder(
+                        reverse: true,
+                        controller: _scrollController,
+                        shrinkWrap: true,
+                        itemCount: labModelList.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              LabResultDateWidget(
+                                  labModelDate: labModelList[index]),
+                              LabResultsPictureWidget(
+                                  labModelPicture: labModelList[index],
+                                  index: index,
+                                  labModelList: labModelList),
+                            ],
+                          );
+                        }),
+                  ),
+                  LabResultButtonWidget(scrollController: _scrollController),
                 ],
               ),
-            ),
-            CustomButtonWidget(),
-          ],
-        ),
+            );
+          } else if (state is LabResultFailure) {
+            return LabResultErrorWidget(errMessage: state.errMessage);
+          } else {
+            return LabResultLoadingIndicatorWidget();
+          }
+        },
       ),
     );
   }
