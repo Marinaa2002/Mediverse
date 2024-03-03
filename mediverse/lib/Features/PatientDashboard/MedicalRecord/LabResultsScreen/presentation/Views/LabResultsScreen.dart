@@ -17,7 +17,7 @@ class LabResultsScreen extends StatelessWidget {
 
   List<LabResultModel> labModelList = [];
   final now_date = DateFormat('d - M - yyyy ').format(DateTime.now());
-  
+
   ScrollController _scrollController = ScrollController();
 
   static String id = 'LabResult';
