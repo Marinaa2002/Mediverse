@@ -12,13 +12,12 @@ import 'Widgets/LabResultButtonWidget.dart';
 
 class LabResultsScreen extends StatelessWidget {
   LabResultsScreen({super.key});
-  
+
   bool isLoading = false;
 
   List<LabResultModel> labModelList = [];
   final now_date = DateFormat('d - M - yyyy ').format(DateTime.now());
-
-  // CollectionReference messages = FirebaseFirestore.instance.collection('labs');
+  
   ScrollController _scrollController = ScrollController();
 
   static String id = 'LabResult';
