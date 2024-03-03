@@ -18,7 +18,7 @@ class LabResultRepoImpl extends LabResultsRepo{
         'imageUrl' : imageUrl,
       });
     } on Exception catch (e) {
-      //return 'Something went wrong, Try again';
+
     }
   }
 
