@@ -16,8 +16,6 @@ class LabResultCubit extends Cubit<LabResultState> {
   final LabResultsRepo labResultsRepo;
   CollectionReference messages =
   FirebaseFirestore.instance.collection('labs');
-  // List<QueryDocumentSnapshot> data;
-  // int index;
 
   void sendLabModel({required String now_date, required String imageUrl}) {
     emit(LabResultLoading());
