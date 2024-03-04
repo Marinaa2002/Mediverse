@@ -11,19 +11,19 @@ class InfoProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 32),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 32),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                     child: Material(
                       color: Colors.transparent,
                       elevation: 3,
@@ -39,8 +39,8 @@ class InfoProfileWidget extends StatelessWidget {
                             width: 2,
                           ),
                         ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Icon(
+                        alignment: const AlignmentDirectional(0, 0),
+                        child: const Icon(
                           Icons.notifications_outlined,
                           color: kprimaryTextColor,
                           size: 24,
@@ -65,7 +65,7 @@ class InfoProfileWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                   child: Material(
                     color: Colors.transparent,
                     elevation: 3,
@@ -81,8 +81,8 @@ class InfoProfileWidget extends StatelessWidget {
                           width: 2,
                         ),
                       ),
-                      alignment: AlignmentDirectional(0, 0),
-                      child: Icon(
+                      alignment: const AlignmentDirectional(0, 0),
+                      child: const Icon(
                         Icons.help_outline_outlined,
                         color: kprimaryTextColor,
                         size: 24,

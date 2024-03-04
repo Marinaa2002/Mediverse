@@ -6,8 +6,8 @@ class ApiKeys {
       "pk_test_51OoOD8APYzrkj6xe0S8IKKsIs5uXARyDqZVLD2SZSYwJF3OCt43o1oYXcG7wmMsiXiJlCugIXMQZdOKBxSfET7IG00HMTxkY4Z";
 
   static String clientID =
-      "AbxoSXCxdL-1Y8graE5mTHbrI6eiUfOS_u0oJd0s6lxO1ZGCbhZ47VIx1YOhFM3DJi_K1XCGU3B0kWqb";
+      "AX72txY7arrRI7kzE8UuQgu-MiFqXZUyiw_tdbbE_-ydZBgW2Fvdm_StWujk4Oj0vPpD7pkEaf5YOKc9";
 
   static String paypalSecretKey =
-      "ECUy6Dy-BDmkvBBrUFizdM1Vr8VA1ceE-w5nVF93JCIN2MyAfHLFa6tkA5GMyZSCQS5qxJ8pZBxQInAn";
+      "EFJQ0XhmPSPK-OoZ5qETIw_VKwCosH4dpo66l80xLZtKLeK6iEJ2BQkNmWPHVrUsPjzWwDEoELhm5WpM";
 }

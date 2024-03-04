@@ -6,7 +6,9 @@ import 'package:mediverse/Constants/Themes.dart';
 class ThankYouCard extends StatelessWidget {
   const ThankYouCard({
     super.key,
+    required this.isCash,
   });
+  final bool isCash;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,9 @@ class ThankYouCard extends StatelessWidget {
             ),
             Center(
               child: Text(
-                'Your transaction was successful',
+                isCash
+                    ? 'Appointment is confirmed only'
+                    : 'Your transaction was successful',
                 textAlign: TextAlign.center,
                 style: Themes.bodyMedium,
               ),

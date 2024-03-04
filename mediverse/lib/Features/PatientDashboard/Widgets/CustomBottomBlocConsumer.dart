@@ -19,9 +19,11 @@ class CustomButtonBlocConsumer extends StatelessWidget {
   const CustomButtonBlocConsumer({
     super.key,
     required this.isPaypal,
+    required this.isCash,
   });
 
   final bool isPaypal;
+  final bool isCash;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentStripeCubit, PaymentStripeState>(
@@ -29,7 +31,9 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         if (state is PaymentStripeSuccess) {
           Navigator.of(context)
               .pushReplacement(MaterialPageRoute(builder: (context) {
-            return const ThankYouView();
+            return const ThankYouView(
+              isCash: false,
+            );
           }));
         }
         if (state is PaymentStripeFailure) {
@@ -54,6 +58,14 @@ class CustomButtonBlocConsumer extends StatelessWidget {
             if (isPaypal) {
               var transctionsData = getTranscationData();
               exceutePaypalPayment(context, transctionsData);
+            } else if (isCash) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ThankYouView(
+                      isCash: true,
+                    ),
+                  ));
             } else {
               excuteStripePayment(context);
             }
@@ -115,7 +127,9 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) {
-              return const ThankYouView();
+              return const ThankYouView(
+                isCash: false,
+              );
             }),
             (route) {
               if (route.settings.name == '/') {

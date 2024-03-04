@@ -11,12 +11,18 @@ class PaymentBottomSheet extends StatefulWidget {
 
 class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
   bool isPaypal = false;
+  bool isCash = false;
 
   updatePaymentMethod({required int index}) {
     if (index == 0) {
       isPaypal = false;
-    } else {
+      isCash = true;
+    } else if (index == 1) {
+      isPaypal = false;
+      isCash = false;
+    } else if (index == 2) {
       isPaypal = true;
+      isCash = false;
     }
 
     setState(() {});
@@ -37,6 +43,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
           ),
           CustomButtonBlocConsumer(
             isPaypal: isPaypal,
+            isCash: isCash,
           ),
         ],
       ),
