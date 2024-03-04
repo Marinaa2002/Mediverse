@@ -9,10 +9,12 @@ class TextFormFieldWidget extends StatelessWidget {
     super.key,
     required this.text,
     required this.validator,
-    required this.onChanged
+    required this.onChanged,
+    required this.controller
   });
   String? Function(String?)? validator;
   Function(String)? onChanged;
+  TextEditingController? controller;
 
 
   @override
@@ -22,6 +24,7 @@ class TextFormFieldWidget extends StatelessWidget {
       child: TextFormField(
         validator: validator,
           onChanged: onChanged,
+        controller: controller,
         //     controller: _model.emailAddressController,
         //     focusNode: _model.emailAddressFocusNode,
           autofocus: false,

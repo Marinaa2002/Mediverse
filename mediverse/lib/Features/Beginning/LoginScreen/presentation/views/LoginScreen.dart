@@ -1,6 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginErrorWidget.dart';
@@ -23,6 +26,7 @@ class LoginScreen extends StatelessWidget {
 
   String? password;
   bool isLoading = false;
+  TextEditingController forgetPassController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +104,7 @@ class LoginScreen extends StatelessWidget {
                               onChanged: (value) {
                                 email = value;
                               },
+                              controller: forgetPassController,
                             ),
                           ),
                           Padding(
@@ -124,26 +129,57 @@ class LoginScreen extends StatelessWidget {
                                 BlocProvider.of<LoginCubit>(context)
                                     .loginUser(
                                     email: email!, password: password!);
-                                print('BA3DDDDD el Cubitttttttttttt');
-                                // Navigator.push(
-                                //         context,
-                                //         MaterialPageRoute(
-                                //           builder: (context) => MainScreenWidget(),
-                                //         ));
+                                
                               } else {}
                             },
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0, 6, 0, 12),
-                              child: Center(
-                                child: Text('Forget Password?',
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 14,
-                                        color: Colors.black)),
+                          GestureDetector(
+                            onTap: () async{
+                              var forgetPass = forgetPassController.text.trim();
+                             try {
+                               if(forgetPass.isEmpty){
+                                 AwesomeDialog(
+                                   context: context,
+                                   dialogType: DialogType.error,
+                                   animType: AnimType.rightSlide,
+                                   title: 'Error',
+                                   desc: 'Please write your Email',
+                                 ).show();
+                               }
+                               await FirebaseAuth.instance.sendPasswordResetEmail(email: forgetPass)
+                               .then((value) =>
+                                   AwesomeDialog(
+                                   context: context,
+                                   dialogType: DialogType.success,
+                                   animType: AnimType.rightSlide,
+                                   title: 'Success',
+                                   desc: 'Email Sent',
+                                 ).show()
+                                   //print('Email Sent')
+                               );
+                               Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                             } on Exception catch (e) {
+                               AwesomeDialog(
+                                 context: context,
+                                 dialogType: DialogType.error,
+                                 animType: AnimType.rightSlide,
+                                 title: 'Error',
+                                 desc: 'Something went wrong , Try again',
+                               ).show();
+                             }
+                            },
+                            child: Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0, 6, 0, 12),
+                                child: Center(
+                                  child: Text('Forget Password?',
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          color: Colors.black)),
+                                ),
                               ),
                             ),
                           ),
