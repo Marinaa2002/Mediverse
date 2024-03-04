@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => MainScreenWidget(),
@@ -45,7 +45,6 @@ class LoginScreen extends StatelessWidget {
           isLoading = false;
           print(state.errMessage);
           showSnackbar(context, state.errMessage);
-
         }
       },
       builder: (context, state) {
@@ -149,8 +148,9 @@ class LoginScreen extends StatelessWidget {
                                  return;
                                }
                                await FirebaseAuth.instance.sendPasswordResetEmail(email: forgetPass)
-                               //await BlocProvider.of<LoginCubit>(context).forgetPassword(email: forgetPass)
-                               .then((value) =>
+                               //await BlocProvider.of<ForgetPasswordCubit>(context).forgetPassword(email: forgetPass)
+                               //Forget Password Cubit
+                                   .then((value) =>
                                    AwesomeDialog(
                                    context: context,
                                    dialogType: DialogType.success,
