@@ -9,3 +9,11 @@ mediverse/windows/flutter/generated_plugins.cmake
 mediverse/pubspec.yaml
 mediverse/.vscode/
 settings.json
+mediverse/android/gradle.properties
+mediverse/windows/flutter/generated_plugins.cmake
+mediverse/windows/flutter/generated_plugin_registrant.cc
+mediverse/macos/Flutter/GeneratedPluginRegistrant.swift
+mediverse/linux/flutter/generated_plugins.cmake
+mediverse/linux/flutter/generated_plugin_registrant.cc
+mediverse/android/gradle.properties
+mediverse/pubspec.lock
