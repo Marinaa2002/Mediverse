@@ -166,7 +166,7 @@ class LoginScreen extends StatelessWidget {
                                  dialogType: DialogType.error,
                                  animType: AnimType.rightSlide,
                                  title: 'Error',
-                                 desc: 'Something went wrong , Try again',
+                                 desc: 'Enter a valid email please',
                                ).show();
                              }
                             },
