@@ -16,7 +16,8 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       var result = await loginRepo.loginUser(email: email!, password: password!);
       result.fold((left) => emit(LoginFailure(left.errMsg)),
-              (right) => emit(LoginSuccess()));
+              (right) =>
+                  emit(LoginSuccess()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('user not Found');
