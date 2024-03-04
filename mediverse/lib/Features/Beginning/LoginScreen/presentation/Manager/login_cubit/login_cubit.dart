@@ -31,6 +31,20 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginFailure('Something went wrong'));
     }
   }
+
+
+  Future<void>  forgetPassword({required String email}) async{
+    emit(LoginLoading());
+    try {
+      var result = await loginRepo.forgetPassword(email: email);
+      result.fold((left) => emit(LoginFailure(left.errMsg)),
+              (right) =>
+              emit(LoginSuccess()));
+    } catch (e) {
+      print('Something went wrong');
+      emit(LoginFailure('Something went wrong'));
+    }
+  }
 }
 
 

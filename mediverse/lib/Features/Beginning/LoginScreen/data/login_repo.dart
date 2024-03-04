@@ -7,4 +7,5 @@ import '../../../../../../Core/Errors/Failure.dart';
 
 abstract class LoginRepo{
   Future<Either<Failure , UserCredential>> loginUser({required String email, required String password});
+  Future<Either<Failure , void>> forgetPassword({required String email});
 }

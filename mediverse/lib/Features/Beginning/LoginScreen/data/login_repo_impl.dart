@@ -16,6 +16,16 @@ class LoginRepoImpl extends LoginRepo{
       return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
     }
   }
+
+  @override
+  Future<Either<Failure , void>> forgetPassword({required String email}) async{
+    try{
+      var res = await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return right(res);
+    } on Exception catch (e) {
+      return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
+    }
+  }
 }
 
 

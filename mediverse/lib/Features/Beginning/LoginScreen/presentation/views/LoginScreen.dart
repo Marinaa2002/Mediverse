@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
         } else if(state is LoginFailure){
           isLoading = false;
           print(state.errMessage);
-          showSnackbar(context, 'Login Failed: ${state.errMessage}');
+          showSnackbar(context, state.errMessage);
 
         }
       },
@@ -130,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                                 BlocProvider.of<LoginCubit>(context)
                                     .loginUser(
                                     email: email!, password: password!);
-                                
+
                               } else {}
                             },
                           ),
@@ -146,8 +146,10 @@ class LoginScreen extends StatelessWidget {
                                    title: 'Error',
                                    desc: 'Please write your Email',
                                  ).show();
+                                 return;
                                }
                                await FirebaseAuth.instance.sendPasswordResetEmail(email: forgetPass)
+                               //await BlocProvider.of<LoginCubit>(context).forgetPassword(email: forgetPass)
                                .then((value) =>
                                    AwesomeDialog(
                                    context: context,
