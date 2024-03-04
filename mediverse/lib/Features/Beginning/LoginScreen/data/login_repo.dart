@@ -6,6 +6,5 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScre
 import '../../../../../../Core/Errors/Failure.dart';
 
 abstract class LoginRepo{
-  // Future<void> loginUser({required String email, required String password});
-  loginUser({required String email, required String password});
+  Future<Either<Failure , UserCredential>> loginUser({required String email, required String password});
 }
