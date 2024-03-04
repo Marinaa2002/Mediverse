@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginErrorWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LogoContWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldPassWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldWidget.dart';
@@ -37,8 +38,7 @@ class LoginScreen extends StatelessWidget {
               ));
           isLoading = false;
         } else if(state is LoginFailure){
-          //LoginErrorWidget(errMessage: state.errMessage,);
-          showSnackbar(context, state.errMessage);
+          showSnackbar(context, 'Something went wrong, Try again');
           isLoading = false;
           print(' Login Failure');
         }
