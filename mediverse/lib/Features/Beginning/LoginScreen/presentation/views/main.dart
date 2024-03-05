@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/data/login_repo.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/data/login_repo_impl.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/Manager/forgetPassword_cubit/forget_password_cubit.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/Manager/login_cubit/login_cubit.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => LoginCubit(LoginRepoImpl()),
-        ),
+        BlocProvider(create: (context) => ForgetPasswordCubit(LoginRepoImpl()),),
+        BlocProvider(create: (context) => LoginCubit(LoginRepoImpl(),),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

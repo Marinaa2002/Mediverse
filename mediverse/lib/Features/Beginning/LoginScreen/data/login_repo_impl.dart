@@ -23,7 +23,7 @@ class LoginRepoImpl extends LoginRepo{
       var res = await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       return right(res);
     } on Exception catch (e) {
-      return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
+      return left(ServerFailure(errMsg: 'Please enter a valid email'));
     }
   }
 }

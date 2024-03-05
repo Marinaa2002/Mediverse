@@ -5,8 +5,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/Manager/forgetPassword_cubit/forget_password_cubit.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/ForgetPasswordWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginErrorWidget.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginLoadingIndicatorWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LogoContWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldPassWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldWidget.dart';
@@ -41,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                 builder: (context) => MainScreenWidget(),
               ));
           isLoading = false;
-        } else if(state is LoginFailure){
+        } else if (state is LoginFailure) {
           isLoading = false;
           print(state.errMessage);
           showSnackbar(context, state.errMessage);
@@ -84,8 +87,10 @@ class LoginScreen extends StatelessWidget {
                             alignment: const AlignmentDirectional(-1, -1),
                             child: Padding(
                               padding:
-                              const EdgeInsetsDirectional.fromSTEB(15, 40, 0, 20),
-                              child: Text('Please Enter Your Email and Password',
+                              const EdgeInsetsDirectional.fromSTEB(
+                                  15, 40, 0, 20),
+                              child: Text(
+                                  'Please Enter Your Email and Password',
                                   style: Themes.titleButton),
                             ),
                           ),
@@ -108,7 +113,8 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 8),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12, 0, 12, 8),
                             child: TextFormFieldPassWidget(
                               text: "Password",
                               validator: (value) {
@@ -129,62 +135,12 @@ class LoginScreen extends StatelessWidget {
                                 BlocProvider.of<LoginCubit>(context)
                                     .loginUser(
                                     email: email!, password: password!);
-
                               } else {}
                             },
                           ),
-                          GestureDetector(
-                            onTap: () async{
-                              var forgetPass = forgetPassController.text.trim();
-                             try {
-                               if(forgetPass.isEmpty){
-                                 AwesomeDialog(
-                                   context: context,
-                                   dialogType: DialogType.error,
-                                   animType: AnimType.rightSlide,
-                                   title: 'Error',
-                                   desc: 'Please write your Email',
-                                 ).show();
-                                 return;
-                               }
-                               await FirebaseAuth.instance.sendPasswordResetEmail(email: forgetPass)
-                               //await BlocProvider.of<ForgetPasswordCubit>(context).forgetPassword(email: forgetPass)
-                               //Forget Password Cubit
-                                   .then((value) =>
-                                   AwesomeDialog(
-                                   context: context,
-                                   dialogType: DialogType.success,
-                                   animType: AnimType.rightSlide,
-                                   title: 'Success',
-                                   desc: 'Email Sent',
-                                 ).show()
-                               );
-                               Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                             } on Exception catch (e) {
-                               AwesomeDialog(
-                                 context: context,
-                                 dialogType: DialogType.error,
-                                 animType: AnimType.rightSlide,
-                                 title: 'Error',
-                                 desc: 'Enter a valid email please',
-                               ).show();
-                             }
-                            },
-                            child: Align(
-                              alignment: const AlignmentDirectional(-1, -1),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0, 6, 0, 12),
-                                child: Center(
-                                  child: Text('Forget Password?',
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 14,
-                                          color: Colors.black)),
-                                ),
-                              ),
-                            ),
-                          ),
+                          ForgetPasswordWidget(
+                              forgetPassController: forgetPassController,
+                          isLoad: isLoading,),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0, 12, 0, 12),
@@ -232,6 +188,7 @@ class LoginScreen extends StatelessWidget {
       },
     );
   }
+
   void showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
