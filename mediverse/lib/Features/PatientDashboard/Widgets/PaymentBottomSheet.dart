@@ -11,7 +11,7 @@ class PaymentBottomSheet extends StatefulWidget {
 
 class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
   bool isPaypal = false;
-  bool isCash = false;
+  bool isCash = true;
 
   updatePaymentMethod({required int index}) {
     if (index == 0) {

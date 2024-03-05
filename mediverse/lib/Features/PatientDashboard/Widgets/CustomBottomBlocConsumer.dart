@@ -19,7 +19,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
   const CustomButtonBlocConsumer({
     super.key,
     required this.isPaypal,
-    required this.isCash,
+    this.isCash = true,
   });
 
   final bool isPaypal;
@@ -28,26 +28,36 @@ class CustomButtonBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentStripeCubit, PaymentStripeState>(
       listener: (context, state) {
-        if (state is PaymentStripeSuccess) {
-          Navigator.of(context)
-              .pushReplacement(MaterialPageRoute(builder: (context) {
-            return const ThankYouView(
-              isCash: false,
-            );
-          }));
-        }
-        if (state is PaymentStripeFailure) {
-          Navigator.of(context).pop();
-          String errMessage = state.errMessage;
-          bool firstMatch = errMessage.contains("Canceled");
-          if (!firstMatch) {
-            SnackBar snackBar = SnackBar(
-                content: Text(
-              state.errMessage,
-            ));
-
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        if (!isCash) {
+          if (state is PaymentStripeSuccess) {
+            Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: (context) {
+              return const ThankYouView(
+                isCash: false,
+              );
+            }));
           }
+          if (state is PaymentStripeFailure) {
+            Navigator.of(context).pop();
+            String errMessage = state.errMessage;
+            bool firstMatch = errMessage.contains("Canceled");
+            if (!firstMatch) {
+              SnackBar snackBar = SnackBar(
+                  content: Text(
+                state.errMessage,
+              ));
+
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+          }
+        } else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ThankYouView(
+                  isCash: true,
+                ),
+              ));
         }
       },
       builder: (context, state) {

@@ -12,7 +12,7 @@ const List<String> paymentMethods = <String>[
 ];
 
 class BookingScreen extends StatelessWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+  const BookingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

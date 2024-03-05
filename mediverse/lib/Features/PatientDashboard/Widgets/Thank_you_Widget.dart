@@ -32,7 +32,7 @@ class ThankYouCard extends StatelessWidget {
             Center(
               child: Text(
                 isCash
-                    ? 'Appointment is confirmed only'
+                    ? 'Appointment is confirmed'
                     : 'Your transaction was successful',
                 textAlign: TextAlign.center,
                 style: Themes.bodyMedium,
@@ -58,7 +58,7 @@ class ThankYouCard extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'PAID',
+                      isCash ? 'Confirmed' : 'PAID',
                       textAlign: TextAlign.center,
                       style: Themes.bodyMedium
                           .copyWith(color: const Color(0xff34A853)),

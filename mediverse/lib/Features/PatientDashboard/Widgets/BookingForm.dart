@@ -15,7 +15,7 @@ import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 
 class BookingForm extends StatefulWidget {
-  const BookingForm({Key? key}) : super(key: key);
+  const BookingForm({super.key});
 
   @override
   State<BookingForm> createState() => _BookingFormState();
