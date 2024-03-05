@@ -1,9 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../../../../ScreensBackUp/Beginning/LoginScreen/LoginScreen.dart';
 import '../../Manager/forgetPassword_cubit/forget_password_cubit.dart';
 
 class ForgetPasswordWidget extends StatelessWidget {
