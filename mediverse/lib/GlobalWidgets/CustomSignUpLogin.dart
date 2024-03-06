@@ -6,11 +6,11 @@ import '../Constants/constant.dart';
 
 class CustomSignUpLogin extends StatelessWidget {
   final text;
-  final screen;
-  const CustomSignUpLogin({
+  VoidCallback? onTap;
+  CustomSignUpLogin({
     super.key,
     required this.text,
-    required this.screen,
+    required this.onTap,
   });
 
   @override
@@ -20,13 +20,10 @@ class CustomSignUpLogin extends StatelessWidget {
       child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
           child: ElevatedButton(
-            onPressed: () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context)=>screen));
-            },
+            onPressed: onTap,
             style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor:
-                  primaryColor, // Assuming text color should be white
+              //foregroundColor: Colors.white,
+              backgroundColor: primaryColor, // Assuming text color should be white
               elevation: 3,
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(

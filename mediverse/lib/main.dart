@@ -1,7 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:mediverse/Features/Beginning/LoginScreen/data/repo/login_repo_impl.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/Manager/forgetPassword_cubit/forget_password_cubit.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/Manager/login_cubit/login_cubit.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 import 'Features/Beginning/splashScreen/splashScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/Beginning/FormStaff/presentation/Manager/staff_request_cubit.dart';
+import 'Features/Beginning/SignUpDoctor/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
+import 'Features/Beginning/SignUpPatient/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,12 +23,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: SplashScreen(),
-    );
+    return
+      MultiBlocProvider(providers:[
+        BlocProvider(create:(context)=>SignUpCubit()),
+        BlocProvider(create:(context)=>SignUpDocCubit()),
+        BlocProvider(create:(context)=>StaffRequestCubit()),
+        BlocProvider(create:(context) => ForgetPasswordCubit(LoginRepoImpl()),),
+        BlocProvider(create:(context) => LoginCubit(LoginRepoImpl()),),
+      ],
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          ),
+          routes: {
+            LoginScreen.id: (context) => LoginScreen()
+          },
+          initialRoute: LoginScreen.id,
+          home: SplashScreen(),
+        ),
+      );
   }
 }

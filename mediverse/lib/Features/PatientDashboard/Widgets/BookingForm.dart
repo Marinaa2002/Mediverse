@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/repos/Check_out_Imp.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ActionDetailsWidget.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Notes.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/PaymentBottomSheet.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/RowImageAndText.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/TextWidgetHorz.dart';
 
@@ -124,27 +119,6 @@ class _BookingFormState extends State<BookingForm> {
                 ],
               ),
             ),
-            SliverFillRemaining(
-                hasScrollBody: false,
-                child: Align(
-                  child: ConfirmButton(
-                    text: "Confirm Booking",
-                    onTap: () {
-                      showModalBottomSheet(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        context: context,
-                        builder: (context) {
-                          return BlocProvider(
-                            create: (BuildContext context) =>
-                                PaymentStripeCubit(CheckoutRepoImpl()),
-                            child: const PaymentBottomSheet(),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                )),
           ],
         ),
       ),

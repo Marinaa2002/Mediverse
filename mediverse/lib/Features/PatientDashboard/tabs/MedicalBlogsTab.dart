@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/BlogCard.dart';
 
-import '../../DoctorDashboard/widgets/BlogCardDoc.dart';
 import '../Widgets/SearchBoxAppointmentWidget.dart';
 
 class MedicalBlogsTab extends StatelessWidget {
@@ -25,13 +25,13 @@ class MedicalBlogsTab extends StatelessWidget {
                   ),
                 ],
               ),
-              const BlogCardDoc(
+              BlogCardDoc(
                   title: 'How Much Coffee Is Too\nMuch Coffee?',
                   DrName: 'Dr. Salem Ahmed'),
-              const BlogCardDoc(
+              BlogCardDoc(
                   title: 'Food Allergies and \nAnaphylactic Shocks',
                   DrName: 'Dr. Waheed Amr'),
-              const BlogCardDoc(
+              BlogCardDoc(
                   title: 'What to do with \n a diabetes patient?',
                   DrName: 'Dr. Hoda Raouf'),
             ],
