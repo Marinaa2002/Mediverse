@@ -1,4 +1,4 @@
-# mediverse
+# Mediverse
 
 A new Flutter project.
 
