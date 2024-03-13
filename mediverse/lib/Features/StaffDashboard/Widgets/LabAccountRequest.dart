@@ -8,12 +8,12 @@ class LabRequestAccountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -125,23 +125,25 @@ class LabRequestAccountWidget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 14, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 14, 0, 0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                   child: ActionButton(
                     action: "Accept",
                     iconData: Icons.check_circle,
+                    onPressed: () {},
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                   child: ActionButton(
                     action: "Decline",
                     iconData: Icons.cancel_rounded,
+                    onPressed: () {},
                   ),
                 ),
               ],

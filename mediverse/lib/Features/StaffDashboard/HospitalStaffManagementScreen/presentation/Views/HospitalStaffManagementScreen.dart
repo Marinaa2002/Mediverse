@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/DateTimePicker.dart';
 
 import '../../../Widgets/ActionButton.dart';
 import '../../../Widgets/DrAvailableSlots.dart';
@@ -9,8 +11,10 @@ import '../../../Widgets/DrAvailableTime.dart';
 import '../../../Widgets/DrInformation.dart';
 
 class HospitalStaffManagementScreen extends StatelessWidget {
-  const HospitalStaffManagementScreen({super.key});
+  HospitalStaffManagementScreen({super.key});
 
+  CollectionReference appointments =
+      FirebaseFirestore.instance.collection('Appointments');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,24 +89,39 @@ class HospitalStaffManagementScreen extends StatelessWidget {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
               child: DrAvailableTime(),
             ),
-            const Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
                     child: ActionButton(
                       action: "Edit",
                       iconData: Icons.edit_off,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DateTimePicker()),
+                        );
+                      },
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                       child: ActionButton(
                         action: "Add",
                         iconData: Icons.add_circle,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DateTimePicker()),
+                          );
+                        },
                       )),
                 ],
               ),

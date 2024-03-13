@@ -86,24 +86,27 @@ class HospitalStaffManagementScreen extends StatelessWidget {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
               child: DrAvailableTime(),
             ),
-            const Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
                     child: ActionButton(
                       action: "Edit",
                       iconData: Icons.edit_off,
+                      onPressed: () {},
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                       child: ActionButton(
                         action: "Add",
                         iconData: Icons.add_circle,
+                        onPressed: () {},
                       )),
                 ],
               ),

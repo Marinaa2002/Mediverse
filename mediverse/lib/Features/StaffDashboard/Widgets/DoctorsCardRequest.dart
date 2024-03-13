@@ -76,12 +76,13 @@ class DoctorCardRequest extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Row(
+                Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     ActionButton(
                       action: "Add",
                       iconData: Icons.add_circle,
+                      onPressed: () {},
                     )
                   ],
                 ),

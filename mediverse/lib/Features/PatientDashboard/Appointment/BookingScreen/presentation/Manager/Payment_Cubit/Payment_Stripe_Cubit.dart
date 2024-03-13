@@ -6,7 +6,7 @@ import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/pr
 
 import '../../../data/models/PaymentIndentInputModel.dart';
 
-class PaymentStripeCubit extends Cubit<PaymentStripeState> {
+class PaymentStripeCubit extends Cubit<PaymentStripe> {
   PaymentStripeCubit(this.checkoutRepo) : super(PaymentStripeInitial());
   final CheckoutRepo checkoutRepo;
   Future makePayment(
@@ -23,7 +23,7 @@ class PaymentStripeCubit extends Cubit<PaymentStripeState> {
   }
 
   @override
-  void onChange(Change<PaymentStripeState> change) {
+  void onChange(Change<PaymentStripe> change) {
     log(change.toString());
     super.onChange(change);
   }

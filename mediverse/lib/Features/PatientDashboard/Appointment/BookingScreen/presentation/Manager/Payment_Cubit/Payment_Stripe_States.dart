@@ -1,14 +1,14 @@
 // ignore_for_file: file_names
 
-sealed class PaymentStripeState {}
+sealed class PaymentStripe {}
 
-final class PaymentStripeInitial extends PaymentStripeState {}
+final class PaymentStripeInitial extends PaymentStripe {}
 
-final class PaymentStripeLoading extends PaymentStripeState {}
+final class PaymentStripeLoading extends PaymentStripe {}
 
-final class PaymentStripeSuccess extends PaymentStripeState {}
+final class PaymentStripeSuccess extends PaymentStripe {}
 
-final class PaymentStripeFailure extends PaymentStripeState {
+final class PaymentStripeFailure extends PaymentStripe {
   final String errMessage;
 
   PaymentStripeFailure(this.errMessage);

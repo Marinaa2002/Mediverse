@@ -26,7 +26,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
   final bool isCash;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PaymentStripeCubit, PaymentStripeState>(
+    return BlocConsumer<PaymentStripeCubit, PaymentStripe>(
       listener: (context, state) {
         if (!isCash) {
           if (state is PaymentStripeSuccess) {
