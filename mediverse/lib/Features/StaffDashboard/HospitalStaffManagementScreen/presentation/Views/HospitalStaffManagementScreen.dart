@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/DateTimePicker.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/SlotsWidget.dart';
 
 import '../../../Widgets/ActionButton.dart';
 import '../../../Widgets/DrAvailableSlots.dart';
@@ -58,7 +60,7 @@ class HospitalStaffManagementScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
                 child: Text(
-                  'Day',
+                  'Slots',
                   style: Themes.bodyMedium.copyWith(
                     fontFamily: 'Readex Pro',
                     fontSize: 20,
@@ -85,9 +87,19 @@ class HospitalStaffManagementScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-              child: DrAvailableTime(),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+              child: StreamBuilder<QuerySnapshot>(
+                  stream: appointments.snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<SlotsModel> slots = [];
+                      for (var i = 0; i < snapshot.data!.docs.length; i++) {
+                        slots.add(SlotsModel.fromJson(snapshot.data!.docs[i]));
+                      }
+                    }
+                    return const SlotWidget();
+                  }),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
@@ -95,20 +107,6 @@ class HospitalStaffManagementScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
-                    child: ActionButton(
-                      action: "Edit",
-                      iconData: Icons.edit_off,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DateTimePicker()),
-                        );
-                      },
-                    ),
-                  ),
                   Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
@@ -119,7 +117,7 @@ class HospitalStaffManagementScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DateTimePicker()),
+                                builder: (context) => const DateTimePicker()),
                           );
                         },
                       )),

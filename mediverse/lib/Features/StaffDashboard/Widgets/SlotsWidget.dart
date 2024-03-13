@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
 
-class BookingCard extends StatelessWidget {
-  const BookingCard({super.key});
+class SlotWidget extends StatelessWidget {
+  const SlotWidget({
+    super.key,
+    required this.slots,
+  });
+
+  final SlotsModel slots;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +43,11 @@ class BookingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Patient Name',
+                          'From Date Day ',
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Ahmed Hassan',
+                          slots.fromDateDay.toString(),
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
