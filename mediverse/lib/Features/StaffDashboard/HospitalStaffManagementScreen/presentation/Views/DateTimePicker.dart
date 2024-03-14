@@ -61,14 +61,13 @@ class _DateTimePickerState extends State<DateTimePicker> {
       'FromDateHour': selectedDateTime.hour,
       'FromDateMonth': selectedDateTime.month,
       'FromDateYear': selectedDateTime.year,
-      'bookingPrice': 100,
       'TODateDay': selectedDateTime.day,
-      'TODateHour': selectedDateTime.hour + 3,
+      'TODateHour': selectedDateTime.hour + num.parse(slot!),
       'TODateMonth': selectedDateTime.month,
       'TODateYear': selectedDateTime.year,
-      'currency': 'egp',
       'isPaid': false,
-      'availableSlotsInHr': slot
+      'currency': 'egp',
+      'availableSlotsInHr': num.parse(slot),
     });
 
     Navigator.of(context).pop();

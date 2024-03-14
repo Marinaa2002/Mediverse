@@ -11,9 +11,9 @@ class SlotsModel {
   final int toDateHour;
   final int toDateMonth;
   final int toDateYear;
-  final int bookingPrice;
   final String currency;
   final bool isPaid;
+  final int availableSlotsInHr;
 
   SlotsModel({
     required this.dUid,
@@ -27,9 +27,9 @@ class SlotsModel {
     required this.toDateHour,
     required this.toDateMonth,
     required this.toDateYear,
-    required this.bookingPrice,
     required this.currency,
     required this.isPaid,
+    required this.availableSlotsInHr,
   });
 
   // Factory method to create an Appointment object from a Firestore document snapshot
@@ -46,9 +46,9 @@ class SlotsModel {
       toDateHour: jsonData['TODateHour'],
       toDateMonth: jsonData['TODateMonth'],
       toDateYear: jsonData['TODateYear'],
-      bookingPrice: jsonData['bookingPrice'],
       currency: jsonData['currency'],
       isPaid: jsonData['isPaid'],
+      availableSlotsInHr: jsonData['availableSlotsInHr'],
     );
   }
 }

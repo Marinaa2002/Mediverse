@@ -1,119 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/Errors/ErrorMsgs.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/SlotsCubit/SlotsCubit.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/SlotsCubit/SlotsStates.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/EachSlotWidget.dart';
 
-class SlotWidget extends StatelessWidget {
-  const SlotWidget({
+class SlotsWidget extends StatelessWidget {
+  SlotsWidget({
     super.key,
-    required this.slots,
   });
-
-  final SlotsModel slots;
+  final scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Material(
-        color: Colors.transparent,
-        elevation: 6,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Container(
-          width: 390,
-          height: 150,
-          decoration: BoxDecoration(
-            color: kSecondryBackgroundColor,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          alignment: const AlignmentDirectional(0, 0),
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 4),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Day ',
-                          style: Themes.bodyXLarge,
-                        ),
-                        Text(
-                          slots.fromDateDay.toString(),
-                          style: Themes.bodyXLarge
-                              .copyWith(fontWeight: FontWeight.normal),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Date Chosen',
-                          style: Themes.bodyXLarge,
-                        ),
-                        Text(
-                          slots.fromDateMonth.toString(),
-                          style: Themes.bodyXLarge
-                              .copyWith(fontWeight: FontWeight.normal),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'From',
-                          style: Themes.bodyXLarge,
-                        ),
-                        Text(
-                          "${slots.fromDateHour}:00",
-                          style: Themes.bodyXLarge
-                              .copyWith(fontWeight: FontWeight.normal),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "To ",
-                          style: Themes.bodyXLarge,
-                        ),
-                        Text(
-                          "${slots.toDateHour}:00",
-                          style: Themes.bodyXLarge
-                              .copyWith(fontWeight: FontWeight.normal),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+    BlocProvider.of<SlotsReterivalCubit>(context).getSlots();
+    return BlocBuilder<SlotsReterivalCubit, SlotsState>(
+      builder: (context, state) {
+        if (state is SlotsStateSuccess) {
+          return SizedBox(
+            height: 400,
+            child: ListView.builder(
+              controller: scrollController,
+              itemCount: state.slots.length,
+              itemBuilder: (context, index) {
+                return SlotWidget(
+                  slot: state.slots[index],
+                );
+              },
             ),
-          ),
-        ),
-      ),
+          );
+        } else if (state is SlotsStateLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is SlotsStateFailure) {
+          return const Center();
+        } else {
+          return const Center(
+            child: Text("No Slots made this month"),
+          );
+        }
+      },
     );
   }
 }

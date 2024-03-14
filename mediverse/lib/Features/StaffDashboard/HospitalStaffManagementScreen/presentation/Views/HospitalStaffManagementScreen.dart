@@ -3,10 +3,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/repos/AvailableSlotsRepoImp.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/SlotsCubit/SlotsCubit.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/DateTimePicker.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/SlotsWidget.dart';
 
 import '../../../Widgets/ActionButton.dart';
 
@@ -23,6 +28,8 @@ class HospitalStaffManagementScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String monthName = DateFormat('MMMM').format(now);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -121,35 +128,21 @@ class HospitalStaffManagementScreen extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+              'For this Month($monthName)',
+              style: Themes.bodyMedium,
+            ),
+            const SizedBox(
+              height: 100,
+            ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-              child: StreamBuilder<QuerySnapshot>(
-                  stream: appointments.snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      List<SlotsModel> slots = [];
-                      for (var i = 0; i < snapshot.data!.docs.length; i++) {
-                        slots.add(SlotsModel.fromJson(snapshot.data!.docs[i]));
-                      }
-                      return const Column(
-                        children: [
-                          // Expanded(
-                          //   child: ListView.builder(
-                          //     controller: scrollController,
-                          //     itemCount: slots.length,
-                          //     itemBuilder: (context, index) {
-                          //       return SlotWidget(
-                          //         slots: slots[index],
-                          //       );
-                          //     },
-                          //   ),
-                          // ),
-                        ],
-                      );
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
-                  }),
+              child: BlocProvider(
+                create: ((context) => SlotsReterivalCubit(
+                      AvailableSlotsRepoImp(),
+                    )),
+                child: SlotsWidget(),
+              ),
             ),
           ],
         ),
