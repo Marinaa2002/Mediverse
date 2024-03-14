@@ -14,11 +14,13 @@ class ActionButton extends StatelessWidget {
   final String action;
   final IconData iconData;
   final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(kprimaryColor),
+        minimumSize: MaterialStateProperty.all<Size>(const Size(30, 30)),
       ),
       onPressed: onPressed,
       icon: Icon(

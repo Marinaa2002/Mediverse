@@ -21,9 +21,9 @@ class SlotsReterivalCubit extends Cubit<SlotsState> {
   //   );
   // }
 
-  // @override
-  // void onChange(Change<PaymentStripe> change) {
-  //   log(change.toString());
-  //   super.onChange(change);
-  // }
+  @override
+  void onChange(Change<SlotsState> change) {
+    log(change.toString());
+    super.onChange(change);
+  }
 }

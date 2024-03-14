@@ -43,7 +43,7 @@ class SlotWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'From Date Day ',
+                          'Day ',
                           style: Themes.bodyXLarge,
                         ),
                         Text(
@@ -65,7 +65,7 @@ class SlotWidget extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Sat, Oct 04 - 7:00pm',
+                          slots.fromDateMonth.toString(),
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -79,11 +79,11 @@ class SlotWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Location',
+                          'From',
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Tiba Dental Care',
+                          "${slots.fromDateHour}:00",
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -97,11 +97,11 @@ class SlotWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Status',
+                          "To ",
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Done',
+                          "${slots.toDateHour}:00",
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 
 class DateTimePicker extends StatefulWidget {
   const DateTimePicker({super.key});
@@ -12,6 +13,7 @@ class DateTimePicker extends StatefulWidget {
 
 class _DateTimePickerState extends State<DateTimePicker> {
   DateTime _selectedDateTime = DateTime.now();
+  TextEditingController textEditingController = TextEditingController();
 
   CollectionReference appointments =
       FirebaseFirestore.instance.collection('Appointments');
@@ -42,13 +44,19 @@ class _DateTimePickerState extends State<DateTimePicker> {
     }
   }
 
-  void SaveSlots() {
+  void SaveSlots() async {
     // Access the selected date and time from _selectedDateTime variable
     DateTime selectedDateTime = _selectedDateTime;
+    final slot = await showTextFieldDialog(
+      context,
+      textEditingController: textEditingController,
+      hintText: "Enter the doctor's available slots(hr)",
+      title: 'Slots',
+    );
     appointments.add({
       'D_uid': "A",
       'P_uid': "P",
-      'HospitalName': 'st Philo',
+      'HospitalName': 'St Philo',
       'FromDateDay': selectedDateTime.day,
       'FromDateHour': selectedDateTime.hour,
       'FromDateMonth': selectedDateTime.month,
@@ -60,7 +68,9 @@ class _DateTimePickerState extends State<DateTimePicker> {
       'TODateYear': selectedDateTime.year,
       'currency': 'egp',
       'isPaid': false,
+      'availableSlotsInHr': slot
     });
+
     Navigator.of(context).pop();
   }
 
