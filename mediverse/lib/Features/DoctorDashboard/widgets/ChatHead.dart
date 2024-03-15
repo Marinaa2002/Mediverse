@@ -19,7 +19,7 @@ class ChatHead extends StatelessWidget {
           boxShadow: const [
             BoxShadow(
               blurRadius: 0,
-              color: Color(0xFFE0E3E7),
+              color: kSecondryBackgroundColor,
               offset: Offset(0, 1),
             )
           ],
