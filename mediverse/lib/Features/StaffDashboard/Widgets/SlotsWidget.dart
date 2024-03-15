@@ -1,11 +1,8 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediverse/Constants/Themes.dart';
-import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Core/Errors/ErrorMsgs.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/SlotsCubit/SlotsCubit.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/SlotsCubit/SlotsStates.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/EachSlotWidget.dart';
 
 class SlotsWidget extends StatelessWidget {
@@ -16,32 +13,54 @@ class SlotsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<SlotsReterivalCubit>(context).getSlots();
-    return BlocBuilder<SlotsReterivalCubit, SlotsState>(
-      builder: (context, state) {
-        if (state is SlotsStateSuccess) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('Appointments').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          List<DocumentSnapshot> documents = snapshot.data!.docs;
+          List<SlotsModel> slotsList = documents
+              .map((doc) =>
+                  SlotsModel.fromJson(doc.data() as Map<String, dynamic>))
+              .toList();
           return SizedBox(
             height: 400,
             child: ListView.builder(
-              controller: scrollController,
-              itemCount: state.slots.length,
+              itemCount: documents.length,
               itemBuilder: (context, index) {
                 return SlotWidget(
-                  slot: state.slots[index],
+                  slot: slotsList[index],
+                  onDismissed: () {
+                    deleteDocumentsByField('Appointments', 'D_uid', 'A');
+                  },
                 );
               },
             ),
           );
-        } else if (state is SlotsStateLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is SlotsStateFailure) {
-          return const Center();
         } else {
-          return const Center(
-            child: Text("No Slots made this month"),
-          );
+          return const Center(child: const Text('No Slots Made'));
         }
       },
     );
+  }
+}
+
+void deleteDocumentsByField(
+    String collectionPath, String fieldName, dynamic fieldValue) async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(collectionPath)
+        .where(fieldName, isEqualTo: fieldValue)
+        .get();
+
+    // Delete each document in the query results
+    for (var doc in querySnapshot.docs) {
+      doc.reference.delete();
+    }
+  } catch (e) {
+    print(e.toString());
   }
 }

@@ -1,16 +1,22 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/repos/AvailableSlotsRepoImp.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/repos/PriceRepoImp.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/repos/PricesRepo.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/PriceCubit/price_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/SlotsCubit/SlotsCubit.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/DateTimePicker.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/PriceOfBookingWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SlotsWidget.dart';
 
 import '../../../Widgets/ActionButton.dart';
@@ -23,7 +29,6 @@ class HospitalStaffManagementScreen extends StatelessWidget {
   CollectionReference appointments =
       FirebaseFirestore.instance.collection('Appointments');
   ScrollController scrollController = ScrollController();
-  CollectionReference prices = FirebaseFirestore.instance.collection('Prices');
   TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -61,45 +66,15 @@ class HospitalStaffManagementScreen extends StatelessWidget {
               alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
-                child: Row(
-                  children: [
-                    Text(
-                      'Cost : ',
-                      style: Themes.bodyMedium.copyWith(fontSize: 20),
-                    ),
-                    Text(
-                      '150 EGP',
-                      style: Themes.bodyMedium.copyWith(fontSize: 20),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    ActionButton(
-                      action: "Edit",
-                      iconData: Icons.add_circle,
-                      onPressed: () async {
-                        final cost = await showTextFieldDialog(
-                          context,
-                          textEditingController: textEditingController,
-                          title: "Cost",
-                          hintText: "Enter your Price Here",
-                        );
-                        prices.add(
-                          {
-                            'D_uid': "A",
-                            'Cost': cost,
-                          },
-                        );
-                      },
-                    ),
-                  ],
+                child: PriceOfBookingWidget(
+                  textEditingController: textEditingController,
                 ),
               ),
             ),
             Align(
               alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -128,21 +103,22 @@ class HospitalStaffManagementScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              'For this Month($monthName)',
-              style: Themes.bodyMedium,
+            Align(
+              alignment: const AlignmentDirectional(-1, 0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 7, 12, 0),
+                child: Text(
+                  'For this Month($monthName)',
+                  style: Themes.bodyMedium.copyWith(fontSize: 20),
+                ),
+              ),
             ),
             const SizedBox(
-              height: 100,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-              child: BlocProvider(
-                create: ((context) => SlotsReterivalCubit(
-                      AvailableSlotsRepoImp(),
-                    )),
-                child: SlotsWidget(),
-              ),
+              child: SlotsWidget(),
             ),
           ],
         ),
@@ -159,6 +135,7 @@ Future<String?> showTextFieldDialog(BuildContext context,
       return AlertDialog(
         title: Text(title),
         content: TextField(
+          autofocus: true,
           controller: textEditingController,
           decoration: InputDecoration(
             hintText: hintText,
