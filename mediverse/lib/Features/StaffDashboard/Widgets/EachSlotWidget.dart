@@ -26,7 +26,7 @@ class SlotWidget extends StatelessWidget {
       background: Container(
         alignment: Alignment.centerRight,
         color: Colors.red,
-        child: Icon(Icons.delete, color: Colors.white),
+        child: const Icon(Icons.delete, color: Colors.white),
       ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),

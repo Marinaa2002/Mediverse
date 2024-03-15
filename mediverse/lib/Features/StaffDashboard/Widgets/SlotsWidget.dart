@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/EachSlotWidget.dart';
 
@@ -26,6 +27,16 @@ class SlotsWidget extends StatelessWidget {
               .map((doc) =>
                   SlotsModel.fromJson(doc.data() as Map<String, dynamic>))
               .toList();
+          if (slotsList.isEmpty) {
+            return SizedBox(
+              height: 200,
+              child: Center(
+                  child: Text(
+                'No Slots Made ',
+                style: Themes.bodyLarge.copyWith(color: Colors.black),
+              )),
+            );
+          }
           return SizedBox(
             height: 400,
             child: ListView.builder(
@@ -41,7 +52,11 @@ class SlotsWidget extends StatelessWidget {
             ),
           );
         } else {
-          return const Center(child: const Text('No Slots Made'));
+          return Center(
+              child: Text(
+            'No Slots Made ',
+            style: Themes.bodyLarge.copyWith(color: Colors.black),
+          ));
         }
       },
     );

@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
-import 'package:mediverse/Core/Errors/Failure.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/PricesModel.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/PriceCubit/price_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/ActionButton.dart';
 
@@ -38,7 +35,7 @@ class PriceOfBookingWidget extends StatelessWidget {
 
               if (snapshot.hasData) {
                 if (snapshot.data!.docs.isEmpty) {
-                  return const Text("");
+                  return const Text("Cost : 0");
                 }
                 PriceModel priceModel =
                     PriceModel.fromJson(snapshot.data!.docs[0]);
@@ -52,25 +49,6 @@ class PriceOfBookingWidget extends StatelessWidget {
                       '${priceModel.cost} EGP',
                       style: Themes.bodyMedium.copyWith(fontSize: 20),
                     ),
-                    ActionButton(
-                      action: "Add",
-                      iconData: Icons.add_circle,
-                      onPressed: () async {
-                        final cost = await showTextFieldDialog(
-                          context,
-                          textEditingController: textEditingController,
-                          title: "Cost",
-                          hintText: "Enter your Price Here",
-                        );
-                        //momken ashil al providerrrr mn hnaa lo al performance al
-                        prices.add(
-                          {
-                            'D_uid': "A",
-                            'Cost': cost,
-                          },
-                        );
-                      },
-                    ),
                   ],
                 );
               }
@@ -80,7 +58,7 @@ class PriceOfBookingWidget extends StatelessWidget {
           width: 10,
         ),
         ActionButton(
-          action: "Add",
+          action: "Edit",
           iconData: Icons.add_circle,
           onPressed: () async {
             final cost = await showTextFieldDialog(

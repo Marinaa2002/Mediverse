@@ -9,12 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/models/SlotsModel.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/repos/AvailableSlotsRepoImp.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/repos/PriceRepoImp.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/data/repos/PricesRepo.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/PriceCubit/price_cubit.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Manager/SlotsCubit/SlotsCubit.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/DateTimePicker.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/PriceOfBookingWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SlotsWidget.dart';
@@ -50,77 +44,79 @@ class HospitalStaffManagementScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: SafeArea(
-        top: true,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const Align(
-              alignment: AlignmentDirectional(0, 0),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
-                child: DrInformation(),
-              ),
-            ),
-            Align(
-              alignment: const AlignmentDirectional(-1, 0),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
-                child: PriceOfBookingWidget(
-                  textEditingController: textEditingController,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+                  child: DrInformation(),
                 ),
               ),
-            ),
-            Align(
-              alignment: const AlignmentDirectional(-1, 0),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                child: Row(
-                  children: [
-                    Text(
-                      'Slots',
-                      style: Themes.bodyMedium.copyWith(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
+              Align(
+                alignment: const AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
+                  child: PriceOfBookingWidget(
+                    textEditingController: textEditingController,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Slots',
+                        style: Themes.bodyMedium.copyWith(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    ActionButton(
-                      action: "Add",
-                      iconData: Icons.add_circle,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DateTimePicker()),
-                        );
-                      },
-                    ),
-                  ],
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ActionButton(
+                        action: "Add",
+                        iconData: Icons.add_circle,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DateTimePicker()),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Align(
-              alignment: const AlignmentDirectional(-1, 0),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 7, 12, 0),
-                child: Text(
-                  'For this Month($monthName)',
-                  style: Themes.bodyMedium.copyWith(fontSize: 20),
+              Align(
+                alignment: const AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10, 7, 12, 0),
+                  child: Text(
+                    'For this Month($monthName)',
+                    style: Themes.bodyMedium.copyWith(fontSize: 20),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-              child: SlotsWidget(),
-            ),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+                child: SlotsWidget(),
+              ),
+            ],
+          ),
         ),
       ),
     );
