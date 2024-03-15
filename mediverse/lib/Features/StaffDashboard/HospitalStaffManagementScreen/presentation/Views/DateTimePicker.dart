@@ -53,23 +53,24 @@ class _DateTimePickerState extends State<DateTimePicker> {
       hintText: "Enter the doctor's available slots(hr)",
       title: 'Slots',
     );
-    appointments.add({
-      'D_uid': "A",
-      'P_uid': "P",
-      'HospitalName': 'St Philo',
-      'FromDateDay': selectedDateTime.day,
-      'FromDateHour': selectedDateTime.hour,
-      'FromDateMonth': selectedDateTime.month,
-      'FromDateYear': selectedDateTime.year,
-      'TODateDay': selectedDateTime.day,
-      'TODateHour': selectedDateTime.hour + num.parse(slot!),
-      'TODateMonth': selectedDateTime.month,
-      'TODateYear': selectedDateTime.year,
-      'isPaid': false,
-      'currency': 'egp',
-      'availableSlotsInHr': num.parse(slot),
-    });
-
+    if (slot != null) {
+      appointments.add({
+        'D_uid': "A",
+        'P_uid': "P",
+        'HospitalName': 'St Philo',
+        'FromDateDay': selectedDateTime.day,
+        'FromDateHour': selectedDateTime.hour,
+        'FromDateMonth': selectedDateTime.month,
+        'FromDateYear': selectedDateTime.year,
+        'TODateDay': selectedDateTime.day,
+        'TODateHour': selectedDateTime.hour + num.parse(slot!),
+        'TODateMonth': selectedDateTime.month,
+        'TODateYear': selectedDateTime.year,
+        'isPaid': false,
+        'currency': 'egp',
+        'availableSlotsInHr': num.parse(slot),
+      });
+    }
     Navigator.of(context).pop();
   }
 

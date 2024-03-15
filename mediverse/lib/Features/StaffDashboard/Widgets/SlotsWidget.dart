@@ -14,8 +14,20 @@ class SlotsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    int currentMonth = now.month;
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('Appointments').snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection('Appointments')
+          .where(
+            'FromDateMonth',
+            isEqualTo: currentMonth,
+          )
+          .orderBy(
+            'FromDateDay',
+            descending: false,
+          )
+          .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -28,13 +40,17 @@ class SlotsWidget extends StatelessWidget {
                   SlotsModel.fromJson(doc.data() as Map<String, dynamic>))
               .toList();
           if (slotsList.isEmpty) {
-            return SizedBox(
-              height: 200,
-              child: Center(
-                  child: Text(
-                'No Slots Made ',
-                style: Themes.bodyLarge.copyWith(color: Colors.black),
-              )),
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                Center(
+                    child: Text(
+                  'No Slots Made ',
+                  style: Themes.bodyLarge.copyWith(color: Colors.black),
+                )),
+              ],
             );
           }
           return SizedBox(

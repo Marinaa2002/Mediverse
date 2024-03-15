@@ -35,7 +35,10 @@ class PriceOfBookingWidget extends StatelessWidget {
 
               if (snapshot.hasData) {
                 if (snapshot.data!.docs.isEmpty) {
-                  return const Text("Cost : 0");
+                  return Text(
+                    "Cost : 0",
+                    style: Themes.bodyMedium.copyWith(fontSize: 20),
+                  );
                 }
                 PriceModel priceModel =
                     PriceModel.fromJson(snapshot.data!.docs[0]);
@@ -67,13 +70,15 @@ class PriceOfBookingWidget extends StatelessWidget {
               title: "Cost",
               hintText: "Enter your Price Here",
             );
+            if (cost != null) {
+              prices.add(
+                {
+                  'D_uid': "A",
+                  'Cost': cost,
+                },
+              );
+            }
             //momken ashil al providerrrr mn hnaa lo al performance al
-            prices.add(
-              {
-                'D_uid': "A",
-                'Cost': cost,
-              },
-            );
           },
         ),
       ],
