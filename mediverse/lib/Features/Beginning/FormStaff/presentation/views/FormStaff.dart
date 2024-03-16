@@ -171,7 +171,7 @@ class _FormStaffState extends State<FormStaff> {
                                 orgType=dropdownItems2[selectedIndex2];
                                 licNo = licNoController.text.trim();
 
-                                if (formKey.currentState!.validate()) {
+                                if (formKey.currentState!.validate()&& selectedIndex2!=0 && selectedIndex!=0) {
                                   BlocProvider.of<StaffRequestCubit>(context)
                                       .sendRequest(
                                     staff: staff!,
@@ -184,6 +184,9 @@ class _FormStaffState extends State<FormStaff> {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(
                                           builder: (context) => LoginScreen()));
+                                }
+                                else{
+                                  showSnackbar(context, "choose a valid option");
                                 }
                               }
                           ),

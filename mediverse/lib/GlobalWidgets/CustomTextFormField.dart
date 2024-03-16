@@ -26,7 +26,7 @@ class CustomTextFormField extends StatelessWidget {
               }
             }
             if (text == "Age") {
-              if (data.length != 2 || int.tryParse(data) == null) {
+              if (data.length > 2 || int.tryParse(data) == null) {
                 return 'Valid age is required ';
             }
             }

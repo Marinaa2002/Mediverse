@@ -4,7 +4,8 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDashedLine.dar
 import 'package:mediverse/Features/PatientDashboard/Widgets/Thank_you_Widget.dart';
 
 class ThankYouViewBody extends StatelessWidget {
-  const ThankYouViewBody({super.key});
+  const ThankYouViewBody({super.key, required this.isCash});
+  final bool isCash;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,9 @@ class ThankYouViewBody extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          const ThankYouCard(),
+          ThankYouCard(
+            isCash: isCash,
+          ),
           Positioned(
             bottom: MediaQuery.sizeOf(context).height * .2 + 20,
             left: 20 + 8,

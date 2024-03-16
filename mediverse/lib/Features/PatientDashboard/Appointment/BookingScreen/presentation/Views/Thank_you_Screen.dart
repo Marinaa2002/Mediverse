@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/Thank_you_view_body.dart';
 
-import '../../../../Widgets/BookingForm.dart';
-
-const List<String> paymentMethods = <String>[
-  'Select Payment Method..',
-  'Cash at arrival',
-  'Card',
-  'PayPal',
-];
-
-class BookingScreen extends StatelessWidget {
-  const BookingScreen({super.key});
+class ThankYouView extends StatelessWidget {
+  const ThankYouView({super.key, required this.isCash});
+  final bool isCash;
 
   @override
   Widget build(BuildContext context) {
-    final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
@@ -43,11 +33,8 @@ class BookingScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: const Center(
-        child: Padding(
-          padding: EdgeInsets.all(0.0),
-          child: BookingForm(),
-        ),
+      body: ThankYouViewBody(
+        isCash: isCash,
       ),
     );
   }
