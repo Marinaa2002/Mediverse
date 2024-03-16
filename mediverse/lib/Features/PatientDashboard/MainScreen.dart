@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/ScreensBackUp/PatientDashboard/tabs/Appointment%20Tab.dart';
+import 'package:mediverse/Features/PatientDashboard/tabs/Appointment%20Tab.dart';
 
 import 'Widgets/CustomAppbarMainScreenPatient.dart';
 import 'tabs/MedicalBlogsTab.dart';

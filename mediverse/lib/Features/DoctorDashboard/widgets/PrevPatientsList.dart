@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/ScreensBackUp/DoctorDashboard/widgets/HistoryCard.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/HistoryCard.dart';
 
 class PrevPatientsList extends StatelessWidget {
   const PrevPatientsList({

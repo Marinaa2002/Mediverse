@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/ScreensBackUp/DoctorDashboard/widgets/InfoRow.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/InfoRow.dart';
 
 class ViewHistory extends StatelessWidget {
   const ViewHistory({super.key});
