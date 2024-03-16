@@ -2,100 +2,73 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/UploadScreenPhoto.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/AllAboutTextFieldAndIconsSendAndCamera.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/CameraIconButton.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/ChattingTextFieldAndIcon.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/DateChat.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/MessagesListView.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/SendButtonWithAlign.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/TextFieldForMsgs.dart';
+
+import 'SendButtonIcon.dart';
 
 String textData = "";
 
 class ChatCoumn extends StatelessWidget {
   const ChatCoumn({
     super.key,
-    required this.messagesList,
     required ScrollController controller2,
     required this.textEditingcontroller,
     required this.messages,
   }) : _scrollablecontroller = controller2;
 
-  final List<Message> messagesList;
   final ScrollController _scrollablecontroller;
   final TextEditingController textEditingcontroller;
   final CollectionReference<Object?> messages;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const DateOfChat(),
-        MessagesListView(
-          messagesList: messagesList,
-          controller: _scrollablecontroller,
-        ),
-        Align(
-          alignment: const AlignmentDirectional(0, 0),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
-            child: Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(241, 211, 189, 2),
-                borderRadius: BorderRadius.circular(16),
+    return StreamBuilder<QuerySnapshot>(
+      stream: messages.orderBy(kCreatedAt, descending: true).snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<Message> messagesList = [];
+          for (int i = 0; i < snapshot.data!.docs.length; i++) {
+            messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
+          }
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const DateOfChat(),
+              MessagesListView(
+                messagesList: messagesList,
+                controller: _scrollablecontroller,
               ),
-              alignment: const AlignmentDirectional(0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  TextFieldForMsgs(
-                      controller: textEditingcontroller,
-                      messages: messages,
-                      controller2: _scrollablecontroller),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.camera_alt,
-                        color: kSecondaryTextColor,
-                        size: 24,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(1, 0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.send,
-                          color: kSecondaryTextColor,
-                          size: 24,
-                        ),
-                        onPressed: () {
-                          messages.add(
-                            {
-                              kMessage: textData,
-                              kCreatedAt: DateTime.now(),
-                              'id': "B"
-                            },
-                          );
-                          textEditingcontroller.clear();
-                          _scrollablecontroller.animateTo(10,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeIn);
-                          textData = "";
-                        },
-                      ),
-                    ),
-                  ),
-                ],
+              AllAboutTextFieldAndIconsSendAndCamera(
+                textEditingcontroller: textEditingcontroller,
+                messages: messages,
+                scrollablecontroller: _scrollablecontroller,
+                onPressedCameraIcon: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UploadPhotoScreen()),
+                  );
+                },
               ),
-            ),
-          ),
-        ),
-      ],
+            ],
+          );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
+        return const Center(
+          child: Text("No chats in Here"),
+        );
+      },
     );
   }
 }

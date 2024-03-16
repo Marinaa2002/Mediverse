@@ -23,9 +23,11 @@ class TextFieldForMsgs extends StatelessWidget {
         child: TextField(
           controller: controller,
           onSubmitted: (data) {
-            messages.add(
-              {kMessage: data, kCreatedAt: DateTime.now(), 'id': "B"},
-            );
+            if (data.trim().isNotEmpty) {
+              messages.add(
+                {kMessage: data, kCreatedAt: DateTime.now(), 'id': "B"},
+              );
+            }
             controller.clear();
             _controller.animateTo(0,
                 duration: const Duration(milliseconds: 500),

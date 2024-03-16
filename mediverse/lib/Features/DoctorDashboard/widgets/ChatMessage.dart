@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart'; // Import the intl package for date formatting
 
 class ChatMessage extends StatelessWidget {
@@ -30,7 +31,8 @@ class ChatMessage extends StatelessWidget {
                   topRight: Radius.circular(32),
                   bottomRight: Radius.circular(32),
                 ),
-          color: Colors.black,
+          //lo za3lo 8ir al color lo la2 5lassssss
+          color: kprimaryColor,
         ),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 150),

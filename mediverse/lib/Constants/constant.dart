@@ -19,3 +19,5 @@ const grey = Colors.grey;
 const kMessagesCollections = 'messages';
 const kMessage = 'message';
 const kCreatedAt = 'createdAt';
+const kcolorOfChattingTextFieldAndIcon = Color.fromRGBO(241, 211, 189, 2);
+const Chatid = "ChatPage";

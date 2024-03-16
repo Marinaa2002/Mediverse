@@ -20,47 +20,30 @@ class DoctorChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //refactor do not need to rebuild all screen
-    return StreamBuilder<QuerySnapshot>(
-      stream: messages.orderBy(kCreatedAt, descending: true).snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<Message> messagesList = [];
-          for (int i = 0; i < snapshot.data!.docs.length; i++) {
-            messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
-          }
-          return Scaffold(
-            backgroundColor: backgroundColor,
-            appBar: AppBar(
-              leadingWidth: 100,
-              titleSpacing: 0,
-              leading: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const AppBarRowIconChat(),
-              ),
-              title: const NameIconChat(),
-              actions: const [
-                PopUpWindow(),
-              ],
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ChatCoumn(
-                  messagesList: messagesList,
-                  controller2: _controller,
-                  textEditingcontroller: controller,
-                  messages: messages),
-            ),
-          );
-        } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        }
 
-        return const Center();
-      },
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        leadingWidth: 100,
+        titleSpacing: 0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const AppBarRowIconChat(),
+        ),
+        title: const NameIconChat(),
+        actions: const [
+          PopUpWindow(),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ChatCoumn(
+            controller2: _controller,
+            textEditingcontroller: controller,
+            messages: messages),
+      ),
     );
   }
 }
