@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/repos/Check_out_Imp.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ActionDetailsWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Notes.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/PaymentBottomSheet.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/RowImageAndText.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/TextWidgetHorz.dart';
 
@@ -10,7 +15,7 @@ import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 
 class BookingForm extends StatefulWidget {
-  const BookingForm({Key? key}) : super(key: key);
+  const BookingForm({super.key});
 
   @override
   State<BookingForm> createState() => _BookingFormState();
@@ -114,11 +119,33 @@ class _BookingFormState extends State<BookingForm> {
                       note:
                           'To ensure smooth scheduling, it is important to note that doctor appointments must be modified, rescheduled, or canceled at least 24 hours before the scheduled time.'),
                   const Notes(
-                    note: "Different Text",
+                    note:
+                        "Please be aware that in the event of canceling a prepaid appointment, a cancellation fee of 50 L.E will be deducted.",
                   ),
                 ],
               ),
             ),
+            SliverFillRemaining(
+                hasScrollBody: false,
+                child: Align(
+                  child: ConfirmButton(
+                    text: "Confirm Booking",
+                    onTap: () {
+                      showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        context: context,
+                        builder: (context) {
+                          return BlocProvider(
+                            create: (BuildContext context) =>
+                                PaymentStripeCubit(CheckoutRepoImpl()),
+                            child: const PaymentBottomSheet(),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                )),
           ],
         ),
       ),
