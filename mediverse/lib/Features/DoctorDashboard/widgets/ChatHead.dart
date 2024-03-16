@@ -77,8 +77,8 @@ class ChatHead extends StatelessWidget {
                       size: 24,
                     ),
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const DoctorChat()));
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (ctx) => DoctorChat()));
                     },
                   ),
                 ),

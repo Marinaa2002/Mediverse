@@ -16,3 +16,6 @@ const black = Color(0xFF101213);
 const cyan = Color(0x00FFFFFF);
 const white = Colors.white;
 const grey = Colors.grey;
+const kMessagesCollections = 'messages';
+const kMessage = 'message';
+const kCreatedAt = 'createdAt';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 
 import '../../Features/DoctorDashboard/widgets/ChatMessage.dart';
 
@@ -45,12 +46,8 @@ class DoctorChat extends StatelessWidget {
                   Center(
                     child: Text('12/5/2022', style: Themes.DateText),
                   ),
-                  const ChatMessage(
-                      message:
-                          'hello this is the doctor talking how are you sdjflksdjflksddflsjdflsdlfkj sljskdjflksdf sdflksdjf',
-                      isMe: true),
-                  const ChatMessage(
-                      message: 'Hi doctor i am fine thank you', isMe: false),
+                  ChatMessage(message: Message(), isMe: true),
+                  ChatMessage(message: Message("", ""), isMe: false),
                 ],
               ),
             ),

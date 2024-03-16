@@ -1,41 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/Constants/Themes.dart';
+import 'package:intl/intl.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart'; // Import the intl package for date formatting
 
 class ChatMessage extends StatelessWidget {
-  const ChatMessage({super.key, required this.message, required this.isMe});
-  final String message;
+  const ChatMessage({Key? key, required this.message, required this.isMe});
 
-// Controls how the MessageBubble will be aligned.
+  final Message message;
   final bool isMe;
 
   @override
   Widget build(BuildContext context) {
+    // Get the current time
+    String formattedTime = DateFormat.Hm().format(DateTime.now());
+
     return Align(
-      alignment: isMe
-          ? const AlignmentDirectional(1, 0)
-          : const AlignmentDirectional(-1, 0),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 8),
-        child: Container(
+      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: isMe
+              ? const BorderRadius.only(
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                  bottomLeft: Radius.circular(32),
+                )
+              : const BorderRadius.only(
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                  bottomRight: Radius.circular(32),
+                ),
+          color: Colors.black,
+        ),
+        child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 200),
-          // width: width,
-          // height: height,
-          decoration: BoxDecoration(
-            color: isMe
-                ? const Color.fromARGB(224, 57, 210, 192)
-                : const Color.fromARGB(224, 238, 139, 96),
-            borderRadius: BorderRadius.circular(12),
-            shape: BoxShape.rectangle,
-          ),
-          alignment: const AlignmentDirectional(0, 0),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              message,
-              style: Themes.bodyLarge,
-              maxLines: 10,
-              softWrap: true,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                message.message,
+                style: const TextStyle(color: Colors.white),
+              ),
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  formattedTime,
+                  style: const TextStyle(color: Colors.white70),
+                ),
+              ),
+            ],
           ),
         ),
       ),
