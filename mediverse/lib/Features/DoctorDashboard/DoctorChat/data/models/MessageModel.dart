@@ -8,7 +8,7 @@ class Message {
 
   factory Message.fromJson(jsonData) {
     return Message(
-      jsonData['TextMessage'],
+      jsonData['message'],
       jsonData['id'],
     );
   }

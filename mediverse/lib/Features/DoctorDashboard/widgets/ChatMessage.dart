@@ -33,7 +33,7 @@ class ChatMessage extends StatelessWidget {
           color: Colors.black,
         ),
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 200),
+          constraints: const BoxConstraints(maxWidth: 150),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
