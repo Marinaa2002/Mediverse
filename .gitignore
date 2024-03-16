@@ -17,3 +17,6 @@ mediverse/linux/flutter/generated_plugins.cmake
 mediverse/linux/flutter/generated_plugin_registrant.cc
 mediverse/android/gradle.properties
 mediverse/pubspec.lock
+mediverse/android/gradle.properties
+mediverse/android/gradle.properties
+*.properties

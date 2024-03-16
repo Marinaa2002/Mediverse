@@ -2,10 +2,10 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:mediverse/AllModels/blog.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/AllModels/patient.dart';
 import 'package:mediverse/AllModels/review.dart';
 
-import '../Features/PatientDashboard/Appointment/BookingScreen/data/models/booking.dart';
 
 class Doctor {
   const Doctor({

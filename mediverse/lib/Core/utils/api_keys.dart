@@ -4,4 +4,10 @@ class ApiKeys {
 
   static String publishableKey =
       "pk_test_51OoOD8APYzrkj6xe0S8IKKsIs5uXARyDqZVLD2SZSYwJF3OCt43o1oYXcG7wmMsiXiJlCugIXMQZdOKBxSfET7IG00HMTxkY4Z";
+
+  static String clientID =
+      "AX72txY7arrRI7kzE8UuQgu-MiFqXZUyiw_tdbbE_-ydZBgW2Fvdm_StWujk4Oj0vPpD7pkEaf5YOKc9";
+
+  static String paypalSecretKey =
+      "EFJQ0XhmPSPK-OoZ5qETIw_VKwCosH4dpo66l80xLZtKLeK6iEJ2BQkNmWPHVrUsPjzWwDEoELhm5WpM";
 }

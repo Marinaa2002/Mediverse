@@ -1,5 +1,4 @@
 import 'invoice_settings.dart';
-import 'metadata.dart';
 
 class CustomerModel {
   String? id;
@@ -16,7 +15,6 @@ class CustomerModel {
   String? invoicePrefix;
   InvoiceSettings? invoiceSettings;
   bool? livemode;
-  Metadata? metadata;
   String? name;
   int? nextInvoiceSequence;
   dynamic phone;
@@ -40,7 +38,6 @@ class CustomerModel {
     this.invoicePrefix,
     this.invoiceSettings,
     this.livemode,
-    this.metadata,
     this.name,
     this.nextInvoiceSequence,
     this.phone,
@@ -68,9 +65,6 @@ class CustomerModel {
             : InvoiceSettings.fromJson(
                 json['invoice_settings'] as Map<String, dynamic>),
         livemode: json['livemode'] as bool?,
-        metadata: json['metadata'] == null
-            ? null
-            : Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
         name: json['name'] as String?,
         nextInvoiceSequence: json['next_invoice_sequence'] as int?,
         phone: json['phone'] as dynamic,
@@ -95,7 +89,6 @@ class CustomerModel {
         'invoice_prefix': invoicePrefix,
         'invoice_settings': invoiceSettings?.toJson(),
         'livemode': livemode,
-        'metadata': metadata?.toJson(),
         'name': name,
         'next_invoice_sequence': nextInvoiceSequence,
         'phone': phone,

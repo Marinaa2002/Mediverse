@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/MessagesListWidget.dart';
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/SendMessageBox.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/MessagesListWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/SendMessageBox.dart';
 
 class PatientChatScreen extends StatelessWidget {
   PatientChatScreen({super.key});

@@ -5,67 +5,49 @@ import '../Constants/Themes.dart';
 import '../Constants/constant.dart';
 
 class CustomTextFormField2 extends StatelessWidget {
-  final text;
-  final Icon icon;
-  const CustomTextFormField2({
-    super.key,
-    required this.text,
-    required this.icon,
-  });
+  final int selectedIndex;
+  final List<String> items;
+  final String? value;
+  final void Function(String?)? onChanged;
+
+  CustomTextFormField2({
+    Key? key,
+    required this.selectedIndex,
+    required this.items,
+    required this.value,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 390,
-      child: TextFormField(
-          //     controller: _model.emailAddressController,
-          //     focusNode: _model.emailAddressFocusNode,
-          autofocus: false,
-          autofillHints: [AutofillHints.email],
-          obscureText: false,
-          decoration: InputDecoration(
-            hintText: text,
-            suffixIcon: IconButton(
-              icon: icon,
-              onPressed: () {},
-            ),
-            labelStyle: Themes.fieldText,
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Color(0xFFE0E3E7),
-                width: 2,
+      height: 60,
+      decoration: BoxDecoration(
+        border: Border.all(color: Color(0xFFE0E3E7), width: 2),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: DropdownButton<String>(
+          value: value,
+          onChanged: onChanged,
+          items: items.map((option) {
+            return DropdownMenuItem<String>(
+              value: option,
+              child: Text(
+                option,
+                style: Themes.fieldText,
               ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: grey,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: errorColor,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: errorColor,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: const EdgeInsets.all(16),
-          ),
-          style: Themes.bodyMed
-          //   keyboardType: TextInputType.emailAddress,
-          // validator: _model.emailAddressControllerValidator.asValidator(context),
-          ),
+            );
+          }).toList(),
+          isExpanded: true,
+          icon: Icon(Icons.arrow_drop_down_outlined, weight: 27),
+          iconSize: 24,
+          iconEnabledColor: Color(0xFF57636C),
+          underline: SizedBox(),
+        ),
+      ),
     );
   }
 }

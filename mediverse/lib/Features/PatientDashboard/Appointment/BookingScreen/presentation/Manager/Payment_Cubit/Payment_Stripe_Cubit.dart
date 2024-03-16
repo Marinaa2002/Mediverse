@@ -8,7 +8,7 @@ import '../../../data/models/PaymentIndentInputModel.dart';
 
 class PaymentStripeCubit extends Cubit<PaymentStripeState> {
   PaymentStripeCubit(this.checkoutRepo) : super(PaymentStripeInitial());
-  final CheckoutRepo checkoutRepo;
+  final CheckOutRepo checkoutRepo;
   Future makePayment(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
     emit(PaymentStripeLoading());

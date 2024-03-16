@@ -4,7 +4,8 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Thank_you_view_body.dart';
 
 class ThankYouView extends StatelessWidget {
-  const ThankYouView({super.key});
+  const ThankYouView({super.key, required this.isCash});
+  final bool isCash;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,9 @@ class ThankYouView extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: const ThankYouViewBody(),
+      body: ThankYouViewBody(
+        isCash: isCash,
+      ),
     );
   }
 }
