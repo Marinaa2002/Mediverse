@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 
@@ -22,6 +23,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      initialRoute: '/',
+      routes: {
+        kCameraScrenId: (context) => const CameraScreen(),
+      },
       home: DoctorChat(),
     );
   }

@@ -26,7 +26,12 @@ class SendIconButton extends StatelessWidget {
       onPressed: () {
         if (textData.trim().isNotEmpty) {
           messages.add(
-            {kMessage: textData, kCreatedAt: DateTime.now(), 'id': "A"},
+            {
+              kMessage: textData,
+              kCreatedAt: DateTime.now(),
+              'id': "A",
+              "imageUrl": ''
+            },
           );
         }
         textEditingcontroller.clear();

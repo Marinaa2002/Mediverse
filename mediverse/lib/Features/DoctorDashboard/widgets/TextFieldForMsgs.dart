@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/TextFieldSendMessageAndCloudFireStore.dart';
 
 class TextFieldForMsgs extends StatelessWidget {
   const TextFieldForMsgs({
@@ -20,12 +21,18 @@ class TextFieldForMsgs extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-        child: TextField(
+        child: TextFieldSendMessageAndCloudFireStore(
           controller: controller,
+          messages: messages,
           onSubmitted: (data) {
             if (data.trim().isNotEmpty) {
               messages.add(
-                {kMessage: data, kCreatedAt: DateTime.now(), 'id': "B"},
+                {
+                  kMessage: data,
+                  kCreatedAt: DateTime.now(),
+                  'id': "B",
+                  "imageUrl": ''
+                },
               );
             }
             controller.clear();
@@ -37,15 +44,7 @@ class TextFieldForMsgs extends StatelessWidget {
           onChanged: (value) {
             textData = value;
           },
-          // don't forget controller
-          decoration: const InputDecoration(
-            hintText: 'Send Message',
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            focusedErrorBorder: InputBorder.none,
-            contentPadding: EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
-          ),
+          controller2: _controller,
         ),
       ),
     );

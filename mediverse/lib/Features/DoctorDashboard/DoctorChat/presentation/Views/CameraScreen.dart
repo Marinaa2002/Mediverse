@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mediverse/Constants/constant.dart';
@@ -19,6 +20,9 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   CameraController? _cameraController;
   Future<void>? cameraValue;
+  CollectionReference messages = FirebaseFirestore.instance.collection('Chats');
+  TextEditingController controller = TextEditingController();
+  final ScrollController _scrollablecontroller = ScrollController();
   // bool isRecoring = false;
   // bool flash = false;
   bool iscamerafront = true;
@@ -27,9 +31,23 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void initState() {
     super.initState();
-    _cameraController = CameraController(cameras![0], ResolutionPreset.high);
-    cameraValue = _cameraController?.initialize();
-    _cameraController?.setFlashMode(FlashMode.off);
+    initializeCamera();
+    // _cameraController = CameraController(cameras![0], ResolutionPreset.high);
+    // cameraValue = _cameraController?.initialize();
+    // _cameraController?.setFlashMode(FlashMode.off);
+  }
+
+  Future<void> initializeCamera() async {
+    try {
+      final cameras = await availableCameras();
+      _cameraController = CameraController(cameras[0], ResolutionPreset.high);
+      await _cameraController!.initialize();
+      setState(() {
+        cameraValue = Future.value(true);
+      });
+    } catch (e) {
+      print('Failed to initialize camera: $e');
+    }
   }
 
   @override
@@ -142,6 +160,7 @@ class _CameraScreenState extends State<CameraScreen> {
         builder: (builder) => CameraViewPage(
           path: file!.path,
           fileName: fileName,
+          imageFile: file,
         ),
       ),
     );
@@ -155,11 +174,14 @@ class _CameraScreenState extends State<CameraScreen> {
     setState(() {});
 
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (builder) => CameraViewPage(
-                  path: pickedFile!.path,
-                  fileName: fileName,
-                )));
+      context,
+      MaterialPageRoute(
+        builder: (builder) => CameraViewPage(
+          path: pickedFile!.path,
+          fileName: fileName,
+          imageFile: pickedFile,
+        ),
+      ),
+    );
   }
 }

@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart'; // Import the intl package for date formatting
 
-class ChatMessage extends StatelessWidget {
-  const ChatMessage({Key? key, required this.message, required this.isMe});
+class ChatMessageWithPhoto extends StatelessWidget {
+  const ChatMessageWithPhoto(
+      {super.key, required this.message, required this.isMe});
 
   final Message message;
   final bool isMe;
@@ -40,9 +42,18 @@ class ChatMessage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                message.message ?? '',
-                style: const TextStyle(color: Colors.white),
+              CachedNetworkImage(
+                imageUrl: message.imageUrl!,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  message.message ?? '',
+                  style: const TextStyle(color: Colors.white),
+                ),
               ),
               const SizedBox(height: 8),
               Align(

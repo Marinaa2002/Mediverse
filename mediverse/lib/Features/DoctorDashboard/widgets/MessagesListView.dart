@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatMessage.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/ChatMessageWithPhoto.dart';
 
 class MessagesListView extends StatelessWidget {
   const MessagesListView(
@@ -16,13 +17,27 @@ class MessagesListView extends StatelessWidget {
           controller: controller,
           itemCount: messagesList.length,
           itemBuilder: (context, index) {
-            if (messagesList[index].id == "A") {
+            if (messagesList[index].id == "A" &&
+                messagesList[index].imageUrl == '') {
               return ChatMessage(
                 message: messagesList[index],
                 isMe: true,
               );
-            } else {
+            } else if (messagesList[index].id == "A" &&
+                messagesList[index].imageUrl != '') {
+              return ChatMessageWithPhoto(
+                message: messagesList[index],
+                isMe: true,
+              );
+            } else if (messagesList[index].id == "B" &&
+                messagesList[index].imageUrl == '') {
               return ChatMessage(
+                message: messagesList[index],
+                isMe: false,
+              );
+            } else if (messagesList[index].id == "B" &&
+                messagesList[index].imageUrl != '') {
+              return ChatMessageWithPhoto(
                 message: messagesList[index],
                 isMe: false,
               );

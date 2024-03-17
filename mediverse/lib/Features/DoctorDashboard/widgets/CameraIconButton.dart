@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/UploadScreenPhoto.dart';
-import 'package:mediverse/Features/DoctorDashboard/widgets/CameraViewPage.dart';
 
 class CameraIconButton extends StatelessWidget {
   const CameraIconButton({
@@ -23,8 +20,8 @@ class CameraIconButton extends StatelessWidget {
           size: 24,
         ),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (builder) => CameraScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (builder) => const CameraScreen()));
         },
       ),
     );

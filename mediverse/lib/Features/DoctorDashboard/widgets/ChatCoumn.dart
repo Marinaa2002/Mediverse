@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/UploadScreenPhoto.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/AllAboutTextFieldAndIconsSendAndCamera.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/CameraIconButton.dart';
@@ -54,7 +55,7 @@ class ChatCoumn extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => UploadPhotoScreen()),
+                        builder: (context) => const CameraScreen()),
                   );
                 },
               ),

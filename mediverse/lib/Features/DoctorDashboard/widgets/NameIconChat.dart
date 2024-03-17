@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class NameIconChat extends StatelessWidget {
   const NameIconChat({
@@ -21,11 +22,12 @@ class NameIconChat extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.5,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             Text(
               "online",
-              style: Themes.bodysmall,
+              style: Themes.bodysmall.copyWith(color: Colors.white),
             ),
           ],
         ),

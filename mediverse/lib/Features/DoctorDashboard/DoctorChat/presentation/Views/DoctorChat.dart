@@ -24,6 +24,7 @@ class DoctorChat extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
+        backgroundColor: kprimaryColor,
         leadingWidth: 100,
         titleSpacing: 0,
         leading: InkWell(
