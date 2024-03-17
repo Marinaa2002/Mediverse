@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/models/medical_prescription_model.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionButtonWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionDateWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionErrorWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionLoadingIndicator.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionPictureWidget.dart';
 
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomButtonWidget.dart';
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomDateWidget.dart';
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomPictureWidget.dart';
 
 class MedicalPrescriptionsScreen extends StatelessWidget {
   MedicalPrescriptionsScreen({super.key});
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isLoading = false;
+
+  List<MedicalPrescriptionModel> medicalModelList = [];
+  final now_date = DateFormat('d - M - yyyy ').format(DateTime.now());
+
+  ScrollController _scrollController = ScrollController();
+
+  static String id = 'MedicalPrescription';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      // key: scaffoldKey,
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: kprimaryColor,
@@ -29,7 +42,7 @@ class MedicalPrescriptionsScreen extends StatelessWidget {
           },
         ),
         title: Text(
-          'Medical Prescription',
+          'Medical Prescriptions',
           style: TextStyle(
             fontFamily: 'Outfit',
             color: Colors.white,
@@ -40,31 +53,44 @@ class MedicalPrescriptionsScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: ListView(
+      body: BlocBuilder<MedicalPrescriptionCubit, MedicalPrescriptionState>(
+        builder: (context, state) {
+          if (state is MedicalPrescriptionSuccess) {
+            medicalModelList = state.medicalModelList;
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomDateWidget(date: '16/9/2020'),
-                  CustomPictureWidget(
-                      pictureLink:
-                          'assets/images/Sample-prescription-used-as-input-to-the-GUI-developed-in-the-present-work.png'),
-                  CustomDateWidget(date: '20/10/2022'),
-                  CustomPictureWidget(
-                      pictureLink: 'assets/images/20180526152346127.jpg'),
-                  CustomDateWidget(date: '29/3/2023'),
-                  CustomPictureWidget(
-                      pictureLink:
-                          'assets/images/medical-prescription-ocr.webp'),
+                  Expanded(
+                    child: ListView.builder(
+                        reverse: true,
+                        controller: _scrollController,
+                        shrinkWrap: true,
+                        itemCount: medicalModelList.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              MedicalPrescriptionDateWidget(
+                                  medicalPrescriptionModelDate: medicalModelList[index]),
+                              MedicalPrescriptionPictureWidget(
+                                  medicalPrescriptionPicture: medicalModelList[index],
+                                  index: index,
+                                  medicalPrescriptionModelList: medicalModelList),
+                            ],
+                          );
+                        }),
+                  ),
+                  MedicalPrescriptionButtonWidget(scrollController: _scrollController),
                 ],
               ),
-            ),
-            CustomButtonWidget(),
-          ],
-        ),
+            );
+          } else if (state is MedicalPrescriptionFailure) {
+            return MedicalPrescriptionErrorWidget(errMessage: state.errMessage);
+          } else {
+            return MedicalPrescriptionLoadingIndicatorWidget();
+          }
+        },
       ),
     );
   }
