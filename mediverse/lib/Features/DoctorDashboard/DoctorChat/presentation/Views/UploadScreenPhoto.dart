@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/AllAboutTextFieldAndIconsSendAndCamera.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChattingTextFieldAndIcon.dart';
 
@@ -43,7 +44,6 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
     if (pickedFile != null) {
       setState(() {
         _images.add(File(pickedFile.path));
-        _showPlusIcon = false;
       });
     }
   }
@@ -83,8 +83,12 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
                         textEditingcontroller: controller,
                         messages: messages,
                         scrollablecontroller: _controller,
-                        onPressedCameraIcon: () async {
-                          await _getImage();
+                        onPressedCameraIcon: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CameraScreen()),
+                          );
                         },
                       ),
                     ),
