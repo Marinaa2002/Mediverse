@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/AllAboutTextFieldAndIconsSendAndCamera.dart';
@@ -61,21 +62,34 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
             child: Column(
               children: [
                 _images.isNotEmpty
-                    ? Image.file(
-                        _images.last,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
+                    ? Container(
+                        child: Image.file(
+                          _images.last,
+                          fit: BoxFit
+                              .contain, // Fit the image within the container
+                        ),
                       )
                     : const Placeholder(), // Placeholder for the mock image
-                AllAboutTextFieldAndIconsSendAndCamera(
-                  textEditingcontroller: controller,
-                  messages: messages,
-                  scrollablecontroller: _controller,
-                  onPressedCameraIcon: () async {
-                    await _getImage();
-                  },
-                )
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.transparent,
+                    padding: const EdgeInsets.all(16.0),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: AllAboutTextFieldAndIconsSendAndCamera(
+                        textEditingcontroller: controller,
+                        messages: messages,
+                        scrollablecontroller: _controller,
+                        onPressedCameraIcon: () async {
+                          await _getImage();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

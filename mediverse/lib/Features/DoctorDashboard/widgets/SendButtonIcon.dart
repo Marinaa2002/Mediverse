@@ -24,9 +24,11 @@ class SendIconButton extends StatelessWidget {
         size: 24,
       ),
       onPressed: () {
-        messages.add(
-          {kMessage: textData, kCreatedAt: DateTime.now(), 'id': "A"},
-        );
+        if (textData.trim().isNotEmpty) {
+          messages.add(
+            {kMessage: textData, kCreatedAt: DateTime.now(), 'id': "A"},
+          );
+        }
         textEditingcontroller.clear();
         _scrollablecontroller.animateTo(0,
             duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
