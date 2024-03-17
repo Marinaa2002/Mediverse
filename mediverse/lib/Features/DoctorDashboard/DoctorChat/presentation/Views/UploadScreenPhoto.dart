@@ -62,12 +62,10 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
             child: Column(
               children: [
                 _images.isNotEmpty
-                    ? Container(
-                        child: Image.file(
-                          _images.last,
-                          fit: BoxFit
-                              .contain, // Fit the image within the container
-                        ),
+                    ? Image.file(
+                        _images.last,
+                        fit: BoxFit
+                            .contain, // Fit the image within the container
                       )
                     : const Placeholder(), // Placeholder for the mock image
                 Positioned(

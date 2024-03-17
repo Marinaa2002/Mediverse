@@ -17,7 +17,6 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State<CameraScreen> {
-  List<File> _images = [];
   CameraController? _cameraController;
   Future<void>? cameraValue;
   // bool isRecoring = false;
@@ -30,6 +29,7 @@ class _CameraScreenState extends State<CameraScreen> {
     super.initState();
     _cameraController = CameraController(cameras![0], ResolutionPreset.high);
     cameraValue = _cameraController?.initialize();
+    _cameraController?.setFlashMode(FlashMode.off);
   }
 
   @override
@@ -134,12 +134,14 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void takePhoto(BuildContext context) async {
     XFile? file = await _cameraController?.takePicture();
+    String fileName =
+        file!.path.split('/').last; // Get the filename from the path
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (builder) => CameraViewPage(
           path: file!.path,
-          key: null,
+          fileName: fileName,
         ),
       ),
     );
@@ -148,17 +150,16 @@ class _CameraScreenState extends State<CameraScreen> {
   Future<void> _getImage(BuildContext context) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _images.add(File(pickedFile.path));
-      });
-    }
+    String fileName = pickedFile!.path.split('/').last;
+
+    setState(() {});
+
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (builder) => CameraViewPage(
                   path: pickedFile!.path,
-                  key: null,
+                  fileName: fileName,
                 )));
   }
 }

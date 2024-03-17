@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class CameraViewPage extends StatelessWidget {
-  const CameraViewPage({key, required this.path}) : super(key: key);
+  const CameraViewPage({key, required this.path, required this.fileName})
+      : super(key: key);
   final String path;
+  final String fileName;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class CameraViewPage extends StatelessWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 150,
+              height: MediaQuery.of(context).size.height - 160,
               child: Image.file(
                 File(path),
                 fit: BoxFit.contain,
@@ -40,18 +43,18 @@ class CameraViewPage extends StatelessWidget {
                   ),
                   maxLines: 6,
                   minLines: 1,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: "Add Caption....",
-                      hintStyle: const TextStyle(
+                      hintStyle: TextStyle(
                         color: Colors.white,
                         fontSize: 17,
                       ),
                       suffixIcon: CircleAvatar(
                         radius: 27,
-                        backgroundColor: Colors.tealAccent[700],
-                        child: const Icon(
-                          Icons.check,
+                        backgroundColor: kprimaryColor,
+                        child: Icon(
+                          Icons.send,
                           color: Colors.white,
                           size: 27,
                         ),

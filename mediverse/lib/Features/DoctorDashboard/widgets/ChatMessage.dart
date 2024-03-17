@@ -40,7 +40,7 @@ class ChatMessage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                message.message,
+                message.message ?? '',
                 style: const TextStyle(color: Colors.white),
               ),
               const SizedBox(height: 8),
