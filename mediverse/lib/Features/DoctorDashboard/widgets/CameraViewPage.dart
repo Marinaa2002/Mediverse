@@ -9,6 +9,8 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 
+//Sending Takes time fa lazm al network speed taba kabira
+//w kaman a3mlha compress w anfo5 al quality
 class CameraViewPage extends StatelessWidget {
   CameraViewPage(
       {key,
