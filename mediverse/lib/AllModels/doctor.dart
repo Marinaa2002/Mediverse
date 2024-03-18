@@ -6,7 +6,6 @@ import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/AllModels/patient.dart';
 import 'package:mediverse/AllModels/review.dart';
 
-
 class Doctor {
   const Doctor({
     required this.id,
@@ -22,8 +21,7 @@ class Doctor {
     required this.Rating,
     required this.Reviews,
     required this.Clinics,
-    required this.Cost_H_booking,
-    required this.Cost_C_booking,
+    required this.Slots,
     required this.Blogs,
     required this.Patients,
     required this.DocAppointments,
@@ -43,8 +41,7 @@ class Doctor {
   final Float Rating;
   final List<Review> Reviews;
   final Map<String, String> Clinics; // <clinic name, hospital name or private>
-  final int Cost_H_booking;
-  final int Cost_C_booking;
+  final List<Map<String, Map<String, String>>> Slots;
   final List<Blog> Blogs;
   final List<Patient> Patients;
   final List<Booking> DocAppointments;
