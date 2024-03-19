@@ -24,7 +24,7 @@ class Doctor {
     required this.Slots,
     required this.Blogs,
     required this.Patients,
-    required this.DocAppointments,
+    required this.Prev_Appointments,
     required this.Bookings,
   });
 
@@ -44,6 +44,6 @@ class Doctor {
   final List<Map<String, Map<String, String>>> Slots;
   final List<Blog> Blogs;
   final List<Patient> Patients;
-  final List<Booking> DocAppointments;
+  final List<Booking> Prev_Appointments;
   final List<Booking> Bookings;
 }

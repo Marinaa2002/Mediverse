@@ -30,9 +30,9 @@ class Patient {
   final File profile_picture;
   final String State;
   final Map<String, String> Medical_Record;
-  final List<String> Prescriptions;
-  final List<String> Lab_Results;
-  final List<String> Doctor_Notes;
+  final List<Map<String, String>> Prescriptions;
+  final List<Map<String, String>> Lab_Results;
+  final List<Map<String, String>> Doctor_Notes;
   final List<Doctor> Doctors; //list of doctors previously visited
   final List<Booking> Bookings;
 }
