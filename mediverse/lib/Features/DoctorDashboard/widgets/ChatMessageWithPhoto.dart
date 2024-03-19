@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart'; // Import the intl package for date formatting
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/FullScreenImage.dart'; // Import the intl package for date formatting
 
 class ChatMessageWithPhoto extends StatelessWidget {
   const ChatMessageWithPhoto(
@@ -42,11 +43,21 @@ class ChatMessageWithPhoto extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CachedNetworkImage(
-                imageUrl: message.imageUrl!,
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FullScreenImage(
+                      // Provide a unique tag
+                      imageUrl: message.imageUrl!, text: message.message ?? '',
+                    ),
+                  ));
+                },
+                child: CachedNetworkImage(
+                  imageUrl: message.imageUrl!,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
               Align(
                 alignment: Alignment.bottomLeft,

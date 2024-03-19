@@ -1,12 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 
 //Sending Takes time fa lazm al network speed taba kabira

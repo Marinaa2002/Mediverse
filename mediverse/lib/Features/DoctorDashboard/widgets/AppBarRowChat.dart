@@ -21,13 +21,14 @@ class AppBarRowIconChat extends StatelessWidget {
             width: 10,
           ),
           CircleAvatar(
-            radius: 20,
+            radius: 29,
             backgroundColor: Colors.blueGrey,
             child: Image.asset(
               "assets/images/Cash.png",
               color: Colors.white,
               height: 36,
               width: 36,
+              fit: BoxFit.cover,
             ),
           ),
         ],

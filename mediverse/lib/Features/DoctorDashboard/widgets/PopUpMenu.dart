@@ -6,8 +6,10 @@ class PopUpWindow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
+      surfaceTintColor: Colors.white,
       color: Colors.white,
       padding: const EdgeInsets.all(0),
+      iconColor: Colors.white,
       onSelected: (value) {
         print(value);
       },

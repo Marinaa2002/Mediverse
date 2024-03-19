@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/CameraViewPage.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/FutureBuilderToTakePhoto.dart';
 
 List<CameraDescription>? cameras;
 
@@ -75,20 +76,8 @@ class _CameraScreenState extends State<CameraScreen> {
       ),
       body: Stack(
         children: [
-          FutureBuilder(
-              future: cameraValue,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: CameraPreview(_cameraController!));
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              }),
+          FutureBuilderToTakePhoto(
+              cameraValue: cameraValue, cameraController: _cameraController),
           Positioned(
             bottom: 0.0,
             child: Container(

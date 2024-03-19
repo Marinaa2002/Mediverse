@@ -5,6 +5,8 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 
+//fakrt a3ml notfication bs aolt fe al a5r 3ashan ha8ir tani fe configuration
+//Patient chat list malhsh mock lazm  yab2a fe doc msln msh 7assha hatnf3 a3mlha now
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
