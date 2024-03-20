@@ -12,7 +12,6 @@ class Patient {
     required this.Email,
     required this.National_id,
     required this.profile_picture,
-    required this.State,
     required this.Medical_Record,
     required this.Prescriptions,
     required this.Lab_Results,
@@ -28,7 +27,6 @@ class Patient {
   final String Email;
   final String National_id;
   final File profile_picture;
-  final String State;
   final Map<String, String> Medical_Record;
   final List<Map<String, String>> Prescriptions;
   final List<Map<String, String>> Lab_Results;
