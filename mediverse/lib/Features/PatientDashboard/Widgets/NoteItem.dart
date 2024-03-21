@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
-import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/views/edit_note_view.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/Edit_View_Notes.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({Key? key, required this.note}) : super(key: key);

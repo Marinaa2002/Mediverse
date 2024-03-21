@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/views/widgets/edit_view_body.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/EditViewBody.dart';
 
 class EditNoteView extends StatelessWidget {
   const EditNoteView({Key? key, required this.note}) : super(key: key);

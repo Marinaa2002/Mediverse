@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 
-import '../../constants.dart';
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, this.onTap, this.isLoading = false});
+class CustomButtonNotes extends StatelessWidget {
+  const CustomButtonNotes({super.key, this.onTap, this.isLoading = false});
 
   final void Function()? onTap;
 
@@ -16,7 +15,7 @@ class CustomButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 55,
         decoration: BoxDecoration(
-            color: kPrimaryColor,
+            color: kprimaryColor,
             borderRadius: BorderRadius.circular(
               8,
             )),

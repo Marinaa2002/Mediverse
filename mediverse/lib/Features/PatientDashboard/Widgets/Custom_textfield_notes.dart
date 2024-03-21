@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:notes_app/constants.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class CustomTextFieldNotes extends StatelessWidget {
   const CustomTextFieldNotes(
@@ -29,13 +29,13 @@ class CustomTextFieldNotes extends StatelessWidget {
           return null;
         }
       },
-      cursorColor: kPrimaryColor,
+      cursorColor: kprimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(
         hintText: hint,
         border: buildBorder(),
         enabledBorder: buildBorder(),
-        focusedBorder: buildBorder(kPrimaryColor),
+        focusedBorder: buildBorder(kprimaryColor),
       ),
     );
   }

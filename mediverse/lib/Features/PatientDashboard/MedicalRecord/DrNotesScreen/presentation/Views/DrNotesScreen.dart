@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/NoteViewBody.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/add_note_bottom_sheet.dart';
 
-class NotesView extends StatelessWidget {
-  const NotesView({Key? key}) : super(key: key);
+class DrNotesScreen extends StatelessWidget {
+  const DrNotesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

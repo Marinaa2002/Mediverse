@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
-import 'package:notes_app/models/note_model.dart';
-
-import 'colors_list_view.dart';
-import 'custom_button.dart';
-import 'custom_text_field.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/AddNoteCubit.dart/add_note_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_Button.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_textfield_notes.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/color_list_view.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/custom_button.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -33,7 +33,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 32,
           ),
-          CustomTextField(
+          CustomTextFieldNotes(
             onSaved: (value) {
               title = value;
             },
@@ -42,7 +42,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 16,
           ),
-          CustomTextField(
+          CustomTextFieldNotes(
             onSaved: (value) {
               subTitle = value;
             },

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../constants.dart';
-import '../../models/note_model.dart';
-import 'colors_list_view.dart';
+import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/color_list_view.dart';
 
 class EditNoteColorsList extends StatefulWidget {
   const EditNoteColorsList({super.key, required this.note});
