@@ -6,6 +6,8 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_app_bar.dart'
 import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_textfield_notes.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Edit_Note_ListView.dart';
 
+String? title, content;
+
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({Key? key, required this.note}) : super(key: key);
 
@@ -16,27 +18,26 @@ class EditNoteViewBody extends StatefulWidget {
 }
 
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
-  String? title, content;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          const SizedBox(
-            height: 50,
-          ),
-          CustomAppBar(
-            onPressed: () {
-              widget.note.title = title ?? widget.note.title;
-              widget.note.subTitle = content ?? widget.note.subTitle;
-              widget.note.save();
-              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-              Navigator.pop(context);
-            },
-            title: 'Edit Note',
-            icon: Icons.check,
-          ),
+          // const SizedBox(
+          //   height: 50,
+          // ),
+          // CustomAppBar(
+          //   onPressed: () {
+          //     widget.note.title = title ?? widget.note.title;
+          //     widget.note.subTitle = content ?? widget.note.subTitle;
+          //     widget.note.save();
+          //     BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+          //     Navigator.pop(context);
+          //   },
+          //   title: 'Edit Note',
+          //   icon: Icons.check,
+          // ),
           const SizedBox(
             height: 50,
           ),

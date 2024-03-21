@@ -20,8 +20,10 @@ class CustomTextFieldNotes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autocorrect: true,
       onChanged: onChanged,
       onSaved: onSaved,
+      style: const TextStyle(color: Colors.black),
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return 'Field is required ';
@@ -33,8 +35,9 @@ class CustomTextFieldNotes extends StatelessWidget {
       maxLines: maxLines,
       decoration: InputDecoration(
         hintText: hint,
+        hintStyle: const TextStyle(color: Colors.grey),
         border: buildBorder(),
-        enabledBorder: buildBorder(),
+        enabledBorder: buildBorder(kprimaryColor),
         focusedBorder: buildBorder(kprimaryColor),
       ),
     );

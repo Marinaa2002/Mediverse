@@ -7,6 +7,7 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
 
+//fe dam8i a3ml anha tab2a slidable fe delete w a3ml di tab2a favorite w yab2a fe favorite widget
 void main() async {
   await Hive.initFlutter();
 

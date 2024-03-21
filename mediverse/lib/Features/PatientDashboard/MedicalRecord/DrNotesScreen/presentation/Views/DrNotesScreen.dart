@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Constants/constant.dart';
+
 import 'package:mediverse/Features/PatientDashboard/Widgets/NoteViewBody.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/add_note_bottom_sheet.dart';
 
@@ -11,10 +10,19 @@ class DrNotesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kprimaryColor,
+        leading: const Icon(Icons.arrow_back),
+        title: const Text("My medical Notes"),
+        centerTitle: true,
+      ),
+      backgroundColor: kSecondryBackgroundColor,
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: kprimaryColor,
         onPressed: () {
           showModalBottomSheet(
+              backgroundColor: kSecondryBackgroundColor,
               isScrollControlled: true,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
@@ -24,7 +32,10 @@ class DrNotesScreen extends StatelessWidget {
                 return const AddNoteBottomSheet();
               });
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
       body: const NotesViewBody(),
     );
