@@ -6,7 +6,6 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/
 import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_Button.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_textfield_notes.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/color_list_view.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/custom_button.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -58,7 +57,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
-              return CustomButton(
+              return CustomButtonNotes(
                 isLoading: state is AddNoteLoading ? true : false,
                 onTap: () {
                   if (formKey.currentState!.validate()) {
