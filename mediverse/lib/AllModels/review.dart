@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 class Review {
   const Review({
@@ -12,6 +11,6 @@ class Review {
   final String id;
   final String Doctor_id;
   final String Patient_id;
-  final Float Rating;
+  final int Rating;
   final String Text;
 }
