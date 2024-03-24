@@ -30,20 +30,20 @@ class Doctor {
 
   final String id;
   final String Name;
-  final int Age;
+  final String Age;
   final String Phone;
   final String Email;
   final String National_id;
-  final File profile_picture;
+  final String profile_picture;
   final String State;
   final String Speciality;
   final String License_Number;
-  final Float Rating;
-  final List<Review> Reviews;
-  final Map<String, String> Clinics; // <clinic name, hospital name or private>
-  final List<Map<String, Map<String, String>>> Slots;
-  final List<Blog> Blogs;
-  final List<Patient> Patients;
-  final List<Booking> Prev_Appointments;
-  final List<Booking> Bookings;
+  final double Rating;
+  final List<dynamic> Reviews;
+  final Map<String, dynamic> Clinics; // <clinic name, hospital name or private>
+  final List<dynamic> Slots;
+  final List<dynamic> Blogs;
+  final List<dynamic> Patients;
+  final List<dynamic> Prev_Appointments;
+  final List<dynamic> Bookings;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/dummyDoctor.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/PatientChatScreen/presentation/Views/PatientChatScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Views/RatingsScreen.dart';
@@ -9,11 +10,12 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
-
 class AppointmentDetailsScreen extends StatelessWidget {
   AppointmentDetailsScreen({super.key});
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  dummyDoctor doc = dummyDoctor();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 2,
       ),
@@ -150,11 +152,13 @@ class AppointmentDetailsScreen extends StatelessWidget {
                   ),
                   CustomButtonAppointmentDetails(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const BookingScreen(),
-                          ));
+                      doc.createDoctor();
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const BookingScreen(),
+                      //   ),
+                      // );
                     },
                     buttonName: 'Book',
                     icon: Icons.book,
