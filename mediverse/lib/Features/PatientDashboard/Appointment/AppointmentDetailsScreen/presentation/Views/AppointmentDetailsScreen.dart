@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/dummyDoctor.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/PatientChatScreen/presentation/Views/PatientChatScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Views/RatingsScreen.dart';
@@ -10,12 +11,25 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
-class AppointmentDetailsScreen extends StatelessWidget {
-  AppointmentDetailsScreen({super.key});
+class AppointmentDetailsScreen extends StatefulWidget {
+  AppointmentDetailsScreen({super.key, required this.doctorID});
 
+  String doctorID;
+
+  @override
+  State<AppointmentDetailsScreen> createState() =>
+      _AppointmentDetailsScreenState();
+}
+
+class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  dummyDoctor doc = dummyDoctor();
+  @override
+  void initState() {
+    BlocProvider.of<AppointmentDetailsCubit>(context)
+        .fetchDoctorInfo(widget.doctorID);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,13 +166,12 @@ class AppointmentDetailsScreen extends StatelessWidget {
                   ),
                   CustomButtonAppointmentDetails(
                     onTap: () {
-                      doc.createDoctor();
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const BookingScreen(),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BookingScreen(),
+                        ),
+                      );
                     },
                     buttonName: 'Book',
                     icon: Icons.book,
