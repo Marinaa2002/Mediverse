@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/MainScreen.dart';
 
 import 'BookingScreen.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:  AppointmentDetailsScreen(doctorID: '.',),
+      home:  MainScreenWidget(),
     );
   }
 }
