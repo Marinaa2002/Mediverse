@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/AdminMainScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
@@ -21,9 +22,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor:kprima),
+        colorScheme: ColorScheme.fromSeed(seedColor: kprimaryColor),
       ),
-      home: AdminMainScreenWidget(),
+      home: const AdminMainScreenWidget(),
     );
   }
 }

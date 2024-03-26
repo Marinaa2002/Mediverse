@@ -30,3 +30,4 @@ List<Color> kColors = const [
   Color(0xff98FF98),
   Color(0xffE6E6FA),
 ];
+const kThirdTextColor = Colors.white;
