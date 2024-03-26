@@ -4,6 +4,7 @@ import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalAddHideWidget.
 import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalStaffAccount.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/LabAccountRequest.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/TabBarWidget.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/VerifyAccountWidget.dart';
 
 import '../../../Constants/constant.dart';
 
@@ -31,18 +32,7 @@ class AdminPageBody extends StatelessWidget {
                   child: TabBarView(
                     controller: tabController,
                     children: const [
-                      SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            LabRequestAccountCompeleteWidget(),
-                            DoctorAccountRequestWidgetCompWidget(),
-                            HospitalStaffAcountWidgetCompWidget(),
-                            HospitalStaffAcountWidgetCompWidget(),
-                          ],
-                        ),
-                      ),
+                      VerifyAccountWidget(),
                       HospitalViewAndArchrive(),
                     ],
                   ),
@@ -51,36 +41,6 @@ class AdminPageBody extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class HospitalStaffAcountWidgetCompWidget extends StatelessWidget {
-  const HospitalStaffAcountWidgetCompWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12),
-      child: Material(
-        color: Colors.transparent,
-        elevation: 6,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Container(
-          width: 370,
-          height: 220,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          alignment: const AlignmentDirectional(0, 0),
-          child: const HospitalStaffAcountWidget(),
-        ),
       ),
     );
   }

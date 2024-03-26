@@ -1,6 +1,5 @@
-part of 'GetDoctorInfoCubit.dart';
+import 'package:mediverse/AllModels/doctor.dart';
 
-@immutable
 sealed class GetDoctorInfoState {}
 
 final class GetDoctorInfoInitial extends GetDoctorInfoState {}
