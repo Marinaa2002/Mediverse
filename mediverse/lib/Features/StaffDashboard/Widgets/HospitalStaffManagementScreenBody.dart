@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/repos/getDoctorInfoRepoImp.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/get_name_and_photo_cubit.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/DrInformation.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/PriceOfBookingWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SlotsAddWidgetRow.dart';

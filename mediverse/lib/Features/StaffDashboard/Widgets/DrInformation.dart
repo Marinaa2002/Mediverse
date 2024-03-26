@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoStates.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/get_name_and_photo_cubit.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 
 import 'package:mediverse/Features/DoctorDashboard/widgets/AppBarRowChat.dart';
 
@@ -37,28 +37,29 @@ class DrInformation extends StatelessWidget {
                   ),
                   alignment: const AlignmentDirectional(0, 0),
                   child: Container(
-                      width: 150,
-                      height: 150,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl: state.doctor.profilePicture!,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit
-                                  .contain, // Center the image inside the circle
-                            ),
+                    width: 150,
+                    height: 150,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: state.doctor.profilePicture!,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit
+                                .contain, // Center the image inside the circle
                           ),
                         ),
-                        placeholder: (context, url) => const PlaceholderImage(
-                          size: 36,
-                        ),
-                      )),
+                      ),
+                      placeholder: (context, url) => const PlaceholderImage(
+                        size: 36,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Align(
