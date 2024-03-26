@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/repos/getDoctorInfoRepoImp.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/DrInformation.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/PriceOfBookingWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SlotsAddWidgetRow.dart';
@@ -20,11 +23,14 @@ class HospitalStaffManagementScreenBody extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        const Align(
-          alignment: AlignmentDirectional(0, 0),
+        Align(
+          alignment: const AlignmentDirectional(0, 0),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
-            child: DrInformation(),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+            child: BlocProvider(
+              create: (context) => GetDoctorInfoCubit(GetDoctorInfoRepoImp()),
+              child: const DrInformation(),
+            ),
           ),
         ),
         Align(

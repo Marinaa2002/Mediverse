@@ -11,6 +11,7 @@ import 'package:mediverse/Features/DoctorDashboard/widgets/AppBarRowChat.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/NameIconChat.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/PopUpMenu.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 
 class DoctorChat extends StatelessWidget {
   DoctorChat({super.key});
@@ -35,7 +36,11 @@ class DoctorChat extends StatelessWidget {
           titleSpacing: 0,
           leading: InkWell(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HospitalStaffManagementScreen()),
+              );
             },
             child: AppBarRowIconChat(),
           ),

@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/AdminMainScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalStaffManagementScreenBody.dart';
 
 class HospitalStaffManagementScreen extends StatefulWidget {
@@ -40,16 +41,26 @@ class _HospitalStaffManagementScreenState
     DateTime now = DateTime.now();
     String monthName = DateFormat('MMMM').format(now);
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: kSecondryBackgroundColor,
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        leading: const Icon(
-          Icons.chevron_left,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 24,
+          ),
           color: kSecondryBackgroundColor,
-          size: 24,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AdminMainScreenWidget()),
+            );
+          },
         ),
-        title: Text('Available Slots', style: Themes.headlineMedium),
+        title: Text('Available Slots',
+            style: Themes.headlineMedium.copyWith(color: Colors.white)),
         actions: const [],
         centerTitle: true,
         elevation: 2,

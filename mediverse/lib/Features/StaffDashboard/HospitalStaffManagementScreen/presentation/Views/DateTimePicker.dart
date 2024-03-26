@@ -22,12 +22,14 @@ class _DateTimePickerState extends State<DateTimePicker> {
   Future<void> _selectDateTime(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
+      barrierColor: Colors.white,
       initialDate: _selectedDateTime,
       firstDate: DateTime(2020),
       lastDate: DateTime(2100),
     );
     if (pickedDate != null && pickedDate != _selectedDateTime) {
       final TimeOfDay? pickedTime = await showTimePicker(
+        barrierColor: Colors.white,
         context: context,
         initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
       );
@@ -78,8 +80,12 @@ class _DateTimePickerState extends State<DateTimePicker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kSecondryBackgroundColor,
       appBar: AppBar(
-        title: const Text('Select Date and Time'),
+        title: const Text(
+          'Select Date and Time',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: kprimaryColor,
       ),
       body: Center(
@@ -88,22 +94,34 @@ class _DateTimePickerState extends State<DateTimePicker> {
           children: <Widget>[
             const Text(
               'Selected Date and Time:',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, color: Colors.black),
             ),
             const SizedBox(height: 10),
             Text(
               DateFormat('yyyy-MM-dd hh:mm a').format(_selectedDateTime),
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16, color: Colors.black),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kprimaryColor, // Set the background color
+              ),
               onPressed: () => _selectDateTime(context),
-              child: const Text('Choose Date and Time'),
+              child: const Text(
+                'Choose Date and Time',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kprimaryColor, // Set the background color
+              ),
               onPressed: SaveSlots,
-              child: const Text('Save '),
+              child: const Text(
+                'Save ',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

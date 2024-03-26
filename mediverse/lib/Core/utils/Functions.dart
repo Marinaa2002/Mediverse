@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 bool isNum(value) {
   final RegExp numberRegex = RegExp(r'^[0-9]+$');
@@ -16,10 +17,15 @@ Future<String?> showTextFieldDialog(BuildContext context,
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(title),
+        backgroundColor: Colors.white,
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.black),
+        ),
         content: Form(
           key: _formKey,
           child: TextFormField(
+            style: const TextStyle(color: Colors.black),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter Number';
@@ -38,6 +44,7 @@ Future<String?> showTextFieldDialog(BuildContext context,
             controller: textEditingController,
             decoration: InputDecoration(
               hintText: hintText,
+              hintStyle: const TextStyle(color: Colors.grey),
             ),
           ),
         ),
@@ -46,15 +53,24 @@ Future<String?> showTextFieldDialog(BuildContext context,
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Cancel'),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kprimaryColor, // Set the background color
+            ),
             onPressed: () {
               if (!isError) {
                 Navigator.of(context).pop(textEditingController.text);
               }
             },
-            child: const Text('Save'),
+            child: const Text(
+              'Save',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       );

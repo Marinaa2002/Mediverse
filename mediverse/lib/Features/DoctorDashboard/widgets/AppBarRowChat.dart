@@ -33,10 +33,23 @@ class AppBarRowIconChat extends StatelessWidget {
                 height: 50,
                 child: CircleAvatar(
                   radius: 50,
-                  backgroundColor: Colors.blueGrey,
-                  backgroundImage: state.doctor.profilePicture != null
-                      ? CachedNetworkImageProvider(
-                          state.doctor.profilePicture!,
+                  backgroundColor: kprimaryColor,
+                  child: state.doctor.profilePicture != null
+                      ? CachedNetworkImage(
+                          imageUrl: state.doctor.profilePicture!,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit
+                                    .contain, // Center the image inside the circle
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) => const PlaceholderImage(
+                            size: 36,
+                          ),
                         )
                       : null,
                 ),
@@ -65,7 +78,7 @@ class PlaceholderImage extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      color: Colors.grey,
+      color: kprimaryColor,
       child: Icon(
         Icons.person,
         size: size * 0.6,
