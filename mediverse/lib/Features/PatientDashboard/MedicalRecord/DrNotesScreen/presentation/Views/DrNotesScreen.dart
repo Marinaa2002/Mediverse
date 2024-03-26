@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 
 import 'package:mediverse/Features/PatientDashboard/Widgets/NoteViewBody.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/add_note_bottom_sheet.dart';
@@ -12,7 +13,15 @@ class DrNotesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kprimaryColor,
-        leading: const Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DoctorChat()),
+            );
+          },
+        ),
         title: const Text("My medical Notes"),
         centerTitle: true,
       ),

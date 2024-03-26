@@ -31,12 +31,12 @@ class EditNoteView extends StatelessWidget {
               color: Colors.white,
             ), // Example icon (replace with your desired icon)
             onPressed: () {
-              note.title = title ?? note.title;
-              note.subTitle = content ?? note.subTitle;
+              note.title = titleNotesScreen ?? note.title;
+              note.subTitle = contentNotesScreen ?? note.subTitle;
               note.save();
               BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-              title = "";
-              content = "";
+              titleNotesScreen = "";
+              contentNotesScreen = "";
               Navigator.pop(context);
             },
           ),

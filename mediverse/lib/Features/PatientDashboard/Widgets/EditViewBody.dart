@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
-import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_app_bar.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_textfield_notes.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/Edit_Note_ListView.dart';
 
-String? title, content;
+String? titleNotesScreen, contentNotesScreen;
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({Key? key, required this.note}) : super(key: key);
@@ -43,7 +40,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           ),
           CustomTextFieldNotes(
             onChanged: (value) {
-              title = value;
+              titleNotesScreen = value;
             },
             hint: widget.note.title,
           ),
@@ -52,7 +49,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           ),
           CustomTextFieldNotes(
             onChanged: (value) {
-              content = value;
+              contentNotesScreen = value;
             },
             hint: widget.note.subTitle,
             maxLines: 5,

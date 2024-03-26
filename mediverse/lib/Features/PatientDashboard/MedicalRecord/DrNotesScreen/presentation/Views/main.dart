@@ -1,8 +1,11 @@
+import 'package:camera/camera.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/Bloc_Observer.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
@@ -10,7 +13,9 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/
 //fe dam8i a3ml anha tab2a slidable fe delete w a3ml di tab2a favorite w yab2a fe favorite widget
 void main() async {
   await Hive.initFlutter();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  await Firebase.initializeApp();
   Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNotesBox);

@@ -1,52 +1,73 @@
-import 'dart:ffi';
-import 'dart:io';
-
-import 'package:mediverse/AllModels/blog.dart';
-import 'package:mediverse/AllModels/patient.dart';
-import 'package:mediverse/AllModels/review.dart';
-
-import '../Features/PatientDashboard/Appointment/BookingScreen/data/models/booking.dart';
+import 'package:mediverse/AllModels/ClinicsAppointment.dart';
+import 'package:mediverse/AllModels/Slot.dart';
 
 class Doctor {
-  const Doctor({
-    required this.id,
-    required this.Name,
-    required this.Age,
-    required this.Phone,
-    required this.Email,
-    required this.National_id,
-    required this.profile_picture,
-    required this.State,
-    required this.Speciality,
-    required this.License_Number,
-    required this.Rating,
-    required this.Reviews,
-    required this.Clinics,
-    required this.Cost_H_booking,
-    required this.Cost_C_booking,
-    required this.Blogs,
-    required this.Patients,
-    required this.DocAppointments,
-    required this.Bookings,
+  final String? name;
+  final String? age;
+  final String? phone;
+  final List<String>? blogs;
+  final List<String>? bookings;
+  final String email;
+  final String hospital;
+  final String licenseNumber;
+  final String nationalID;
+  final List<String>? previousAppointments;
+  final String? profilePicture;
+  final double? rating;
+  final List<String>? reviews;
+  final List<Slot>? slots;
+  final Map<String, ClinicAppointments>? clinicAppointments;
+  final String? speciality;
+  final String? state;
+
+  Doctor({
+    this.name,
+    this.age,
+    this.phone,
+    this.blogs,
+    this.bookings,
+    required this.email,
+    required this.hospital,
+    required this.licenseNumber,
+    required this.nationalID,
+    this.previousAppointments,
+    this.profilePicture,
+    this.rating,
+    this.reviews,
+    this.slots,
+    this.clinicAppointments,
+    this.speciality,
+    this.state,
   });
 
-  final String id;
-  final String Name;
-  final int Age;
-  final String Phone;
-  final String Email;
-  final String National_id;
-  final File profile_picture;
-  final String State;
-  final String Speciality;
-  final String License_Number;
-  final Float Rating;
-  final List<Review> Reviews;
-  final Map<String, String> Clinics; // <clinic name, hospital name or private>
-  final int Cost_H_booking;
-  final int Cost_C_booking;
-  final List<Blog> Blogs;
-  final List<Patient> Patients;
-  final List<Booking> DocAppointments;
-  final List<Booking> Bookings;
+  factory Doctor.fromJson(Map<String, dynamic> json) {
+    return Doctor(
+      name: json['Name'],
+      age: json['Age'],
+      phone: json['Phone'],
+      blogs: List<String>.from(json['Blogs'] ?? []),
+      bookings: List<String>.from(json['Bookings'] ?? []),
+      email: json['Email'],
+      hospital: json['Hospital'],
+      licenseNumber: json['License_Number'],
+      nationalID: json['NationalId'],
+      previousAppointments:
+          List<String>.from(json['Previous_Appointments'] ?? []),
+      profilePicture: json['Profile_Picture'],
+      rating: json['Rating']?.toDouble(),
+      reviews: List<String>.from(json['Reviews'] ?? []),
+      slots: (json['Slots'] as List<dynamic>?)
+          ?.map((slotJson) => Slot.fromJson(slotJson as Map<String, dynamic>))
+          .toList(),
+      clinicAppointments:
+          (json['Clinic-Appointments'] as Map<String, dynamic>?)?.map(
+        (key, value) => MapEntry(
+          key,
+          ClinicAppointments.fromJson(value as Map<String, dynamic>),
+        ),
+      ),
+      speciality: json['Speciality'],
+      state: json['State'],
+    );
+  }
 }
