@@ -1,11 +1,10 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediverse/Features/Beginning/LoginScreen/presentation/Manager/forgetPassword_cubit/forget_password_cubit.dart';
+
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/ForgetPasswordWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LogoContWidget.dart';
@@ -59,125 +58,131 @@ class LoginScreen extends StatelessWidget {
                   const startingContWidget(),
                   SingleChildScrollView(
                       child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 100,
-                          ),
-                          const LogoContWidget(),
-                          const titleText(
-                            text: "Login",
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(0, 0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0, 15, 0, 0),
-                              child: Text(
-                                  'Welcome Back', style: Themes.bigHeadline),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding:
-                              const EdgeInsetsDirectional.fromSTEB(
-                                  15, 40, 0, 20),
-                              child: Text(
-                                  'Please Enter Your Email and Password',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 15),
-                            child: TextFormFieldWidget(
-                              text: "Email",
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Field is required';
-                                } else if (!value.contains('@')) {
-                                  return 'Formatted Email is required';
-                                }
-                              },
-                              onChanged: (value) {
-                                email = value;
-                              },
-                              controller: forgetPassController,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 8),
-                            child: TextFormFieldPassWidget(
-                              text: "Password",
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Field is required';
-                                }
-                              },
-                              onChanged: (value) {
-                                password = value;
-                              },
-                            ),
-                          ),
-                          LoginButtonWidget(
-                            text: "Login",
-                            screen: null,
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                BlocProvider.of<LoginCubit>(context)
-                                    .loginUser(
-                                    email: email!, password: password!);
-                              } else {}
-                            },
-                          ),
-                          ForgetPasswordWidget(
-                              forgetPassController: forgetPassController,
-                          isLoad: isLoading,),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 12, 0, 12),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {},
-                              child: RichText(
-                                textScaleFactor: MediaQuery
-                                    .of(context)
-                                    .textScaleFactor,
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Don\'t have an account? ',
-                                      style: Themes.verySmallText,
-                                    ),
-                                    TextSpan(
-                                      text: ' Sign Up here',
-                                      style: Themes.labelColored,
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                              const RegisterChoice(),
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                  ],
+
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 100,
+                      ),
+                      const LogoContWidget(),
+                      const titleText(
+                        text: "Login",
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(0, 0),
+                        child: Padding(
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                          child:
+                              Text('Welcome Back', style: Themes.bigHeadline),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1, -1),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              15, 40, 0, 20),
+                          child: Text('Please Enter Your Email',
+                              style: Themes.titleButton),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 15),
+                        child: TextFormFieldWidget(
+                          text: "Email",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Field is required';
+                            } else if (!value.contains('@')) {
+                              return 'Formatted Email is required';
+                            }
+                          },
+                          onChanged: (value) {
+                            email = value;
+                          },
+                          controller: forgetPassController,
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1, -1),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              15, 5, 0, 20),
+                          child: Text('Please Enter Your Password',
+                              style: Themes.titleButton),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 8),
+                        child: TextFormFieldPassWidget(
+                          text: "Password",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Field is required';
+                            }
+                          },
+                          onChanged: (value) {
+                            password = value;
+                          },
+                        ),
+                      ),
+                      LoginButtonWidget(
+                        text: "Login",
+                        screen: null,
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {
+                            BlocProvider.of<LoginCubit>(context)
+                                .loginUser(email: email!, password: password!);
+                          } else {}
+                        },
+                      ),
+                      ForgetPasswordWidget(
+                        forgetPassController: forgetPassController,
+                        isLoad: isLoading,
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {},
+                          child: RichText(
+                            textScaleFactor:
+                                MediaQuery.of(context).textScaleFactor,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Don\'t have an account? ',
+                                  style: Themes.verySmallText,
                                 ),
-                              ),
+                                TextSpan(
+                                  text: ' Sign Up here',
+                                  style: Themes.labelColored,
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const RegisterChoice(),
+                                        ),
+                                      );
+                                    },
+                                ),
+                              ],
                             ),
-                          )
-                        ],
-                      )),
+                          ),
+                        ),
+                      )
+                    ],
+                  )),
+
                 ],
               ),
             ),
@@ -192,5 +197,7 @@ class LoginScreen extends StatelessWidget {
         .showSnackBar(SnackBar(content: Text(message)));
   }
 }
+
+
 
 

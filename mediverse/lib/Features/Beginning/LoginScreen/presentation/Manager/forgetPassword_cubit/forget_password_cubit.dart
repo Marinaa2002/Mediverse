@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../data/login_repo.dart';
+
+import '../../../data/repo/login_repo.dart';
+
 
 part 'forget_password_state.dart';
 

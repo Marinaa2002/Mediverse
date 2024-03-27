@@ -11,7 +11,7 @@ class LogoCont extends StatelessWidget {
       width: 100,
       height: 100,
       decoration: BoxDecoration(
-        color: Color(0xCCFFFFFF),
+        color: Color(0xF4FAFC),
         borderRadius: BorderRadius.circular(16),
       ),
       child: ClipRRect(

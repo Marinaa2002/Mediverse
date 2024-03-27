@@ -15,7 +15,7 @@ class Themes {
   );
   static TextStyle titleSmall = const TextStyle(
     fontFamily: 'Outfit',
-    color: Colors.black,
+    color: Colors.white,
     fontSize: 22,
   );
   static TextStyle titleLarge = const TextStyle(

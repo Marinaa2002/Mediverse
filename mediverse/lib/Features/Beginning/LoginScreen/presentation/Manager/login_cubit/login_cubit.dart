@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mediverse/Features/Beginning/LoginScreen/data/login_repo.dart';
+
+import 'package:mediverse/Features/Beginning/LoginScreen/data/repo/login_repo.dart';
+
 import 'package:meta/meta.dart';
 
 part 'login_state.dart';

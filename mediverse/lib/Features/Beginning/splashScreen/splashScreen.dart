@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 import 'package:mediverse/GlobalWidgets/BeginWidget.dart';
 
-import '../LoginScreen/presentation/views/LoginScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

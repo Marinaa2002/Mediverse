@@ -15,7 +15,7 @@ import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 
 class BookingForm extends StatefulWidget {
-  const BookingForm({Key? key}) : super(key: key);
+  const BookingForm({super.key});
 
   @override
   State<BookingForm> createState() => _BookingFormState();
@@ -119,7 +119,8 @@ class _BookingFormState extends State<BookingForm> {
                       note:
                           'To ensure smooth scheduling, it is important to note that doctor appointments must be modified, rescheduled, or canceled at least 24 hours before the scheduled time.'),
                   const Notes(
-                    note: "Different Text",
+                    note:
+                        "Please be aware that in the event of canceling a prepaid appointment, a cancellation fee of 50 L.E will be deducted.",
                   ),
                 ],
               ),

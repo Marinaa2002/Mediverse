@@ -4,10 +4,11 @@ import '../Constants/Themes.dart';
 import '../Constants/constant.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  var TextEditingController;
   final text;
-  const CustomTextFormField({
+  CustomTextFormField({
     super.key,
-    required this.text,
+    required this.text, this.TextEditingController
   });
 
   @override
@@ -15,8 +16,22 @@ class CustomTextFormField extends StatelessWidget {
     return Container(
       width: 390,
       child: TextFormField(
-          //     controller: _model.emailAddressController,
-          //     focusNode: _model.emailAddressFocusNode,
+          validator: (data) {
+            if (data!.isEmpty) {
+              return 'field is required';
+            }
+            if(text=="Email"){
+              if (!data.contains('@')) {
+                return 'Formatted Email is required';
+              }
+            }
+            if (text == "Age") {
+              if (data.length > 2 || int.tryParse(data) == null) {
+                return 'Valid age is required ';
+            }
+            }
+          },
+          controller: TextEditingController,
           autofocus: false,
           autofillHints: [AutofillHints.email],
           obscureText: false,
@@ -56,8 +71,6 @@ class CustomTextFormField extends StatelessWidget {
             contentPadding: const EdgeInsets.all(16),
           ),
           style: Themes.bodyMed
-          //   keyboardType: TextInputType.emailAddress,
-          // validator: _model.emailAddressControllerValidator.asValidator(context),
           ),
     );
   }

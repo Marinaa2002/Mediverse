@@ -2,10 +2,9 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:mediverse/AllModels/blog.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/AllModels/patient.dart';
 import 'package:mediverse/AllModels/review.dart';
-
-import '../Features/PatientDashboard/Appointment/BookingScreen/data/models/booking.dart';
 
 class Doctor {
   const Doctor({
@@ -22,11 +21,10 @@ class Doctor {
     required this.Rating,
     required this.Reviews,
     required this.Clinics,
-    required this.Cost_H_booking,
-    required this.Cost_C_booking,
+    required this.Slots,
     required this.Blogs,
     required this.Patients,
-    required this.DocAppointments,
+    required this.Prev_Appointments,
     required this.Bookings,
   });
 
@@ -43,10 +41,9 @@ class Doctor {
   final Float Rating;
   final List<Review> Reviews;
   final Map<String, String> Clinics; // <clinic name, hospital name or private>
-  final int Cost_H_booking;
-  final int Cost_C_booking;
+  final List<Map<String, Map<String, String>>> Slots;
   final List<Blog> Blogs;
   final List<Patient> Patients;
-  final List<Booking> DocAppointments;
+  final List<Booking> Prev_Appointments;
   final List<Booking> Bookings;
 }

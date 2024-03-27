@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/CustomAdviceWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDateWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/SendAdviceBox.dart';
 
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomAdviceWidget.dart';
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/CustomDateWidget.dart';
-import '../../../../../../ScreensBackUp/PatientDashboard/Widgets/SendAdviceBox.dart';
 
 class DrNotesScreen extends StatelessWidget {
   DrNotesScreen({super.key});

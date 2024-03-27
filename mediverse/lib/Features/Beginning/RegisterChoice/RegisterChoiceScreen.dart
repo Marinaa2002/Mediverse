@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mediverse/Features/Beginning/FormStaff/presentation/views/FormStaff.dart';
+import 'package:mediverse/Features/Beginning/SignUpDoctor/presentation/view/DoctorSignUp.dart';
+import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/view/PatientSignUp.dart';
 import 'package:mediverse/GlobalWidgets/BeginWidget.dart';
 import 'package:mediverse/GlobalWidgets/CustomChoiceButton.dart';
-
-import '../FormStaff/FormStaff.dart';
-import '../SignUp/presentation/Views/DoctorSignUp.dart';
-import '../SignUp/presentation/Views/PatientSignUp.dart';
 
 class RegisterChoice extends StatelessWidget {
   const RegisterChoice({super.key});
@@ -31,11 +30,11 @@ class RegisterChoice extends StatelessWidget {
             text: 'Patient',
             screen: PatientSignUpScreen(),
           ),
-          const ChoiceButton(
+          ChoiceButton(
             text: 'Doctor',
             screen: DoctorSignUpScreen(),
           ),
-          const ChoiceButton(
+          ChoiceButton(
             text: 'Staff',
             screen: FormStaff(),
           ),
