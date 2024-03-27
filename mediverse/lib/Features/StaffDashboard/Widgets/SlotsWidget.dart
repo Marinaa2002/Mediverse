@@ -42,8 +42,8 @@ class SlotsWidget extends StatelessWidget {
           if (slotsList.isEmpty) {
             return Column(
               children: [
-                const SizedBox(
-                  height: 100,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
                 ),
                 Center(
                     child: Text(

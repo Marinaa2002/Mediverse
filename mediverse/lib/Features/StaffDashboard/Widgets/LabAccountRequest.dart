@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/AllModels/requestModel.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/RowRequestWidget.dart';
 
-import '../../../Constants/constant.dart';
 import 'ActionButton.dart';
 
 class LabRequestAccountWidget extends StatelessWidget {
-  const LabRequestAccountWidget({super.key});
+  const LabRequestAccountWidget(
+      {super.key,
+      required this.requestModel,
+      required this.onPressedAccept,
+      required this.onPressedDecline});
+  final RequestModel requestModel;
+  final void Function() onPressedAccept;
+  final void Function() onPressedDecline;
 
   @override
   Widget build(BuildContext context) {
@@ -13,114 +21,27 @@ class LabRequestAccountWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Requested Account',
-                      style: TextStyle(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      'Lab Staff Account',
-                      style: TextStyle(fontSize: 21),
-                    ),
-                  ],
+                RowOfRequestWidget(
+                  requestModel: requestModel,
+                  requestField: 'Requested Account',
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Organization Name',
-                        style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          color: kSecondryBackgroundColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        'Alpha Lab',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                    ],
-                  ),
+                RowOfRequestWidget(
+                  requestModel: requestModel,
+                  requestField: 'Organization Name',
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Organization Type',
-                        style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        'Private',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Address',
-                        style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        '15 Wali El Ahd St.\nHadayek El Koba, Cairo',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'License Number',
-                        style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        'CU8625',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                    ],
-                  ),
-                ),
+                RowOfRequestWidget(
+                    requestModel: requestModel,
+                    requestField: 'Organization Type'),
+                RowOfRequestWidget(
+                    requestModel: requestModel, requestField: 'Address'),
+                RowOfRequestWidget(
+                    requestModel: requestModel, requestField: 'License Number')
               ],
             ),
           ),
@@ -135,7 +56,7 @@ class LabRequestAccountWidget extends StatelessWidget {
                   child: ActionButton(
                     action: "Accept",
                     iconData: Icons.check_circle,
-                    onPressed: () {},
+                    onPressed: onPressedDecline,
                   ),
                 ),
                 Padding(
@@ -143,7 +64,7 @@ class LabRequestAccountWidget extends StatelessWidget {
                   child: ActionButton(
                     action: "Decline",
                     iconData: Icons.cancel_rounded,
-                    onPressed: () {},
+                    onPressed: onPressedDecline,
                   ),
                 ),
               ],
