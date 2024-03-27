@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomRatingIcon.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CustomCardRatings extends StatelessWidget {
   CustomCardRatings({super.key, required this.name});
@@ -69,20 +70,15 @@ class CustomCardRatings extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      CustomRatingIconWidget(
-                                          color: Colors.yellow),
-                                      CustomRatingIconWidget(
-                                          color: Colors.yellow),
-                                      CustomRatingIconWidget(
-                                          color: Colors.yellow),
-                                      CustomRatingIconWidget(
-                                          color: Colors.yellow),
-                                      CustomRatingIconWidget(
-                                          color: Colors.yellow),
-                                    ],
+                                  child: RatingBarIndicator(
+                                    rating: 5, //state.doctor.Rating,
+                                    itemBuilder: (context, index) => const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                    ),
+                                    itemCount: 5,
+                                    itemSize: 25,
+                                    direction: Axis.horizontal,
                                   ),
                                 ),
                               ],
