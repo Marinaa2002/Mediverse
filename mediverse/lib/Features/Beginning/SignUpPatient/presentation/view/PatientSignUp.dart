@@ -128,7 +128,7 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
                         BlocProvider.of<SignUpCubit>(context).signUpUser(
                             email: email!, password: password!);
                         BlocProvider.of<SignUpCubit>(context).signUpInfoPatient(
-                            name: name!, age: age!, national_id: national_id!);
+                            name: name!, age: age!, national_id: national_id!, email: email!, password: password!);
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                       }
                     },

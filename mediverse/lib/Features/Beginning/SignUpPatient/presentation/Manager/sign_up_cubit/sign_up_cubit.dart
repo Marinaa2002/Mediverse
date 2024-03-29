@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mediverse/Features/Beginning/SignUpPatient/data/models/patient.dart';
 import 'package:mediverse/Features/Beginning/SignUpPatient/data/repo/SignUp_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -14,12 +15,16 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   final SignUpInfoRepo signUpInfoRepo = SignUpInfoRepoImpl();
 
-  Future<void> signUpUser({required String email, required String password}) async{
+  Future<String?> signUpUser({required String email, required String password}) async{
     emit(SignUpLoading());
     try{
-      UserCredential user = await FirebaseAuth.instance
+      UserCredential usercredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email!, password: password!);
-      emit(SignUpSuccess());
+      User? firebaseuser = usercredential.user;
+      if (firebaseuser != null) {
+        emit(SignUpSuccess());
+        return firebaseuser.uid;
+      }
     }on FirebaseAuthException catch(ex){
       if (ex.code == 'weak-password') {
         emit(SignUpFailure(errMsg: 'weak-password'));
@@ -29,10 +34,11 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  void signUpInfoPatient({ required String name, required String age, required String national_id}) {
+  Future<void> signUpInfoPatient({required String name, required String age, required String national_id, required String email, required String password}) async {
     emit(SignUpLoading());
     try{
-      signUpInfoRepo.signUpInfoPatient(name: name, age: age, national_id: national_id);
+      final uid = await signUpUser(email: email, password: password);
+      signUpInfoRepo.signUpInfoPatient(uid: uid, name: name, age: age, email: email, national_id: national_id);
       emit(SignUpSuccess());
     } on Exception catch (e) {
       emit(SignUpFailure(errMsg: 'Something went wrong, Try again'));

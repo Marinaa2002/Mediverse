@@ -14,12 +14,16 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
 
   final SignUpDocInfoRepoImpl signUpInfoRepo = SignUpDocInfoRepoImpl();
 
-  Future<void> signUpDocUser({required String email, required String password}) async{
+  Future<String?> signUpDocUser({required String email, required String password}) async{
     emit(SignUpDocLoading());
     try{
-      UserCredential user = await FirebaseAuth.instance
+      UserCredential usercredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email!, password: password!);
-      emit(SignUpDocSuccess());
+      User? firebaseuser = usercredential.user;
+      if (firebaseuser != null) {
+        emit(SignUpDocSuccess());
+        return firebaseuser.uid;
+      }
     }on FirebaseAuthException catch(ex){
       if (ex.code == 'weak-password') {
         emit(SignUpDocFailure(errMsg: 'weak-password'));
@@ -29,10 +33,11 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
     }
   }
 
-  void signUpInfoDoctor({required String name, required String age, required String national_id, required String hospital, required String licNo,required String speciality}) {
+  Future<void> signUpInfoDoctor({required String name, required String age, required String national_id, required String hospital, required String licNo,required String speciality, required String email, required String password}) async {
     emit(SignUpDocLoading());
     try{
-      signUpInfoRepo.signUpInfoDoctor(name: name, age: age, national_id: national_id, hospital: hospital, licNo: licNo, speciality: speciality);
+      final uid = await signUpDocUser(email: email, password: password);
+      signUpInfoRepo.signUpInfoDoctor(uid: uid, name: name, age: age, email: email, national_id: national_id, hospital: hospital, licNo: licNo, speciality: speciality);
       emit(SignUpDocSuccess());
     }on Exception catch (e) {
       emit(SignUpDocFailure(errMsg: 'Something went wrong, Try again'));

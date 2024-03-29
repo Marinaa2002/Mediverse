@@ -166,7 +166,7 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
 
                               BlocProvider.of<SignUpDocCubit>(context).signUpInfoDoctor(
                                   name: name!, age: age!, national_id: natId!, hospital: hospital!,
-                                   licNo:licNo!, speciality: speciality!,);
+                                   licNo:licNo!, speciality: speciality!,email: email!, password: password!);
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                             }
                           },
