@@ -8,10 +8,11 @@ class CustomSignUpWith extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Align(
-      alignment: AlignmentDirectional(0, 0),
+      alignment: Alignment.center,
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.1, vertical: 16),
         child: Text('Or sign up with',
             textAlign: TextAlign.center, style: Themes.fieldText),
       ),

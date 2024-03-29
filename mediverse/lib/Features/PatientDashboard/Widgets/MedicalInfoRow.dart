@@ -8,24 +8,28 @@ class MedicalInfoRow extends StatelessWidget {
   String text, value;
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-            child: Text(
+            padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+            child:
+           Center(child: Text(
               '$text',
               style: Themes.labelLarge18.copyWith(
                 fontFamily: 'Readex Pro',
               ),
-            ),
+            ),),
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(size.width*0.02, 0, size.width*0.02, 0),
               child: Container(
+                height: 45,
+                width: size.width*0.6,
                 decoration: BoxDecoration(
                   color: kSecondryBackgroundColor,
                   boxShadow: [
@@ -38,13 +42,12 @@ class MedicalInfoRow extends StatelessWidget {
                   ],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                    child: Text(
-                      '$value',
-                      style: Themes.bodysmall,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                  child: TextFormField(
+                    style: Themes.bodysmall,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
                     ),
                   ),
                 ),

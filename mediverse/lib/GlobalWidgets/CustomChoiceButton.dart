@@ -15,6 +15,7 @@ class ChoiceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size =MediaQuery.of(context).size;
     return Align(
       alignment: const AlignmentDirectional(0, 0),
       child: Padding(
@@ -27,7 +28,7 @@ class ChoiceButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor:
-                  primaryColor, // Assuming text color should be white
+              primaryColor, // Assuming text color should be white
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -39,8 +40,8 @@ class ChoiceButton extends StatelessWidget {
               ),
             ),
             child: Container(
-              width: 250,
-              height: 70,
+              width: size.width*0.6,
+              height: size.height*.085,
               child: Center(
                 child: Text(text, style: Themes.labelMed),
               ),
@@ -49,3 +50,5 @@ class ChoiceButton extends StatelessWidget {
     );
   }
 }
+
+

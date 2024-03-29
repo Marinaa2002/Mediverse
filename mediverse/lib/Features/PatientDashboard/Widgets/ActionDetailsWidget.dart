@@ -11,8 +11,9 @@ class ActionDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Container(
-      width: double.infinity,
+      width: size.width*0.95,
       decoration: BoxDecoration(
         color: kSecondryBackgroundColor,
         borderRadius: BorderRadius.circular(12),

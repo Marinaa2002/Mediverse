@@ -9,6 +9,7 @@ class BlogCardDoc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
       child: Container(
@@ -30,7 +31,7 @@ class BlogCardDoc extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                padding:  EdgeInsetsDirectional.fromSTEB(size.width*0.03, 10, 16, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,23 +58,25 @@ class BlogCardDoc extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
+                    Container(
+                      width: size.width*0.15,
+                      height: size.width*0.15,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
+                      alignment: const AlignmentDirectional(0, 0),
+                      child: SizedBox(
+                        width: size.width*0.3,
+                        height: size.width*0.3,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80.0),
                           child: Image.asset(
-                            'assets/images/Human.jpg',
-                            fit: BoxFit.cover,
+                            'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
+                            width: size.width*0.3,
+                            height: size.width*0.3,
+                            fit: BoxFit.fill,
+                            alignment: const Alignment(0, 0),
                           ),
                         ),
                       ),
@@ -82,7 +85,7 @@ class BlogCardDoc extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
+                padding:  EdgeInsetsDirectional.fromSTEB(size.width*0.03, 10, 16, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -100,7 +103,7 @@ class BlogCardDoc extends StatelessWidget {
               Align(
                 alignment: const AlignmentDirectional(0, 0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                  padding:  EdgeInsetsDirectional.fromSTEB(size.width*0.01, size.height*0.009, size.width*0.01, size.height*0.02),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,

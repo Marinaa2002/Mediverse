@@ -10,19 +10,21 @@ class RegisterChoice extends StatelessWidget {
   const RegisterChoice({super.key});
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: BeginWidget(
-        widget: Column(mainAxisSize: MainAxisSize.max, children: [
+        widget: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
                 'assets/images/logo2.png',
-                width: 400,
-                height: 406,
+                width: size.width,
+                height: size.height*0.5,
                 fit: BoxFit.contain,
-                alignment: const Alignment(0, 0),
               ),
             ),
           ),

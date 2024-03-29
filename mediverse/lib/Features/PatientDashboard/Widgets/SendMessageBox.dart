@@ -54,7 +54,7 @@ class SendMessageBox extends StatelessWidget {
               Align(
                 alignment: const AlignmentDirectional(1, 0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 7, 0),
                   child: IconButton(
                     icon: const Icon(
                       Icons.send,

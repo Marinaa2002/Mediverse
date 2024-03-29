@@ -10,6 +10,7 @@ class CustomDoctorDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Align(
       alignment: AlignmentDirectional(0, 0),
       child: Padding(
@@ -22,22 +23,22 @@ class CustomDoctorDetails extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(12),
               child: Container(
-                width: 140,
-                height: 140,
+                width: size.width*0.35,
+                height: size.width*0.35,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
                 alignment: AlignmentDirectional(0, 0),
                 child: Container(
-                  width: 150,
-                  height: 150,
+                  width: size.width*0.37,
+                  height: size.width*0.37,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(80.0),
                     child: Image.asset(
                       'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
-                      width: 300,
-                      height: 200,
+                      width: size.width*0.6,
+                      height: size.width*0.6,
                       fit: BoxFit.fill,
                       alignment: Alignment(0, 0),
                     ),
@@ -48,7 +49,7 @@ class CustomDoctorDetails extends StatelessWidget {
             Align(
               alignment: AlignmentDirectional(0, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(14, 0, 8, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(size.width*0.03, 0, size.width*0.01, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +64,7 @@ class CustomDoctorDetails extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, size.width*0.01, 0),
                           child: Text('4.1', style: Themes.labelMedium),
                         ),
                         CustomRatingIconWidget(color: Colors.yellow),

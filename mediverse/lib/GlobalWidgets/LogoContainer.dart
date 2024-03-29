@@ -7,8 +7,9 @@ class LogoCont extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      width: 100,
+      width: size.width*0.24,
       height: 100,
       decoration: BoxDecoration(
         color: Color(0xF4FAFC),
@@ -18,8 +19,8 @@ class LogoCont extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         child: Image.asset(
           'assets/images/logo2.png',
-          width: 300,
-          height: 200,
+          // width: size.width*0.24,
+          // height: 200,
           fit: BoxFit.cover,
         ),
       ),

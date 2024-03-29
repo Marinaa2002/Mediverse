@@ -54,6 +54,7 @@ class _FormStaffState extends State<FormStaff> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return
       BlocConsumer<StaffRequestCubit, StaffRequestState>(
         listener: (context, state) {
@@ -82,14 +83,14 @@ class _FormStaffState extends State<FormStaff> {
                           Row(
                             children: [
                               SizedBox(
-                                width: 74,
+                                width: size.width*.135,
                               ),
                               Padding(
-                                padding: EdgeInsets.all(30),
+                                padding: EdgeInsets.all(size.width*.1),
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height: 70,
+                                      height: 60,
                                     ),
                                     LogoCont(),
                                     titleText(text: "Form Staff Request"),

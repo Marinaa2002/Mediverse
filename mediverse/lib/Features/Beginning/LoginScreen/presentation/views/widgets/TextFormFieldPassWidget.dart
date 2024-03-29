@@ -25,7 +25,7 @@ class _CustomTextFormField3State extends State<TextFormFieldPassWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 390,
+      width: MediaQuery.of(context).size.width*0.95,
       child: TextFormField(
           validator: widget.validator,
           onChanged: widget.onChanged,

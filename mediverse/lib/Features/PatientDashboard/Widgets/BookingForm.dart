@@ -24,16 +24,17 @@ class BookingForm extends StatefulWidget {
 class _BookingFormState extends State<BookingForm> {
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: SafeArea(
         top: true,
         child: CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(
+             SliverToBoxAdapter(
               child: SizedBox(
                 height: 20,
-                width: 10,
+                width: size.width*0.001,
               ),
             ),
             const SliverToBoxAdapter(
@@ -42,10 +43,10 @@ class _BookingFormState extends State<BookingForm> {
                 imageUrl: "assets/images/booking.jpg",
               ),
             ),
-            const SliverToBoxAdapter(
+             SliverToBoxAdapter(
               child: SizedBox(
                 height: 20,
-                width: 10,
+                width: size.width*0.001,
               ),
             ),
             const SliverToBoxAdapter(
@@ -54,10 +55,10 @@ class _BookingFormState extends State<BookingForm> {
                 secondryText: "Sat, Oct 04- 7:00pm",
               ),
             ),
-            const SliverToBoxAdapter(
+             SliverToBoxAdapter(
               child: SizedBox(
                 height: 20,
-                width: 10,
+                width: size.width*0.001,
               ),
             ),
             const SliverToBoxAdapter(
@@ -66,10 +67,10 @@ class _BookingFormState extends State<BookingForm> {
                 secondryText: "Tiba Dental Care",
               ),
             ),
-            const SliverToBoxAdapter(
+             SliverToBoxAdapter(
               child: SizedBox(
                 height: 20,
-                width: 10,
+                width: size.width*0.001,
               ),
             ),
             SliverToBoxAdapter(
@@ -78,7 +79,7 @@ class _BookingFormState extends State<BookingForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: double.infinity,
+                    width: size.width,
                     decoration: BoxDecoration(
                       color: kSecondryBackgroundColor,
                       borderRadius: BorderRadius.circular(12),
@@ -99,9 +100,9 @@ class _BookingFormState extends State<BookingForm> {
                       ),
                     ),
                   ),
-                  const SizedBox(
+                   SizedBox(
                     height: 20,
-                    width: 10,
+                    width: size.width*0.001,
                   ),
                   const TextWidgetHorz(
                     leadingText: "Amount",

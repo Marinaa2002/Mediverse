@@ -53,6 +53,7 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
         }
         },
         builder: (context, state) {
+          Size size=MediaQuery.of(context).size;
           return 
             Scaffold(
             body:
@@ -67,7 +68,7 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                         Row(
                           children: [
                             SizedBox(
-                              width: 88,
+                              width: size.width*0.22,
                             ),
                             Padding(
                               padding: EdgeInsets.all(30),
@@ -98,10 +99,6 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                           child: CustomTextFormField(
                             text: "Age",
                             TextEditingController: ageController,
-                            // icon: Icon(
-                            //   Icons.arrow_drop_down_sharp,
-                            //   size: 30,
-                            // ),
                           ),
                         ),
                         Padding(
@@ -116,10 +113,6 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                           child: CustomTextFormField(
                             text: "Specialty",
                             TextEditingController: specialityController,
-                            // icon: Icon(
-                            //   Icons.arrow_drop_down_sharp,
-                            //   size: 30,
-                            // ),
                           ),
                         ),
                         Padding(

@@ -23,6 +23,7 @@ class _SplashState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Scaffold(
       body: BeginWidget(
         widget: Align(
@@ -35,19 +36,25 @@ class _SplashState extends State<SplashScreen> {
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
                   'assets/images/logo2.png',
-                  width: 420,
-                  height: 406,
+                  width: size.width,
+                  height: size.height*0.5,
                   fit: BoxFit.contain,
                   alignment: const Alignment(0, 0),
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB
+                  (0, size.height * 0.0516, 0, 0),
                 child: Text('Welcome to MediVerse!',
                     style: Themes.splashBoldTitle),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(44, 8, 44, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(
+                  size.width * 0.112,
+                  size.height * 0.009,
+                  size.width * 0.112,
+                  0,
+                ),
                 child: Text(
                   'Better Health = Better Universe',
                   textAlign: TextAlign.center,

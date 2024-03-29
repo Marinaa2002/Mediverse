@@ -18,6 +18,7 @@ class ForgetPasswordWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) async{
         if(state is ForgetPasswordLoading){
@@ -64,10 +65,9 @@ class ForgetPasswordWidget extends StatelessWidget {
               await BlocProvider.of<ForgetPasswordCubit>(context).forgetPassword(email: forgetPass);
             },
             child: Align(
-              alignment: const AlignmentDirectional(-1, -1),
+              alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(
-                    0, 6, 0, 12),
+                padding: EdgeInsetsDirectional.fromSTEB(0, size.height * 0.007, 0, 12),
                 child: Center(
                   child: Text('Forget Password?',
                       style: TextStyle(

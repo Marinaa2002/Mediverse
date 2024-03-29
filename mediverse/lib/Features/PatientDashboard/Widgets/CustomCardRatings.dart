@@ -9,6 +9,7 @@ class CustomCardRatings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -34,9 +35,9 @@ class CustomCardRatings extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
+                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                           EdgeInsetsDirectional.fromSTEB(size.width*.04, 12, size.width*.04, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,10 +52,11 @@ class CustomCardRatings extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   )),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0, 4, 0, 4),
+                                padding:  EdgeInsetsDirectional.fromSTEB(
+                                    0, size.height*.001, 0, size.height*.001),
                                 child: Row(
-                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                 // mainAxisSize: MainAxisSize.max,
                                   children: [
                                     CustomRatingIconWidget(
                                         color: Colors.yellow),
@@ -72,22 +74,22 @@ class CustomCardRatings extends StatelessWidget {
                             ],
                           ),
                           Container(
-                            width: 50,
-                            height: 50,
+                            width: size.width*0.15,
+                            height: size.width*0.15,
                             decoration: const BoxDecoration(
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
                             alignment: const AlignmentDirectional(0, 0),
                             child: SizedBox(
-                              width: 150,
-                              height: 150,
+                              width: size.width*0.3,
+                              height: size.width*0.3,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(80.0),
                                 child: Image.asset(
                                   'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
-                                  width: 300,
-                                  height: 200,
+                                  width: size.width*0.3,
+                                  height: size.width*0.3,
                                   fit: BoxFit.fill,
                                   alignment: const Alignment(0, 0),
                                 ),
@@ -97,8 +99,8 @@ class CustomCardRatings extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
+                     Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(size.width*.04, 4, size.width*.04, 12),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [

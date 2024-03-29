@@ -46,6 +46,7 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
         }
       },
       builder: (context, state) {
+        Size size=MediaQuery.of(context).size;
         return Scaffold(
           body: Form(
             key: formKey,
@@ -58,7 +59,7 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
                   Row(
                     children: [
                       SizedBox(
-                        width: 88,
+                        width: size.width*0.21,
                       ),
                       Padding(
                         padding: EdgeInsets.all(30),
@@ -68,9 +69,7 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
                               height: 70,
                             ),
                             LogoCont(),
-                            titleText(
-                              text: "Patient Sign Up",
-                            ),
+                            titleText(text: "Patient Sign Up"),
                             SizedBox(
                               height: 40,
                             ),

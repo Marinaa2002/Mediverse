@@ -6,7 +6,6 @@ import 'package:mediverse/Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
 import '../../Manager/login_cubit/login_cubit.dart';
 
-
 class LoginButtonWidget extends StatelessWidget {
   final text;
   final screen;
@@ -21,34 +20,35 @@ class LoginButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Align(
-      alignment: AlignmentDirectional(0, 0),
+      alignment: Alignment.center,
       child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-          child: ElevatedButton(
-            onPressed: onPressed,
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor:
-              primaryColor, // Assuming text color should be white
-              elevation: 3,
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(
-                  color: Colors.transparent,
-                  width: 1,
-                ),
+        padding: EdgeInsets.symmetric(vertical: size.width * 0.04),
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: primaryColor,
+            elevation: 3,
+            padding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          child: SizedBox(
+            width: size.width * 0.6,
+            height: 52,
+            child: Center(
+              child: Text(
+                text,
+                style: Themes.titleSmall,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            child: SizedBox(
-              width: 230,
-              height: 52,
-              child: Center(
-                child: Text(text, style: TextStyle(color: Colors.white, fontSize: 20)),
-              ),
-            ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

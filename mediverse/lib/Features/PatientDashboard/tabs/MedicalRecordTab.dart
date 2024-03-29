@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/CustomEditConfirmButton.dart';
 
 import '../MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
 import '../MedicalRecord/LabResultsScreen/presentation/Views/LabResultsScreen.dart';
@@ -21,6 +22,7 @@ class MedicalRecordsTab extends StatelessWidget {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomButtonMedicalRecord(
                     text: 'Prescriptions',
@@ -28,6 +30,7 @@ class MedicalRecordsTab extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (ctx) => MedicalPrescriptionsScreen()));
                     }),
+                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
                 CustomButtonMedicalRecord(
                     text: 'Lab Results',
                     onPressed: () {
@@ -53,30 +56,7 @@ class MedicalRecordsTab extends StatelessWidget {
           CustomMedicalRecordInfo(),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 40,
-                width: 100,
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: kprimaryColor,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Edit',
-                      style: Themes.titleLarge.copyWith(
-                        color: Colors.white,
-                        fontFamily: 'Readex Pro',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            child: CustomEditConfirm(text: 'Edit',)
           ),
         ],
       ),

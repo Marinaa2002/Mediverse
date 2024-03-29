@@ -16,8 +16,9 @@ class CustomDayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(size.width*0.028),
       child: Material(
         color: Colors.transparent,
         elevation: 5,
@@ -25,7 +26,7 @@ class CustomDayWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
-          width: 100,
+          width: size.width*0.24,
           height: 70,
           decoration: BoxDecoration(
             color: colorBox,

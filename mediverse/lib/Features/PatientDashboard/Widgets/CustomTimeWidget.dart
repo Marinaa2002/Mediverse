@@ -14,8 +14,9 @@ class CustomTimeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size= MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(size.width*0.028),
       child: Material(
         color: Colors.transparent,
         elevation: 5,
@@ -23,7 +24,7 @@ class CustomTimeWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
-          width: 120,
+          width: size.width*0.28,
           height: 50,
           decoration: BoxDecoration(
             color: colorBox,

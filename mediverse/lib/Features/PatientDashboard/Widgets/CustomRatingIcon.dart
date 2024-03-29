@@ -10,7 +10,7 @@ class CustomRatingIconWidget extends StatelessWidget {
     return Icon(
       Icons.star_rate_sharp,
       color: color,
-      size: 24,
+      size: 20,
     );
   }
 }

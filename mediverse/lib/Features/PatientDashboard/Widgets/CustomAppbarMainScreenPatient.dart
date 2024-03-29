@@ -10,6 +10,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Align(
       alignment: AlignmentDirectional(0, 0),
       child: Row(
@@ -28,7 +29,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 10),
               child: Container(
-                width: 50,
+                width: size.width*0.15,
                 height: 50,
                 decoration: BoxDecoration(
                   color: kprimaryColor,
@@ -37,7 +38,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(2),
                   child: Container(
-                    width: 50,
+                    width: size.width*0.15,
                     height: 50,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
@@ -53,7 +54,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(size.width * 0.08, 0, 0, 0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -81,3 +82,5 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
     );
   }
 }
+
+
