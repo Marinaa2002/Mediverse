@@ -5,7 +5,6 @@ import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/MainScreen.dart';
 
-import 'BookingScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

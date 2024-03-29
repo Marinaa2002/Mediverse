@@ -40,7 +40,7 @@ class Doctor {
   final String License_Number;
   final double Rating;
   final List<dynamic> Reviews;
-  final Map<String, dynamic> Clinics; // <clinic name, hospital name or private>
+  final List<dynamic> Clinics; // <clinic name, hospital name or private>
   final List<dynamic> Slots;
   final List<dynamic> Blogs;
   final List<dynamic> Patients;

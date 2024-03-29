@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class CustomDayWidget extends StatelessWidget {
-  CustomDayWidget(
-      {super.key,
-      required this.day,
-      required this.date,
-      required this.colorBox,
-      required this.colorText});
+  CustomDayWidget({
+    super.key,
+    required this.day,
+    required this.date,
+    this.isChosen = false,
+    // required this.colorBox,
+    // required this.colorText,
+  });
   String day;
   String date;
-  Color colorBox;
-  Color colorText;
+  bool isChosen;
+  // Color colorBox;
+  // Color colorText;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       child: Material(
         color: Colors.transparent,
         elevation: 5,
@@ -28,31 +32,31 @@ class CustomDayWidget extends StatelessWidget {
           width: 100,
           height: 70,
           decoration: BoxDecoration(
-            color: colorBox,
+            color: (isChosen)? kprimaryColor : kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(0, 0),
+                  alignment: const AlignmentDirectional(0, 0),
                   child: Text(
-                    '$day',
+                    day,
                     style: TextStyle(
                       fontFamily: 'Readex Pro',
-                      color: colorText,
+                      color: (isChosen)? Colors.white : Colors.black,
                     ),
                   ),
                 ),
                 Text(
-                  '$date',
+                  date,
                   style: TextStyle(
                     fontFamily: 'Readex Pro',
-                    color: colorText,
+                    color: (isChosen)? Colors.white : Colors.black,
                   ),
                 ),
               ],

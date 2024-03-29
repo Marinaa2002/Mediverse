@@ -30,22 +30,22 @@ class CustomDoctorDetails extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: Container(
-                      width: 140,
-                      height: 140,
+                      width: 120,
+                      height: 120,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
                       alignment: const AlignmentDirectional(0, 0),
                       child: SizedBox(
-                        width: 150,
-                        height: 150,
+                        width: 120,
+                        height: 120,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(80.0),
                           child: Image.asset(
                             'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
-                            width: 300,
-                            height: 200,
+                            width: 250,
+                            height: 150,
                             fit: BoxFit.fill,
                             alignment: const Alignment(0, 0),
                           ),
@@ -64,11 +64,8 @@ class CustomDoctorDetails extends StatelessWidget {
                         children: [
                           Text(state.doctor.Name,
                               textAlign: TextAlign.start,
-                              style: Themes.bodyMedium),
+                              style: Themes.splashBoldTitle),
                           Text(state.doctor.Speciality,
-                              textAlign: TextAlign.start,
-                              style: Themes.labelMedium),
-                          Text('Works at Tiba Dental Care',
                               textAlign: TextAlign.start,
                               style: Themes.labelMedium),
                           Row(
@@ -81,7 +78,8 @@ class CustomDoctorDetails extends StatelessWidget {
                                     style: Themes.labelMedium),
                               ),
                               RatingBarIndicator(
-                                rating: state.doctor.Rating,//state.doctor.Rating,
+                                rating:
+                                    state.doctor.Rating, //state.doctor.Rating,
                                 itemBuilder: (context, index) => const Icon(
                                   Icons.star,
                                   color: Colors.amber,
