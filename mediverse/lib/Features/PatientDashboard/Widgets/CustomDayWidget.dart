@@ -29,10 +29,10 @@ class CustomDayWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
-          width: 100,
-          height: 70,
+          width: 120,
+          height: 80,
           decoration: BoxDecoration(
-            color: (isChosen)? kprimaryColor : kSecondryBackgroundColor,
+            color: (isChosen)? Colors.indigo : kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Align(
@@ -48,6 +48,8 @@ class CustomDayWidget extends StatelessWidget {
                     day,
                     style: TextStyle(
                       fontFamily: 'Readex Pro',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
                       color: (isChosen)? Colors.white : Colors.black,
                     ),
                   ),
@@ -56,6 +58,8 @@ class CustomDayWidget extends StatelessWidget {
                   date,
                   style: TextStyle(
                     fontFamily: 'Readex Pro',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
                     color: (isChosen)? Colors.white : Colors.black,
                   ),
                 ),

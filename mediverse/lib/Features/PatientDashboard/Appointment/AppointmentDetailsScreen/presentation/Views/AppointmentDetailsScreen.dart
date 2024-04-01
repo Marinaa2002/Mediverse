@@ -5,6 +5,8 @@ import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/widgets/chooseDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/PatientChatScreen/presentation/Views/PatientChatScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Views/RatingsScreen.dart';
@@ -41,22 +43,6 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
       },
       builder: (context, state) {
         if (state is AppointmentDetailsSuccess) {
-          List<bool> clinicsListBool =
-              List<bool>.filled(state.doctor.Clinics.length, false);
-          List<Widget> clinicsList = [];
-
-          List<Widget> clinicListBuilder() {
-            for (int i = 0; i < clinicsListBool.length; i++) {
-              String cost = state.doctor.Clinics[i]['cost'].toString();
-              clinicsList.add(CustomDayWidget(
-                day: state.doctor.Clinics[i]['name'],
-                date: 'Cost: $cost',
-                isChosen: clinicsListBool[i],
-              ));
-            }
-            return clinicsList;
-          }
-
           return Scaffold(
             key: scaffoldKey,
             backgroundColor: backgroundColor,
@@ -91,123 +77,9 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   const CustomDoctorDetails(),
-                  Align(
-                    alignment: const AlignmentDirectional(-1, 0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
-                      child: Text('Clinic:', style: Themes.bodyMedium),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: ToggleButtons(
-                      renderBorder: false,
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      fillColor: backgroundColor,
-                      isSelected: clinicsListBool,
-                      onPressed: (int index) {
-                        setState(() {
-                          // The button that is tapped is set to true, and the others to false.
-                          for (int i = 0; i < clinicsListBool.length; i++) {
-                            clinicsListBool[i] = i == index;
-                          }
-                          print(clinicsListBool);
-                        });
-                      },
-                      children: clinicListBuilder(),
-                      // CustomDayWidget(
-                      //   day: 'Tuesday',
-                      //   date: '7 October',
-                      //   // colorBox: Colors.white,
-                      //   // colorText: Colors.black,
-                      // ),
-                      // CustomDayWidget(
-                      //   day: 'Tuesday',
-                      //   date: '7 October',
-                      //   // colorBox: Colors.white,
-                      //   // colorText: Colors.black,
-                      // ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(-1, 0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
-                      child: Text('Day:', style: Themes.bodyMedium),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          CustomDayWidget(
-                            day: 'Saturday',
-                            date: '4 October',
-                            // colorBox: Colors.indigo,
-                            // colorText: Colors.white,
-                          ),
-                          CustomDayWidget(
-                            day: 'Monday',
-                            date: '6 October',
-                            // colorBox: Colors.white,
-                            // colorText: Colors.black,
-                          ),
-                          CustomDayWidget(
-                            day: 'Tuesday',
-                            date: '7 October',
-                            // colorBox: Colors.white,
-                            // colorText: Colors.black,
-                          ),
-                          CustomDayWidget(
-                            day: 'Thursday',
-                            date: '9 October',
-                            // colorBox: Colors.white,
-                            // colorText: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(-1, 0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
-                      child: Text('Time:', style: Themes.bodyMedium),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          CustomTimeWidget(
-                              time: '7:00 Pm',
-                              colorBox: Colors.indigo,
-                              colorText: Colors.white),
-                          CustomTimeWidget(
-                              time: '7:30 Pm',
-                              colorBox: Colors.white,
-                              colorText: Colors.black),
-                          CustomTimeWidget(
-                              time: '8:00 Pm',
-                              colorBox: Colors.white,
-                              colorText: Colors.black),
-                          CustomTimeWidget(
-                              time: '8:30 Pm',
-                              colorBox: Colors.white,
-                              colorText: Colors.black),
-                        ],
-                      ),
-                    ),
+                  BlocProvider(
+                    create: (context) => ChooseDetailsCubit(),
+                    child: chooseDetails(doctor: state.doctor),
                   ),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
