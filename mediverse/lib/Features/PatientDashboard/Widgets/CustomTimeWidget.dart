@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class CustomTimeWidget extends StatelessWidget {
-  CustomTimeWidget(
-      {super.key,
-      required this.time,
-      required this.colorBox,
-      required this.colorText});
+  CustomTimeWidget({
+    super.key,
+    required this.time,
+    required this.isChosen,
+    // required this.colorBox,
+    // required this.colorText,
+  });
   String time;
-  Color colorBox;
-  Color colorText;
+  bool isChosen;
+  // Color colorBox;
+  // Color colorText;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -26,7 +30,7 @@ class CustomTimeWidget extends StatelessWidget {
           width: 120,
           height: 50,
           decoration: BoxDecoration(
-            color: colorBox,
+            color: (isChosen) ? Colors.indigo : kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(16),
             shape: BoxShape.rectangle,
           ),
@@ -36,7 +40,7 @@ class CustomTimeWidget extends StatelessWidget {
               '$time',
               style: TextStyle(
                 fontFamily: 'Readex Pro',
-                color: colorText,
+                color: (isChosen) ? Colors.white : Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),

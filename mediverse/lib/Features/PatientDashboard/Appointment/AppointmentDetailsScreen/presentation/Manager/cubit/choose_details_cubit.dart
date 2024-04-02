@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 import 'package:meta/meta.dart';
 
 part 'choose_details_state.dart';
@@ -63,5 +64,66 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
     List<bool> timeListBool = [false];
     emit(ChooseDetailsUpdate(clinicsList, clinicListBool, daysList, dayListBool,
         timesList, timeListBool));
+  }
+
+  void updateDaysList(Doctor doctor, List<bool> clinicListBool,
+      List<Widget> clinicsList, List<bool> dayListBool, int index) {
+    List<Widget> daysList = [];
+
+    int selectedClinic = 0;
+
+    for (int i = 0; i < clinicListBool.length; i++) {
+      if (clinicListBool[i] == true) {
+        selectedClinic = i;
+      }
+    }
+
+    for (int i = 0; i < dayListBool.length; i++) {
+      dayListBool[i] = i == index;
+    }
+    print(dayListBool);
+
+    for (int i = 0; i < dayListBool.length; i++) {
+      daysList.add(CustomDayWidget(
+        day: doctor.Slots[selectedClinic]['Time Slots'][i]['Day'],
+        date: doctor.Slots[selectedClinic]['Time Slots'][i]['Date'],
+        isChosen: dayListBool[i],
+      ));
+    }
+
+    List<bool> timeListBool = List<bool>.filled(
+      doctor.Slots[selectedClinic]['Time Slots'][index]['Time'].length,
+      false,
+      growable: true,
+    );
+
+    List<Widget> timeList = [];
+    bool firstBooked = false;
+
+    for (int i = 0; i < timeListBool.length; i++) {
+      if (doctor.Slots[selectedClinic]['Time Slots'][index]['Status'][i] ==
+          'booked') {
+        if (i != 0) {
+          timeListBool.removeAt(i);
+          continue;
+        }
+        firstBooked = true;
+        continue;
+      }
+      timeList.add(CustomTimeWidget(
+        time: doctor.Slots[selectedClinic]['Time Slots'][index]['Time'][i],
+        isChosen: timeListBool[i],
+      ));
+    }
+    if (timeList.isEmpty) {
+      timeList = [const Text('All Day Slots Are Booked!!')];
+      timeListBool = [false];
+    } else if (firstBooked) {
+      timeListBool.removeAt(0);
+    }
+    print(timeListBool);
+
+    emit(ChooseDetailsUpdate(clinicsList, clinicListBool, daysList, dayListBool,
+        timeList, timeListBool));
   }
 }

@@ -70,8 +70,13 @@ class _chooseDetailsState extends State<chooseDetails> {
                   isSelected: state.dayListBool,
                   onPressed: (int index) {
                     final chooseCubit = context.read<ChooseDetailsCubit>();
-                    chooseCubit.updateClinicList(
-                        widget.doctor, state.clinicListBool, index);
+                    chooseCubit.updateDaysList(
+                      widget.doctor,
+                      state.clinicListBool,
+                      state.clinicsList,
+                      state.dayListBool,
+                      index,
+                    );
                   },
                   children: state.daysList,
                 ),
@@ -83,31 +88,16 @@ class _chooseDetailsState extends State<chooseDetails> {
                   child: Text('Time:', style: Themes.bodyMedium),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      CustomTimeWidget(
-                          time: '7:00 Pm',
-                          colorBox: Colors.indigo,
-                          colorText: Colors.white),
-                      CustomTimeWidget(
-                          time: '7:30 Pm',
-                          colorBox: Colors.white,
-                          colorText: Colors.black),
-                      CustomTimeWidget(
-                          time: '8:00 Pm',
-                          colorBox: Colors.white,
-                          colorText: Colors.black),
-                      CustomTimeWidget(
-                          time: '8:30 Pm',
-                          colorBox: Colors.white,
-                          colorText: Colors.black),
-                    ],
-                  ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: ToggleButtons(
+                  renderBorder: false,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  fillColor: backgroundColor,
+                  isSelected: state.timeListBool,
+                  onPressed: (int index) {},
+                  children: state.timesList,
                 ),
               ),
             ],
