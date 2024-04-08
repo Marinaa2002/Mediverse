@@ -11,7 +11,6 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScre
 import '../Manager/lab_result_cubit/lab_result_cubit.dart';
 import 'Widgets/LabResultButtonWidget.dart';
 
-
 class LabResultsScreen extends StatelessWidget {
   LabResultsScreen({super.key});
 

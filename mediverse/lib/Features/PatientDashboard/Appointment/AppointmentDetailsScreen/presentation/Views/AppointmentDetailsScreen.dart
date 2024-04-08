@@ -9,7 +9,6 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
-
 class AppointmentDetailsScreen extends StatelessWidget {
   AppointmentDetailsScreen({super.key});
 

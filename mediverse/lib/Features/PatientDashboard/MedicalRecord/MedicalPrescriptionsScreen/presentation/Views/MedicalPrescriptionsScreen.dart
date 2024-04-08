@@ -11,8 +11,6 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescri
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionLoadingIndicator.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionPictureWidget.dart';
 
-
-
 class MedicalPrescriptionsScreen extends StatelessWidget {
   MedicalPrescriptionsScreen({super.key});
 
@@ -74,16 +72,20 @@ class MedicalPrescriptionsScreen extends StatelessWidget {
                           return Column(
                             children: [
                               MedicalPrescriptionDateWidget(
-                                  medicalPrescriptionModelDate: medicalModelList[index]),
+                                  medicalPrescriptionModelDate:
+                                      medicalModelList[index]),
                               MedicalPrescriptionPictureWidget(
-                                  medicalPrescriptionPicture: medicalModelList[index],
+                                  medicalPrescriptionPicture:
+                                      medicalModelList[index],
                                   index: index,
-                                  medicalPrescriptionModelList: medicalModelList),
+                                  medicalPrescriptionModelList:
+                                      medicalModelList),
                             ],
                           );
                         }),
                   ),
-                  MedicalPrescriptionButtonWidget(scrollController: _scrollController),
+                  MedicalPrescriptionButtonWidget(
+                      scrollController: _scrollController),
                 ],
               ),
             );

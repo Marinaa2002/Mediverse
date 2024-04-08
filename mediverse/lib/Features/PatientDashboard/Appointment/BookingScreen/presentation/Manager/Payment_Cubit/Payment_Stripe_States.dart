@@ -2,14 +2,14 @@
 
 sealed class PaymentStripeState {}
 
-final class PaymentStripeInitial extends PaymentStripeState {}
+final class PaymentStripeStateInitial extends PaymentStripeState {}
 
-final class PaymentStripeLoading extends PaymentStripeState {}
+final class PaymentStripeStateLoading extends PaymentStripeState {}
 
-final class PaymentStripeSuccess extends PaymentStripeState {}
+final class PaymentStripeStateSuccess extends PaymentStripeState {}
 
-final class PaymentStripeFailure extends PaymentStripeState {
+final class PaymentStripeStateFailure extends PaymentStripeState {
   final String errMessage;
 
-  PaymentStripeFailure(this.errMessage);
+  PaymentStripeStateFailure(this.errMessage);
 }

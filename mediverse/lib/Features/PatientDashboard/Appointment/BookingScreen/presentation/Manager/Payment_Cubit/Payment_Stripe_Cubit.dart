@@ -7,17 +7,17 @@ import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/pr
 import '../../../data/models/PaymentIndentInputModel.dart';
 
 class PaymentStripeCubit extends Cubit<PaymentStripeState> {
-  PaymentStripeCubit(this.checkoutRepo) : super(PaymentStripeInitial());
+  PaymentStripeCubit(this.checkoutRepo) : super(PaymentStripeStateInitial());
   final CheckOutRepo checkoutRepo;
   Future makePayment(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
-    emit(PaymentStripeLoading());
+    emit(PaymentStripeStateLoading());
     var data = await checkoutRepo.makePayment(
         paymentIntentInputModel: paymentIntentInputModel);
     data.fold(
-      (left) => emit(PaymentStripeFailure(left.errMsg)),
+      (left) => emit(PaymentStripeStateFailure(left.errMsg)),
       (right) => emit(
-        PaymentStripeSuccess(),
+        PaymentStripeStateSuccess(),
       ),
     );
   }
