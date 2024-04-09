@@ -1,9 +1,10 @@
 class Booking {
-  const Booking({
+  const Booking( {
     required this.id,
     required this.Doctor_id,
     required this.Patient_id,
-    required this.dateTime,
+    required this.Date,
+    required this.Day,
     required this.Location,
     required this.State,
   });
@@ -11,7 +12,8 @@ class Booking {
   final String id;
   final String Doctor_id;
   final String Patient_id;
-  final DateTime dateTime;
+  final String Date;
+  final String Day;
   final String Location;
   final String State;
 }

@@ -6,11 +6,13 @@ class CustomTimeWidget extends StatelessWidget {
     super.key,
     required this.time,
     required this.isChosen,
+    required this.isBooked,
     // required this.colorBox,
     // required this.colorText,
   });
   String time;
   bool isChosen;
+  bool isBooked;
   // Color colorBox;
   // Color colorText;
 
@@ -19,7 +21,7 @@ class CustomTimeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       child: Material(
         color: Colors.transparent,
         elevation: 5,
@@ -30,17 +32,25 @@ class CustomTimeWidget extends StatelessWidget {
           width: 120,
           height: 50,
           decoration: BoxDecoration(
-            color: (isChosen) ? Colors.indigo : kSecondryBackgroundColor,
+            color: (isBooked)
+                ? grey
+                : (isChosen)
+                    ? Colors.indigo
+                    : kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(16),
             shape: BoxShape.rectangle,
           ),
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Text(
-              '$time',
+              (isBooked) ? '$time BOOKED' : time,
               style: TextStyle(
                 fontFamily: 'Readex Pro',
-                color: (isChosen) ? Colors.white : Colors.black,
+                color: (isBooked)
+                    ? Colors.black
+                    : (isChosen)
+                        ? Colors.white
+                        : Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),

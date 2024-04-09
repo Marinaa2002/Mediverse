@@ -101,29 +101,84 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
     bool firstBooked = false;
 
     for (int i = 0; i < timeListBool.length; i++) {
-      if (doctor.Slots[selectedClinic]['Time Slots'][index]['Status'][i] ==
-          'booked') {
-        if (i != 0) {
-          timeListBool.removeAt(i);
-          continue;
-        }
-        firstBooked = true;
-        continue;
-      }
       timeList.add(CustomTimeWidget(
         time: doctor.Slots[selectedClinic]['Time Slots'][index]['Time'][i],
         isChosen: timeListBool[i],
+        isBooked: (doctor.Slots[selectedClinic]['Time Slots'][index]['Status']
+                    [i] ==
+                'booked')
+            ? true
+            : false,
       ));
     }
-    if (timeList.isEmpty) {
-      timeList = [const Text('All Day Slots Are Booked!!')];
-      timeListBool = [false];
-    } else if (firstBooked) {
-      timeListBool.removeAt(0);
-    }
+
     print(timeListBool);
 
     emit(ChooseDetailsUpdate(clinicsList, clinicListBool, daysList, dayListBool,
         timeList, timeListBool));
+  }
+
+  void updateTimesList(
+      Doctor doctor,
+      List<bool> clinicListBool,
+      List<Widget> clinicsList,
+      List<bool> dayListBool,
+      List<Widget> daysList,
+      List<bool> timeListBool,
+      int index) {
+    int selectedClinicIndex = 0;
+
+    for (int i = 0; i < clinicListBool.length; i++) {
+      if (clinicListBool[i] == true) {
+        selectedClinicIndex = i;
+      }
+    }
+
+    String selectedClinic = doctor.Slots[selectedClinicIndex]['Name'];
+
+    int selectedDayIndex = 0;
+
+    for (int i = 0; i < dayListBool.length; i++) {
+      if (dayListBool[i] == true) {
+        selectedDayIndex = i;
+      }
+    }
+
+    String selectedDay = doctor.Slots[selectedClinicIndex]['Time Slots']
+        [selectedDayIndex]['Day'];
+    String selectedDate = doctor.Slots[selectedClinicIndex]['Time Slots']
+        [selectedDayIndex]['Date'];
+
+    for (int i = 0; i < timeListBool.length; i++) {
+      timeListBool[i] = i == index;
+    }
+    print(timeListBool);
+
+    String selectedTime =
+        doctor.Slots[selectedClinicIndex]['Time Slots'][index]['Time'][index];
+
+    List<Widget> timeList = [];
+    for (int i = 0; i < timeListBool.length; i++) {
+      timeList.add(CustomTimeWidget(
+        time: doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]['Time'][i],
+        isChosen: timeListBool[i],
+        isBooked: (doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]
+                    ['Status'][i] ==
+                'booked')
+            ? true
+            : false,
+      ));
+    }
+    emit(ChooseDetailsReady(
+        clinicsList,
+        clinicListBool,
+        daysList,
+        dayListBool,
+        timeList,
+        timeListBool,
+        selectedTime,
+        selectedDate,
+        selectedDay,
+        selectedClinic));
   }
 }

@@ -96,7 +96,104 @@ class _chooseDetailsState extends State<chooseDetails> {
                   highlightColor: Colors.transparent,
                   fillColor: backgroundColor,
                   isSelected: state.timeListBool,
-                  onPressed: (int index) {},
+                  onPressed: (int index) {
+                    final chooseCubit = context.read<ChooseDetailsCubit>();
+                    chooseCubit.updateTimesList(
+                      widget.doctor,
+                      state.clinicListBool,
+                      state.clinicsList,
+                      state.dayListBool,
+                      state.daysList,
+                      state.timeListBool,
+                      index,
+                    );
+                  },
+                  children: state.timesList,
+                ),
+              ),
+            ],
+          );
+        }else if(state is ChooseDetailsReady){
+          return Column(
+            children: [
+              Align(
+                alignment: const AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
+                  child: Text('Clinic:', style: Themes.bodyMedium),
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: ToggleButtons(
+                  renderBorder: false,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  fillColor: backgroundColor,
+                  isSelected: state.clinicListBool,
+                  onPressed: (int index) {
+                    final chooseCubit = context.read<ChooseDetailsCubit>();
+                    chooseCubit.updateClinicList(
+                        widget.doctor, state.clinicListBool, index);
+                  },
+                  children: state.clinicsList,
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
+                  child: Text('Day:', style: Themes.bodyMedium),
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: ToggleButtons(
+                  renderBorder: false,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  fillColor: backgroundColor,
+                  isSelected: state.dayListBool,
+                  onPressed: (int index) {
+                    final chooseCubit = context.read<ChooseDetailsCubit>();
+                    chooseCubit.updateDaysList(
+                      widget.doctor,
+                      state.clinicListBool,
+                      state.clinicsList,
+                      state.dayListBool,
+                      index,
+                    );
+                  },
+                  children: state.daysList,
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                  child: Text('Time:', style: Themes.bodyMedium),
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: ToggleButtons(
+                  renderBorder: false,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  fillColor: backgroundColor,
+                  isSelected: state.timeListBool,
+                  onPressed: (int index) {
+                    final chooseCubit = context.read<ChooseDetailsCubit>();
+                    chooseCubit.updateTimesList(
+                      widget.doctor,
+                      state.clinicListBool,
+                      state.clinicsList,
+                      state.dayListBool,
+                      state.daysList,
+                      state.timeListBool,
+                      index,
+                    );
+                  },
                   children: state.timesList,
                 ),
               ),
