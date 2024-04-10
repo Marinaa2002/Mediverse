@@ -81,49 +81,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                     create: (context) => ChooseDetailsCubit(),
                     child: chooseDetails(doctor: state.doctor),
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomButtonAppointmentDetails(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PatientChatScreen(),
-                                ));
-                          },
-                          buttonName: 'Chat',
-                          icon: Icons.chat,
-                        ),
-                        CustomButtonAppointmentDetails(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const BookingScreen(),
-                              ),
-                            );
-                          },
-                          buttonName: 'Book',
-                          icon: Icons.book,
-                        ),
-                        CustomButtonAppointmentDetails(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RatingsScreen(),
-                                ));
-                          },
-                          buttonName: 'Rate',
-                          icon: Icons.star_rate_sharp,
-                        ),
-                      ],
-                    ),
-                  ),
+                  
                 ],
               ),
             ),

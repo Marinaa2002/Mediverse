@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/AllModels/doctor.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/widgets/chooseDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 import 'package:meta/meta.dart';
@@ -125,6 +126,7 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
       List<bool> dayListBool,
       List<Widget> daysList,
       List<bool> timeListBool,
+      List<Widget> timeListIn,
       int index) {
     int selectedClinicIndex = 0;
 
@@ -157,13 +159,31 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
     String selectedTime =
         doctor.Slots[selectedClinicIndex]['Time Slots'][index]['Time'][index];
 
-    List<Widget> timeList = [];
+    if (doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]
+            ['Status'][index] ==
+        'booked') {
+      emit(ChooseDetailsReady(
+        clinicsList,
+        clinicListBool,
+        daysList,
+        dayListBool,
+        timeListIn,
+        timeListBool,
+        selectedTime,
+        selectedDate,
+        selectedDay,
+        selectedClinic,
+        true,
+      ));
+    }else{
+      List<Widget> timeList = [];
     for (int i = 0; i < timeListBool.length; i++) {
       timeList.add(CustomTimeWidget(
-        time: doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]['Time'][i],
+        time: doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]
+            ['Time'][i],
         isChosen: timeListBool[i],
-        isBooked: (doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]
-                    ['Status'][i] ==
+        isBooked: (doctor.Slots[selectedClinicIndex]['Time Slots']
+                    [selectedDayIndex]['Status'][i] ==
                 'booked')
             ? true
             : false,
@@ -179,6 +199,10 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
         selectedTime,
         selectedDate,
         selectedDay,
-        selectedClinic));
+        selectedClinic,
+        false));
+    }
+
+    
   }
 }

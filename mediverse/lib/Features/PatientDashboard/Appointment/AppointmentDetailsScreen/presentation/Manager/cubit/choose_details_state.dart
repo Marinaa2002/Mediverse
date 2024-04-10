@@ -34,6 +34,7 @@ final class ChooseDetailsReady extends ChooseDetailsState {
   final String selectedDate;
   final String selectedDay;
   final String selectedClinic;
+  final bool isBooked;
 
   ChooseDetailsReady(
     this.clinicsList,
@@ -46,6 +47,7 @@ final class ChooseDetailsReady extends ChooseDetailsState {
     this.selectedDate,
     this.selectedDay,
     this.selectedClinic,
+    this.isBooked,
   );
 }
 
