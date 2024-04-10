@@ -52,7 +52,6 @@ mediverse/windows/flutter/generated_plugins.cmake
 mediverse/macos/Flutter/GeneratedPluginRegistrant.swift
 mediverse/windows/flutter/generated_plugin_registrant.cc
 mediverse/windows/flutter/generated_plugins.cmake
-mediverse/pubspec.yaml
 mediverse/.vscode/
 settings.json
 
