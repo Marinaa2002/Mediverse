@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class HospitalAddHideWidget extends StatelessWidget {
-  const HospitalAddHideWidget({super.key, required this.hospitalName});
-  final String hospitalName;
+  const HospitalAddHideWidget({
+    super.key,
+    required this.hospitalName,
+    required this.onChanged,
+    this.option = true,
+  });
+  final hospitalName;
+  final void Function(bool) onChanged;
+  final option;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +25,12 @@ class HospitalAddHideWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            const Align(
+            Align(
               alignment: AlignmentDirectional(-1, 0),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
                 child: Text(
-                  'San Pola Hospital',
+                  hospitalName,
                 ),
               ),
             ),
@@ -38,8 +45,7 @@ class HospitalAddHideWidget extends StatelessWidget {
               alignment: const AlignmentDirectional(1, 0),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                child: Switch.adaptive(
-                    value: true, onChanged: (newValue) async {}),
+                child: SwitchWidget(option: option, onChanged: onChanged),
               ),
             ),
             const Padding(
@@ -53,5 +59,34 @@ class HospitalAddHideWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+bool isSwitchWidget = false;
+
+class SwitchWidget extends StatefulWidget {
+  const SwitchWidget({
+    super.key,
+    required this.option,
+    required this.onChanged,
+  });
+
+  final bool option;
+  final void Function(bool p1) onChanged;
+
+  @override
+  State<SwitchWidget> createState() => _SwitchWidgetState();
+}
+
+class _SwitchWidgetState extends State<SwitchWidget> {
+  void update() {
+    setState(() {
+      isSwitchWidget = !isSwitchWidget;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Switch.adaptive(value: widget.option, onChanged: widget.onChanged);
   }
 }

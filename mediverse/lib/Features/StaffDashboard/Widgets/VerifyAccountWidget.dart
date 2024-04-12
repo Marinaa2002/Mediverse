@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server/gmail.dart';
 import 'package:mediverse/AllModels/requestModel.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 import 'package:mediverse/Features/StaffDashboard/Widgets/LabRequestAccountCompeleteWidget.dart';
 
@@ -21,7 +19,7 @@ class VerifyAccountWidget extends StatelessWidget {
     List<RequestModel> requests = [];
 
     // Create dummy variables with status set to "pending"
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 2; i++) {
       if (i % 2 == 0) {
         requests.add(RequestModel(
           email: 'email$i@example.com',
@@ -76,6 +74,7 @@ class VerifyAccountWidget extends StatelessWidget {
         StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('Form_Requests_Info')
+              .where('Status', isEqualTo: 'pending')
               .snapshots(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> formRequestsSnapshot) {
@@ -108,13 +107,30 @@ class VerifyAccountWidget extends StatelessWidget {
                             .collection('Form_Requests_Info')
                             .doc(requestId)
                             .update({
-                          'status': 'Verified',
-                        }).then((value) {
-                          // Successfully updated the status
-                          print('Request $requestId accepted');
-                        }).catchError((error) {
-                          // Error occurred while updating the status
-                          print('Failed to accept request: $error');
+                          'Status': 'Verified',
+                        });
+                        FirebaseFirestore.instance
+                            .collection('info_Doctors')
+                            .add({
+                          'Email': requests[i].email,
+                          'Name': requests[i].name,
+                          'Age':
+                              '', // Assuming age is a string, change accordingly
+                          'Phone': '',
+                          'Blogs': [],
+                          'Bookings': [],
+                          'Hospital': '',
+                          'License_Number': requests[i].licenseNumber,
+                          'NationalId': '',
+                          'Previous_Appointments': [],
+                          'Profile_Picture': '',
+                          'Rating': 0.0, // Assuming rating is a double
+                          'Reviews': [],
+                          'Speciality': '',
+                          'State': 'Offline',
+                          'Slots': [], // Empty list for slots
+                          'Clinic-Appointments':
+                              {}, // Empty map for clinic appointments
                         });
                       } else {
                         // Retrieve the document ID of the request
@@ -125,26 +141,30 @@ class VerifyAccountWidget extends StatelessWidget {
                             .collection('Form_Requests_Info')
                             .doc(requestId)
                             .update({
-                          'status': 'Accepted',
-                        }).then((value) {
-                          // Successfully updated the status
-                          print('Request $requestId accepted');
-                        }).catchError((error) {
-                          // Error occurred while updating the status
-                          print('Failed to accept request: $error');
+                          'Status': 'Accepted',
                         });
+
+                        FirebaseFirestore.instance.collection('Staff').add({
+                          'Email': requests[i].email,
+                          'Name': requests[i].name,
+                          'License_Number': requests[i].licenseNumber,
+                          'Location': requests[i].location,
+                          'Org Name': requests[i].orgName,
+                          'Org Type': requests[i].orgType,
+                          'Staff': requests[i].staff,
+                          'Condition': 'Show'
+                        });
+                        FirebaseFirestore.instance
+                            .collection('Form_Requests_Info')
+                            .doc(requestId)
+                            .delete();
                       }
-                      FirebaseFirestore.instance
-                          .collection('Form_Requests_Info')
-                          .doc(requestId)
-                          .delete()
-                          .then((value) {
-                        // Successfully deleted the document
-                        print('Request $requestId declined and removed');
-                      }).catchError((error) {
-                        // Error occurred while deleting the document
-                        print('Failed to decline and remove request: $error');
-                      });
+                      //**************
+                      //Mail goes here
+                      //
+                      //
+                      //
+                      // */
                     },
                     onPressedDecline: () async {
                       String requestId = formRequestsSnapshot.data!.docs[i].id;
@@ -161,7 +181,19 @@ class VerifyAccountWidget extends StatelessWidget {
                         // Error occurred while deleting the document
                         print('Failed to decline and remove request: $error');
                       });
-                      sendEmailNotification(requests[i]);
+                      //**************
+                      //Mail goes here
+                      //
+                      //
+                      //
+                      // */
+                      // sendEmail();
+                      // _sendEmail();
+                      // EmailService().sendEmail(
+                      //     name: requests[i].name,
+                      //     email: 'rinosamyramy@gmail.com',
+                      //     subject: 'Request Not Accepted',
+                      //     message: rejectionMail);
                     },
                   );
                 },
@@ -173,39 +205,73 @@ class VerifyAccountWidget extends StatelessWidget {
     );
   }
 
-  // Function to send email
-  Future<void> sendEmailNotification(request) async {
-    // Define SMTP server details
-    final smtpServer = gmail('gpasu2023@gmail.com', 'GradProject2023');
-    String body = '''
-Dear ${request.name},
+//   // Function to send email
+//   Future<void> sendEmailNotification(request) async {
+//     // Define SMTP server details
+//     final smtpServer = gmail('gpasu2023@gmail.com', 'GradProject2023');
+//     String body = '''
+// Dear Recipient,
 
-I hope this email finds you well.
+// I hope this email finds you well.
 
-I regret to inform you that your recent request has been carefully reviewed, and unfortunately, we are unable to proceed with [specify reason for rejection]. Please be assured that your request received thorough consideration, and this decision was made after careful deliberation.
+// I regret to inform you that your recent request has been carefully reviewed, and unfortunately, we are unable to proceed with [specify reason for rejection]. Please be assured that your request received thorough consideration, and this decision was made after careful deliberation.
 
-We understand that this news may be disappointing, and we sincerely apologize for any inconvenience caused. Please know that we value your interest and efforts.
+// We understand that this news may be disappointing, and we sincerely apologize for any inconvenience caused. Please know that we value your interest and efforts.
 
-Should you have any questions or require further clarification regarding this decision, please do not hesitate to reach out to us. We remain committed to assisting you in any way we can.
+// Should you have any questions or require further clarification regarding this decision, please do not hesitate to reach out to us. We remain committed to assisting you in any way we can.
 
-Thank you for your understanding and cooperation.
+// Thank you for your understanding and cooperation.
 
-Sincerely,
-Mediverse
-''';
+// Sincerely,
+// Mediverse
+// ''';
 
-    final message = Message()
-      ..from = Address('gpasu2023@gmail.com', 'Mediverse')
-      ..recipients.add('rinosamyramy@gmail.com') // Recipient's email
-      ..subject = 'Request Not Accepted'
-      ..text = body;
-    // Email body
+//     final message = Message()
+//       ..from = Address('gpasu2023@gmail.com', 'Mediverse')
+//       ..recipients.add('rinosamyramy@gmail.com') // Recipient's email
+//       ..subject = 'Request Not Accepted'
+//       ..text = body;
+//     // Email body
 
-    try {
-      // Send the email
-      final sendReport = await send(message, smtpServer);
-    } catch (e) {
-      print('Email sending failed: $e');
-    }
-  }
+//     try {
+//       // Send the email
+//       final sendReport = await send(message, smtpServer);
+//     } catch (e) {
+//       print('Email sending failed: $e');
+//     }
+//   }
+
+  // void sendEmail() async {
+  //   Email email = Email(
+  //     to: ['gpasu2023@gmail.com'],
+  //     subject: 'Hello from Flutter',
+  //     body:
+  //         'This is a test email sent from a Flutter app using email_launcher package.',
+  //   );
+  //   try {
+  //     EmailLauncher.launch(email);
+  //   } catch (e) {}
+  // }
+
+  // void _sendEmail() async {
+  //   try {
+  //     await EmailJS.send(
+  //       'service_yo90c7i',
+  //       'template_av8arm2',
+  //       {
+  //         'user_email': 'rinosamyramy@gmail.com',
+  //         'message': 'Hi',
+  //       },
+  //       const Options(
+  //         publicKey: 'x0PSZcFpV5OULTvVo',
+  //         privateKey: 'eNTW3JYpW0Xz5opCIs4-v',
+  //       ),
+  //     );
+  //     print('SUCCESS!');
+  //   } catch (error) {
+  //     if (error is EmailJSResponseStatus) {
+  //       print('ERROR... ${error.status}: ${error.text}');
+  //     }
+  //     print(error.toString());
+  //   }
 }

@@ -8,7 +8,7 @@ class HospitalViewAndArchrive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(5, 15, 5, 0),
@@ -19,12 +19,15 @@ class HospitalViewAndArchrive extends StatelessWidget {
               children: [
                 HospitalAddHideWidget(
                   hospitalName: "ST Mark",
+                  onChanged: (bool) {},
                 ),
                 HospitalAddHideWidget(
                   hospitalName: "St peter",
+                  onChanged: (bool) {},
                 ),
                 HospitalAddHideWidget(
                   hospitalName: "St peter",
+                  onChanged: (bool) {},
                 ),
               ],
             ),

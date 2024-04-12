@@ -27,7 +27,7 @@ class RequestModel {
       orgName: json['Org Name'] as String,
       orgType: json['Org Type'] as String,
       staff: json['Staff'] as String,
-      status: json['Staff'] as String,
+      status: json['Status'] as String,
     );
   }
 }
