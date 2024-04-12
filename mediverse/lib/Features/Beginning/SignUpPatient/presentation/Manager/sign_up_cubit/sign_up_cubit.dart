@@ -34,11 +34,11 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  Future<void> signUpInfoPatient({required String name, required String age, required String national_id, required String email, required String password}) async {
+  Future<void> signUpInfoPatient({required String name, required String age, required String phoneNum, required String national_id, required String email, required String password}) async {
     emit(SignUpLoading());
     try{
       final uid = await signUpUser(email: email, password: password);
-      signUpInfoRepo.signUpInfoPatient(uid: uid, name: name, age: age, email: email, national_id: national_id);
+      signUpInfoRepo.signUpInfoPatient(uid: uid, name: name, age: age, phoneNum: phoneNum, email: email, national_id: national_id);
       emit(SignUpSuccess());
     } on Exception catch (e) {
       emit(SignUpFailure(errMsg: 'Something went wrong, Try again'));

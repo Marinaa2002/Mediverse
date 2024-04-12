@@ -6,7 +6,7 @@ class SignUpDocInfoRepoImpl extends SignUpDocInfoRepo{
   CollectionReference details = FirebaseFirestore.instance.collection('info_Doctors');
 
   @override
-  signUpInfoDoctor({required String? uid, required String name, required String age, required String email, required String national_id, required String hospital, required String licNo,required String speciality}) async {
+  signUpInfoDoctor({required String? uid, required String name, required String age, required String phoneNum, required String email, required String national_id, required String hospital, required String licNo,required String speciality}) async {
     if(uid != null) {
       try {
         await details.doc(uid).set({
@@ -21,7 +21,7 @@ class SignUpDocInfoRepoImpl extends SignUpDocInfoRepo{
           'Bookings': [],
           'Clinics': [],
           'Patients': [],
-          'Phone': null,
+          'Phone': phoneNum,
           'Profile Picture': null,
           'Previous Appointments': [],
           'Rating': null,
