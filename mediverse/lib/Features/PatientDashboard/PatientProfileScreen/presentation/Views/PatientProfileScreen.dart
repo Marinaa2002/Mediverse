@@ -5,6 +5,9 @@ import 'package:mediverse/Constants/constant.dart';
 import '../../../Widgets/InfoProfileWidget.dart';
 import '../../../Widgets/PictureProfileWidget.dart';
 import '../../../Widgets/SettingsProfileWidget.dart';
+import 'Widgets/ProfileInfoWidget.dart';
+import 'Widgets/ProfilePictureWidget.dart';
+import 'Widgets/ProfileSettingsWidget.dart';
 
 class PatientProfileScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -43,7 +46,7 @@ class PatientProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            const PictureProfileWidget(),
+            const ProfilePictureWidget(),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
               child: Text(
@@ -62,8 +65,8 @@ class PatientProfileScreen extends StatelessWidget {
                 color: kprimaryTextColor,
               ),
             ),
-            const InfoProfileWidget(),
-            const SettingsProfileWidget(),
+            const ProfileInfoWidget(),
+            const ProfileSettingsWidget(),
           ],
         ),
       ),
