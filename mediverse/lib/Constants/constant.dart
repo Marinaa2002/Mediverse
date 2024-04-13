@@ -16,3 +16,18 @@ const black = Color(0xFF101213);
 const cyan = Color(0x00FFFFFF);
 const white = Colors.white;
 const grey = Colors.grey;
+const kMessagesCollections = 'messages';
+const kMessage = 'message';
+const kCreatedAt = 'createdAt';
+const kcolorOfChattingTextFieldAndIcon = Color.fromRGBO(241, 211, 189, 2);
+const kChatid = "ChatPage";
+const kCameraScrenId = '/CameraScreen';
+const kNotesBox = 'notes_box';
+List<Color> kColors = const [
+  Color(0xffADD8E6),
+  Color(0xffC0C0C0),
+  Color(0xffFFFFE0),
+  Color(0xff98FF98),
+  Color(0xffE6E6FA),
+];
+const kThirdTextColor = Colors.white;

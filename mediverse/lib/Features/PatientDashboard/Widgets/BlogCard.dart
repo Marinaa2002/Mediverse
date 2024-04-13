@@ -3,9 +3,9 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class BlogCardDoc extends StatelessWidget {
-  BlogCardDoc({super.key, required this.title, required this.DrName});
+  const BlogCardDoc({super.key, required this.title, required this.DrName});
 
-  String title, DrName;
+  final String title, DrName;
 
   @override
   Widget build(BuildContext context) {

@@ -24,11 +24,13 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController natIDController = TextEditingController();
+  final TextEditingController phoneNumController = TextEditingController();
   String? email;
   String? password;
   String? name;
   String? age;
   String? national_id;
+  String? phoneNum;
   bool isLoading=false;
   GlobalKey<FormState> formKey = GlobalKey();
   @override
@@ -98,6 +100,17 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                     child: CustomTextFormField(
+                      text: "Phone Number",
+                      TextEditingController: phoneNumController,
+                      // icon: Icon(
+                      //   Icons.arrow_drop_down_sharp,
+                      //   size: 30,
+                      // ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                    child: CustomTextFormField(
                       text: "National ID",
                       TextEditingController: natIDController,
                     ),
@@ -123,11 +136,12 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
                       national_id = natIDController.text.trim();
                       email = emailController.text.trim();
                       password = passwordController.text.trim();
+                      phoneNum = phoneNumController.text.trim();
                       if (formKey.currentState!.validate()) {
                         BlocProvider.of<SignUpCubit>(context).signUpUser(
                             email: email!, password: password!);
                         BlocProvider.of<SignUpCubit>(context).signUpInfoPatient(
-                            name: name!, age: age!, national_id: national_id!);
+                            name: name!, age: age!, phoneNum: phoneNum!, national_id: national_id!, email: email!, password: password!);
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                       }
                     },

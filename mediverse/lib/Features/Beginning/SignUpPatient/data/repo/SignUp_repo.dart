@@ -6,6 +6,6 @@ import '../../../../../Core/Errors/Failure.dart';
 
 abstract class SignUpInfoRepo{
 
-  signUpInfoPatient({required String name, required String age, required String national_id});
+  signUpInfoPatient({required String? uid,required String name, required String age, required String phoneNum, required String email, required String national_id});
   // Future<Either<Failure , List<Patient>>> getInfoPatient({required QuerySnapshot event});
 }

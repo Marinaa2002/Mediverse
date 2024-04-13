@@ -64,6 +64,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                     fontFamily: 'Readex Pro',
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white
                   ),
                 ),
                 Text(
@@ -72,6 +73,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                     fontFamily: 'Readex Pro',
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
+                      color: Colors.white
                   ),
                 ),
               ],

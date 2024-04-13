@@ -1,8 +1,10 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/ForgetPasswordWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LogoContWidget.dart';
@@ -56,6 +58,7 @@ class LoginScreen extends StatelessWidget {
                   const startingCont(),
                   SingleChildScrollView(
                       child: Column(
+
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -179,6 +182,7 @@ class LoginScreen extends StatelessWidget {
                       )
                     ],
                   )),
+
                 ],
               ),
             ),
@@ -193,3 +197,7 @@ class LoginScreen extends StatelessWidget {
         .showSnackBar(SnackBar(content: Text(message)));
   }
 }
+
+
+
+

@@ -26,12 +26,14 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
   final TextEditingController specialityController = TextEditingController();
   final TextEditingController hospitalController = TextEditingController();
   final TextEditingController licNoController = TextEditingController();
+  final TextEditingController phoneNumController = TextEditingController();
   String? email;
   String? password;
   String? natId;
   String? speciality;
   String? hospital;
   String? licNo;
+  String? phoneNum;
   String? name;
   String? age;
   bool isLoading=false;
@@ -104,6 +106,17 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                           child: CustomTextFormField(
+                            text: "Phone Number",
+                            TextEditingController: phoneNumController,
+                            // icon: Icon(
+                            //   Icons.arrow_drop_down_sharp,
+                            //   size: 30,
+                            // ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                          child: CustomTextFormField(
                             text: "National ID",
                             TextEditingController: natIDController,
                           ),
@@ -149,6 +162,7 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                                password = passwordController.text.trim();
                                name = nameController.text.trim();
                                age = ageController.text.trim();
+                               phoneNum = phoneNumController.text.trim();
                                natId = natIDController.text.trim();
                                licNo=licNoController.text.trim();
                                hospital=hospitalController.text.trim();
@@ -158,8 +172,8 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                                   email: email!, password: password!);
 
                               BlocProvider.of<SignUpDocCubit>(context).signUpInfoDoctor(
-                                  name: name!, age: age!, national_id: natId!, hospital: hospital!,
-                                   licNo:licNo!, speciality: speciality!,);
+                                  name: name!, age: age!, phoneNum: phoneNum!, national_id: natId!, hospital: hospital!,
+                                   licNo:licNo!, speciality: speciality!,email: email!, password: password!);
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                             }
                           },
