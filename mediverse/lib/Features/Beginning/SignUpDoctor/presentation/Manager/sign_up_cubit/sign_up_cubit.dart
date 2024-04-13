@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mediverse/Features/Beginning/SignUpPatient/data/repo/SignUp_repo.dart';
 import 'package:meta/meta.dart';
 
 import '../../../data/repo/SignUp_repo_Impl.dart';
@@ -10,7 +9,7 @@ part 'sign_up_state.dart';
 
 class SignUpDocCubit extends Cubit<SignUpDocState> {
   SignUpDocCubit() : super(SignUpDocInitial());
-  CollectionReference details = FirebaseFirestore.instance.collection('Info_Doctors');
+  CollectionReference details = FirebaseFirestore.instance.collection('Form_Requests_Info');
 
   final SignUpDocInfoRepoImpl signUpInfoRepo = SignUpDocInfoRepoImpl();
 
