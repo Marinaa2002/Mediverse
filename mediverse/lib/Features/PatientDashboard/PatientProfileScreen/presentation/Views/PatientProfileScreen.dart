@@ -40,6 +40,7 @@ class PatientProfileScreen extends StatelessWidget {
       body: Align(
         alignment: const AlignmentDirectional(0, 0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             const PictureProfileWidget(),
