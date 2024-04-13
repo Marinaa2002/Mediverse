@@ -12,25 +12,31 @@ class CustomButtonMedicalRecord extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize=MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+      padding:  EdgeInsetsDirectional.fromSTEB(screenSize.width*0.001, 0, screenSize.width*0.001, 0),
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(165, 37),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-          backgroundColor: kprimaryColor,
-          textStyle: Themes.bodyXLarge.copyWith(
-            color: backgroundColor,
-          ),
-          elevation: 3,
+    style: ElevatedButton.styleFrom(
+    backgroundColor: primaryColor,
+    elevation: 3,
+    padding: EdgeInsets.zero,
+    shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12),
+    side: BorderSide(
+    color: Colors.transparent,
+    width: 1,
+       ),
+     ),
+    ),
+    child: Container(
+    width: screenSize.width * 0.45,
+    height: 45,
+    child: Center(
+        child: Text('$text', style: TextStyle(color: Colors.white,fontSize:18
         ),
-        child: Text('$text', style: TextStyle(color: Colors.white
-        ),),
-      ),
+     ),
+      ),),)
     );
   }
 }

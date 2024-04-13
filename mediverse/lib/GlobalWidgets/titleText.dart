@@ -3,13 +3,14 @@ import 'package:flutter/cupertino.dart';
 import '../Constants/Themes.dart';
 
 class titleText extends StatelessWidget {
-  final text;
-  const titleText({super.key, required this.text});
+  final String text;
+  const titleText({Key? key, required this.text});
 
   @override
   Widget build(BuildContext context) {
+     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+      padding: EdgeInsets.symmetric(vertical: size.width * 0.025),
       child: Text(text, style: Themes.headline),
     );
   }

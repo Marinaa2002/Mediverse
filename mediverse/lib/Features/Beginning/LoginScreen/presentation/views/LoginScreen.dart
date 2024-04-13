@@ -10,10 +10,10 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widg
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LogoContWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldPassWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldWidget.dart';
-import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/startingContWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/MainScreen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../Constants/Themes.dart';
+import '../../../../../GlobalWidgets/StartingCont.dart';
 import '../../../../../GlobalWidgets/titleText.dart';
 import '../../../RegisterChoice/RegisterChoiceScreen.dart';
 import '../Manager/login_cubit/login_cubit.dart';
@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
               key: formKey,
               child: Stack(
                 children: [
-                  const startingContWidget(),
+                  const startingCont(),
                   SingleChildScrollView(
                       child: Column(
 

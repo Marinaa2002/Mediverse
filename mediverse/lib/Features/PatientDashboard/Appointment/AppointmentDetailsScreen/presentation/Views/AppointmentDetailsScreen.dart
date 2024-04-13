@@ -16,6 +16,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: backgroundColor,
@@ -53,7 +54,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
             Align(
               alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
+                padding: EdgeInsetsDirectional.fromSTEB(size.width*0.03, 12, 0, 12),
                 child: Text('Cost For Booking: 150.00 L.E',
                     style: Themes.labelLarge18),
               ),
@@ -61,12 +62,12 @@ class AppointmentDetailsScreen extends StatelessWidget {
             Align(
               alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(size.width*0.04, 12, 12, 0),
                 child: Text('Day', style: Themes.bodyMedium),
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+              padding: EdgeInsetsDirectional.fromSTEB(size.width*0.007, 0, 0, 18),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -75,7 +76,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
                     CustomDayWidget(
                         day: 'Saturday',
                         date: '4 October',
-                        colorBox: Colors.indigo,
+                        colorBox: kprimaryColor,
                         colorText: Colors.white),
                     CustomDayWidget(
                         day: 'Monday',
@@ -99,12 +100,12 @@ class AppointmentDetailsScreen extends StatelessWidget {
             Align(
               alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                padding:  EdgeInsetsDirectional.fromSTEB(size.width*0.04, 12, 12, 0),
                 child: Text('Time', style: Themes.bodyMedium),
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+              padding:  EdgeInsetsDirectional.fromSTEB(size.width*0.007, 0, 0, 18),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -112,7 +113,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
                   children: [
                     CustomTimeWidget(
                         time: '7:00 Pm',
-                        colorBox: Colors.indigo,
+                        colorBox: kprimaryColor,
                         colorText: Colors.white),
                     CustomTimeWidget(
                         time: '7:30 Pm',

@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
-
 import '../Constants/constant.dart';
 
 class startingCont extends StatelessWidget {
   const startingCont({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -25,8 +25,8 @@ class startingCont extends StatelessWidget {
         ),
       ),
       child: Container(
-        width: 100,
-        height: MediaQuery.of(context).size.height / 2,
+        width: size.width,
+        height: size.height / 2,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [cyan, white],

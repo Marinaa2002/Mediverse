@@ -2,43 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class CustomButtonWidget extends StatelessWidget {
-  CustomButtonWidget({super.key});
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  const CustomButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+      padding: const EdgeInsetsDirectional.only(top: 12, bottom: 12),
       child: GestureDetector(
         onTap: () {},
-        child: Container(
-          height: 50,
-          width: 130,
-          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: kprimaryColor,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white, backgroundColor: primaryColor,
+            elevation: 3,
+            padding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(
+                color: primaryColor,
+                width: 1,
+              ),
+            ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.upload_sharp,
-                size: 20,
-                color: Colors.white,
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.45,
+            height: 45,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.upload_sharp,
+                    size: 22,
+                  ),
+               //   const SizedBox(width:20 ),
+                  Text(
+                    'Upload',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Readex Pro',
+                      fontSize: 17
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 15,
-              ),
-              Text(
-                'Upload',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Readex Pro',
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

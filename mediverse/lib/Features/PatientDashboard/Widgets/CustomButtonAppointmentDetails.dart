@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class CustomButtonAppointmentDetails extends StatelessWidget {
   CustomButtonAppointmentDetails(
@@ -14,18 +15,22 @@ class CustomButtonAppointmentDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           height: 40,
+          width:size.width*0.27 ,
           padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: Colors.indigo,
+            color: kprimaryColor,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(
                 icon,
@@ -33,7 +38,7 @@ class CustomButtonAppointmentDetails extends StatelessWidget {
                 color: Colors.white,
               ),
               SizedBox(
-                width: 10,
+                width: 5,
               ),
               Text(
                 '$buttonName',

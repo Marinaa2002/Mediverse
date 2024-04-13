@@ -19,14 +19,13 @@ class TextFormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Container(
-      width: 390,
+      width: size.width*0.95,
       child: TextFormField(
         validator: validator,
           onChanged: onChanged,
         controller: controller,
-        //     controller: _model.emailAddressController,
-        //     focusNode: _model.emailAddressFocusNode,
           autofocus: false,
           autofillHints: [AutofillHints.email],
           obscureText: false,
@@ -66,8 +65,6 @@ class TextFormFieldWidget extends StatelessWidget {
             contentPadding: const EdgeInsets.all(16),
           ),
           style: Themes.bodyMed
-        //   keyboardType: TextInputType.emailAddress,
-        // validator: _model.emailAddressControllerValidator.asValidator(context),
       ),
     );
   }

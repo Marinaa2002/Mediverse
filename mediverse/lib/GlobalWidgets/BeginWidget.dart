@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
-import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class BeginWidget extends StatelessWidget {

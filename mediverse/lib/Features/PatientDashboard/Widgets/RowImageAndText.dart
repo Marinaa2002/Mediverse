@@ -14,6 +14,7 @@ class RowImageAndText extends StatelessWidget {
   final String imageUrl;
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -22,8 +23,8 @@ class RowImageAndText extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           child: Image.asset(
             imageUrl,
-            width: 50,
-            height: 50,
+            width: size.width*0.12,
+            height: size.width*0.12,
             fit: BoxFit.fill,
           ),
         ),

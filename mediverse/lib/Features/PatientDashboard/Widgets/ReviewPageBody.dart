@@ -11,6 +11,7 @@ class ReviewPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -30,7 +31,7 @@ class ReviewPageBody extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 16, 12, 24),
+                padding: EdgeInsetsDirectional.fromSTEB(size.width*0.001, size.height*0.02, size.width*0.001, size.height*0.026),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -52,6 +53,7 @@ class ReviewPageBody extends StatelessWidget {
                       children: [
                         Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding:
@@ -60,13 +62,13 @@ class ReviewPageBody extends StatelessWidget {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 12),
+                                    EdgeInsetsDirectional.fromSTEB(8, 0, 0, 12),
                                 child: CustomRatingIconWidget(
                                   color: Colors.yellow,
                                 )),
                           ],
                         ),
-                        Text('Avg. Rating', style: Themes.label12),
+                        Text('Avg Rating', style: Themes.label12),
                       ],
                     ),
                   ],
@@ -104,10 +106,11 @@ class ReviewPageBody extends StatelessWidget {
               ),
               Align(
                 alignment: AlignmentDirectional(0, 0),
-                child: Padding(
-                  padding: EdgeInsets.all(10),
+                child:  Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                      size.width * 0.02, size.height * 0.01, size.width * 0.02, size.height * 0.01),
                   child: Container(
-                    width: double.infinity,
+                    width: size.width * 0.95,
                     height: 50,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -121,26 +124,39 @@ class ReviewPageBody extends StatelessWidget {
                       ],
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Colors.indigo,
+                        color: kprimaryColor,
                       ),
                     ),
-                    alignment: AlignmentDirectional(0, 0),
-                    child: Align(
-                      alignment: AlignmentDirectional(0, 0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 8, 5, 8),
-                        child: TextFormField(
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintText: 'Write Your Review Here',
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            errorBorder: InputBorder.none,
-                            focusedErrorBorder: InputBorder.none,
-                            contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                    //  alignment: AlignmentDirectional(0, 0),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(size.width*0.03, size.height*0.01, 0, 0),
+
+                      child: TextFormField(
+                        autofillHints: [AutofillHints.email],
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          hintText: 'Write Your Review Here ',
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: kprimaryColor,
+                              width: 0,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          maxLines: 10,
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              //   width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.all(10),
                         ),
                       ),
                     ),
@@ -158,3 +174,4 @@ class ReviewPageBody extends StatelessWidget {
     );
   }
 }
+

@@ -9,12 +9,13 @@ class CustomMedicalRecordInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Expanded(
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
         child: Container(
-          width: 350,
-          height: 400,
+          width: size.width*0.92,
+          height: size.height*0.9,
           decoration: BoxDecoration(
             color: kSecondryBackgroundColor,
             boxShadow: [
