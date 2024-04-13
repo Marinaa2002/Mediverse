@@ -28,7 +28,7 @@ class ChoiceButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor:
-              primaryColor, // Assuming text color should be white
+              primaryColor,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
               elevation: 3,
               shape: RoundedRectangleBorder(

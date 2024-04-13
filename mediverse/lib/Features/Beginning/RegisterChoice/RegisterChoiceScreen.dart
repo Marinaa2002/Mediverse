@@ -13,7 +13,8 @@ class RegisterChoice extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: BeginWidget(
-        widget: Column(
+        widget: SingleChildScrollView(
+        child:Column(
             mainAxisSize: MainAxisSize.max,
             children: [
           Padding(
@@ -41,7 +42,7 @@ class RegisterChoice extends StatelessWidget {
             screen: FormStaff(),
           ),
         ]),
-      ),
+      ),),
     );
   }
 }
