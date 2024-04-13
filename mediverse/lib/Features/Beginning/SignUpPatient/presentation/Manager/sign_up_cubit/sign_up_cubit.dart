@@ -11,7 +11,7 @@ part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
-  CollectionReference details = FirebaseFirestore.instance.collection('Info_Patients');
+  CollectionReference details = FirebaseFirestore.instance.collection('info_Patients');
 
   final SignUpInfoRepo signUpInfoRepo = SignUpInfoRepoImpl();
 
