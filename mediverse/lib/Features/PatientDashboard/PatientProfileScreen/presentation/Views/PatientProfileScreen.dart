@@ -54,7 +54,7 @@ class PatientProfileScreen extends StatelessWidget {
                 children: [
                   ProfilePictureWidget(userData: userData),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 4),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 4),
                     child: Text(
                       userData['Name'],
                       textAlign: TextAlign.center,

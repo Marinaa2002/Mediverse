@@ -12,7 +12,7 @@ class ProfileInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 20),
+      padding: const EdgeInsetsDirectional.fromSTEB(10, 24, 16, 20),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
