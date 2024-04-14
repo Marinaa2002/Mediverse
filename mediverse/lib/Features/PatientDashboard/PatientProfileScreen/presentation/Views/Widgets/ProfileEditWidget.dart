@@ -8,6 +8,8 @@ import '../../../../../../Constants/constant.dart';
 import '../../../../../Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
 import '../../../../../Beginning/LoginScreen/presentation/views/widgets/TextFormFieldPassWidget.dart';
 import '../../../../../Beginning/LoginScreen/presentation/views/widgets/TextFormFieldWidget.dart';
+import 'ProfileEditTextFormField.dart';
+import 'ProfileSaveButton.dart';
 
 class ProfileEditWidget extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
@@ -77,7 +79,7 @@ class ProfileEditWidget extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 20),
-                            child: TextFormFieldWidget(
+                            child: ProfileTextFormField(
                               text: "Name",
                               validator: (value) {
                                 // if (value!.isEmpty) {
@@ -103,7 +105,7 @@ class ProfileEditWidget extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 20),
-                            child: TextFormFieldWidget(
+                            child: ProfileTextFormField(
                               text: "Age",
                               validator: (value) {
                                 // if (value!.isEmpty) {
@@ -127,7 +129,7 @@ class ProfileEditWidget extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 20),
-                            child: TextFormFieldWidget(
+                            child: ProfileTextFormField(
                               text: "Phone Number",
                               validator: (value) {
                                 // if (value!.isEmpty) {
@@ -151,7 +153,7 @@ class ProfileEditWidget extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 10),
-                            child: TextFormFieldWidget(
+                            child: ProfileTextFormField(
                               text: "National ID",
                               validator: (value) {
                                 // if (value!.isEmpty) {
@@ -164,7 +166,7 @@ class ProfileEditWidget extends StatelessWidget {
                               controller: natIDController,
                             ),
                           ),
-                          LoginButtonWidget(
+                          ProfileSaveButton(
                             text: "Save",
                             screen: null,
                             onPressed: () async {
