@@ -18,7 +18,7 @@ class MedicalPrescriptionPictureInteractive extends StatelessWidget {
         height: 650,
         width: 300,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.transparent,
           boxShadow: [
             BoxShadow(
               blurRadius: 4,
