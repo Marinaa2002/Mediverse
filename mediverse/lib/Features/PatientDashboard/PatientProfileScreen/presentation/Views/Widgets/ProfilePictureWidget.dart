@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../../../Constants/constant.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
-  const ProfilePictureWidget({
-    super.key,
+  var userData;
+  ProfilePictureWidget({
+    super.key, required this.userData
   });
 
   @override
@@ -42,7 +43,7 @@ class ProfilePictureWidget extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: Image.asset(
-                        'assets/images/Human.jpg',
+                        userData['Profile Picture'] == null ? 'assets/images/Human.jpg': userData['Profile Picture'],
                         fit: BoxFit.cover,
                       ),
                     ),

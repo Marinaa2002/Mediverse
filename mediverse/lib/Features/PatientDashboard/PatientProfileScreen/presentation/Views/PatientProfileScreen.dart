@@ -7,6 +7,7 @@ import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/present
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileSettingsWidget.dart';
 
 import '../../../Widgets/PictureProfileWidget.dart';
+import 'Widgets/ProfilePictureWidget.dart';
 
 class PatientProfileScreen extends StatelessWidget {
   final currentUser = FirebaseAuth.instance.currentUser;
@@ -51,7 +52,7 @@ class PatientProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  const PictureProfileWidget(),
+                  ProfilePictureWidget(userData: userData),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
                     child: Text(

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileEditWidget.dart';
 
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
@@ -191,12 +193,17 @@ class ProfileSettingsWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text(
-                            'Edit Profile',
-                            textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
-                              fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileEditWidget(),));
+                            },
+                            child: Text(
+                              'Edit Profile',
+                              textAlign: TextAlign.center,
+                              style: Themes.bodyXLarge.copyWith(
+                                fontFamily: 'Readex Pro',
+                                color: kprimaryColor,
+                              ),
                             ),
                           ),
                         ],
@@ -264,7 +271,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                              Navigator.pop(context);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
                             },
                             child: Text(
                               'Log Out?',
