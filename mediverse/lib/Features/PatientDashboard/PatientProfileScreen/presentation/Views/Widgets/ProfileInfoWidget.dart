@@ -12,7 +12,7 @@ class ProfileInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 32),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 20),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -55,6 +55,7 @@ class ProfileInfoWidget extends StatelessWidget {
                     style: Themes.titleSmall.copyWith(
                       fontFamily: 'Readex Pro',
                       color: kprimaryTextColor,
+                      fontSize: 20
                     ),
                   ),
                 ],
@@ -97,6 +98,7 @@ class ProfileInfoWidget extends StatelessWidget {
                   style: Themes.titleSmall.copyWith(
                     fontFamily: 'Readex Pro',
                     color: kprimaryTextColor,
+                    fontSize: 20
                   ),
                 ),
               ],

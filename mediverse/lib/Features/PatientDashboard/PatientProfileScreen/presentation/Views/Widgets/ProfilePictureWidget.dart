@@ -11,7 +11,7 @@ class ProfilePictureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 140,
+      width: 150,
       child: Stack(
         children: [
           Align(
@@ -23,8 +23,8 @@ class ProfilePictureWidget extends StatelessWidget {
                 elevation: 3,
                 shape: const CircleBorder(),
                 child: Container(
-                  width: 100,
-                  height: 100,
+                  width: 120,
+                  height: 120,
                   decoration: BoxDecoration(
                     color: backgroundColor,
                     shape: BoxShape.circle,

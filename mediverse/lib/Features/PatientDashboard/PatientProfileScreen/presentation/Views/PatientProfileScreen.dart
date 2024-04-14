@@ -54,7 +54,7 @@ class PatientProfileScreen extends StatelessWidget {
                 children: [
                   ProfilePictureWidget(userData: userData),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 4),
                     child: Text(
                       userData['Name'],
                       textAlign: TextAlign.center,
@@ -69,6 +69,7 @@ class PatientProfileScreen extends StatelessWidget {
                     style: Themes.titleSmall.copyWith(
                       fontFamily: 'Outfit',
                       color: kprimaryTextColor,
+                      fontSize: 20
                     ),
                   ),
                   const ProfileInfoWidget(),
