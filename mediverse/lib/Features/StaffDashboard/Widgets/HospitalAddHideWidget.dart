@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/AddHideCubit/AddHideCubit.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/AddHideCubit/AddHideState.dart';
 
 class HospitalAddHideWidget extends StatelessWidget {
   const HospitalAddHideWidget({
@@ -7,10 +11,12 @@ class HospitalAddHideWidget extends StatelessWidget {
     required this.hospitalName,
     required this.onChanged,
     this.option = true,
+    required this.staffid,
   });
   final hospitalName;
   final void Function(bool) onChanged;
   final option;
+  final String staffid;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +51,10 @@ class HospitalAddHideWidget extends StatelessWidget {
               alignment: const AlignmentDirectional(1, 0),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                child: SwitchWidget(option: option, onChanged: onChanged),
+                child: SwitchWidget(
+                  onChanged: onChanged,
+                  staffid: staffid,
+                ),
               ),
             ),
             const Padding(
@@ -62,31 +71,39 @@ class HospitalAddHideWidget extends StatelessWidget {
   }
 }
 
-bool isSwitchWidget = false;
-
 class SwitchWidget extends StatefulWidget {
-  const SwitchWidget({
+  SwitchWidget({
     super.key,
-    required this.option,
-    required this.onChanged,
+    required this.staffid,
   });
-
-  final bool option;
-  final void Function(bool p1) onChanged;
-
+  final String staffid;
   @override
   State<SwitchWidget> createState() => _SwitchWidgetState();
 }
 
 class _SwitchWidgetState extends State<SwitchWidget> {
-  void update() {
-    setState(() {
-      isSwitchWidget = !isSwitchWidget;
-    });
-  }
+  bool option = true;
 
   @override
   Widget build(BuildContext context) {
-    return Switch.adaptive(value: widget.option, onChanged: widget.onChanged);
+    return Switch.adaptive(
+      value: option,
+      onChanged: (bool value) {
+        setState(() {
+          option = value;
+          if (value) {
+            FirebaseFirestore.instance
+                .collection('Staff')
+                .doc(widget.staffid)
+                .update({'Condition': 'Show'});
+          } else {
+            FirebaseFirestore.instance
+                .collection('Staff')
+                .doc(widget.staffid)
+                .update({'Condition': 'Hide'});
+          }
+        });
+      },
+    );
   }
 }

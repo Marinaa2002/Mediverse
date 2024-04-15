@@ -13,25 +13,18 @@ class AdminPageBody extends StatelessWidget {
     return SafeArea(
       top: true,
       child: Column(
-        mainAxisSize: MainAxisSize.max,
         children: [
+          Align(
+              alignment: const Alignment(0, 0),
+              child: TabBarWidget(
+                tabController: tabController,
+              )),
           Expanded(
-            child: Column(
+            child: TabBarView(
+              controller: tabController,
               children: [
-                Align(
-                    alignment: const Alignment(0, 0),
-                    child: TabBarWidget(
-                      tabController: tabController,
-                    )),
-                Expanded(
-                  child: TabBarView(
-                    controller: tabController,
-                    children: [
-                      VerifyAccountWidget(),
-                      HospitalViewAndArchrive(),
-                    ],
-                  ),
-                ),
+                VerifyAccountWidget(),
+                HospitalViewAndArchrive(),
               ],
             ),
           ),

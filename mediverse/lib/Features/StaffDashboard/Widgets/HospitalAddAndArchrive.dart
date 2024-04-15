@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/Staff.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/data/repos/AddHideRepo.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/data/repos/AddHideRepoImpl.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/AddHideCubit/AddHideCubit.dart';
 
 import 'HospitalAddHideWidget.dart';
 
@@ -11,31 +15,34 @@ class HospitalViewAndArchrive extends StatelessWidget {
   bool option = true;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(5, 15, 5, 0),
-      child: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Staff').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
+    return BlocProvider(
+      create: (context) => AddHideCubit(AddHideRepoImpl()),
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(5, 15, 5, 0),
+        child: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('Staff').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          }
-          final staffs = snapshot.data?.docs
-              .map((doc) => StaffModel.fromJson(doc.data()))
-              .toList();
-          return Expanded(
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: staffs?.length,
-              itemBuilder: (context, i) {
-                return HospitalAddHideWidget(
-                    option: option,
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            final staffs = snapshot.data?.docs
+                .map((doc) => StaffModel.fromJson(doc.data()))
+                .toList();
+            return Expanded(
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: staffs?.length,
+                itemBuilder: (context, i) {
+                  return HospitalAddHideWidget(
                     hospitalName: staffs![i].orgName,
                     onChanged: (newvalue) {
                       String staffid = snapshot.data!.docs[i].id;
+                      BlocProvider.of<AddHideCubit>(context)
+                          .getAddHideFunction(staffs[i]);
                       if (newvalue == true) {
                         FirebaseFirestore.instance
                             .collection('Staff')
@@ -43,7 +50,6 @@ class HospitalViewAndArchrive extends StatelessWidget {
                             .update({
                           'Condition': 'Show',
                         });
-                        option = true;
                       } else {
                         FirebaseFirestore.instance
                             .collection('Staff')
@@ -51,13 +57,15 @@ class HospitalViewAndArchrive extends StatelessWidget {
                             .update({
                           'Condition': 'Hide',
                         });
-                        option = false;
                       }
-                    });
-              },
-            ),
-          );
-        },
+                    },
+                    staffid: snapshot.data!.docs[i].id,
+                  );
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
