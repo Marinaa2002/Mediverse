@@ -1,37 +1,27 @@
-import 'dart:convert';
-import 'dart:developer';
-
-import 'package:mediverse/Core/utils/api_service.dart';
-import 'package:http/http.dart' as http;
+import 'package:emailjs/emailjs.dart';
 
 class EmailService {
-  final ApiService apiService = ApiService();
-  Future sendEmail({
-    required String name,
-    required String email,
-    required String subject,
-    required String message,
-  }) async {
-    final serviceID = 'service_yo90c7i';
-    final template_id = 'template_g5e8d0r';
-    final user_id = 'x0PSZcFpV5OULTvVo';
-    // final url = 'https://api.emailjs.com/api/v1.0/email/send';
-    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
-    final response = await http.post(
-      url,
-      body: json.encode({
-        'service_id': serviceID,
-        'template_id': template_id,
-        'user_id': user_id,
-        'template_params': {
-          'user_name': name,
+  void sendEmail(message, subject, email) async {
+    try {
+      await EmailJS.send(
+        'service_yo90c7i',
+        'template_av8arm2',
+        {
           'user_email': email,
-          'user_subject': subject,
-          'user_message': message,
-        }
-      }),
-      headers: {'Content-Type': 'application/json'},
-    );
-    print(response.body);
+          'message': message,
+          'subject': subject,
+        },
+        const Options(
+          publicKey: 'x0PSZcFpV5OULTvVo',
+          privateKey: 'eNTW3JYpW0Xz5opCIs4-v',
+        ),
+      );
+      print('SUCCESS!');
+    } catch (error) {
+      if (error is EmailJSResponseStatus) {
+        print('ERROR... ${error.status}: ${error.text}');
+      }
+      print(error.toString());
+    }
   }
 }

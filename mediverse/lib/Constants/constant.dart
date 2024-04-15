@@ -36,7 +36,7 @@ Dear Recipient,
 
 I hope this email finds you well.
 
-I regret to inform you that your recent request has been carefully reviewed, and unfortunately, we are unable to proceed with [specify reason for rejection]. Please be assured that your request received thorough consideration, and this decision was made after careful deliberation.
+I regret to inform you that your recent request has been carefully reviewed, and unfortunately, we are unable to proceed with you. Please be assured that your request received thorough consideration, and this decision was made after careful deliberation.
 
 We understand that this news may be disappointing, and we sincerely apologize for any inconvenience caused. Please know that we value your interest and efforts.
 
@@ -46,4 +46,38 @@ Thank you for your understanding and cooperation.
 
 Sincerely,
 Mediverse
+''';
+String acceptanceMailDoctor = '''
+Dear Doctor,
+
+I am pleased to inform you that your application for the position of Doctor  has been carefully reviewed, and I am delighted to extend an offer of acceptance to you.
+
+Your qualifications and experience are commendable, and we believe that you will be a valuable addition to our medical team. We appreciate your enthusiasm and commitment to providing excellent patient care.
+
+you will have the opportunity to contribute to our medical community through writing blogs and navigating through our app. We encourage you to share your knowledge and expertise to benefit our patients and colleagues.
+
+Please note that while you have been granted access to write blogs and navigate through our app, certain functionalities, such as scheduling appointments, are restricted. Appointment scheduling privileges will be granted only upon approval by our hospital management staff.
+
+We value your dedication to your profession and look forward to your contributions to our organization. If you have any questions or require further information, please feel free to contact me at Mediverse.
+
+Congratulations once again on your acceptance, and we look forward to welcoming you to our team.
+
+Warm regards,
+''';
+String acceptaneMailStaff = '''
+Dear Staff,
+
+I am pleased to inform you that your application for the position has been carefully reviewed, and we are excited to extend an offer of employment to you.
+
+Your qualifications, experience, and enthusiasm for the role make you an excellent fit for our team. We believe that your skills and expertise will contribute significantly to our organization's success.
+
+As an accepted member of our staff, you will be responsible for [brief description of job responsibilities]. We are confident that you will excel in your role and make valuable contributions to our team.
+
+Please find attached your employment contract, which outlines the terms and conditions of your employment, including your start date, salary, benefits, and other relevant details. We kindly ask you to review the document carefully and return a signed copy at your earliest convenience.
+
+We are excited to welcome you to Mediverse and look forward to working with you. If you have any questions or need further information, please do not hesitate to contact me at Mediverse.
+
+Once again, congratulations on your acceptance, and we wish you every success in your new role.
+
+Warm regards,
 ''';

@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:emailjs/emailjs.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mediverse/AllModels/requestModel.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Email_service.dart';
 
 import 'package:mediverse/Features/StaffDashboard/Widgets/LabRequestAccountCompeleteWidget.dart';
 
@@ -101,7 +103,7 @@ class VerifyAccountWidget extends StatelessWidget {
                     requestModel: requests![i],
                     onPressedAccept: () {
                       String requestId = formRequestsSnapshot.data!.docs[i].id;
-                      if (requests[0].staff == "Doctor") {
+                      if (requests[i].staff == "Doctor") {
                         // Update the status of the request to "Accepted"
                         FirebaseFirestore.instance
                             .collection('Form_Requests_Info')
@@ -132,6 +134,8 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Clinic-Appointments':
                               {}, // Empty map for clinic appointments
                         });
+                        EmailService().sendEmail(acceptanceMailDoctor,
+                            'Request Acceptance', 'rinosamyramy@gmail.com');
                       } else {
                         // Retrieve the document ID of the request
 
@@ -158,6 +162,8 @@ class VerifyAccountWidget extends StatelessWidget {
                             .collection('Form_Requests_Info')
                             .doc(requestId)
                             .delete();
+                        EmailService().sendEmail(acceptaneMailStaff,
+                            'Request Accepted', 'rinosamyramy@gmail.com');
                       }
                       //**************
                       //Mail goes here
@@ -181,19 +187,8 @@ class VerifyAccountWidget extends StatelessWidget {
                         // Error occurred while deleting the document
                         print('Failed to decline and remove request: $error');
                       });
-                      //**************
-                      //Mail goes here
-                      //
-                      //
-                      //
-                      // */
-                      // sendEmail();
-                      // _sendEmail();
-                      // EmailService().sendEmail(
-                      //     name: requests[i].name,
-                      //     email: 'rinosamyramy@gmail.com',
-                      //     subject: 'Request Not Accepted',
-                      //     message: rejectionMail);
+                      EmailService().sendEmail(rejectionMail,
+                          'Request Rejection', 'rinosamyramy@gmail.com');
                     },
                   );
                 },
@@ -204,74 +199,4 @@ class VerifyAccountWidget extends StatelessWidget {
       ],
     );
   }
-
-//   // Function to send email
-//   Future<void> sendEmailNotification(request) async {
-//     // Define SMTP server details
-//     final smtpServer = gmail('gpasu2023@gmail.com', 'GradProject2023');
-//     String body = '''
-// Dear Recipient,
-
-// I hope this email finds you well.
-
-// I regret to inform you that your recent request has been carefully reviewed, and unfortunately, we are unable to proceed with [specify reason for rejection]. Please be assured that your request received thorough consideration, and this decision was made after careful deliberation.
-
-// We understand that this news may be disappointing, and we sincerely apologize for any inconvenience caused. Please know that we value your interest and efforts.
-
-// Should you have any questions or require further clarification regarding this decision, please do not hesitate to reach out to us. We remain committed to assisting you in any way we can.
-
-// Thank you for your understanding and cooperation.
-
-// Sincerely,
-// Mediverse
-// ''';
-
-//     final message = Message()
-//       ..from = Address('gpasu2023@gmail.com', 'Mediverse')
-//       ..recipients.add('rinosamyramy@gmail.com') // Recipient's email
-//       ..subject = 'Request Not Accepted'
-//       ..text = body;
-//     // Email body
-
-//     try {
-//       // Send the email
-//       final sendReport = await send(message, smtpServer);
-//     } catch (e) {
-//       print('Email sending failed: $e');
-//     }
-//   }
-
-  // void sendEmail() async {
-  //   Email email = Email(
-  //     to: ['gpasu2023@gmail.com'],
-  //     subject: 'Hello from Flutter',
-  //     body:
-  //         'This is a test email sent from a Flutter app using email_launcher package.',
-  //   );
-  //   try {
-  //     EmailLauncher.launch(email);
-  //   } catch (e) {}
-  // }
-
-  // void _sendEmail() async {
-  //   try {
-  //     await EmailJS.send(
-  //       'service_yo90c7i',
-  //       'template_av8arm2',
-  //       {
-  //         'user_email': 'rinosamyramy@gmail.com',
-  //         'message': 'Hi',
-  //       },
-  //       const Options(
-  //         publicKey: 'x0PSZcFpV5OULTvVo',
-  //         privateKey: 'eNTW3JYpW0Xz5opCIs4-v',
-  //       ),
-  //     );
-  //     print('SUCCESS!');
-  //   } catch (error) {
-  //     if (error is EmailJSResponseStatus) {
-  //       print('ERROR... ${error.status}: ${error.text}');
-  //     }
-  //     print(error.toString());
-  //   }
 }
