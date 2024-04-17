@@ -7,16 +7,20 @@ import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/data/repos/FetechAdminInformationRepoImp.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/FetechAdminInfoCubit.dart/fetech_admin_info_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/AdminMainScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/data/repos/FetechHMInformationRepo.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/data/repos/FetechHMInformationRepoImpl.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Stripe.publishableKey = ApiKeys.publishableKey;
-  runApp(const AdminScreenPage());
+  runApp(const MyApp());
 }
 
-class AdminScreenPage extends StatelessWidget {
-  const AdminScreenPage({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   // This widget is the root of your applfication.
   @override
@@ -27,8 +31,8 @@ class AdminScreenPage extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: kprimaryColor),
       ),
       home: BlocProvider(
-        create: (context) => FetechAdminInfoCubit(GetAdminInfoRepoImp()),
-        child: const AdminMainScreenWidget(),
+        create: (context) => FetecHMInfoCubit(FetechHMRepoImp()),
+        child: const HospitalStaffManagementScreenAddDoctors(),
       ),
     );
   }

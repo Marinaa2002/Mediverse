@@ -121,7 +121,7 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Phone': '',
                           'Blogs': [],
                           'Bookings': [],
-                          'Hospital': '',
+                          'Hospital': requests[i].orgName,
                           'License_Number': requests[i].licenseNumber,
                           'NationalId': '',
                           'Previous_Appointments': [],
@@ -131,8 +131,9 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Speciality': '',
                           'State': 'Offline',
                           'Slots': [], // Empty list for slots
-                          'Clinic-Appointments':
-                              {}, // Empty map for clinic appointments
+                          'Clinic-Appointments': {},
+                          'Condition':
+                              'Verified' // Empty map for clinic appointments
                         });
                         EmailService().sendEmail(acceptanceMailDoctor,
                             'Request Acceptance', 'rinosamyramy@gmail.com');
@@ -165,12 +166,6 @@ class VerifyAccountWidget extends StatelessWidget {
                         EmailService().sendEmail(acceptaneMailStaff,
                             'Request Accepted', 'rinosamyramy@gmail.com');
                       }
-                      //**************
-                      //Mail goes here
-                      //
-                      //
-                      //
-                      // */
                     },
                     onPressedDecline: () async {
                       String requestId = formRequestsSnapshot.data!.docs[i].id;

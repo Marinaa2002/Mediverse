@@ -52,7 +52,6 @@ class HospitalAddHideWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child: SwitchWidget(
-                  onChanged: onChanged,
                   staffid: staffid,
                 ),
               ),
