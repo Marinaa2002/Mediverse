@@ -125,7 +125,8 @@ class VerifyAccountWidget extends StatelessWidget {
                           'License_Number': requests[i].licenseNumber,
                           'NationalId': '',
                           'Previous_Appointments': [],
-                          'Profile_Picture': '',
+                          'Profile_Picture':
+                              "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.jpeg.jpg?alt=media&token=817e3dcf-a8dd-484b-913a-8fcf65b70638",
                           'Rating': 0.0, // Assuming rating is a double
                           'Reviews': [],
                           'Speciality': '',

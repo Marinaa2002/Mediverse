@@ -12,6 +12,7 @@ class ListViewPatient extends StatelessWidget {
       itemBuilder: (context, index) {
         return const MedicalCard(
           name: "Randy Orton",
+          profile_Picture: '',
         );
       },
     );

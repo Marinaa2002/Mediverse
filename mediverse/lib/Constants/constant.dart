@@ -64,6 +64,23 @@ Congratulations once again on your acceptance, and we look forward to welcoming 
 
 Warm regards,
 ''';
+String acceptanceMailAddDoctor = '''
+Dear Doctor,
+
+I am thrilled to inform you that your application for the position of Doctor at [Hospital Name] has been carefully reviewed, and it is with great pleasure that we extend to you an offer of acceptance.
+
+Your qualifications, experience, and passion for healthcare stood out among the many applications we received. We believe that you will make a significant contribution to our medical team and uphold our commitment to providing exceptional patient care.
+
+As a member of our medical community, you will have the opportunity to utilize your expertise not only in patient care but also in contributing to various initiatives, including writing blogs and utilizing our app for navigation. We encourage you to share your insights and knowledge to enrich the experiences of both our patients and colleagues.
+
+Please be aware that while you have been granted access to write blogs and navigate through our app, certain functionalities, such as scheduling appointments, are initially restricted. Appointment scheduling privileges will be granted upon approval by our hospital management staff.
+
+We truly appreciate your dedication to your profession and your willingness to join our team. Should you have any questions or require further information, please do not hesitate to contact me at [Your Contact Information].
+
+Once again, congratulations on your acceptance! We eagerly anticipate the positive impact you will make on our organization and the lives of those we serve.
+
+Warmest regards
+''';
 String acceptaneMailStaff = '''
 Dear Staff,
 

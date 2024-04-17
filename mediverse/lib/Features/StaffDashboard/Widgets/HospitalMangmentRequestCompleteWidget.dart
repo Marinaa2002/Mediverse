@@ -27,10 +27,10 @@ class HospitalMangmentRequestCompleteWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Container(
-          width: 370,
-          height: 300,
+          width: 270,
+          height: 200,
           decoration: BoxDecoration(
-            color: backgroundColor,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(12),
           ),
           alignment: const AlignmentDirectional(0, 0),
