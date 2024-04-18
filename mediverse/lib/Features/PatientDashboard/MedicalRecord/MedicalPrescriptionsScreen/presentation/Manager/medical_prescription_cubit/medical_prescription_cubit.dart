@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/models/medical_prescription_model.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo.dart';
 import 'package:meta/meta.dart';
@@ -10,8 +11,9 @@ class MedicalPrescriptionCubit extends Cubit<MedicalPrescriptionState> {
   MedicalPrescriptionCubit(this.medicalPrescriptionRepo) : super(MedicalPrescriptionInitial());
 
   final MedicalPrescriptionRepo medicalPrescriptionRepo;
-  CollectionReference messages =
-  FirebaseFirestore.instance.collection('medicalPrescriptions');
+  var messages =
+  FirebaseFirestore.instance;//.collection('medicalPrescriptions');
+  final currentUser = FirebaseAuth.instance.currentUser!.uid;
 
   void sendLabModel({required String now_date, required String imageUrl}) {
     emit(MedicalPrescriptionLoading());
@@ -24,7 +26,7 @@ class MedicalPrescriptionCubit extends Cubit<MedicalPrescriptionState> {
 
   void getLabModels() async{
     emit(MedicalPrescriptionLoading());
-    await messages.orderBy('createdAt', descending: true).snapshots().listen((event) async {
+    await messages.collection('info_Patients/$currentUser/medical prescriptions').orderBy('createdAt', descending: true).snapshots().listen((event) async {
       var result = await medicalPrescriptionRepo.getLabs(event: event);
       result.fold((left) =>
           emit(MedicalPrescriptionFailure(left.errMsg)),
