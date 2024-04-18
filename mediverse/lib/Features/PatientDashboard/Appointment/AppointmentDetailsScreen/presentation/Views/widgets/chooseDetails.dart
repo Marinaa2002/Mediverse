@@ -1,14 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/serviceLocator.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/PatientChatScreen/presentation/Views/PatientChatScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Views/RatingsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomButtonAppointmentDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
+import 'package:uuid/uuid.dart';
 
 class chooseDetails extends StatefulWidget {
   chooseDetails({super.key, required this.doctor});
@@ -266,27 +270,58 @@ class _chooseDetailsState extends State<chooseDetails> {
                     ),
                     CustomButtonAppointmentDetails(
                       onTap: () {
-                        if(state.isBooked){
+                        if (state.isBooked) {
                           const snackBar = SnackBar(
-                          content: Text('Choose suitable details'),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }else{
+                            content: Text('Choose suitable details'),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        } else {
+                          FirebaseFirestore firestore =
+                              FirebaseFirestore.instance;
+
+                          // Specify the collection name and the document ID
+                          String collectionName = 'Bookings';
+                          String documentId = idServiceLocator.get<Uuid>().v4();
+
+                          Booking booking = Booking(
+                              id: documentId,
+                              Doctor_id: widget.doctor.id,
+                              Patient_id: 'Patient_id',
+                              Date: state.selectedDate,
+                              Day: state.selectedDay,
+                              Time: state.selectedTime,
+                              Location: state.selectedClinic,
+                              State: 'unpaid');
+
+                          Map<String, dynamic> bookingMap = booking.toMap();
+
+                          // Get a reference to the document with the specified ID
+                          DocumentReference documentReference = firestore
+                              .collection(collectionName)
+                              .doc(documentId);
+
+                          // Add the document with the specified ID and data
+                          documentReference.set(bookingMap).then((value) {
+                            print('Document added successfully');
+                          }).catchError((error) {
+                            print('Failed to add document: $error');
+                          });
+
                           Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const BookingScreen(),
-                          ),
-                        );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookingScreen(
+                                booking: booking,
+                              ),
+                            ),
+                          );
                         }
-                        
                       },
                       buttonName: 'Book',
                       icon: Icons.book,
                     ),
                     CustomButtonAppointmentDetails(
                       onTap: () {
-
                         Navigator.push(
                             context,
                             MaterialPageRoute(

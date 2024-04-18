@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
+import 'package:mediverse/Core/utils/serviceLocator.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/Manager/staff_request_cubit.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/data/repo/login_repo_impl.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/Manager/forgetPassword_cubit/forget_password_cubit.dart';
@@ -13,6 +14,7 @@ import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/Manager/
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
 
 void main() async {
+  setupIDServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Stripe.publishableKey = ApiKeys.publishableKey;
@@ -25,25 +27,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return
-      MultiBlocProvider(providers:[
-        BlocProvider(create:(context)=>SignUpCubit()),
-        BlocProvider(create:(context)=>SignUpDocCubit()),
-        BlocProvider(create:(context)=>StaffRequestCubit()),
-        BlocProvider(create:(context) => ForgetPasswordCubit(LoginRepoImpl()),),
-        BlocProvider(create:(context) => LoginCubit(LoginRepoImpl()),),
-      ],
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          ),
-          routes: {
-            LoginScreen.id: (context) => LoginScreen()
-          },
-          initialRoute: LoginScreen.id,
-          home: SplashScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => SignUpCubit()),
+        BlocProvider(create: (context) => SignUpDocCubit()),
+        BlocProvider(create: (context) => StaffRequestCubit()),
+        BlocProvider(
+          create: (context) => ForgetPasswordCubit(LoginRepoImpl()),
         ),
-      );
+        BlocProvider(
+          create: (context) => LoginCubit(LoginRepoImpl()),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        routes: {LoginScreen.id: (context) => LoginScreen()},
+        initialRoute: LoginScreen.id,
+        home: SplashScreen(),
+      ),
+    );
   }
 }
