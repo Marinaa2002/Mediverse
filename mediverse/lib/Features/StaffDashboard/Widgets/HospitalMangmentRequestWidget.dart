@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/AllModels/requestModel.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/RowRequestWidget.dart';
 
 import 'ActionButton.dart';
 
-class LabRequestAccountWidget extends StatelessWidget {
-  const LabRequestAccountWidget(
+class HospitalMangmentRequestWidget extends StatelessWidget {
+  const HospitalMangmentRequestWidget(
       {super.key,
-      required this.requestModel,
+      required this.doctorModel,
       required this.onPressedAccept,
       required this.onPressedDecline});
-  final RequestModel requestModel;
+  final Doctor doctorModel;
   final void Function() onPressedAccept;
   final void Function() onPressedDecline;
 
@@ -28,25 +29,15 @@ class LabRequestAccountWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RowOfRequestWidget(
-                  requestModelField: requestModel.name,
+                  requestModelField: doctorModel.name!,
                   requestField: 'Requested Name',
                 ),
                 RowOfRequestWidget(
-                  requestModelField: requestModel.staff,
-                  requestField: 'Requested Account',
-                ),
-                RowOfRequestWidget(
-                  requestModelField: requestModel.orgName,
+                  requestModelField: doctorModel.hospital,
                   requestField: 'Organization Name',
                 ),
                 RowOfRequestWidget(
-                    requestModelField: requestModel.orgType,
-                    requestField: 'Organization Type'),
-                RowOfRequestWidget(
-                    requestModelField: requestModel.location,
-                    requestField: 'Address'),
-                RowOfRequestWidget(
-                    requestModelField: requestModel.licenseNumber,
+                    requestModelField: doctorModel.licenseNumber,
                     requestField: 'License Number')
               ],
             ),

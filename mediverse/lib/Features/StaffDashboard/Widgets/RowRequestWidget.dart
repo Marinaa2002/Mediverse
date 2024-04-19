@@ -5,11 +5,11 @@ import 'package:mediverse/Constants/constant.dart';
 class RowOfRequestWidget extends StatelessWidget {
   const RowOfRequestWidget({
     super.key,
-    required this.requestModel,
+    required this.requestModelField,
     required this.requestField,
   });
 
-  final RequestModel requestModel;
+  final String requestModelField;
   final String requestField;
 
   @override
@@ -24,13 +24,15 @@ class RowOfRequestWidget extends StatelessWidget {
             requestField,
             style: const TextStyle(
               fontFamily: 'Readex Pro',
-              color: kSecondryBackgroundColor,
+              color: Colors.black,
               fontWeight: FontWeight.w600,
             ),
           ),
           Text(
-            requestModel.orgName,
-            style: const TextStyle(fontSize: 21),
+            requestModelField,
+            style: const TextStyle(
+              fontSize: 21,
+            ),
           ),
         ],
       ),

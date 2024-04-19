@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/DoctorAccountRequestWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalAddAndArchrive.dart';
-
-import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalStaffAccount.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/LabAccountRequest.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/TabBarWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/VerifyAccountWidget.dart';
-
-import '../../../Constants/constant.dart';
 
 class AdminPageBody extends StatelessWidget {
   final tabController;
@@ -19,25 +13,18 @@ class AdminPageBody extends StatelessWidget {
     return SafeArea(
       top: true,
       child: Column(
-        mainAxisSize: MainAxisSize.max,
         children: [
+          Align(
+              alignment: const Alignment(0, 0),
+              child: TabBarWidget(
+                tabController: tabController,
+              )),
           Expanded(
-            child: Column(
+            child: TabBarView(
+              controller: tabController,
               children: [
-                Align(
-                    alignment: const Alignment(0, 0),
-                    child: TabBarWidget(
-                      tabController: tabController,
-                    )),
-                Expanded(
-                  child: TabBarView(
-                    controller: tabController,
-                    children: const [
-                      VerifyAccountWidget(),
-                      HospitalViewAndArchrive(),
-                    ],
-                  ),
-                ),
+                VerifyAccountWidget(),
+                HospitalViewAndArchrive(),
               ],
             ),
           ),
