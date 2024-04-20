@@ -135,7 +135,6 @@ class LoginScreen extends StatelessWidget {
                           if (formKey.currentState!.validate()) {
                             BlocProvider.of<LoginCubit>(context)
                                 .loginUser(email: email!, password: password!);
-                            if (state is LoginSuccess) {}
                           } else {}
                         },
                       ),

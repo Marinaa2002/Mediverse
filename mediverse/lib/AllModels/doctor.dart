@@ -19,27 +19,30 @@ class Doctor {
   final Map<String, ClinicAppointments>? clinicAppointments;
   final String? speciality;
   final String? state;
+  final String? location;
   final String condition;
 
-  Doctor(
-      {this.name,
-      this.age,
-      this.phone,
-      this.blogs,
-      this.bookings,
-      required this.email,
-      required this.hospital,
-      required this.licenseNumber,
-      required this.nationalID,
-      this.previousAppointments,
-      this.profilePicture,
-      this.rating,
-      this.reviews,
-      this.slots,
-      this.clinicAppointments,
-      this.speciality,
-      this.state,
-      required this.condition});
+  Doctor({
+    this.name,
+    this.age,
+    this.phone,
+    this.blogs,
+    this.bookings,
+    required this.email,
+    required this.hospital,
+    required this.licenseNumber,
+    required this.nationalID,
+    this.previousAppointments,
+    this.profilePicture,
+    this.rating,
+    this.reviews,
+    this.slots,
+    this.clinicAppointments,
+    this.speciality,
+    this.state,
+    required this.condition,
+    this.location,
+  });
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
@@ -70,6 +73,7 @@ class Doctor {
       speciality: json['Speciality'],
       state: json['State'],
       condition: json['Condition'],
+      location: json['Location'],
     );
   }
 }

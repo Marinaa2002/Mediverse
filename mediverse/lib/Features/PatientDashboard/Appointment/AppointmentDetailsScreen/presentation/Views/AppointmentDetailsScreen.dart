@@ -10,10 +10,11 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
 class AppointmentDetailsScreen extends StatelessWidget {
-  AppointmentDetailsScreen({super.key});
+  AppointmentDetailsScreen({super.key, required this.id});
+  final String id;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+//marco ya3ml hna
   @override
   Widget build(BuildContext context) {
     return Scaffold(

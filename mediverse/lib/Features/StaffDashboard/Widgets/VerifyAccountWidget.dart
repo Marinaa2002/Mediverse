@@ -116,8 +116,9 @@ class VerifyAccountWidget extends StatelessWidget {
                             .add({
                           'Email': requests[i].email,
                           'Name': requests[i].name,
-                          'Age':
-                              '', // Assuming age is a string, change accordingly
+                          'Age': '',
+                          'Location': requests[i]
+                              .location, // Assuming age is a string, change accordingly
                           'Phone': '',
                           'Blogs': [],
                           'Bookings': [],

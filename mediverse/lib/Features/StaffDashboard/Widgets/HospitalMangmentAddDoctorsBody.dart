@@ -86,7 +86,7 @@ class _HospitalMangmentAddDoctorsBodyState
               children: [
                 Column(
                   children: [
-                    SearchBarDoctors(
+                    SearchBarProject(
                       searchController: _searchController,
                       onSearchTextChanged: _onSearchTextChanged,
                     ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../../../Constants/constant.dart';
 import 'TextFormFieldDoctors.dart';
 
-class SearchBarDoctors extends StatelessWidget {
+class SearchBarProject extends StatelessWidget {
   final TextEditingController searchController;
 
-  const SearchBarDoctors({
+  const SearchBarProject({
     Key? key,
     required this.searchController,
     required this.onSearchTextChanged,

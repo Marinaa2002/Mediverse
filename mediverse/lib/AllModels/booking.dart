@@ -14,4 +14,16 @@ class Booking {
   final DateTime dateTime;
   final String Location;
   final String State;
+
+  factory Booking.fromJson(Map<String, dynamic> json) {
+    return Booking(
+      id: json['id'],
+      Doctor_id: json['Doctor_id'],
+      Patient_id: json['Patient_id'],
+      // Convert the date string from JSON to a DateTime object
+      dateTime: DateTime.parse(json['dateTime']),
+      Location: json['Location'],
+      State: json['State'],
+    );
+  }
 }

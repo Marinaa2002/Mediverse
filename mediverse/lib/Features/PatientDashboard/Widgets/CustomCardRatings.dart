@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomRatingIcon.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/RowOfAppointmentTab.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/RateWidget.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/RowRequestWidget.dart';
 
 class CustomCardRatings extends StatelessWidget {
-  CustomCardRatings({super.key, required this.name});
+  CustomCardRatings({
+    super.key,
+    required this.doctor,
+  });
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final String name;
+  final Doctor doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +52,7 @@ class CustomCardRatings extends StatelessWidget {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('$name',
+                              Text('Dr ${doctor.name}',
                                   style: const TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
@@ -53,22 +60,20 @@ class CustomCardRatings extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0, 4, 0, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    CustomRatingIconWidget(
-                                        color: Colors.yellow),
-                                    CustomRatingIconWidget(
-                                        color: Colors.yellow),
-                                    CustomRatingIconWidget(
-                                        color: Colors.yellow),
-                                    CustomRatingIconWidget(
-                                        color: Colors.yellow),
-                                    CustomRatingIconWidget(
-                                        color: Colors.yellow),
-                                  ],
+                                child: RateWidget(
+                                  rating:
+                                      doctor.rating == 0 ? 4.2 : doctor.rating,
+                                  ratingCount: 12,
+                                  size: 10,
                                 ),
                               ),
+                              RowOfAppointmentTab(
+                                fieldValue: doctor.hospital,
+                                field: 'Organization Name',
+                              ),
+                              RowOfAppointmentTab(
+                                  fieldValue: doctor.location ?? 'ABC',
+                                  field: 'Address')
                             ],
                           ),
                           Container(
@@ -84,30 +89,14 @@ class CustomCardRatings extends StatelessWidget {
                               height: 150,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(80.0),
-                                child: Image.asset(
-                                  'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
+                                child: Image.network(
+                                  doctor.profilePicture ??
+                                      'https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2FCAP1530581265562441583.jpg?alt=media&token=6bcadeaf-c644-41dd-a183-999ed71e7434',
                                   width: 300,
                                   height: 200,
                                   fit: BoxFit.fill,
                                   alignment: const Alignment(0, 0),
                                 ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                fontSize: 14,
                               ),
                             ),
                           ),
