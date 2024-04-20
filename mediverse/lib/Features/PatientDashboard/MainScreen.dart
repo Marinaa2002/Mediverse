@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/tabs/Appointment%20Tab.dart';
 
 import 'Widgets/CustomAppbarMainScreenPatient.dart';
@@ -7,7 +9,8 @@ import 'tabs/MedicalBlogsTab.dart';
 import 'tabs/MedicalRecordTab.dart';
 
 class MainScreenWidget extends StatefulWidget {
-  MainScreenWidget({Key? key}) : super(key: key);
+  MainScreenWidget({Key? key, required this.email}) : super(key: key);
+  final String email;
   @override
   State<MainScreenWidget> createState() => _MainScreenWidgetState();
 }
@@ -35,6 +38,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<FetechPatientInfoCubit>(context)
+        .getPatientInforCubitFunction(widget.email);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(

@@ -10,7 +10,15 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widg
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldPassWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/startingContWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepo.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepoImpl.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MainScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/repos/labResult_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../Constants/Themes.dart';
 import '../../../../../GlobalWidgets/titleText.dart';
@@ -37,7 +45,26 @@ class LoginScreen extends StatelessWidget {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => MainScreenWidget(),
+                builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => NotesCubit(),
+                    ),
+                    BlocProvider(
+                      create: (context) =>
+                          FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
+                    ),
+                    BlocProvider(
+                      create: (context) => LabResultCubit(LabResultRepoImpl()),
+                    ),
+                    BlocProvider(
+                        create: (context) => MedicalPrescriptionCubit(
+                            MedicalPrescriptionRepoImpl())),
+                  ],
+                  child: MainScreenWidget(
+                    email: email!,
+                  ),
+                ),
               ));
           isLoading = false;
         } else if (state is LoginFailure) {

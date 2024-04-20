@@ -48,15 +48,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginCubit(LoginRepoImpl()),
         ),
-        BlocProvider(
-          create: (context) =>
-              LabResultCubit(LabResultRepoImpl())..getLabModels(),
-        ),
-        BlocProvider(
-          create: (context) =>
-              MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())
-                ..getLabModels(),
-        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -10,9 +10,9 @@ class FetechPatientInfoCubit extends Cubit<FetechPatientInfoState> {
       : super(FetechPatientInfoStateInitial());
   final GetPatientInfoRepo getPatientInfoRepo;
 
-  Future<void> getDoctorInforCubitFunction(String id) async {
+  Future<void> getPatientInforCubitFunction(String email) async {
     emit(FetechPatientInfoStateLoading());
-    var data = await getPatientInfoRepo.getPatientInfoFunction(id);
+    var data = await getPatientInfoRepo.getPatientInfoFunction(email);
     data.fold(
         (left) => emit(FetechPatientInfoStateFailure(
               errMsg: left.errMsg,
