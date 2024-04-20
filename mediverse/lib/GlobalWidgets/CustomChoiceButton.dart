@@ -21,7 +21,7 @@ class ChoiceButton extends StatelessWidget {
           padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                   context, MaterialPageRoute(builder: (context) => screen));
             },
             style: ElevatedButton.styleFrom(

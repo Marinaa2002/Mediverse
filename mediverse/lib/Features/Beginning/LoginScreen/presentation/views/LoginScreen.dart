@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +57,6 @@ class LoginScreen extends StatelessWidget {
                   const startingContWidget(),
                   SingleChildScrollView(
                       child: Column(
-
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -137,6 +135,7 @@ class LoginScreen extends StatelessWidget {
                           if (formKey.currentState!.validate()) {
                             BlocProvider.of<LoginCubit>(context)
                                 .loginUser(email: email!, password: password!);
+                            if (state is LoginSuccess) {}
                           } else {}
                         },
                       ),
@@ -182,7 +181,6 @@ class LoginScreen extends StatelessWidget {
                       )
                     ],
                   )),
-
                 ],
               ),
             ),
@@ -197,7 +195,3 @@ class LoginScreen extends StatelessWidget {
         .showSnackBar(SnackBar(content: Text(message)));
   }
 }
-
-
-
-

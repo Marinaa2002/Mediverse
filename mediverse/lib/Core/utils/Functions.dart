@@ -85,3 +85,10 @@ void showSnackBar(BuildContext context, String message) {
     ),
   );
 }
+
+void popUntilRoute(BuildContext context, String targetRouteName) {
+  Navigator.of(context).popUntil((route) {
+    // Check if the route's settings name matches the target route name
+    return route.settings.name == targetRouteName;
+  });
+}
