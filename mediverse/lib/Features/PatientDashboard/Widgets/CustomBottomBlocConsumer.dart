@@ -30,7 +30,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
     return BlocConsumer<PaymentStripeCubit, PaymentStripeState>(
       listener: (context, state) {
         if (!isCash) {
-          if (state is PaymentStripeSuccess) {
+          if (state is PaymentStripeStateSuccess) {
             Navigator.of(context)
                 .pushReplacement(MaterialPageRoute(builder: (context) {
               return const ThankYouView(
@@ -38,7 +38,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
               );
             }));
           }
-          if (state is PaymentStripeFailure) {
+          if (state is PaymentStripeStateFailure) {
             Navigator.of(context).pop();
             String errMessage = state.errMessage;
             bool firstMatch = errMessage.contains("Canceled");
@@ -64,7 +64,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         return ConfirmButton(
           text: "Continue",
-          isLoading: state is PaymentStripeLoading ? true : false,
+          isLoading: state is PaymentStripeStateLoading ? true : false,
           onTap: () {
             if (isPaypal) {
               var transctionsData = getTranscationData();

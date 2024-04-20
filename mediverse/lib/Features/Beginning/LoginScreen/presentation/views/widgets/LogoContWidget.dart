@@ -11,6 +11,7 @@ class LogoContWidget extends StatelessWidget {
       width: 100,
       height: 100,
       decoration: BoxDecoration(
+
         color: Color(0xF4FAFC),
         borderRadius: BorderRadius.circular(16),
       ),
@@ -20,6 +21,7 @@ class LogoContWidget extends StatelessWidget {
           'assets/images/logo2.png',
           width: 300,
           height: 200,
+
           fit: BoxFit.fill,
         ),
       ),

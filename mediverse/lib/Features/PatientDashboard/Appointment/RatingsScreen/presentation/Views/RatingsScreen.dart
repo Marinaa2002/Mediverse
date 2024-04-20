@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ReviewPageBody.dart';
 
-
-
 class RatingsScreen extends StatelessWidget {
   RatingsScreen({super.key});
 

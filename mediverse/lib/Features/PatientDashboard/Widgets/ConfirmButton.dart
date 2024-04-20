@@ -26,7 +26,7 @@ class ConfirmButton extends StatelessWidget {
           color: kprimaryColor,
         ),
         child: isLoading
-            ? const CircularProgressIndicator()
+            ? const Center(child: CircularProgressIndicator())
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -12,6 +12,10 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Logi
 import 'package:mediverse/Features/Beginning/SignUpDoctor/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/repos/labResult_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
 
 void main() async {
   setupIDServiceLocator();
@@ -27,17 +31,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => SignUpCubit()),
-        BlocProvider(create: (context) => SignUpDocCubit()),
-        BlocProvider(create: (context) => StaffRequestCubit()),
-        BlocProvider(
-          create: (context) => ForgetPasswordCubit(LoginRepoImpl()),
-        ),
-        BlocProvider(
-          create: (context) => LoginCubit(LoginRepoImpl()),
-        ),
+    return
+      MultiBlocProvider(providers:[
+        BlocProvider(create:(context)=>SignUpCubit()),
+        BlocProvider(create:(context)=>SignUpDocCubit()),
+        BlocProvider(create:(context)=>StaffRequestCubit()),
+        BlocProvider(create:(context) => ForgetPasswordCubit(LoginRepoImpl()),),
+        BlocProvider(create:(context) => LoginCubit(LoginRepoImpl()),),
+        BlocProvider(create: (context) => LabResultCubit(LabResultRepoImpl())..getLabModels(),),
+        BlocProvider(create: (context) => MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())..getLabModels(),),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
