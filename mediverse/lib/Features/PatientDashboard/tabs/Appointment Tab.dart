@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 
 import '../Widgets/CustomCardRatings.dart';
@@ -51,7 +52,7 @@ class AppointmentTab extends StatelessWidget {
                   .toList();
               if (doctors == null || doctors.isEmpty) {
                 return Center(
-                  child: Text("No doctors Aviable Now"),
+                  child: Text("No doctors Available Now"),
                 );
               }
               return Expanded(
@@ -76,7 +77,10 @@ class AppointmentTab extends StatelessWidget {
               );
             },
           ),
+        
         ],
+        
+      ),
       ),
     );
   }
