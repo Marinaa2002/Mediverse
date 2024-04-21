@@ -1,9 +1,12 @@
+import 'package:camera/camera.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/Bloc_Observer.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/Manager/staff_request_cubit.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/views/FormStaff.dart';
@@ -18,6 +21,7 @@ import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/Manager/
 import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/view/PatientSignUp.dart';
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/repos/labResult_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
@@ -28,6 +32,13 @@ void main() async {
   await Firebase.initializeApp();
   Stripe.publishableKey = ApiKeys.publishableKey;
   await FirebaseAppCheck.instance.activate();
+  await Hive.initFlutter();
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  await Firebase.initializeApp();
+  Bloc.observer = SimpleBlocObserver();
+  Hive.registerAdapter(NoteModelAdapter());
+  await Hive.openBox<NoteModel>(kNotesBox);
   runApp(const MyApp());
 }
 
