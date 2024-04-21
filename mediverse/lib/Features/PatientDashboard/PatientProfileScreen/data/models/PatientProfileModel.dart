@@ -1,10 +1,10 @@
 class PatientProfileModel{
-  final String name;
-  final String age;
-  final String email;
-  final String nationalId;
-  final String phoneNumber;
-  final String profilePicture;
+  String name;
+  String age;
+  String email;
+  String nationalId;
+  String phoneNumber;
+  String profilePicture;
 
   PatientProfileModel(this.name, this.age, this.email, this.nationalId, this.phoneNumber, this.profilePicture);
 
