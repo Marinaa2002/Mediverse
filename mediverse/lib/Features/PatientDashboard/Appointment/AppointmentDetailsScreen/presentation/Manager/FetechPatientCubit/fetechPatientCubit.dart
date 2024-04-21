@@ -1,9 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:mediverse/AllModels/admin.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepo.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientState.dart';
-import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/data/repos/FetechAdminInformationRepo.dart';
-import 'package:meta/meta.dart';
 
 class FetechPatientInfoCubit extends Cubit<FetechPatientInfoState> {
   FetechPatientInfoCubit(this.getPatientInfoRepo)

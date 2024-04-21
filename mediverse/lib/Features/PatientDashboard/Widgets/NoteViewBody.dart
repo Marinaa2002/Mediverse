@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/Custom_app_bar.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/NotesItemListView.dart';
 
 class NotesViewBody extends StatefulWidget {

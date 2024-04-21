@@ -7,15 +7,13 @@ import 'package:meta/meta.dart';
 
 import '../../../data/repos/labResult_repo.dart';
 
-
 part 'lab_result_state.dart';
 
 class LabResultCubit extends Cubit<LabResultState> {
-  LabResultCubit(this.labResultsRepo ) : super(LabResultInitial());
+  LabResultCubit(this.labResultsRepo) : super(LabResultInitial());
 
   final LabResultsRepo labResultsRepo;
-  CollectionReference messages =
-  FirebaseFirestore.instance.collection('labs');
+  CollectionReference messages = FirebaseFirestore.instance.collection('labs');
 
   void sendLabModel({required String now_date, required String imageUrl}) {
     emit(LabResultLoading());
@@ -26,16 +24,15 @@ class LabResultCubit extends Cubit<LabResultState> {
     }
   }
 
-  void getLabModels() async{
+  void getLabModels() async {
     emit(LabResultLoading());
-    await messages.orderBy('createdAt', descending: true).snapshots().listen((event) async {
+    await messages
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .listen((event) async {
       var result = await labResultsRepo.getLabs(event: event);
-      result.fold((left) =>
-          emit(LabResultFailure(left.errMsg)),
-              (right) =>
-                  emit(LabResultSuccess(labModelList: right))
-      );
+      result.fold((left) => emit(LabResultFailure(left.errMsg)),
+          (right) => emit(LabResultSuccess(labModelList: right)));
     });
   }
-
 }

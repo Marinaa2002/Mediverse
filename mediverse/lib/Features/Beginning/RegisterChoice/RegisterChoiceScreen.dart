@@ -28,15 +28,15 @@ class RegisterChoice extends StatelessWidget {
           ),
           ChoiceButton(
             text: 'Patient',
-            screen: PatientSignUpScreen(),
+            screen: '/signUpPatient',
           ),
           ChoiceButton(
             text: 'Doctor',
-            screen: DoctorSignUpScreen(),
+            screen: '/signUpDoctor',
           ),
           ChoiceButton(
             text: 'Staff',
-            screen: FormStaff(),
+            screen: '/formStaff',
           ),
         ]),
       ),

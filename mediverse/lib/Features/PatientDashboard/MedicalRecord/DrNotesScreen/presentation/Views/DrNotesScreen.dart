@@ -1,9 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 
 import 'package:mediverse/Features/PatientDashboard/Widgets/NoteViewBody.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/add_note_bottom_sheet.dart';
+import 'package:mediverse/main.dart';
 
 class DrNotesScreen extends StatelessWidget {
   const DrNotesScreen({Key? key}) : super(key: key);
@@ -14,15 +17,18 @@ class DrNotesScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DoctorChat()),
-            );
+            Navigator.pop(context);
           },
         ),
-        title: const Text("My medical Notes"),
+        title: const Text(
+          "My medical Notes",
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
       ),
       backgroundColor: kSecondryBackgroundColor,
@@ -38,7 +44,10 @@ class DrNotesScreen extends StatelessWidget {
               ),
               context: context,
               builder: (context) {
-                return const AddNoteBottomSheet();
+                return BlocProvider.value(
+                  value: notesCubit,
+                  child: const AddNoteBottomSheet(),
+                );
               });
         },
         child: const Icon(

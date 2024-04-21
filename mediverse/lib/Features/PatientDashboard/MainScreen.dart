@@ -21,17 +21,17 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   static const List<Tab> myTabs = <Tab>[
-    Tab(text: 'LEFT'),
+    // Tab(text: 'LEFT'),
     Tab(text: 'Middle'),
     Tab(text: 'RIGHT'),
   ];
 
   @override
-  Future<void> initState() async {
+  void initState() {
     super.initState();
-    await Hive.openBox<NoteModel>(widget.id); // here hat5do
-
-    _tabController = TabController(vsync: this, length: myTabs.length);
+    BlocProvider.of<FetechPatientInfoCubit>(context)
+        .getPatientInforCubitFunction(widget.id);
+    _tabController = TabController(vsync: this, length: 2);
   }
 
   @override
@@ -42,8 +42,6 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<FetechPatientInfoCubit>(context)
-        .getPatientInforCubitFunction(widget.id);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -71,7 +69,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
               unselectedLabelStyle: const TextStyle(),
               indicatorColor: kprimaryColor,
               tabs: const [
-                Tab(text: 'Appointment'),
+                // Tab(text: 'Appointment'),
                 Tab(text: 'Medical Record'),
                 Tab(text: 'Medical Blogs'),
               ],
@@ -81,7 +79,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
             child: TabBarView(
               controller: _tabController,
               children: [
-                AppointmentTab(),
+                // AppointmentTab(),
                 const MedicalRecordsTab(),
                 MedicalBlogsTab(),
               ],

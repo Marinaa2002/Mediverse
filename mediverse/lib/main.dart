@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:camera/camera.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,7 +23,15 @@ import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/Manager/
 import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/view/PatientSignUp.dart';
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepoImpl.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/AddNoteCubit.dart/add_note_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/Edit_View_Notes.dart';
+
+import 'Features/PatientDashboard/MainScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,49 +39,87 @@ void main() async {
   Stripe.publishableKey = ApiKeys.publishableKey;
   await FirebaseAppCheck.instance.activate();
   await Hive.initFlutter();
-  WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
-  await Firebase.initializeApp();
   Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
   // await Hive.openBox<NoteModel>(kNotesBox); // here hat5do
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final NotesCubit notesCubit = NotesCubit();
+final AddNoteCubit addNoteCubit = AddNoteCubit();
 
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => SignUpCubit()),
-        BlocProvider(create: (context) => SignUpDocCubit()),
-        BlocProvider(create: (context) => StaffRequestCubit()),
-        BlocProvider(
-          create: (context) => ForgetPasswordCubit(LoginRepoImpl()),
-        ),
-        BlocProvider(
-          create: (context) => LoginCubit(LoginRepoImpl()),
-        ),
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
-        routes: {
-          '/login': (context) => LoginScreen(),
-          '/registerChoice': (context) => RegisterChoice(),
-          '/formStaff': (context) => FormStaff(),
-          '/signUpDoctor': (context) => DoctorSignUpScreen(),
-          '/signUpPatient': (context) => PatientSignUpScreen(),
-          kCameraScrenId: (context) => const CameraScreen(),
-        },
-        home: SplashScreen(),
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/login': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => ForgetPasswordCubit(LoginRepoImpl()),
+                ),
+                BlocProvider(
+                  create: (context) => LoginCubit(LoginRepoImpl()),
+                ),
+              ],
+              child: LoginScreen(),
+            ),
+        '/registerChoice': (context) => RegisterChoice(),
+        '/formStaff': (context) => BlocProvider(
+              create: (context) => StaffRequestCubit(),
+              child: FormStaff(),
+            ),
+        '/signUpDoctor': (context) => BlocProvider(
+              create: (context) => SignUpDocCubit(),
+              child: DoctorSignUpScreen(),
+            ),
+        '/signUpPatient': (context) => BlocProvider(
+              create: (context) => SignUpCubit(),
+              child: PatientSignUpScreen(),
+            ),
+        '/DrNotes': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: notesCubit,
+                ),
+                BlocProvider.value(
+                  value: addNoteCubit,
+                ),
+              ],
+              child: DrNotesScreen(),
+            ),
+        kCameraScrenId: (context) => const CameraScreen(),
+        '/mainScreenPatient': (context) => BlocProvider(
+              create: (context) =>
+                  FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: MainScreenWidget(
+                  id: currentUserId,
+                ),
+              ),
+            ),
+        // '/EditNoteView': (context) => BlocProvider(
+        //       create: (context) => NotesCubit(),
+        //       child: EditNoteView(
+        //         note: NoteModel(
+        //           title: 'title',
+        //           subTitle: 'subTitle',
+        //           date: '',
+        //           color: 0,
+        //         ),
+        //       ),
+        //     ),
+      },
     );
   }
 }

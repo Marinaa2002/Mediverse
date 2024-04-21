@@ -22,7 +22,7 @@ const kCreatedAt = 'createdAt';
 const kcolorOfChattingTextFieldAndIcon = Color.fromRGBO(241, 211, 189, 2);
 const kChatid = "ChatPage";
 const kCameraScrenId = '/CameraScreen';
-const kNotesBox = 'notes_box';
+var kNotesBox = 'notes_box';
 List<Color> kColors = const [
   Color(0xffADD8E6),
   Color(0xffC0C0C0),

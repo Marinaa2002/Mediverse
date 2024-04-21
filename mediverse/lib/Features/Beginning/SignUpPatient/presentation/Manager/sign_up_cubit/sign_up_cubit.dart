@@ -41,7 +41,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   Future<void> signUpInfoPatient(
       {required String name,
-      required int age,
+      required String age,
       required String phoneNum,
       required String national_id,
       required String email,
@@ -50,12 +50,13 @@ class SignUpCubit extends Cubit<SignUpState> {
     try {
       final uid = await signUpUser(email: email, password: password);
       // Add a new document with specified fields
-      DocumentReference docRef = await metaData.add({
+      DocumentReference patientref = await metaData.add({
         'type': 'Patient',
         'email': email,
+        // 'status':'Show'
       });
       Patient patient = Patient(
-        id: docRef.id,
+        id: patientref.id,
         Email: email,
         Name: name,
         Age: age,

@@ -10,9 +10,6 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Email_service.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/AddedDoctorsWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/DoctorRequestWidget.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalMangmentRequestCompleteWidget.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/LabRequestAccountCompeleteWidget.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/PatientCard.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
 class HospitalMangmentAddDoctorsBody extends StatefulWidget {

@@ -117,6 +117,7 @@ class VerifyAccountWidget extends StatelessWidget {
                         DocumentReference docRef = await metaData.add({
                           'type': 'Doctor',
                           'email': requests[i].email,
+                          // 'status':'show'
                         });
                         FirebaseFirestore.instance
                             .collection('info_Doctors')
@@ -156,6 +157,7 @@ class VerifyAccountWidget extends StatelessWidget {
                         DocumentReference staffRef = await metaData.add({
                           'type': requests[i].staff,
                           'email': requests[i].email,
+                          // 'status':'show'
                         });
                         log(requestId);
                         // Update the status of the request to "Accepted"

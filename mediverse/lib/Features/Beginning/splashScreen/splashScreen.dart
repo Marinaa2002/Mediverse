@@ -39,8 +39,8 @@ class _SplashState extends State<SplashScreen>
     // Navigate to LoginScreen after the animation finishes
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+        Navigator.of(context).pushReplacementNamed(
+          '/login',
         );
       }
     });
