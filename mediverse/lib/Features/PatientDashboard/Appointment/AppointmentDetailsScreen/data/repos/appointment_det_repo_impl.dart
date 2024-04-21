@@ -35,7 +35,7 @@ class AppointmentDetailsRepoImpl implements AppointmentDetailsRepo {
         patients: data['Patients'],
         previousAppointments: data['Previous_Appointments'],
         bookings: data['Bookings'],
-        Status: data['Status'],
+        condition: data['Condition'],
       );
 
       print(dummydoc);
