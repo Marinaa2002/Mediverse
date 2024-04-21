@@ -29,13 +29,10 @@ class HospitalMangmentRequestWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RowOfRequestWidget(
-                  requestModelField: doctorModel.name!,
+                  requestModelField: doctorModel.name,
                   requestField: 'Requested Name',
                 ),
-                RowOfRequestWidget(
-                  requestModelField: doctorModel.hospital,
-                  requestField: 'Organization Name',
-                ),
+                
                 RowOfRequestWidget(
                     requestModelField: doctorModel.licenseNumber,
                     requestField: 'License Number')

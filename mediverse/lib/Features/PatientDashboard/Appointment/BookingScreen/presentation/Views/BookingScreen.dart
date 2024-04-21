@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
@@ -12,7 +13,8 @@ const List<String> paymentMethods = <String>[
 ];
 
 class BookingScreen extends StatelessWidget {
-  const BookingScreen({super.key});
+  BookingScreen({super.key, required this.booking});
+  Booking booking;
 
   @override
   Widget build(BuildContext context) {

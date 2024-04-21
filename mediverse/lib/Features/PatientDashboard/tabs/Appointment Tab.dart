@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:mediverse/AllModels/doctor.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 
-import '../Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 import '../Widgets/CustomCardRatings.dart';
 import '../Widgets/SearchBoxAppointmentWidget.dart';
 
@@ -16,14 +14,29 @@ class AppointmentTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.95,
-            child: SearchBarProject(
-              searchController: _searchController,
-              onSearchTextChanged: (String) {},
+
+    return BlocProvider(
+      create: (context) => AppointmentDetailsCubit(),
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ListView(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: const [
+                    SingleChildScrollView(
+                      child: SearchBoxAppointmentWidget(),
+                    ),
+                  ],
+                ),
+                CustomCardRatings(name: 'Dr Ahmed'),
+                CustomCardRatings(name: 'Dr Ashraf'),
+                CustomCardRatings(name: 'Dr Atef'),
+              ],
+
             ),
           ),
           StreamBuilder<QuerySnapshot>(
