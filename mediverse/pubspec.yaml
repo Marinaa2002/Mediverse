@@ -38,18 +38,8 @@ dependencies:
   flutter_stripe: ^10.0.0
   either_dart: ^1.0.0
   firebase_auth: ^4.7.2
-  firebase_core: ^2.14.0
   firebase_storage: ^11.0.1
-  flutter:
-    sdk: flutter
   flutter_bloc: ^8.1.4
-  auto_size_text: ^3.0.0
-  awesome_dialog: ^3.2.0
-  cached_network_image: ^3.3.1
-  cloud_firestore: ^4.8.4
-  dartz: ^0.10.1
-  firebase_auth: ^4.7.2
-  firebase_storage: ^11.0.1
   flutter_rating_bar: ^4.0.1
   font_awesome_flutter: ^10.7.0
   get_it: ^7.7.0
