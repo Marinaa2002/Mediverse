@@ -32,10 +32,7 @@ class HospitalMangmentRequestWidget extends StatelessWidget {
                   requestModelField: doctorModel.name,
                   requestField: 'Requested Name',
                 ),
-                RowOfRequestWidget(
-                  requestModelField: doctorModel.hospital,
-                  requestField: 'Organization Name',
-                ),
+                
                 RowOfRequestWidget(
                     requestModelField: doctorModel.licenseNumber,
                     requestField: 'License Number')

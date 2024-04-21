@@ -89,15 +89,8 @@ class DrInformation extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      Text(
-                        'Works at ${state.doctor.hospital}',
-                        textAlign: TextAlign.start,
-                        style: Themes.bodyMedium.copyWith(
-                          color: Colors.black,
-                          fontFamily: 'Readex Pro',
-                          fontSize: 20,
-                        ),
-                      ),
+                      
+                      
                       RateWidget(
                         rating: state.doctor.rating!,
                         ratingCount: 12,
