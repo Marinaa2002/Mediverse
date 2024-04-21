@@ -11,10 +11,14 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Logi
 import 'package:mediverse/Features/Beginning/SignUpDoctor/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/data/repos/patient_review_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Manager/patient_review_cubit/patient_review_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/repos/labResult_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/data/repos/ProfilePatientRepo_Impl.dart';
+import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Manager/profile_edit_cubit/profile_edit_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +42,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create:(context) => LoginCubit(LoginRepoImpl()),),
         BlocProvider(create: (context) => LabResultCubit(LabResultRepoImpl())..getLabModels(),),
         BlocProvider(create: (context) => MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())..getLabModels(),),
+        BlocProvider(create:(context) => PatientReviewCubit(PatientReviewRepoImpl())..getReviewModels(),),
+        BlocProvider(create:(context) => ProfileEditCubit(ProfilePatientRepoImpl()),),
       ],
         child: MaterialApp(
           title: 'Flutter Demo',
