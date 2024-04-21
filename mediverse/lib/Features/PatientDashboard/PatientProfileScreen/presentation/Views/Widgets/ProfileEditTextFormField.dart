@@ -8,11 +8,9 @@ class ProfileTextFormField extends StatelessWidget {
   ProfileTextFormField({
     super.key,
     required this.text,
-    required this.validator,
     required this.onChanged,
     required this.controller
   });
-  String? Function(String?)? validator;
   Function(String)? onChanged;
   TextEditingController? controller;
 
@@ -22,11 +20,8 @@ class ProfileTextFormField extends StatelessWidget {
     return Container(
       width: 390,
       child: TextFormField(
-          validator: validator,
           onChanged: onChanged,
           controller: controller,
-          //     controller: _model.emailAddressController,
-          //     focusNode: _model.emailAddressFocusNode,
           autofocus: false,
           autofillHints: [AutofillHints.email],
           obscureText: false,
@@ -66,8 +61,6 @@ class ProfileTextFormField extends StatelessWidget {
             contentPadding: const EdgeInsets.all(16),
           ),
           style: Themes.bodyMed
-        //   keyboardType: TextInputType.emailAddress,
-        // validator: _model.emailAddressControllerValidator.asValidator(context),
       ),
     );
   }

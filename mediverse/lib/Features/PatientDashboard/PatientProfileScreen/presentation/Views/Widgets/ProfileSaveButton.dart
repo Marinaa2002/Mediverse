@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediverse/Constants/Themes.dart';
-
 import '../../../../../../Constants/constant.dart';
-
 
 class ProfileSaveButton extends StatelessWidget {
   final text;
@@ -29,7 +25,7 @@ class ProfileSaveButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor:
-              primaryColor, // Assuming text color should be white
+              primaryColor,
               elevation: 3,
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
