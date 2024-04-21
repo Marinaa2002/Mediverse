@@ -64,7 +64,7 @@ class Doctor {
       slots: (json['Slots'] as List<dynamic>?)
           ?.map((slotJson) => Slot.fromJson(slotJson as Map<String, dynamic>))
           .toList(),
-      Clinics: List<String>.from(json['Clinics'] ?? []),
+      Clinics: List<dynamic>.from(json['Clinics'] ?? []),
       speciality: json['Speciality'],
       state: json['State'],
       condition: json['Condition'],

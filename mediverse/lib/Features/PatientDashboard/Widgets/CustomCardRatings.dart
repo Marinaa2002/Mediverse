@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
+import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomRatingIcon.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 
 class CustomCardRatings extends StatelessWidget {
   CustomCardRatings({
@@ -26,7 +26,7 @@ class CustomCardRatings extends StatelessWidget {
             builder: (_) => BlocProvider.value(
               value: BlocProvider.of<AppointmentDetailsCubit>(context),
               child: AppointmentDetailsScreen(
-                doctorID: '.',
+                doctorID: doctor.id,
               ),
             ),
           ),
@@ -52,14 +52,13 @@ class CustomCardRatings extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(2),
+                padding: EdgeInsets.all(2),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +76,8 @@ class CustomCardRatings extends StatelessWidget {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
                                   child: RatingBarIndicator(
-                                    rating: 5, //state.doctor.Rating,
+                                    rating:
+                                        doctor.rating!, //state.doctor.Rating,
                                     itemBuilder: (context, index) => const Icon(
                                       Icons.star,
                                       color: Colors.amber,
@@ -109,14 +109,27 @@ class CustomCardRatings extends StatelessWidget {
                                     fit: BoxFit.fill,
                                     alignment: const Alignment(0, 0),
                                   ),
-
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      const Padding(
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                doctor.speciality,
+                                style: Themes.textSmall,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -135,7 +148,6 @@ class CustomCardRatings extends StatelessWidget {
                       ),
                     ],
                   ),
-
                 ),
               ),
             ),
