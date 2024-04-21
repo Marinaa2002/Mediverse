@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widg
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldPassWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/startingContWidget.dart';
+import 'package:mediverse/Features/DoctorDashboard/MainScreenDoctor.dart';
+import 'package:mediverse/Features/DoctorDashboard/ViewMedicalHistory/presentation/Views/ViewMedicalHistory.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepo.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepoImpl.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
@@ -19,6 +22,10 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScre
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/AdminMainScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
+import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabStaffMainScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalMangmentAddDoctorsBody.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../Constants/Themes.dart';
 import '../../../../../GlobalWidgets/titleText.dart';
@@ -38,34 +45,78 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
-      listener: (context, state) {
+      listener: (context, state) async {
+        String type = '', documentid = '';
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MultiBlocProvider(
-                  providers: [
-                    BlocProvider(
-                      create: (context) => NotesCubit(),
+          CollectionReference metaData =
+              FirebaseFirestore.instance.collection('MetaData');
+          QuerySnapshot querySnapshot =
+              await metaData.where('email', isEqualTo: email).limit(1).get();
+          // If document(s) found, return the ID of the first one
+          if (querySnapshot.docs.isNotEmpty) {
+            DocumentSnapshot firstDocument = querySnapshot.docs.first;
+            Map<String, dynamic> documentData =
+                firstDocument.data() as Map<String, dynamic>;
+            documentid = querySnapshot.docs.first.id;
+            type = documentData[
+                'type']; // Change 'type' to the actual field name} else {
+            // No document found
+            return null;
+          }
+          if (type == 'Patient') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider(
+                        create: (context) => NotesCubit(),
+                      ),
+                      BlocProvider(
+                        create: (context) =>
+                            FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
+                      ),
+                      BlocProvider(
+                        create: (context) =>
+                            LabResultCubit(LabResultRepoImpl()),
+                      ),
+                      BlocProvider(
+                          create: (context) => MedicalPrescriptionCubit(
+                              MedicalPrescriptionRepoImpl())),
+                    ],
+                    child: MainScreenWidget(
+                      id: documentid,
                     ),
-                    BlocProvider(
-                      create: (context) =>
-                          FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
-                    ),
-                    BlocProvider(
-                      create: (context) => LabResultCubit(LabResultRepoImpl()),
-                    ),
-                    BlocProvider(
-                        create: (context) => MedicalPrescriptionCubit(
-                            MedicalPrescriptionRepoImpl())),
-                  ],
-                  child: MainScreenWidget(
-                    email: email!,
                   ),
-                ),
-              ));
+                ));
+          } else if (type == 'Doctor') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MainScreenDoctor(),
+                ));
+          } else if (type == 'Lab Staff') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LabStaffScreen(),
+                ));
+          } else if (type == 'Hospital Staff') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      HospitalStaffManagementScreenAddDoctors(),
+                ));
+          } else if (email == 'mediverse@mediverse.com') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AdminMainScreenWidget(),
+                ));
+          }
           isLoading = false;
         } else if (state is LoginFailure) {
           isLoading = false;

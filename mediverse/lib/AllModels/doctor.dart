@@ -2,6 +2,7 @@ import 'package:mediverse/AllModels/ClinicsAppointment.dart';
 import 'package:mediverse/AllModels/Slot.dart';
 
 class Doctor {
+  final String id;
   final String? name;
   final String? age;
   final String? phone;
@@ -23,6 +24,7 @@ class Doctor {
   final String condition;
 
   Doctor({
+    required this.id,
     this.name,
     this.age,
     this.phone,
@@ -46,6 +48,7 @@ class Doctor {
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
+      id: json['id'],
       name: json['Name'],
       age: json['Age'],
       phone: json['Phone'],

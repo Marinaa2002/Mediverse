@@ -101,8 +101,10 @@ class VerifyAccountWidget extends StatelessWidget {
                 itemBuilder: (context, i) {
                   return LabRequestAccountCompeleteWidget(
                     requestModel: requests![i],
-                    onPressedAccept: () {
+                    onPressedAccept: () async {
                       String requestId = formRequestsSnapshot.data!.docs[i].id;
+                      CollectionReference metaData =
+                          FirebaseFirestore.instance.collection('MetaData');
                       if (requests[i].staff == "Doctor") {
                         // Update the status of the request to "Accepted"
                         FirebaseFirestore.instance
@@ -111,9 +113,15 @@ class VerifyAccountWidget extends StatelessWidget {
                             .update({
                           'Status': 'Verified',
                         });
+                        // Add a new document with specified fields
+                        DocumentReference docRef = await metaData.add({
+                          'type': 'Doctor',
+                          'email': requests[i].email,
+                        });
                         FirebaseFirestore.instance
                             .collection('info_Doctors')
                             .add({
+                          'id': docRef.id,
                           'Email': requests[i].email,
                           'Name': requests[i].name,
                           'Age': '',
@@ -137,11 +145,18 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Condition':
                               'Verified' // Empty map for clinic appointments
                         });
+                        FirebaseFirestore.instance
+                            .collection('Form_Requests_Info')
+                            .doc(requestId)
+                            .delete();
                         EmailService().sendEmail(acceptanceMailDoctor,
                             'Request Acceptance', 'rinosamyramy@gmail.com');
                       } else {
                         // Retrieve the document ID of the request
-
+                        DocumentReference staffRef = await metaData.add({
+                          'type': requests[i].staff,
+                          'email': requests[i].email,
+                        });
                         log(requestId);
                         // Update the status of the request to "Accepted"
                         FirebaseFirestore.instance
@@ -152,6 +167,7 @@ class VerifyAccountWidget extends StatelessWidget {
                         });
 
                         FirebaseFirestore.instance.collection('Staff').add({
+                          'id': staffRef.id,
                           'Email': requests[i].email,
                           'Name': requests[i].name,
                           'License_Number': requests[i].licenseNumber,

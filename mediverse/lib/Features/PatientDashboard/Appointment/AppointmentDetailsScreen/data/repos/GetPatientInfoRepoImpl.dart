@@ -6,11 +6,11 @@ import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetai
 
 class GetPatientInfoRepoImpl extends GetPatientInfoRepo {
   @override
-  Future<Either<Failure, Patient>> getPatientInfoFunction(String email) async {
+  Future<Either<Failure, Patient>> getPatientInfoFunction(String id) async {
     try {
       final QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('info_Patients')
-          .where('Email', isEqualTo: email)
+          .where('id', isEqualTo: id)
           .get();
 
       if (snapshot.docs.isNotEmpty) {
@@ -20,8 +20,7 @@ class GetPatientInfoRepoImpl extends GetPatientInfoRepo {
           return Right(patient); // Success
         }
       }
-      return Left(
-          ServerFailure(errMsg: 'Patient with email $email not found.'));
+      return Left(ServerFailure(errMsg: 'Patient with email $id not found.'));
     } catch (e) {
       return Left(ServerFailure(errMsg: 'Failed to get patient data: $e'));
     }

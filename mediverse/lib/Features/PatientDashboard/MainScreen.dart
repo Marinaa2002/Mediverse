@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/tabs/Appointment%20Tab.dart';
 
 import 'Widgets/CustomAppbarMainScreenPatient.dart';
@@ -9,8 +11,8 @@ import 'tabs/MedicalBlogsTab.dart';
 import 'tabs/MedicalRecordTab.dart';
 
 class MainScreenWidget extends StatefulWidget {
-  MainScreenWidget({Key? key, required this.email}) : super(key: key);
-  final String email;
+  MainScreenWidget({Key? key, required this.id}) : super(key: key);
+  final String id;
   @override
   State<MainScreenWidget> createState() => _MainScreenWidgetState();
 }
@@ -25,8 +27,10 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
   ];
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
+    await Hive.openBox<NoteModel>(widget.id); // here hat5do
+
     _tabController = TabController(vsync: this, length: myTabs.length);
   }
 
@@ -39,7 +43,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<FetechPatientInfoCubit>(context)
-        .getPatientInforCubitFunction(widget.email);
+        .getPatientInforCubitFunction(widget.id);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
