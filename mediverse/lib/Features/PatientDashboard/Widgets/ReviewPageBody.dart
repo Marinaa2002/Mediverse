@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/AllModels/doctor.dart';
 import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 import 'CustomCardRatings.dart';
@@ -150,10 +151,10 @@ class ReviewPageBody extends StatelessWidget {
             ],
           ),
         ),
-        CustomCardRatings(name: 'Vacation Home'),
-        CustomCardRatings(name: 'Vacation Home'),
-        CustomCardRatings(name: 'Vacation Home'),
-        CustomCardRatings(name: 'Vacation Home'),
+        // CustomCardRatings(name: 'Vacation Home', doctor: null,),
+        // CustomCardRatings(name: 'Vacation Home', doctor: null,),
+        // CustomCardRatings(name: 'Vacation Home', doctor: null,),
+        // CustomCardRatings(name: 'Vacation Home', doctor: Doctor(email: email, hospital: hospital, licenseNumber: licenseNumber, nationalID: nationalID, condition: condition),),
       ],
     );
   }

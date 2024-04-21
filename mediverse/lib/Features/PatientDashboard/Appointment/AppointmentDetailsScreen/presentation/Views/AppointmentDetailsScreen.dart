@@ -15,8 +15,10 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
+
 class AppointmentDetailsScreen extends StatefulWidget {
   AppointmentDetailsScreen({super.key, required this.doctorID});
+
 
   String doctorID;
 
@@ -27,7 +29,7 @@ class AppointmentDetailsScreen extends StatefulWidget {
 
 class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+//marco ya3ml hna
   @override
   void initState() {
     BlocProvider.of<AppointmentDetailsCubit>(context)

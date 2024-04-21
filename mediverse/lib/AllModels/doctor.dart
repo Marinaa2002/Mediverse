@@ -20,7 +20,8 @@ class Doctor {
   final String speciality;
   final List<dynamic>? patients;
   final String? state;
-  final String Status;
+  final String condition;
+
 
   Doctor(
       {required this.id,
@@ -41,7 +42,8 @@ class Doctor {
       required this.speciality,
       this.patients,
       this.state,
-      required this.Status});
+      required this.condition});
+
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
@@ -65,7 +67,8 @@ class Doctor {
       Clinics: List<String>.from(json['Clinics'] ?? []),
       speciality: json['Speciality'],
       state: json['State'],
-      Status: json['Status'],
+      condition: json['Condition'],
+
     );
   }
 }

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomRatingIcon.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+
 class CustomCardRatings extends StatelessWidget {
-  CustomCardRatings({super.key, required this.name});
+  CustomCardRatings({
+    super.key,
+    required this.doctor,
+  });
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final String name;
+  final Doctor doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +108,7 @@ class CustomCardRatings extends StatelessWidget {
                                     fit: BoxFit.fill,
                                     alignment: const Alignment(0, 0),
                                   ),
+
                                 ),
                               ),
                             ),
@@ -128,6 +134,7 @@ class CustomCardRatings extends StatelessWidget {
                       ),
                     ],
                   ),
+
                 ),
               ),
             ),
