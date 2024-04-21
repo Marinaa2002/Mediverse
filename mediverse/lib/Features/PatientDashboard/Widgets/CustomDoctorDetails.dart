@@ -62,10 +62,10 @@ class CustomDoctorDetails extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(state.doctor.Name,
+                          Text(state.doctor.name,
                               textAlign: TextAlign.start,
                               style: Themes.splashBoldTitle),
-                          Text(state.doctor.Speciality,
+                          Text(state.doctor.speciality,
                               textAlign: TextAlign.start,
                               style: Themes.labelMedium),
                           Row(
@@ -74,12 +74,12 @@ class CustomDoctorDetails extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0, 0, 8, 0),
-                                child: Text(state.doctor.Rating.toString(),
+                                child: Text(state.doctor.rating.toString(),
                                     style: Themes.labelMedium),
                               ),
                               RatingBarIndicator(
                                 rating:
-                                    state.doctor.Rating, //state.doctor.Rating,
+                                    state.doctor.rating!, //state.doctor.Rating,
                                 itemBuilder: (context, index) => const Icon(
                                   Icons.star,
                                   color: Colors.amber,

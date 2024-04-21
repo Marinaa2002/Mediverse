@@ -71,7 +71,7 @@ class DrInformation extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Dr ${state.doctor.name!}',
+                        'Dr ${state.doctor.name}',
                         textAlign: TextAlign.start,
                         style: Themes.titleSmall.copyWith(
                           fontFamily: 'Readex Pro',
@@ -81,7 +81,7 @@ class DrInformation extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        state.doctor.speciality!,
+                        state.doctor.speciality,
                         textAlign: TextAlign.start,
                         style: Themes.bodyMedium.copyWith(
                           color: Colors.black,

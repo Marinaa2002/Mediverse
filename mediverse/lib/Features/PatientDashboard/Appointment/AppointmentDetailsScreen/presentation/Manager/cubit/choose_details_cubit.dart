@@ -51,12 +51,12 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
     }
 
     List<bool> dayListBool =
-        List<bool>.filled(doctor.Slots[index]['Time Slots'].length, false);
+        List<bool>.filled(doctor.slots![index]['Time Slots'].length, false);
 
     for (int i = 0; i < dayListBool.length; i++) {
       daysList.add(CustomDayWidget(
-        day: doctor.Slots[index]['Time Slots'][i]['Day'],
-        date: doctor.Slots[index]['Time Slots'][i]['Date'],
+        day: doctor.slots![index]['Time Slots'][i]['Day'],
+        date: doctor.slots![index]['Time Slots'][i]['Date'],
         isChosen: dayListBool[i],
       ));
     }
@@ -86,14 +86,14 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
 
     for (int i = 0; i < dayListBool.length; i++) {
       daysList.add(CustomDayWidget(
-        day: doctor.Slots[selectedClinic]['Time Slots'][i]['Day'],
-        date: doctor.Slots[selectedClinic]['Time Slots'][i]['Date'],
+        day: doctor.slots![selectedClinic]['Time Slots'][i]['Day'],
+        date: doctor.slots![selectedClinic]['Time Slots'][i]['Date'],
         isChosen: dayListBool[i],
       ));
     }
 
     List<bool> timeListBool = List<bool>.filled(
-      doctor.Slots[selectedClinic]['Time Slots'][index]['Time'].length,
+      doctor.slots![selectedClinic]['Time Slots'][index]['Time'].length,
       false,
       growable: true,
     );
@@ -103,9 +103,9 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
 
     for (int i = 0; i < timeListBool.length; i++) {
       timeList.add(CustomTimeWidget(
-        time: doctor.Slots[selectedClinic]['Time Slots'][index]['Time'][i],
+        time: doctor.slots![selectedClinic]['Time Slots'][index]['Time'][i],
         isChosen: timeListBool[i],
-        isBooked: (doctor.Slots[selectedClinic]['Time Slots'][index]['Status']
+        isBooked: (doctor.slots![selectedClinic]['Time Slots'][index]['Status']
                     [i] ==
                 'booked')
             ? true
@@ -136,7 +136,7 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
       }
     }
 
-    String selectedClinic = doctor.Slots[selectedClinicIndex]['Name'];
+    String selectedClinic = doctor.slots![selectedClinicIndex]['Name'];
 
     int selectedDayIndex = 0;
 
@@ -146,9 +146,9 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
       }
     }
 
-    String selectedDay = doctor.Slots[selectedClinicIndex]['Time Slots']
+    String selectedDay = doctor.slots![selectedClinicIndex]['Time Slots']
         [selectedDayIndex]['Day'];
-    String selectedDate = doctor.Slots[selectedClinicIndex]['Time Slots']
+    String selectedDate = doctor.slots![selectedClinicIndex]['Time Slots']
         [selectedDayIndex]['Date'];
 
     for (int i = 0; i < timeListBool.length; i++) {
@@ -157,9 +157,9 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
     print(timeListBool);
 
     String selectedTime =
-        doctor.Slots[selectedClinicIndex]['Time Slots'][index]['Time'][index];
+        doctor.slots![selectedClinicIndex]['Time Slots'][index]['Time'][index];
 
-    if (doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]
+    if (doctor.slots![selectedClinicIndex]['Time Slots'][selectedDayIndex]
             ['Status'][index] ==
         'booked') {
       emit(ChooseDetailsReady(
@@ -175,34 +175,32 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
         selectedClinic,
         true,
       ));
-    }else{
+    } else {
       List<Widget> timeList = [];
-    for (int i = 0; i < timeListBool.length; i++) {
-      timeList.add(CustomTimeWidget(
-        time: doctor.Slots[selectedClinicIndex]['Time Slots'][selectedDayIndex]
-            ['Time'][i],
-        isChosen: timeListBool[i],
-        isBooked: (doctor.Slots[selectedClinicIndex]['Time Slots']
-                    [selectedDayIndex]['Status'][i] ==
-                'booked')
-            ? true
-            : false,
-      ));
+      for (int i = 0; i < timeListBool.length; i++) {
+        timeList.add(CustomTimeWidget(
+          time: doctor.slots![selectedClinicIndex]['Time Slots']
+              [selectedDayIndex]['Time'][i],
+          isChosen: timeListBool[i],
+          isBooked: (doctor.slots![selectedClinicIndex]['Time Slots']
+                      [selectedDayIndex]['Status'][i] ==
+                  'booked')
+              ? true
+              : false,
+        ));
+      }
+      emit(ChooseDetailsReady(
+          clinicsList,
+          clinicListBool,
+          daysList,
+          dayListBool,
+          timeList,
+          timeListBool,
+          selectedTime,
+          selectedDate,
+          selectedDay,
+          selectedClinic,
+          false));
     }
-    emit(ChooseDetailsReady(
-        clinicsList,
-        clinicListBool,
-        daysList,
-        dayListBool,
-        timeList,
-        timeListBool,
-        selectedTime,
-        selectedDate,
-        selectedDay,
-        selectedClinic,
-        false));
-    }
-
-    
   }
 }
