@@ -19,7 +19,6 @@ class Booking {
   final String Location;
   final String State;
 
-
   Map<String, dynamic> toMap() {
     return {
       'Doctor_id': Doctor_id,
@@ -30,6 +29,7 @@ class Booking {
       'Location': Location,
       'State': State,
     };
+  }
 
   factory Booking.fromJson(Map<String, dynamic> json) {
     return Booking(
@@ -37,10 +37,12 @@ class Booking {
       Doctor_id: json['Doctor_id'],
       Patient_id: json['Patient_id'],
       // Convert the date string from JSON to a DateTime object
-      dateTime: DateTime.parse(json['dateTime']),
+      //dateTime: DateTime.parse(json['dateTime']),
+      Day: json['Day'],
+      Date: json['Date'],
+      Time: json['Time'],
       Location: json['Location'],
       State: json['State'],
     );
-
   }
 }
