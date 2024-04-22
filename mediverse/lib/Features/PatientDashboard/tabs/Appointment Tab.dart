@@ -24,7 +24,9 @@ class AppointmentTab extends StatelessWidget {
           child: Column(
             children: [
               SearchBoxAppointmentWidget(),
-              SizedBox(height: 12,),
+              SizedBox(
+                height: 12,
+              ),
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('info_Doctors')
@@ -32,8 +34,8 @@ class AppointmentTab extends StatelessWidget {
                     .snapshots(),
                 builder: (context, snapshot) {
                   final doctors = snapshot.data?.docs
-                      .map((doc) =>
-                          Doctor.fromJson(doc.data() as Map<String, dynamic>))
+                      .map((doc) => Doctor.fromJson(
+                          doc.data() as Map<String, dynamic>, doc.id))
                       .toList();
                   if (doctors == null || doctors.isEmpty) {
                     return Center(
@@ -45,20 +47,8 @@ class AppointmentTab extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: doctors.length,
                           itemBuilder: (context, i) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          AppointmentDetailsScreen(
-                                        doctorID: doctors[i].id,
-                                      ),
-                                    ));
-                              },
-                              child: CustomCardRatings(
-                                doctor: doctors[i],
-                              ),
+                            return CustomCardRatings(
+                              doctor: doctors[i],
                             );
                           }),
                     );

@@ -45,9 +45,9 @@ class Doctor {
       required this.condition});
 
 
-  factory Doctor.fromJson(Map<String, dynamic> json) {
+  factory Doctor.fromJson(Map<String, dynamic> json, String doctorID) {
     return Doctor(
-      id: '',
+      id: doctorID,
       name: json['Name'],
       age: json['Age'],
       phone: json['Phone'],
