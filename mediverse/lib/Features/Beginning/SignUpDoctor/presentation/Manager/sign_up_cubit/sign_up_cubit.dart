@@ -12,6 +12,8 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
   SignUpDocCubit() : super(SignUpDocInitial());
   CollectionReference details =
       FirebaseFirestore.instance.collection('Form_Requests_Info');
+  CollectionReference metaData =
+      FirebaseFirestore.instance.collection('MetaData');
 
   final SignUpDocInfoRepoImpl signUpInfoRepo = SignUpDocInfoRepoImpl();
 
@@ -50,6 +52,12 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
     emit(SignUpDocLoading());
     try {
       final uid = await signUpDocUser(email: email, password: password);
+      // DocumentReference patientref = await metaData.add({
+      //   'type': 'Doctor',
+      //   'email': email,
+      //   'status': 'hide',
+      //   // 'status':'Show'
+      // });
       RequestModel requestModel = new RequestModel(
           email: email,
           staff: "Doctor",
@@ -60,6 +68,7 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
           name: name,
           status: "pending");
       signUpInfoRepo.signUpInfoDoctor(requestModel: requestModel);
+
       emit(SignUpDocSuccess());
     } on Exception catch (e) {
       emit(SignUpDocFailure(errMsg: 'Something went wrong, Try again'));

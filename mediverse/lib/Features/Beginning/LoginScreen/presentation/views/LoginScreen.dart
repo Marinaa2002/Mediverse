@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/WaitingScreen.dart';
 
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/ForgetPasswordWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
@@ -60,6 +61,16 @@ class LoginScreen extends StatelessWidget {
             type = documentData['type'];
             currentUserId = documentid;
             // status=documentData['status']; // Change 'type' to the actual field name} else {
+          } else {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider(
+                    create: (context) =>
+                        FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
+                    child: WaitingForApprovalScreen(),
+                  ),
+                ));
           }
           if (type == 'Patient') {
             kNotesBox = documentid;
@@ -219,12 +230,8 @@ class LoginScreen extends StatelessWidget {
                                 style: Themes.labelColored,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const RegisterChoice(),
-                                      ),
-                                    );
+                                    Navigator.of(context)
+                                        .pushNamed('/registerChoice');
                                   },
                               ),
                             ],
