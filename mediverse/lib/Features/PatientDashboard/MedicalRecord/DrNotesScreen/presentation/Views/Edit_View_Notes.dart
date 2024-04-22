@@ -4,6 +4,7 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/EditViewBody.dart';
+import 'package:mediverse/main.dart';
 
 class EditNoteView extends StatelessWidget {
   const EditNoteView({Key? key, required this.note}) : super(key: key);
@@ -14,13 +15,21 @@ class EditNoteView extends StatelessWidget {
     return Scaffold(
       backgroundColor: kSecondryBackgroundColor,
       appBar: AppBar(
-        title: const Text("Edit Notes"),
+        title: const Text(
+          "Edit Notes",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: kprimaryColor,
         actions: [

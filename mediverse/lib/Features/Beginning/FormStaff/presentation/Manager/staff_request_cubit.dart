@@ -13,6 +13,8 @@ class StaffRequestCubit extends Cubit<StaffRequestState> {
   final StaffRepoImpl staffRepo = StaffRepoImpl();
   CollectionReference details =
       FirebaseFirestore.instance.collection('Form_Request_Info');
+  CollectionReference metaData =
+      FirebaseFirestore.instance.collection('MetaData');
   Future<String?> signUpStaffUser(
       {required String email, required String password}) async {
     emit(StaffRequestLoading());
@@ -34,7 +36,7 @@ class StaffRequestCubit extends Cubit<StaffRequestState> {
     return null;
   }
 
-  void sendRequest({
+  Future<void> sendRequest({
     required String email,
     required String staff,
     required String orgName,
@@ -42,9 +44,15 @@ class StaffRequestCubit extends Cubit<StaffRequestState> {
     required String licNo,
     required String loc,
     required String name,
-  }) {
+  }) async {
     emit(StaffRequestLoading());
     try {
+      // DocumentReference patientref = await metaData.add({
+      //   'type': staff,
+      //   'email': email,
+      //   'status': 'hide',
+      //   // 'status':'Show'
+      // });
       RequestModel requestModel = new RequestModel(
           email: email,
           staff: staff,

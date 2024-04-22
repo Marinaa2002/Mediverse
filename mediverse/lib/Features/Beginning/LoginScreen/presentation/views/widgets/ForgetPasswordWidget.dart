@@ -7,11 +7,8 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../Manager/forgetPassword_cubit/forget_password_cubit.dart';
 
 class ForgetPasswordWidget extends StatelessWidget {
-  ForgetPasswordWidget({
-    super.key,
-    required this.forgetPassController,
-    required this.isLoad
-  });
+  ForgetPasswordWidget(
+      {super.key, required this.forgetPassController, required this.isLoad});
 
   final TextEditingController forgetPassController;
   bool isLoad = false;
@@ -19,10 +16,8 @@ class ForgetPasswordWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-      listener: (context, state) async{
-        if(state is ForgetPasswordLoading){
-          isLoad = true;
-        } else if (state is ForgetPasswordSuccess) {
+      listener: (context, state) async {
+        if (state is ForgetPasswordSuccess) {
           await AwesomeDialog(
             context: context,
             dialogType: DialogType.success,
@@ -30,10 +25,13 @@ class ForgetPasswordWidget extends StatelessWidget {
             title: 'Success',
             desc: 'Email Sent',
           ).show();
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => LoginScreen(),));
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginScreen(),
+              ));
           isLoad = false;
-        } else if (state is ForgetPasswordFailure){
+        } else if (state is ForgetPasswordFailure) {
           print('Forget Password Failure');
           AwesomeDialog(
             context: context,
@@ -46,35 +44,35 @@ class ForgetPasswordWidget extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return ModalProgressHUD(
-          inAsyncCall: isLoad,
-          child: GestureDetector(
-            onTap: () async {
-              var forgetPass = forgetPassController.text.trim();
-              if (forgetPass.isEmpty) {
-                AwesomeDialog(
-                  context: context,
-                  dialogType: DialogType.error,
-                  animType: AnimType.rightSlide,
-                  title: 'Error',
-                  desc: 'Please write your Email',
-                ).show();
-                return;
-              }
-              await BlocProvider.of<ForgetPasswordCubit>(context).forgetPassword(email: forgetPass);
-            },
-            child: Align(
-              alignment: const AlignmentDirectional(-1, -1),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(
-                    0, 6, 0, 12),
-                child: Center(
-                  child: Text('Forget Password?',
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontSize: 14,
-                          color: Colors.black)),
-                ),
+        if (state is ForgetPasswordLoading) {
+          return CircularProgressIndicator();
+        }
+        return GestureDetector(
+          onTap: () async {
+            var forgetPass = forgetPassController.text.trim();
+            if (forgetPass.isEmpty) {
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.error,
+                animType: AnimType.rightSlide,
+                title: 'Error',
+                desc: 'Please write your Email',
+              ).show();
+              return;
+            }
+            await BlocProvider.of<ForgetPasswordCubit>(context)
+                .forgetPassword(email: forgetPass);
+          },
+          child: Align(
+            alignment: const AlignmentDirectional(-1, -1),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 6, 0, 12),
+              child: Center(
+                child: Text('Forget Password?',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 14,
+                        color: Colors.black)),
               ),
             ),
           ),

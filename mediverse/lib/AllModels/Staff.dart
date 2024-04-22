@@ -1,4 +1,5 @@
 class StaffModel {
+  String id;
   String email;
   String name;
   String licenseNumber;
@@ -9,6 +10,7 @@ class StaffModel {
   String condition;
 
   StaffModel({
+    required this.id,
     required this.email,
     required this.name,
     required this.licenseNumber,
@@ -21,6 +23,7 @@ class StaffModel {
 
   factory StaffModel.fromJson(json) {
     return StaffModel(
+      id: json['id'],
       email: json['Email'] ??
           '', // Provide default values or handle null if needed
       name: json['Name'] ?? '',

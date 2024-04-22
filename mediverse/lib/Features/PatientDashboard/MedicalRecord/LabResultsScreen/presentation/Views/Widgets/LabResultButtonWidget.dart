@@ -5,15 +5,18 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 
 import '../../../../../../../Constants/constant.dart';
 import '../../Manager/lab_result_cubit/lab_result_cubit.dart';
 
 class LabResultButtonWidget extends StatelessWidget {
-  LabResultButtonWidget({super.key, required this.scrollController});
+  LabResultButtonWidget(
+      {super.key, required this.scrollController, required this.lab_id});
 
   final now_date = DateFormat('d - M - yyyy ').format(DateTime.now());
   String imageUrl = '';
+  final String lab_id;
   ScrollController scrollController;
   ImagePicker imagePicker = ImagePicker();
   String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
@@ -25,19 +28,24 @@ class LabResultButtonWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
       child: GestureDetector(
-        onTap: () async{
+        onTap: () async {
           file = await imagePicker.pickImage(source: ImageSource.gallery);
-          if (file == null ) return;
+          if (file == null) return;
           Reference referenceDirImage = referenceRoot.child('images');
-          Reference referenceImageToUpload = referenceDirImage.child(uniqueFileName);
-          try{
+          Reference referenceImageToUpload =
+              referenceDirImage.child(uniqueFileName);
+          try {
             await referenceImageToUpload.putFile(File(file!.path));
             imageUrl = await referenceImageToUpload.getDownloadURL();
             animateToBottom();
-            BlocProvider.of<LabResultCubit>(context).sendLabModel(now_date: now_date, imageUrl: imageUrl);
-          }catch(e){
-
-          }
+            BlocProvider.of<LabResultCubit>(context).sendLabModel(
+              now_date: now_date,
+              imageUrl: imageUrl,
+              id: globalcurrentUserId,
+              lab_id: lab_id,
+            );
+            BlocProvider.of<LabResultCubit>(context).getLabModels();
+          } catch (e) {}
         },
         child: Container(
           height: 50,
@@ -50,9 +58,21 @@ class LabResultButtonWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.upload_sharp, size: 20,color: Colors.white,),
-              SizedBox(width: 15,),
-              Text('Upload', style: TextStyle(color: Colors.white, fontFamily: 'Readex Pro',),),
+              Icon(
+                Icons.upload_sharp,
+                size: 20,
+                color: Colors.white,
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                'Upload',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Readex Pro',
+                ),
+              ),
             ],
           ),
         ),
@@ -62,10 +82,10 @@ class LabResultButtonWidget extends StatelessWidget {
 
   void animateToBottom() {
     SchedulerBinding.instance?.addPostFrameCallback((_) {
-      scrollController.animateTo(
-          0,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut);
+      if (scrollController.hasClients) {
+        scrollController.animateTo(0,
+            duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
+      }
     });
   }
 }

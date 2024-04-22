@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/tabs/Appointment%20Tab.dart';
 
 import 'Widgets/CustomAppbarMainScreenPatient.dart';
@@ -9,8 +11,8 @@ import 'tabs/MedicalBlogsTab.dart';
 import 'tabs/MedicalRecordTab.dart';
 
 class MainScreenWidget extends StatefulWidget {
-  MainScreenWidget({Key? key, required this.email}) : super(key: key);
-  final String email;
+  MainScreenWidget({Key? key, required this.id}) : super(key: key);
+  final String id;
   @override
   State<MainScreenWidget> createState() => _MainScreenWidgetState();
 }
@@ -19,7 +21,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   static const List<Tab> myTabs = <Tab>[
-    Tab(text: 'LEFT'),
+    // Tab(text: 'LEFT'),
     Tab(text: 'Middle'),
     Tab(text: 'RIGHT'),
   ];
@@ -27,7 +29,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: myTabs.length);
+    BlocProvider.of<FetechPatientInfoCubit>(context)
+        .getPatientInforCubitFunction(widget.id);
+    _tabController = TabController(vsync: this, length: 2);
   }
 
   @override
@@ -38,8 +42,6 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<FetechPatientInfoCubit>(context)
-        .getPatientInforCubitFunction(widget.email);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -67,7 +69,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
               unselectedLabelStyle: const TextStyle(),
               indicatorColor: kprimaryColor,
               tabs: const [
-                Tab(text: 'Appointment'),
+                // Tab(text: 'Appointment'),
                 Tab(text: 'Medical Record'),
                 Tab(text: 'Medical Blogs'),
               ],
@@ -77,7 +79,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
             child: TabBarView(
               controller: _tabController,
               children: [
-                AppointmentTab(),
+                // AppointmentTab(),
                 const MedicalRecordsTab(),
                 MedicalBlogsTab(),
               ],

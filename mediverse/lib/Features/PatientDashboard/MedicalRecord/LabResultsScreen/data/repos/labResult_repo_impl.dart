@@ -5,25 +5,29 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScre
 import '../../../../../../Core/Errors/Failure.dart';
 import 'labResult_repo.dart';
 
-class LabResultRepoImpl extends LabResultsRepo{
-  CollectionReference messages =
-  FirebaseFirestore.instance.collection('labs');
+class LabResultRepoImpl extends LabResultsRepo {
+  CollectionReference labResult =
+      FirebaseFirestore.instance.collection('Lab_Results');
 
   @override
-  sendLabs({required String now_date, required String imageUrl}) {
+  sendLabs(
+      {required String id,
+      required String lab_id,
+      required String now_date,
+      required String imageUrl}) {
     try {
-      messages.add({
+      labResult.add({
+        'id': id,
+        'Lab_id': lab_id,
         'createdAt': DateTime.now(),
-        'pictureDate': now_date,
-        'imageUrl' : imageUrl,
+        'imageUrl': imageUrl,
       });
-    } on Exception catch (e) {
-
-    }
+    } on Exception catch (e) {}
   }
 
   @override
-  Future<Either<Failure , List<LabResultModel>>> getLabs({required QuerySnapshot event}) async{
+  Future<Either<Failure, List<LabResultModel>>> getLabs(
+      {required QuerySnapshot event}) async {
     try {
       List<LabResultModel> messageList = [];
       for (var doc in event.docs) {
@@ -34,5 +38,4 @@ class LabResultRepoImpl extends LabResultsRepo{
       return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
     }
   }
-
 }

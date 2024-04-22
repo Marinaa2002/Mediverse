@@ -167,7 +167,7 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
                             BlocProvider.of<SignUpCubit>(context)
                                 .signUpInfoPatient(
                               name: name!,
-                              age: age as int,
+                              age: age!,
                               phoneNum: phoneNum!,
                               national_id: national_id!,
                               email: email!,

@@ -23,6 +23,7 @@ class Doctor {
   final String condition;
 
 
+
   Doctor(
       {required this.id,
       required this.name,

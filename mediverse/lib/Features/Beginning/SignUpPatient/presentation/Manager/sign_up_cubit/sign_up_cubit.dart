@@ -13,6 +13,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
   CollectionReference details =
       FirebaseFirestore.instance.collection('info_Patients');
+  CollectionReference metaData =
+      FirebaseFirestore.instance.collection('MetaData');
 
   final SignUpInfoRepo signUpInfoRepo = SignUpInfoRepoImpl();
 
@@ -39,7 +41,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   Future<void> signUpInfoPatient(
       {required String name,
-      required int age,
+      required String age,
       required String phoneNum,
       required String national_id,
       required String email,
@@ -47,8 +49,14 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SignUpLoading());
     try {
       final uid = await signUpUser(email: email, password: password);
+      // Add a new document with specified fields
+      DocumentReference patientref = await metaData.add({
+        'type': 'Patient',
+        'email': email,
+        // 'status':'Show'
+      });
       Patient patient = Patient(
-        id: uid!,
+        id: patientref.id,
         Email: email,
         Name: name,
         Age: age,

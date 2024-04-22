@@ -1,10 +1,17 @@
-class MedicalPrescriptionModel{
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class MedicalPrescriptionModel {
   final String imageUrl;
-  final String pictureDate;
+  final Timestamp createdAt;
+  final String id;
 
-  MedicalPrescriptionModel(this.imageUrl, this.pictureDate);
+  MedicalPrescriptionModel(this.id, this.imageUrl, this.createdAt);
 
-  factory MedicalPrescriptionModel.fromJson( jsonData){
-    return MedicalPrescriptionModel(jsonData['imageUrl'], jsonData['pictureDate']);
+  factory MedicalPrescriptionModel.fromJson(jsonData) {
+    return MedicalPrescriptionModel(
+      jsonData['id'],
+      jsonData['imageUrl'],
+      jsonData['createdAt'],
+    );
   }
 }

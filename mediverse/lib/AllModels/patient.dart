@@ -22,7 +22,7 @@ class Patient {
 
   final String id;
   final String Name;
-  final int Age;
+  final String Age;
   final String Phone;
   final String Email;
   final String National_id;
@@ -37,6 +37,7 @@ class Patient {
   factory Patient.fromJson(Map<String, dynamic> json) {
     // Parse the json data
     return Patient(
+
       id: json['id'],
       Name: json['Name'],
       Age: json['Age'],
@@ -53,6 +54,7 @@ class Patient {
       Bookings: (json['Bookings'] as List<dynamic>)
           .map((bookingJson) => Booking.fromJson(bookingJson))
           .toList(),
+
     );
   }
 }

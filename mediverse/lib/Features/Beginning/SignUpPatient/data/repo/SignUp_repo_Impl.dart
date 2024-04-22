@@ -9,6 +9,7 @@ class SignUpInfoRepoImpl extends SignUpInfoRepo {
   @override
   signUpInfoPatient({required Patient patient}) async {
     await details.add({
+      'id': patient.id,
       'Name': patient.Name,
       'Age': patient.Age,
       'Email': patient.Email,
@@ -20,8 +21,8 @@ class SignUpInfoRepoImpl extends SignUpInfoRepo {
       'Lab Results': [],
       'Medical Prescriptions': [],
       'Medical Records': [],
-      'Profile Picture': null,
-      'Phone': null
+      'Profile Picture':
+          "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2FCAP7401140941351194398.jpg?alt=media&token=f5c0a2b4-127d-4b29-aadd-594a4de7cfeb",
     });
   }
 }

@@ -1,9 +1,15 @@
+import 'dart:ffi';
+
+import 'package:camera/camera.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/Bloc_Observer.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Core/utils/serviceLocator.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/Manager/staff_request_cubit.dart';
@@ -19,10 +25,20 @@ import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/Manager/
 import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/view/PatientSignUp.dart';
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepoImpl.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/AddNoteCubit.dart/add_note_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/repos/labResult_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Views/LabResultsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/MedicalPrescriptionsScreen.dart';
+
+import 'Features/PatientDashboard/MainScreen.dart';
 
 void main() async {
   setupIDServiceLocator();
@@ -30,12 +46,26 @@ void main() async {
   await Firebase.initializeApp();
   Stripe.publishableKey = ApiKeys.publishableKey;
   await FirebaseAppCheck.instance.activate();
-  runApp(const MyApp());
+  await Hive.initFlutter();
+  cameras = await availableCameras();
+  Bloc.observer = SimpleBlocObserver();
+  Hive.registerAdapter(NoteModelAdapter());
+  // await Hive.openBox<NoteModel>(kNotesBox); // here hat5do
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final NotesCubit notesCubit = NotesCubit();
+final StaffRequestCubit staffRequestCubit = StaffRequestCubit();
+final SignUpCubit signUpCubit = SignUpCubit();
+final SignUpDocCubit signUpDocCubit = SignUpDocCubit();
+var loginRepoImpl = LoginRepoImpl();
+final LoginCubit loginCubit = LoginCubit(loginRepoImpl);
+final ForgetPasswordCubit forgetPasswordCubit =
+    ForgetPasswordCubit(loginRepoImpl);
 
+final AddNoteCubit addNoteCubit = AddNoteCubit();
+
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -59,14 +89,62 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
         routes: {
+          '/': (context) => SplashScreen(),
           '/login': (context) => LoginScreen(),
+
           '/registerChoice': (context) => RegisterChoice(),
           '/formStaff': (context) => FormStaff(),
-          '/signUpDoctor': (context) => DoctorSignUpScreen(),
+          '/signUpDoctor': (context) => BlocProvider.value(
+                value: signUpDocCubit,
+                child: DoctorSignUpScreen(),
+              ),
           '/signUpPatient': (context) => PatientSignUpScreen(),
+          '/DrNotes': (context) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: notesCubit,
+                  ),
+                  BlocProvider.value(
+                    value: addNoteCubit,
+                  ),
+                ],
+                child: DrNotesScreen(),
+              ),
           kCameraScrenId: (context) => const CameraScreen(),
+          '/mainScreenPatient': (context) => BlocProvider(
+                create: (context) =>
+                    FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: MainScreenWidget(
+                    id: globalcurrentUserId,
+                  ),
+                ),
+              ),
+          '/LabResultsScreen': (context) => BlocProvider(
+                create: (context) => LabResultCubit(
+                  LabResultRepoImpl(),
+                ),
+                child: LabResultsScreen(),
+              ),
+          '/MedicalPrescriptionsScreen': (context) => BlocProvider(
+                create: (context) =>
+                    MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl()),
+                child: MedicalPrescriptionsScreen(),
+              ),
+          // '/EditNoteView': (context) => BlocProvider(
+          //       create: (context) => NotesCubit(),
+          //       child: EditNoteView(
+          //         note: NoteModel(
+          //           title: 'title',
+          //           subTitle: 'subTitle',
+          //           date: '',
+          //           color: 0,
+          //         ),
+          //       ),
+          //     ),
         },
-        home: SplashScreen(),
       ),
     );
   }

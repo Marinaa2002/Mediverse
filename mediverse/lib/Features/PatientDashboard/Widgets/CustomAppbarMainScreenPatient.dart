@@ -60,6 +60,9 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(
+                  width: 40,
+                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
                   child: Column(
