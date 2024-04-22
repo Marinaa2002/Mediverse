@@ -27,12 +27,12 @@ class Patient {
   final String Email;
   final String National_id;
   final String profile_picture;
-  final Map<String, String> Medical_Record;
-  final List<Map<String, String>> Prescriptions;
-  final List<Map<String, String>> Lab_Results;
-  final List<Map<String, String>> Doctor_Notes;
-  final List<String> Doctors; // List of doctors previously visited
-  final List<Booking> Bookings;
+  final Map<String, dynamic> Medical_Record;
+  final List<dynamic> Prescriptions;
+  final List<dynamic> Lab_Results;
+  final List<dynamic> Doctor_Notes;
+  final List<dynamic> Doctors; // List of doctors previously visited
+  final List<dynamic> Bookings;
 
   factory Patient.fromJson(Map<String, dynamic> json) {
     // Parse the json data
