@@ -2,34 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Constants/Themes.dart';
 
-class MedicalInfoRow extends StatelessWidget {
-  MedicalInfoRow({super.key, required this.text,this.controller});
-  var controller;
-  String text;
+class MedicalInfoRowData extends StatelessWidget {
+  MedicalInfoRowData({super.key, required this.text, required this.value});
+
+  String text, value;
   @override
   Widget build(BuildContext context) {
-    Size size=MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-            child:
-            Center(child: Text(
+            padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+            child: Text(
               '$text',
               style: Themes.labelLarge18.copyWith(
                 fontFamily: 'Readex Pro',
               ),
-            ),),
+            ),
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(size.width*0.02, 0, size.width*0.02, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
               child: Container(
-                height: 45,
-                width: size.width*0.6,
                 decoration: BoxDecoration(
                   color: kSecondryBackgroundColor,
                   boxShadow: [
@@ -42,13 +38,13 @@ class MedicalInfoRow extends StatelessWidget {
                   ],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                  child: TextFormField(
-                    controller:controller ,
-                    style: Themes.bodysmall,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                    child: Text(
+                      '$value',
+                      style: Themes.textSmall,
                     ),
                   ),
                 ),
