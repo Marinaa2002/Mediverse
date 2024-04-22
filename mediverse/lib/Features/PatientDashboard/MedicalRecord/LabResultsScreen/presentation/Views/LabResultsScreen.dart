@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/models/labResult_model.dart';
@@ -78,7 +79,7 @@ class LabResultsScreen extends StatelessWidget {
             )
             .where(
               'id',
-              isEqualTo: currentUserId,
+              isEqualTo: globalcurrentUserId,
             )
             .snapshots(),
         builder: (context, snapshot) {
@@ -106,7 +107,6 @@ class LabResultsScreen extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: LabResultButtonWidget(
                       scrollController: _scrollController,
-                      id: currentUserId,
                       lab_id: 'A',
                     ),
                   ),
@@ -144,7 +144,6 @@ class LabResultsScreen extends StatelessWidget {
                     ),
                     LabResultButtonWidget(
                       scrollController: _scrollController,
-                      id: currentUserId,
                       lab_id: 'A',
                     ),
                   ],
@@ -157,7 +156,6 @@ class LabResultsScreen extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: LabResultButtonWidget(
                       scrollController: _scrollController,
-                      id: currentUserId,
                       lab_id: 'A',
                     ),
                   ),
@@ -171,7 +169,6 @@ class LabResultsScreen extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: LabResultButtonWidget(
                     scrollController: _scrollController,
-                    id: currentUserId,
                     lab_id: 'A',
                   ),
                 ),

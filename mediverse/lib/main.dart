@@ -9,6 +9,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/Bloc_Observer.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/Manager/staff_request_cubit.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/views/FormStaff.dart';
@@ -114,7 +115,7 @@ class MyApp extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: MainScreenWidget(
-                    id: currentUserId,
+                    id: globalcurrentUserId,
                   ),
                 ),
               ),

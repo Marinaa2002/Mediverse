@@ -7,30 +7,35 @@ import 'package:meta/meta.dart';
 part 'medical_prescription_state.dart';
 
 class MedicalPrescriptionCubit extends Cubit<MedicalPrescriptionState> {
-  MedicalPrescriptionCubit(this.medicalPrescriptionRepo) : super(MedicalPrescriptionInitial());
+  MedicalPrescriptionCubit(this.medicalPrescriptionRepo)
+      : super(MedicalPrescriptionInitial());
 
   final MedicalPrescriptionRepo medicalPrescriptionRepo;
   CollectionReference messages =
-  FirebaseFirestore.instance.collection('medicalPrescriptions');
+      FirebaseFirestore.instance.collection('medicalPrescriptions');
 
-  void sendLabModel({required String now_date, required String imageUrl}) {
+  void sendLabModel(
+      {required String id,
+      required String now_date,
+      required String imageUrl}) {
     emit(MedicalPrescriptionLoading());
     try {
-      medicalPrescriptionRepo.sendLabs(now_date: now_date, imageUrl: imageUrl);
+      medicalPrescriptionRepo.sendLabs(
+          id: id, now_date: now_date, imageUrl: imageUrl);
     } on Exception catch (e) {
       emit(MedicalPrescriptionFailure('Something went wrong, Try again'));
     }
   }
 
-  void getLabModels() async{
+  void getLabModels() async {
     emit(MedicalPrescriptionLoading());
-    await messages.orderBy('createdAt', descending: true).snapshots().listen((event) async {
+    await messages
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .listen((event) async {
       var result = await medicalPrescriptionRepo.getLabs(event: event);
-      result.fold((left) =>
-          emit(MedicalPrescriptionFailure(left.errMsg)),
-              (right) =>
-              emit(MedicalPrescriptionSuccess(medicalModelList: right))
-      );
+      result.fold((left) => emit(MedicalPrescriptionFailure(left.errMsg)),
+          (right) => emit(MedicalPrescriptionSuccess(medicalModelList: right)));
     });
   }
 }

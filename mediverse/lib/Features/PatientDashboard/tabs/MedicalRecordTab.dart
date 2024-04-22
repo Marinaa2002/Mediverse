@@ -24,8 +24,8 @@ class MedicalRecordsTab extends StatelessWidget {
                 CustomButtonMedicalRecord(
                     text: 'Prescriptions',
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => MedicalPrescriptionsScreen()));
+                      Navigator.of(context)
+                          .pushNamed('/MedicalPrescriptionsScreen');
                     }),
                 CustomButtonMedicalRecord(
                     text: 'Lab Results',

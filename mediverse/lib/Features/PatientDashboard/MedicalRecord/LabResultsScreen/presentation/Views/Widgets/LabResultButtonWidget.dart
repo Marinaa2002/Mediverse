@@ -5,20 +5,17 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 
 import '../../../../../../../Constants/constant.dart';
 import '../../Manager/lab_result_cubit/lab_result_cubit.dart';
 
 class LabResultButtonWidget extends StatelessWidget {
   LabResultButtonWidget(
-      {super.key,
-      required this.scrollController,
-      required this.id,
-      required this.lab_id});
+      {super.key, required this.scrollController, required this.lab_id});
 
   final now_date = DateFormat('d - M - yyyy ').format(DateTime.now());
   String imageUrl = '';
-  final String id;
   final String lab_id;
   ScrollController scrollController;
   ImagePicker imagePicker = ImagePicker();
@@ -44,7 +41,7 @@ class LabResultButtonWidget extends StatelessWidget {
             BlocProvider.of<LabResultCubit>(context).sendLabModel(
               now_date: now_date,
               imageUrl: imageUrl,
-              id: id,
+              id: globalcurrentUserId,
               lab_id: lab_id,
             );
             BlocProvider.of<LabResultCubit>(context).getLabModels();

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -8,8 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/WaitingScreen.dart';
-
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/ForgetPasswordWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LoginButtonWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/LogoContWidget.dart';
@@ -25,17 +24,14 @@ import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenA
 import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabStaffMainScreen.dart';
 import '../../../../../Constants/Themes.dart';
 import '../../../../../GlobalWidgets/titleText.dart';
-import '../../../RegisterChoice/RegisterChoiceScreen.dart';
 import '../Manager/login_cubit/login_cubit.dart';
-
-String currentUserId = '';
 
 class LoginScreen extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
 
   static String id = 'LoginPage';
-  String? email;
 
+  String? email;
   String? password;
   bool isLoading = false;
   TextEditingController forgetPassController = TextEditingController();
@@ -59,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                 firstDocument.data() as Map<String, dynamic>;
             documentid = querySnapshot.docs.first.id;
             type = documentData['type'];
-            currentUserId = documentid;
+            globalcurrentUserId = documentid;
             // status=documentData['status']; // Change 'type' to the actual field name} else {
           } else {
             Navigator.pushReplacement(
