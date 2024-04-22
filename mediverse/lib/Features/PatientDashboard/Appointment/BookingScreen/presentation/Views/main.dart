@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Core/utils/serviceLocator.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MainScreenWidget(),
+      home: MainScreenWidget(id: globalcurrentUserId,),
     );
   }
 }
