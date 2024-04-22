@@ -27,36 +27,34 @@ class Patient {
   final String Email;
   final String National_id;
   final String profile_picture;
-  final Map<String, String> Medical_Record;
-  final List<Map<String, String>> Prescriptions;
-  final List<Map<String, String>> Lab_Results;
-  final List<Map<String, String>> Doctor_Notes;
-  final List<Doctor> Doctors; // List of doctors previously visited
-  final List<Booking> Bookings;
+  final Map<String, dynamic> Medical_Record;
+  final List<dynamic> Prescriptions;
+  final List<dynamic> Lab_Results;
+  final List<dynamic> Doctor_Notes;
+  final List<dynamic> Doctors; // List of doctors previously visited
+  final List<dynamic> Bookings;
 
   factory Patient.fromJson(Map<String, dynamic> json) {
     // Parse the json data
     return Patient(
-      id: json['id'] ?? '',
-      Name: json['Name'] ?? '',
-      Age: json['Age'] ?? '',
-      Phone: json['Phone'] ?? '',
-      Email: json['Email'] ?? '',
-      National_id: json['National_id'] ?? '',
-      profile_picture: json['profile_picture'] ?? '',
-      Medical_Record: Map<String, String>.from(json['Medical_Record'] ?? {}),
-      Prescriptions:
-          List<Map<String, String>>.from(json['Prescriptions'] ?? []),
-      Lab_Results: List<Map<String, String>>.from(json['Lab_Results'] ?? []),
-      Doctor_Notes: List<Map<String, String>>.from(json['Doctor_Notes'] ?? []),
-      Doctors: (json['Doctors'] as List<dynamic>?)
-              ?.map((doctorJson) => Doctor.fromJson(doctorJson))
-              .toList() ??
-          [],
-      Bookings: (json['Bookings'] as List<dynamic>?)
-              ?.map((bookingJson) => Booking.fromJson(bookingJson))
-              .toList() ??
-          [],
+
+      id: json['id'],
+      Name: json['Name'],
+      Age: json['Age'],
+      Phone: json['Phone'],
+      Email: json['Email'],
+      National_id: json['National_id'],
+      profile_picture:
+          json['profile_picture'], // Assuming profile_picture is a file path
+      Medical_Record: Map<String, String>.from(json['Medical_Record']),
+      Prescriptions: List<Map<String, String>>.from(json['Prescriptions']),
+      Lab_Results: List<Map<String, String>>.from(json['Lab_Results']),
+      Doctor_Notes: List<Map<String, String>>.from(json['Doctor_Notes']),
+      Doctors: List<String>.from(json['Doctors']),
+      Bookings: (json['Bookings'] as List<dynamic>)
+          .map((bookingJson) => Booking.fromJson(bookingJson))
+          .toList(),
+
     );
   }
 }

@@ -9,5 +9,5 @@ class hospital_staff {
 
   final String id;
   final String Hospital_Name;
-  final List<Doctor> Doctors;
+  final List<dynamic> Doctors;
 }

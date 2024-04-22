@@ -20,7 +20,7 @@ class GetDoctorInfoRepoImp extends GetDoctorInfoRepo {
       if (snapshot.exists) {
         final doctorData = snapshot.data();
         if (doctorData is Map<String, dynamic>) {
-          final doctor = Doctor.fromJson(doctorData);
+          final doctor = Doctor.fromJson(doctorData, id);
           // Perform further actions with the doctor object if needed
           return Right(doctor); // Success
         }

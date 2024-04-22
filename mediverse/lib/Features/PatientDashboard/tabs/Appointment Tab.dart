@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 
-import '../Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 import '../Widgets/CustomCardRatings.dart';
 import '../Widgets/SearchBoxAppointmentWidget.dart';
 
@@ -16,54 +17,47 @@ class AppointmentTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.95,
-            child: SearchBarProject(
-              searchController: _searchController,
-              onSearchTextChanged: (String) {},
-            ),
+    return BlocProvider(
+      create: (context) => AppointmentDetailsCubit(),
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              SearchBoxAppointmentWidget(),
+              SizedBox(
+                height: 12,
+              ),
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('info_Doctors')
+                    .where('Condition', isEqualTo: 'Approved')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  final doctors = snapshot.data?.docs
+                      .map((doc) => Doctor.fromJson(
+                          doc.data() as Map<String, dynamic>, doc.id))
+                      .toList();
+                  if (doctors == null || doctors.isEmpty) {
+                    return Center(
+                      child: Text("No doctors Available Now"),
+                    );
+                  } else {
+                    return Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: doctors.length,
+                          itemBuilder: (context, i) {
+                            return CustomCardRatings(
+                              doctor: doctors[i],
+                            );
+                          }),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
-          StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('info_Doctors')
-                .where('Condition', isEqualTo: 'Approved')
-                .snapshots(),
-            builder: (context, snapshot) {
-              final doctors = snapshot.data?.docs
-                  .map((doc) =>
-                      Doctor.fromJson(doc.data() as Map<String, dynamic>))
-                  .toList();
-              if (doctors == null || doctors.isEmpty) {
-                return Center(
-                  child: Text("No doctors Aviable Now"),
-                );
-              }
-              return Expanded(
-                child: ListView.builder(
-                    itemCount: doctors.length,
-                    itemBuilder: (context, i) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AppointmentDetailsScreen(
-                                  id: '',
-                                ),
-                              ));
-                        },
-                        child: CustomCardRatings(
-                          doctor: doctors[i],
-                        ),
-                      );
-                    }),
-              );
-            },
-          ),
-        ],
+        ),
       ),
     );
   }

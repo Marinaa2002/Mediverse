@@ -11,6 +11,7 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/Bloc_Observer.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
+import 'package:mediverse/Core/utils/serviceLocator.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/Manager/staff_request_cubit.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/presentation/views/FormStaff.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/data/repo/login_repo_impl.dart';
@@ -40,6 +41,7 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescri
 import 'Features/PatientDashboard/MainScreen.dart';
 
 void main() async {
+  setupIDServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Stripe.publishableKey = ApiKeys.publishableKey;
@@ -81,6 +83,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
+
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

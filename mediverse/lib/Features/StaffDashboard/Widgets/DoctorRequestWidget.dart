@@ -40,7 +40,7 @@ class DoctorsRequestWidget extends StatelessWidget {
 
             var doctorsRequested = doctorRequestsSnapshot.data?.docs
                 .map((doc) =>
-                    Doctor.fromJson(doc.data() as Map<String, dynamic>))
+                    Doctor.fromJson(doc.data() as Map<String, dynamic>,doc.id))
                 .toList();
             if (_searchController.text.isNotEmpty) {
               doctorsRequested = doctorsRequested?.where((doctor) {
