@@ -173,6 +173,7 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
         selectedDate,
         selectedDay,
         selectedClinic,
+        doctor.Clinics[selectedClinicIndex]['cost'],
         true,
       ));
     } else {
@@ -200,6 +201,7 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
           selectedDate,
           selectedDay,
           selectedClinic,
+          doctor.Clinics[selectedClinicIndex]['cost'],
           false));
     }
   }

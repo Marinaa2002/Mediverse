@@ -45,10 +45,10 @@ class BookingScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: const Center(
+      body: Center(
         child: Padding(
           padding: EdgeInsets.all(0.0),
-          child: BookingForm(),
+          child: BookingForm(booking: booking),
         ),
       ),
     );

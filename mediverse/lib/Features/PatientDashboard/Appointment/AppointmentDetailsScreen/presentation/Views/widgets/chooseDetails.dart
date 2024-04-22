@@ -291,6 +291,7 @@ class _chooseDetailsState extends State<chooseDetails> {
                               Day: state.selectedDay,
                               Time: state.selectedTime,
                               Location: state.selectedClinic,
+                              Cost: state.selectedClinicCost,
                               State: 'unpaid');
 
                           Map<String, dynamic> bookingMap = booking.toMap();

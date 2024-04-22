@@ -7,6 +7,7 @@ class Booking {
     required this.Day,
     required this.Time,
     required this.Location,
+    required this.Cost,
     required this.State,
   });
 
@@ -17,6 +18,7 @@ class Booking {
   final String Day;
   final String Time;
   final String Location;
+  final String Cost;
   final String State;
 
   Map<String, dynamic> toMap() {
@@ -27,6 +29,7 @@ class Booking {
       'Day': Day,
       'Time': Time,
       'Location': Location,
+      'Cost': Cost,
       'State': State,
     };
   }
@@ -42,6 +45,7 @@ class Booking {
       Date: json['Date'],
       Time: json['Time'],
       Location: json['Location'],
+      Cost: json['Cost'],
       State: json['State'],
     );
   }
