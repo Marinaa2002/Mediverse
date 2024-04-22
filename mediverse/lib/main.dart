@@ -29,7 +29,12 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/AddNoteCubit.dart/add_note_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
-import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/Edit_View_Notes.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/repos/labResult_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Views/LabResultsScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/MedicalPrescriptionsScreen.dart';
 
 import 'Features/PatientDashboard/MainScreen.dart';
 
@@ -112,6 +117,17 @@ class MyApp extends StatelessWidget {
                     id: currentUserId,
                   ),
                 ),
+              ),
+          '/LabResultsScreen': (context) => BlocProvider(
+                create: (context) => LabResultCubit(
+                  LabResultRepoImpl(),
+                ),
+                child: LabResultsScreen(),
+              ),
+          '/MedicalPrescriptionsScreen': (context) => BlocProvider(
+                create: (context) =>
+                    MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl()),
+                child: MedicalPrescriptionsScreen(),
               ),
           // '/EditNoteView': (context) => BlocProvider(
           //       create: (context) => NotesCubit(),

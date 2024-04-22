@@ -30,8 +30,10 @@ class MedicalRecordsTab extends StatelessWidget {
                 CustomButtonMedicalRecord(
                     text: 'Lab Results',
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => LabResultsScreen()));
+                      Navigator.of(context)
+                          .pushNamed('/LabResultsScreen', arguments: {
+                        'labresult_id': 'A',
+                      });
                     }),
               ],
             ),

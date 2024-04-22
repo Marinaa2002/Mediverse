@@ -4,8 +4,12 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScre
 
 import '../../../../../../Core/Errors/Failure.dart';
 
-abstract class LabResultsRepo{
-
-  sendLabs({required String now_date, required String imageUrl});
-  Future<Either<Failure , List<LabResultModel>>> getLabs({required QuerySnapshot event});
+abstract class LabResultsRepo {
+  sendLabs(
+      {required String id,
+      required String lab_id,
+      required String now_date,
+      required String imageUrl});
+  Future<Either<Failure, List<LabResultModel>>> getLabs(
+      {required QuerySnapshot event});
 }
