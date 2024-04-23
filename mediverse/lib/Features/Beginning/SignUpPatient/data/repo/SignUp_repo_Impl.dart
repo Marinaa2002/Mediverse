@@ -1,31 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mediverse/AllModels/patient.dart';
 import 'package:mediverse/Features/Beginning/SignUpPatient/data/repo/SignUp_repo.dart';
 
-class SignUpInfoRepoImpl extends SignUpInfoRepo{
-  CollectionReference details = FirebaseFirestore.instance.collection('info_Patients');
+class SignUpInfoRepoImpl extends SignUpInfoRepo {
+  CollectionReference details =
+      FirebaseFirestore.instance.collection('info_Patients');
 
   @override
-  signUpInfoPatient({required String? uid, required String name, required String age, required String phoneNum, required String email, required String national_id}) async {
-    if(uid != null) {
-      try {
-        await details.doc(uid).set({
-          'Name': name,
-          'Age': age,
-          'Email': email,
-          'Phone Number': phoneNum,
-          'NationalId': national_id,
-          'Bookings': [],
-          'Doctor Notes': [],
-          'Doctors': [],
-          'Lab Results': [],
-          'Medical Prescriptions': [],
-          'Medical Records': [],
-          'Profile Picture': null,
-          'Phone': null
-        });
-      } on Exception catch (e) {
-        print("Error adding document: $e");
-      }
-    }
+  signUpInfoPatient({required Patient patient}) async {
+    await details.add({
+      'id': patient.id,
+      'Name': patient.Name,
+      'Age': patient.Age,
+      'Email': patient.Email,
+      'Phone Number': patient.Phone,
+      'NationalId': patient.National_id,
+      'Bookings': [],
+      'Doctor Notes': [],
+      'Doctors': [],
+      'Lab Results': [],
+      'Medical Prescriptions': [],
+      'Medical Records': [],
+      'Profile Picture':
+          "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2FCAP7401140941351194398.jpg?alt=media&token=f5c0a2b4-127d-4b29-aadd-594a4de7cfeb",
+    });
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/repos/Check_out_Imp.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_Cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ActionDetailsWidget.dart';
@@ -15,7 +16,9 @@ import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 
 class BookingForm extends StatefulWidget {
-  const BookingForm({super.key});
+  BookingForm({super.key, required this.booking});
+
+  Booking booking;
 
   @override
   State<BookingForm> createState() => _BookingFormState();
@@ -48,10 +51,11 @@ class _BookingFormState extends State<BookingForm> {
                 width: 10,
               ),
             ),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: TextWidgetHorz(
                 leadingText: "Date Chosen",
-                secondryText: "Sat, Oct 04- 7:00pm",
+                secondryText:
+                    "${widget.booking.Day}, ${widget.booking.Date} ${widget.booking.Time}",
               ),
             ),
             const SliverToBoxAdapter(
@@ -60,10 +64,10 @@ class _BookingFormState extends State<BookingForm> {
                 width: 10,
               ),
             ),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: TextWidgetHorz(
                 leadingText: "Location",
-                secondryText: "Tiba Dental Care",
+                secondryText: "${widget.booking.Location}",
               ),
             ),
             const SliverToBoxAdapter(
@@ -103,9 +107,9 @@ class _BookingFormState extends State<BookingForm> {
                     height: 20,
                     width: 10,
                   ),
-                  const TextWidgetHorz(
+                  TextWidgetHorz(
                     leadingText: "Amount",
-                    secondryText: "150.00 L.E",
+                    secondryText: "${widget.booking.Cost} L.E",
                   ),
                   const Divider(
                     thickness: 2,

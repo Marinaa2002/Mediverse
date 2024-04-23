@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/Edit_View_Notes.dart';
+import 'package:mediverse/main.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({Key? key, required this.note}) : super(key: key);
@@ -14,9 +15,12 @@ class NoteItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) {
-            return EditNoteView(
-              note: note,
+          MaterialPageRoute(builder: (_) {
+            return BlocProvider.value(
+              value: notesCubit,
+              child: EditNoteView(
+                note: note,
+              ),
             );
           }),
         );

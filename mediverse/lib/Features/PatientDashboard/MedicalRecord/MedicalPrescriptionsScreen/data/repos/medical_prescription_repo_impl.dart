@@ -6,26 +6,28 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescri
 
 import '../../../../../../Core/Errors/Failure.dart';
 
-class MedicalPrescriptionRepoImpl extends MedicalPrescriptionRepo{
-  var messages =
-  FirebaseFirestore.instance; //.collection('medicalPrescriptions');
-  final currentUser = FirebaseAuth.instance.currentUser!.uid;
+
+class MedicalPrescriptionRepoImpl extends MedicalPrescriptionRepo {
+  CollectionReference messages =
+      FirebaseFirestore.instance.collection('medicalPrescriptions');
 
   @override
-  sendLabs({required String now_date, required String imageUrl}) {
+  sendLabs(
+      {required String id,
+      required String now_date,
+      required String imageUrl}) {
     try {
       messages.collection('info_Patients/$currentUser/medical prescriptions').add({
         'createdAt': DateTime.now(),
-        'pictureDate': now_date,
-        'imageUrl' : imageUrl,
+        'imageUrl': imageUrl,
+        'id': id,
       });
-    } on Exception catch (e) {
-
-    }
+    } on Exception catch (e) {}
   }
 
   @override
-  Future<Either<Failure , List<MedicalPrescriptionModel>>> getLabs({required QuerySnapshot event}) async{
+  Future<Either<Failure, List<MedicalPrescriptionModel>>> getLabs(
+      {required QuerySnapshot event}) async {
     try {
       List<MedicalPrescriptionModel> messageList = [];
       for (var doc in event.docs) {
@@ -36,5 +38,4 @@ class MedicalPrescriptionRepoImpl extends MedicalPrescriptionRepo{
       return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
     }
   }
-
 }

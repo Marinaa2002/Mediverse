@@ -4,8 +4,9 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescri
 
 import '../../../../../../Core/Errors/Failure.dart';
 
-abstract class MedicalPrescriptionRepo{
-
-  sendLabs({required String now_date, required String imageUrl});
-  Future<Either<Failure , List<MedicalPrescriptionModel>>> getLabs({required QuerySnapshot event});
+abstract class MedicalPrescriptionRepo {
+  sendLabs(
+      {required String id, required String now_date, required String imageUrl});
+  Future<Either<Failure, List<MedicalPrescriptionModel>>> getLabs(
+      {required QuerySnapshot event});
 }

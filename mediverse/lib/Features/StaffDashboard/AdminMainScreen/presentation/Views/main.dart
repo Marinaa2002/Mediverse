@@ -12,11 +12,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Stripe.publishableKey = ApiKeys.publishableKey;
-  runApp(const MyApp());
+  runApp(const AdminScreenPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AdminScreenPage extends StatelessWidget {
+  const AdminScreenPage({super.key});
 
   // This widget is the root of your applfication.
   @override

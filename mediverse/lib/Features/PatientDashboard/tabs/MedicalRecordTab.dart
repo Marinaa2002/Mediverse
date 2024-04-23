@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-
 import '../MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
 import '../MedicalRecord/LabResultsScreen/presentation/Views/LabResultsScreen.dart';
 import '../MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/MedicalPrescriptionsScreen.dart';
@@ -25,14 +24,16 @@ class MedicalRecordsTab extends StatelessWidget {
                 CustomButtonMedicalRecord(
                     text: 'Prescriptions',
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => MedicalPrescriptionsScreen()));
+                      Navigator.of(context)
+                          .pushNamed('/MedicalPrescriptionsScreen');
                     }),
                 CustomButtonMedicalRecord(
                     text: 'Lab Results',
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => LabResultsScreen()));
+                      Navigator.of(context)
+                          .pushNamed('/LabResultsScreen', arguments: {
+                        'labresult_id': 'A',
+                      });
                     }),
               ],
             ),
@@ -40,8 +41,7 @@ class MedicalRecordsTab extends StatelessWidget {
           CustomButtonMedicalRecord(
               text: 'Dr. Notes',
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (ctx) => DrNotesScreen()));
+                Navigator.of(context).pushNamed('/DrNotes');
               }),
           const Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),

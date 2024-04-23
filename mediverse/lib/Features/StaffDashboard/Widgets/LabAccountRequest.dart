@@ -28,20 +28,26 @@ class LabRequestAccountWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RowOfRequestWidget(
-                  requestModel: requestModel,
+                  requestModelField: requestModel.name,
+                  requestField: 'Requested Name',
+                ),
+                RowOfRequestWidget(
+                  requestModelField: requestModel.staff,
                   requestField: 'Requested Account',
                 ),
                 RowOfRequestWidget(
-                  requestModel: requestModel,
+                  requestModelField: requestModel.orgName,
                   requestField: 'Organization Name',
                 ),
                 RowOfRequestWidget(
-                    requestModel: requestModel,
+                    requestModelField: requestModel.orgType,
                     requestField: 'Organization Type'),
                 RowOfRequestWidget(
-                    requestModel: requestModel, requestField: 'Address'),
+                    requestModelField: requestModel.location,
+                    requestField: 'Address'),
                 RowOfRequestWidget(
-                    requestModel: requestModel, requestField: 'License Number')
+                    requestModelField: requestModel.licenseNumber,
+                    requestField: 'License Number')
               ],
             ),
           ),
@@ -56,7 +62,7 @@ class LabRequestAccountWidget extends StatelessWidget {
                   child: ActionButton(
                     action: "Accept",
                     iconData: Icons.check_circle,
-                    onPressed: onPressedDecline,
+                    onPressed: onPressedAccept,
                   ),
                 ),
                 Padding(

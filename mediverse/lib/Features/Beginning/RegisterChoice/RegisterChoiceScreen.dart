@@ -20,7 +20,7 @@ class RegisterChoice extends StatelessWidget {
               child: Image.asset(
                 'assets/images/logo2.png',
                 width: 400,
-                height: 406,
+                height: 400,
                 fit: BoxFit.contain,
                 alignment: const Alignment(0, 0),
               ),
@@ -28,15 +28,15 @@ class RegisterChoice extends StatelessWidget {
           ),
           ChoiceButton(
             text: 'Patient',
-            screen: PatientSignUpScreen(),
+            screen: '/signUpPatient',
           ),
           ChoiceButton(
             text: 'Doctor',
-            screen: DoctorSignUpScreen(),
+            screen: '/signUpDoctor',
           ),
           ChoiceButton(
             text: 'Staff',
-            screen: FormStaff(),
+            screen: '/formStaff',
           ),
         ]),
       ),

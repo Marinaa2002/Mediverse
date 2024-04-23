@@ -1,11 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:either_dart/either.dart';
-import 'package:mediverse/AllModels/doctor.dart';
-import '../../../../../AllModels/patient.dart';
-import '../../../../../Core/Errors/Failure.dart';
+import 'package:mediverse/AllModels/patient.dart';
 
-abstract class SignUpInfoRepo{
-
-  signUpInfoPatient({required String? uid,required String name, required String age, required String phoneNum, required String email, required String national_id});
+abstract class SignUpInfoRepo {
+  signUpInfoPatient({required Patient patient});
   // Future<Either<Failure , List<Patient>>> getInfoPatient({required QuerySnapshot event});
 }

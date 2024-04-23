@@ -6,7 +6,7 @@ import 'package:mediverse/Constants/constant.dart';
 
 class ChoiceButton extends StatelessWidget {
   final text;
-  final screen;
+  final String screen;
   const ChoiceButton({
     super.key,
     required this.text,
@@ -21,8 +21,7 @@ class ChoiceButton extends StatelessWidget {
           padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => screen));
+              Navigator.pushNamed(context, screen);
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,

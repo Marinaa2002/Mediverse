@@ -13,6 +13,7 @@ import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/pr
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Manager/Payment_Cubit/Payment_Stripe_States.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/Thank_you_Screen.dart';
+import 'package:mediverse/Features/PatientDashboard/MainScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/ConfirmButton.dart';
 
 class CustomButtonBlocConsumer extends StatelessWidget {
@@ -157,7 +158,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) {
-              return const BookingScreen();
+              return MainScreenWidget();
             }),
             (route) {
               return false;
