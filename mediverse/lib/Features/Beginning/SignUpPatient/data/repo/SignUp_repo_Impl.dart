@@ -8,8 +8,7 @@ class SignUpInfoRepoImpl extends SignUpInfoRepo {
 
   @override
   signUpInfoPatient({required Patient patient}) async {
-    await details.add({
-      'id': patient.id,
+    await details.doc(patient.id).set({
       'Name': patient.Name,
       'Age': patient.Age,
       'Email': patient.Email,

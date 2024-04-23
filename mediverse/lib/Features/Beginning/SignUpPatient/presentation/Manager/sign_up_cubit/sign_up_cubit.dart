@@ -35,8 +35,9 @@ class SignUpCubit extends Cubit<SignUpState> {
       } else if (ex.code == 'email-already-in-use') {
         emit(SignUpFailure(errMsg: 'email-already-in-use'));
       }
+      return null;
     }
-    return null;
+    
   }
 
   Future<void> signUpInfoPatient(
@@ -54,7 +55,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
       // Add a new document with specified fields
       DocumentReference documentReference =
-          FirebaseFirestore.instance.collection('metaData').doc(uid);
+          FirebaseFirestore.instance.collection('MetaData').doc(uid);
       documentReference.set(data);
       // DocumentReference patientref = await metaData.add({
       //   'type': 'Patient',
