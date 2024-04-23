@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/models/labResult_model.dart';
 import 'package:meta/meta.dart';
@@ -9,6 +10,7 @@ import '../../../data/repos/labResult_repo.dart';
 part 'lab_result_state.dart';
 
 class LabResultCubit extends Cubit<LabResultState> {
+
   LabResultCubit(
     this.labResultsRepo,
   ) : super(LabResultInitial());
@@ -75,6 +77,7 @@ class LabResultCubit extends Cubit<LabResultState> {
         result.fold((left) => emit(LabResultFailure(left.errMsg)),
             (right) => emit(LabResultSuccess(labModelList: right)));
       }
+
     });
   }
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 import 'package:mediverse/AllModels/doctor.dart';
+
 import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 import 'CustomCardRatings.dart';
@@ -92,17 +96,32 @@ class ReviewPageBody extends StatelessWidget {
                       Text('Tell others what you think', style: Themes.label14),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomRatingIconWidget(color: Colors.grey),
-                  CustomRatingIconWidget(color: Colors.grey),
-                  CustomRatingIconWidget(color: Colors.grey),
-                  CustomRatingIconWidget(color: Colors.grey),
-                  CustomRatingIconWidget(color: Colors.grey),
-                ],
+              RatingBar.builder(
+                initialRating: 0,
+                minRating: 0,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
               ),
+              // Row(
+              //   mainAxisSize: MainAxisSize.max,
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     CustomRatingIconWidget(color: Colors.grey),
+              //     CustomRatingIconWidget(color: Colors.grey),
+              //     CustomRatingIconWidget(color: Colors.grey),
+              //     CustomRatingIconWidget(color: Colors.grey),
+              //     CustomRatingIconWidget(color: Colors.grey),
+              //   ],
+              // ),
               Align(
                 alignment: AlignmentDirectional(0, 0),
                 child: Padding(

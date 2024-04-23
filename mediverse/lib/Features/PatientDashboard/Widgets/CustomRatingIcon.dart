@@ -12,5 +12,20 @@ class CustomRatingIconWidget extends StatelessWidget {
       color: color,
       size: 24,
     );
+    // RatingBar.builder(
+    //   initialRating: 0,
+    //   minRating: 0,
+    //   direction: Axis.horizontal,
+    //   allowHalfRating: true,
+    //   itemCount: 5,
+    //   itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+    //   itemBuilder: (context, _) => Icon(
+    //     Icons.star,
+    //     color: Colors.amber,
+    //   ),
+    //   onRatingUpdate: (rating) {
+    //     print(rating);
+    //   },
+    // );
   }
 }
