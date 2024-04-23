@@ -9,7 +9,7 @@ import 'package:mediverse/Features/PatientDashboard/tabs/Appointment%20Tab.dart'
 
 import 'Widgets/CustomAppbarMainScreenPatient.dart';
 import 'tabs/MedicalBlogsTab.dart';
-import 'tabs/MedicalRecordTab.dart';
+import 'tabs/MedicalRecordTab/presentation/Views/MedicalRecordTab.dart';
 
 class MainScreenWidget extends StatefulWidget {
   MainScreenWidget({Key? key, required this.id}) : super(key: key);
@@ -59,7 +59,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
             alignment: Alignment.center,
             child: TabBar(
               controller: _tabController,
-              isScrollable: true,
+              isScrollable: false,
               labelColor: kprimaryColor,
               unselectedLabelColor: Colors.grey,
               labelStyle: const TextStyle(

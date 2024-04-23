@@ -37,12 +37,13 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/AddNoteCubit.dart/add_note_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Manager/NotesCubit/NotesCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
-
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/data/repos/labResult_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Manager/lab_result_cubit/lab_result_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScreen/presentation/Views/LabResultsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalRecordEditScreen/presentation/Manager/save_data_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/tabs/MedicalRecordTab/presentation/Manager/retr_data_cubit.dart';
 
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/data/repos/ProfilePatientRepo_Impl.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Manager/profile_edit_cubit/profile_edit_cubit.dart';
@@ -67,7 +68,6 @@ void main() async {
   // await Hive.openBox<NoteModel>(kNotesBox); // here hat5do
   runApp(MyApp());
 }
-
 final NotesCubit notesCubit = NotesCubit();
 final StaffRequestCubit staffRequestCubit = StaffRequestCubit();
 final SignUpCubit signUpCubit = SignUpCubit();
@@ -89,18 +89,22 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SignUpDocCubit()),
         BlocProvider(create: (context) => StaffRequestCubit()),
         BlocProvider(
-          create: (context) => ForgetPasswordCubit(LoginRepoImpl()),
-        ),
-        BlocProvider(
-          create: (context) => LoginCubit(LoginRepoImpl()),
-        ),
-        BlocProvider(
           create: (context) =>
               PatientReviewCubit(PatientReviewRepoImpl())..getReviewModels(),
         ),
         BlocProvider(
           create: (context) => ProfileEditCubit(ProfilePatientRepoImpl()),
         ),
+        BlocProvider(create: (context) => ForgetPasswordCubit(LoginRepoImpl())),
+        BlocProvider(create: (context) => LoginCubit(LoginRepoImpl())),
+        BlocProvider(
+          create: (context) => LabResultCubit(LabResultRepoImpl())..getLabModels(),
+        ),
+        BlocProvider(
+          create: (context) => MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())..getLabModels(),
+        ),
+        BlocProvider(create: (context) => SaveDataCubit()),
+        BlocProvider(create: (context) => RetrDataCubit()..RetrDataMedicalRec()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
