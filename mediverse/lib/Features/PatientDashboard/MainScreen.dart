@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/tabs/Appointment%20Tab.dart';
@@ -30,7 +31,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
   void initState() {
     super.initState();
     BlocProvider.of<FetechPatientInfoCubit>(context)
-        .getPatientInforCubitFunction(widget.id);
+        .getPatientInforCubitFunction(globalcurrentUserId);
     _tabController = TabController(vsync: this, length: myTabs.length);
   }
 

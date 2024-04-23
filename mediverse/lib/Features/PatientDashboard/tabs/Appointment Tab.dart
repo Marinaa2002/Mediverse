@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
 import '../Widgets/CustomCardRatings.dart';
 import '../Widgets/SearchBoxAppointmentWidget.dart';
@@ -23,7 +24,10 @@ class AppointmentTab extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              SearchBoxAppointmentWidget(),
+              SearchBarProject(
+                searchController: TextEditingController(),
+                onSearchTextChanged: (String) {},
+              ),
               SizedBox(
                 height: 12,
               ),

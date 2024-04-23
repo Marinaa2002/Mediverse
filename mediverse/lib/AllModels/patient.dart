@@ -37,15 +37,15 @@ class Patient {
   factory Patient.fromJson(Map<String, dynamic> json) {
     // Parse the json data
     return Patient(
-
       id: json['id'],
       Name: json['Name'],
       Age: json['Age'],
       Phone: json['Phone'],
       Email: json['Email'],
       National_id: json['National_id'],
-      profile_picture:
-          json['profile_picture'], // Assuming profile_picture is a file path
+      profile_picture: json['profile_picture'] ??
+          "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/images%2F1713801545087?alt=media&token=1df4504a-3c94-4641-a359-d4075ee2e60d"
+              '', // Assuming profile_picture is a file path
       Medical_Record: Map<String, String>.from(json['Medical_Record']),
       Prescriptions: List<Map<String, String>>.from(json['Prescriptions']),
       Lab_Results: List<Map<String, String>>.from(json['Lab_Results']),
@@ -54,7 +54,6 @@ class Patient {
       Bookings: (json['Bookings'] as List<dynamic>)
           .map((bookingJson) => Booking.fromJson(bookingJson))
           .toList(),
-
     );
   }
 }

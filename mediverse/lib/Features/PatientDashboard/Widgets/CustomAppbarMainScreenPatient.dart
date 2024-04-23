@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
@@ -89,6 +91,11 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                 ),
               ],
             ),
+          );
+        } else if (state is FetechPatientInfoStateFailure) {
+          log(state.errMsg);
+          return Container(
+            child: Text(state.errMsg),
           );
         }
         return Container();

@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'package:camera/camera.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
