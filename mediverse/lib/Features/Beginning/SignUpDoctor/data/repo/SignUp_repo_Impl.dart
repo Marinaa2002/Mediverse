@@ -8,7 +8,7 @@ class SignUpDocInfoRepoImpl extends SignUpDocInfoRepo {
       FirebaseFirestore.instance.collection('Form_Requests_Info');
 
   @override
-  signUpInfoDoctor({required RequestModel requestModel}) async {
+  signUpInfoDoctor({required RequestModel requestModel,required String id}) async {
     // if(uid != null) {
     //   try {
     //     await details.doc(uid).set({
@@ -36,7 +36,7 @@ class SignUpDocInfoRepoImpl extends SignUpDocInfoRepo {
     //     print("Error adding document: $e");
     //   }
     // }
-    await details.add({
+    await details.doc(id).set({
       'Staff': requestModel.staff,
       'Org Name': requestModel.orgName,
       'Org Type': requestModel.orgType,

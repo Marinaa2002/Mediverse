@@ -35,8 +35,9 @@ class SignUpCubit extends Cubit<SignUpState> {
       } else if (ex.code == 'email-already-in-use') {
         emit(SignUpFailure(errMsg: 'email-already-in-use'));
       }
+      return null;
     }
-    return null;
+    
   }
 
   Future<void> signUpInfoPatient(
@@ -49,14 +50,20 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SignUpLoading());
     try {
       final uid = await signUpUser(email: email, password: password);
+
+      Map<String, dynamic> data = {'type': 'Patient', 'email': email};
+
       // Add a new document with specified fields
-      DocumentReference patientref = await metaData.add({
-        'type': 'Patient',
-        'email': email,
-        // 'status':'Show'
-      });
+      DocumentReference documentReference =
+          FirebaseFirestore.instance.collection('MetaData').doc(uid);
+      documentReference.set(data);
+      // DocumentReference patientref = await metaData.add({
+      //   'type': 'Patient',
+      //   'email': email,
+      //   // 'status':'Show'
+      // });
       Patient patient = Patient(
-        id: patientref.id,
+        id: uid!,
         Email: email,
         Name: name,
         Age: age,
