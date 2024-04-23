@@ -1,11 +1,11 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/widgets/MedicalPrescriptionLoadingIndicator.dart';
+
+import 'ProfileLoadingIndicatorWidget.dart';
 
 
-class MedicalPrescriptionPictureInteractive extends StatelessWidget {
-  MedicalPrescriptionPictureInteractive({super.key, required this.imageUrl});
+class ProfilePictureInteractive extends StatelessWidget {
+  ProfilePictureInteractive({super.key, required this.imageUrl});
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String imageUrl;
@@ -15,6 +15,7 @@ class MedicalPrescriptionPictureInteractive extends StatelessWidget {
     return Align(
       alignment: Alignment(0, 0),
       child: Container(
+        //color: Colors.pinkAccent,
         height: 650,
         width: 300,
         decoration: BoxDecoration(
@@ -39,7 +40,7 @@ class MedicalPrescriptionPictureInteractive extends StatelessWidget {
                 fit: BoxFit.contain,
                 imageUrl: imageUrl,
                 errorWidget: (context, url, error) => const Icon(Icons.alarm),
-                placeholder: (context, url) => MedicalPrescriptionLoadingIndicatorWidget(),
+                placeholder: (context, url) => ProfileLoadingIndicatorWidget(),
                 alignment: Alignment(0, 0),
               ),
             ),
