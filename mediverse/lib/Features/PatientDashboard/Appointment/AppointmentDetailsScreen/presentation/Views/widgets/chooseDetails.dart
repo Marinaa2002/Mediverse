@@ -6,6 +6,7 @@ import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/serviceLocator.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/PatientChatScreen/presentation/Views/PatientChatScreen.dart';
@@ -128,11 +129,7 @@ class _chooseDetailsState extends State<chooseDetails> {
                   children: [
                     CustomButtonAppointmentDetails(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PatientChatScreen(),
-                            ));
+                        Navigator.pushNamed(context, '/DoctorChat');
                       },
                       buttonName: 'Chat',
                       icon: Icons.chat,
@@ -338,7 +335,7 @@ class _chooseDetailsState extends State<chooseDetails> {
             ],
           );
         } else if (state is ChooseDetailsLoading) {
-          return const CircularProgressIndicator();
+          return Center(child: const CircularProgressIndicator());
         } else {
           return const CircularProgressIndicator();
         }

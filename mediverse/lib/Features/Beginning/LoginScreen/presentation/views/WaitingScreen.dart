@@ -12,10 +12,7 @@ class WaitingForApprovalScreen extends StatelessWidget {
             Icons.arrow_back,
           ),
           onPressed: () {
-            Navigator.popUntil(
-              context,
-              ModalRoute.withName('/login'),
-            );
+            Navigator.of(context).popUntil((route) => route.isFirst);
           },
         ),
         title: Text('Waiting for Approval'),

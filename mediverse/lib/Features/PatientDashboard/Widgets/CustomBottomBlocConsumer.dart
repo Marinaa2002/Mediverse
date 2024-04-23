@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/PaymentIndentInputModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/amount_model/amount_model.dart';
@@ -158,7 +159,9 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) {
-              return MainScreenWidget();
+              return MainScreenWidget(
+                id: globalcurrentUserId,
+              );
             }),
             (route) {
               return false;

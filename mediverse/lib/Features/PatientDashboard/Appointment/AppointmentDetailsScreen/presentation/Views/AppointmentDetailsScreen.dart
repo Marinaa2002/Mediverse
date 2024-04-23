@@ -15,10 +15,8 @@ import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
-
 class AppointmentDetailsScreen extends StatefulWidget {
   AppointmentDetailsScreen({super.key, required this.doctorID});
-
 
   String doctorID;
 
@@ -73,18 +71,19 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
               centerTitle: true,
               elevation: 2,
             ),
-            body: SafeArea(
-              top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const CustomDoctorDetails(),
-                  BlocProvider(
-                    create: (context) => ChooseDetailsCubit(),
-                    child: chooseDetails(doctor: state.doctor),
-                  ),
-                  
-                ],
+            body: SingleChildScrollView(
+              child: SafeArea(
+                top: true,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    const CustomDoctorDetails(),
+                    BlocProvider(
+                      create: (context) => ChooseDetailsCubit(),
+                      child: chooseDetails(doctor: state.doctor),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

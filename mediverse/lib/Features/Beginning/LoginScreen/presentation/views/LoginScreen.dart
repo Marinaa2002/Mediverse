@@ -58,14 +58,10 @@ class LoginScreen extends StatelessWidget {
             globalcurrentUserId = documentid;
             // status=documentData['status']; // Change 'type' to the actual field name} else {
           } else {
-            Navigator.pushReplacement(
+            Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BlocProvider(
-                    create: (context) =>
-                        FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
-                    child: WaitingForApprovalScreen(),
-                  ),
+                  builder: (context) => WaitingForApprovalScreen(),
                 ));
           }
           if (type == 'Patient') {
@@ -95,12 +91,8 @@ class LoginScreen extends StatelessWidget {
                   builder: (context) =>
                       HospitalStaffManagementScreenAddDoctors(),
                 ));
-          } else if (email == 'mediverse@mediverse.com') {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AdminMainScreenWidget(),
-                ));
+          } else if (type == 'admin') {
+            Navigator.pushReplacementNamed(context, '/AdminMainScreen');
           }
           isLoading = false;
         } else if (state is LoginFailure) {

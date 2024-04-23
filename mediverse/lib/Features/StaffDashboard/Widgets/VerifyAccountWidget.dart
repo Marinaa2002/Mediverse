@@ -68,7 +68,7 @@ class VerifyAccountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    fillCollection();
+    // fillCollection();
     return Column(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,

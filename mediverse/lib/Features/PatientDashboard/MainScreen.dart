@@ -21,7 +21,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   static const List<Tab> myTabs = <Tab>[
-    // Tab(text: 'LEFT'),
+    Tab(text: 'LEFT'),
     Tab(text: 'Middle'),
     Tab(text: 'RIGHT'),
   ];
@@ -31,7 +31,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
     super.initState();
     BlocProvider.of<FetechPatientInfoCubit>(context)
         .getPatientInforCubitFunction(widget.id);
-    _tabController = TabController(vsync: this, length: 2);
+    _tabController = TabController(vsync: this, length: myTabs.length);
   }
 
   @override
@@ -69,7 +69,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
               unselectedLabelStyle: const TextStyle(),
               indicatorColor: kprimaryColor,
               tabs: const [
-                // Tab(text: 'Appointment'),
+                Tab(text: 'Appointment'),
                 Tab(text: 'Medical Record'),
                 Tab(text: 'Medical Blogs'),
               ],
@@ -79,7 +79,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
             child: TabBarView(
               controller: _tabController,
               children: [
-                // AppointmentTab(),
+                AppointmentTab(),
                 const MedicalRecordsTab(),
                 MedicalBlogsTab(),
               ],

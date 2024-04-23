@@ -24,7 +24,10 @@ import 'package:mediverse/Features/Beginning/SignUpDoctor/presentation/view/Doct
 import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/view/PatientSignUp.dart';
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/repos/getDoctorInfoRepoImp.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepoImpl.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
@@ -37,6 +40,9 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/LabResultsScre
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/data/repos/medical_prescription_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Manager/medical_prescription_cubit/medical_prescription_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/MedicalPrescriptionsScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/data/repos/FetechAdminInformationRepoImp.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/FetechAdminInfoCubit.dart/fetech_admin_info_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/AdminMainScreen.dart';
 
 import 'Features/PatientDashboard/MainScreen.dart';
 
@@ -83,7 +89,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -133,6 +138,16 @@ class MyApp extends StatelessWidget {
                     MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl()),
                 child: MedicalPrescriptionsScreen(),
               ),
+          '/AdminMainScreen': (context) => BlocProvider(
+                create: (context) =>
+                    FetechAdminInfoCubit(GetAdminInfoRepoImp()),
+                child: AdminMainScreenWidget(),
+              ),
+          '/DoctorChat': (context) => BlocProvider(
+                create: (context) => GetDoctorInfoCubit(GetDoctorInfoRepoImp()),
+                child: DoctorChat(),
+              ),
+
           // '/EditNoteView': (context) => BlocProvider(
           //       create: (context) => NotesCubit(),
           //       child: EditNoteView(

@@ -36,11 +36,12 @@ class DoctorChat extends StatelessWidget {
           titleSpacing: 0,
           leading: InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => HospitalStaffManagementScreen()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => HospitalStaffManagementScreen()),
+              // );
+              Navigator.pop(context);
             },
             child: AppBarRowIconChat(),
           ),

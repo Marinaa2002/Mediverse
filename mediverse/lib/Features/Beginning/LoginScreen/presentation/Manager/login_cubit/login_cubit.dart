@@ -30,9 +30,9 @@ class LoginCubit extends Cubit<LoginState> {
         print('Wrong Password');
         emit(LoginFailure('Wrong Password'));
       }
-    } catch (e) {
+    } catch (ex) {
       log('Something went wrong');
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(ex.toString()));
     }
   }
 }

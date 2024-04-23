@@ -91,6 +91,7 @@ class CameraViewPage extends StatelessWidget {
                           // Get download URL from Firebase Storage
                           String downloadUrl =
                               await storageTaskSnapshot.ref.getDownloadURL();
+                          //nrkz
                           messages.add(
                             {
                               kMessage: textData,
@@ -102,8 +103,8 @@ class CameraViewPage extends StatelessWidget {
                           controller.clear();
 
                           textData = "";
-                          Navigator.of(context)
-                              .popUntil((route) => route.isFirst);
+                          Navigator.of(context).popUntil(
+                              (route) => route.settings.name == '/DoctorChat');
                         },
                       ),
                     ),

@@ -10,6 +10,18 @@ class LoginRepoImpl extends LoginRepo {
       UserCredential user = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email!, password: password!);
       return right(user);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('user not Found');
+        return left(ServerFailure(errMsg: 'user not Found'));
+      } else if (e.code == 'invalid-credential') {
+        print('Wrong Password');
+        return left(ServerFailure(errMsg: 'Wrong email or wrong Password '));
+      } else {
+        // Handle other FirebaseAuthException codes if necessary
+        return left(
+            ServerFailure(errMsg: 'Authentication failed: ${e.message}'));
+      }
     } on Exception catch (e) {
       return left(ServerFailure(errMsg: e.toString()));
     }
