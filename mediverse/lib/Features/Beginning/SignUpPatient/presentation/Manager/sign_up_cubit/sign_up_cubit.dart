@@ -23,7 +23,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SignUpLoading());
     try {
       UserCredential usercredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email!, password: password!);
+          .createUserWithEmailAndPassword(email: email, password: password);
       User? firebaseuser = usercredential.user;
       if (firebaseuser != null) {
         emit(SignUpSuccess());

@@ -8,7 +8,7 @@ class LoginRepoImpl extends LoginRepo {
       {required String email, required String password}) async {
     try {
       UserCredential user = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email!, password: password!);
+          .signInWithEmailAndPassword(email: email, password: password);
       return right(user);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
