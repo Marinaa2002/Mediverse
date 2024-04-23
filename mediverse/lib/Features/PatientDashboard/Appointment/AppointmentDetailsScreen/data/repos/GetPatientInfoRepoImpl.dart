@@ -2,21 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:either_dart/src/either.dart';
 import 'package:mediverse/AllModels/patient.dart';
 import 'package:mediverse/Core/Errors/Failure.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepo.dart';
 
 class GetPatientInfoRepoImpl extends GetPatientInfoRepo {
   @override
   Future<Either<Failure, Patient>> getPatientInfoFunction(String id) async {
     try {
-      final QuerySnapshot snapshot = await FirebaseFirestore.instance
+      final DocumentSnapshot snapshot = await FirebaseFirestore.instance
           .collection('info_Patients')
-          .where('id', isEqualTo: id)
-          .get();
+          .doc(globalcurrentUserId).get();
 
-      if (snapshot.docs.isNotEmpty) {
-        final patientData = snapshot.docs.first.data();
+      if (snapshot.exists) {
+        final patientData = snapshot.data();
         if (patientData is Map<String, dynamic>) {
-          final patient = Patient.fromJson(patientData);
+          final patient = Patient.fromJson(patientData, globalcurrentUserId);
           return Right(patient); // Success
         }
       }

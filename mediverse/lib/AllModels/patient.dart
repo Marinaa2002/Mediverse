@@ -27,29 +27,29 @@ class Patient {
   final String Email;
   final String National_id;
   final String profile_picture;
-  final Map<String, dynamic> Medical_Record;
+  final List<dynamic> Medical_Record;
   final List<dynamic> Prescriptions;
   final List<dynamic> Lab_Results;
   final List<dynamic> Doctor_Notes;
   final List<dynamic> Doctors; // List of doctors previously visited
   final List<dynamic> Bookings;
 
-  factory Patient.fromJson(Map<String, dynamic> json) {
+  factory Patient.fromJson(Map<String, dynamic> json, String id) {
     // Parse the json data
     return Patient(
-      id: json['id'],
+      id: id,
       Name: json['Name'],
       Age: json['Age'],
-      Phone: json['Phone'],
+      Phone: json['Phone Number'],
       Email: json['Email'],
-      National_id: json['National_id'],
-      profile_picture: json['profile_picture'] ??
+      National_id: json['NationalId'],
+      profile_picture: json['Profile Picture'] ??
           "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/images%2F1713801545087?alt=media&token=1df4504a-3c94-4641-a359-d4075ee2e60d"
               '', // Assuming profile_picture is a file path
-      Medical_Record: Map<String, String>.from(json['Medical_Record']),
-      Prescriptions: List<Map<String, String>>.from(json['Prescriptions']),
-      Lab_Results: List<Map<String, String>>.from(json['Lab_Results']),
-      Doctor_Notes: List<Map<String, String>>.from(json['Doctor_Notes']),
+      Medical_Record: List<dynamic>.from(json['Medical Records']),
+      Prescriptions: List<Map<String, String>>.from(json['Medical Prescriptions']),
+      Lab_Results: List<Map<String, String>>.from(json['Lab Results']),
+      Doctor_Notes: List<Map<String, String>>.from(json['Doctor Notes']),
       Doctors: List<String>.from(json['Doctors']),
       Bookings: (json['Bookings'] as List<dynamic>)
           .map((bookingJson) => Booking.fromJson(bookingJson))

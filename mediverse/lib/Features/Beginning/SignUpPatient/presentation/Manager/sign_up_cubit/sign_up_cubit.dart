@@ -70,7 +70,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         Phone: phoneNum,
         National_id: '',
         profile_picture: '',
-        Medical_Record: {},
+        Medical_Record: [],
         Prescriptions: [],
         Lab_Results: [],
         Doctor_Notes: [],

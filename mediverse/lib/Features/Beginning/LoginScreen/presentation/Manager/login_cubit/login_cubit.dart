@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 
 import 'package:mediverse/Features/Beginning/LoginScreen/data/repo/login_repo.dart';
 
@@ -19,8 +20,12 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     try {
       var result = await loginRepo.loginUser(email: email, password: password);
-      result.fold((left) => emit(LoginFailure(left.errMsg)),
-          (right) => emit(LoginSuccess()));
+      result.fold((left) {
+        emit(LoginFailure(left.errMsg));
+      }, (right) {
+        globalcurrentUserId = FirebaseAuth.instance.currentUser!.uid;
+        emit(LoginSuccess());
+      });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('user not Found');

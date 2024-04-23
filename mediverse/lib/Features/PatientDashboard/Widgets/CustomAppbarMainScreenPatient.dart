@@ -52,7 +52,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
-                          child: Image.asset(
+                          child: Image.network(
                             state.patient.profile_picture ??
                                 'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
                             fit: BoxFit.fill,
