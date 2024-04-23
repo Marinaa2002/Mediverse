@@ -1,12 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-
-import '../../../Widgets/InfoProfileWidget.dart';
-import '../../../Widgets/PictureProfileWidget.dart';
-import '../../../Widgets/SettingsProfileWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileInfoWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileLoadingIndicatorWidget.dart';
+import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileSettingsWidget.dart';
+import 'Widgets/ProfilePictureWidget.dart';
 
 class PatientProfileScreen extends StatelessWidget {
+  final currentUser = FirebaseAuth.instance.currentUser;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -37,34 +40,47 @@ class PatientProfileScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
-      body: Align(
-        alignment: const AlignmentDirectional(0, 0),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const PictureProfileWidget(),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
-              child: Text(
-                'Dr. David Parker',
-                textAlign: TextAlign.center,
-                style: Themes.headlineSmall.copyWith(
-                  fontFamily: 'Outfit',
-                  color: kprimaryTextColor,
-                ),
+      body: StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance.collection("info_Patients").doc(currentUser!.uid).snapshots(),
+        builder: (context, snapshot) {
+          if(snapshot.hasData){
+            final userData = snapshot.data!.data() as Map <String, dynamic>;
+            return Align(
+              alignment: const AlignmentDirectional(0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  ProfilePictureWidget(userData: userData),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 4),
+                    child: Text(
+                      userData['Name'],
+                      textAlign: TextAlign.center,
+                      style: Themes.headlineSmall.copyWith(
+                        fontFamily: 'Outfit',
+                        color: kprimaryTextColor,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    userData['Email'],
+                    style: Themes.titleSmall.copyWith(
+                      fontFamily: 'Outfit',
+                      color: kprimaryTextColor,
+                      fontSize: 20
+                    ),
+                  ),
+                  const ProfileInfoWidget(),
+                  //ProfileSettingsWidget(patientProfileModel: patientProfileModel!)
+                  ProfileSettingsWidget(userData: userData,),
+                ],
               ),
-            ),
-            Text(
-              'David.parker@gmail.com',
-              style: Themes.titleSmall.copyWith(
-                fontFamily: 'Outfit',
-                color: kprimaryTextColor,
-              ),
-            ),
-            const InfoProfileWidget(),
-            const SettingsProfileWidget(),
-          ],
-        ),
+            );
+          } else {
+            return ProfileLoadingIndicatorWidget();
+          }
+        },
       ),
     );
   }

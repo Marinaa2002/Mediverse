@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/ReviewPageBody.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Views/widgets/ReviewScreenBody.dart';
 
 class RatingsScreen extends StatelessWidget {
   RatingsScreen({super.key});
@@ -37,11 +37,9 @@ class RatingsScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: const SafeArea(
+      body: SafeArea(
         top: true,
-        child: SingleChildScrollView(
-          child: ReviewPageBody(),
-        ),
+        child: ReviewScreenBody(),
       ),
     );
   }
