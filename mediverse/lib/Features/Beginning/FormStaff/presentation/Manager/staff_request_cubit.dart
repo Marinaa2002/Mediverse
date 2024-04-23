@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mediverse/AllModels/requestModel.dart';
 import 'package:mediverse/Features/Beginning/FormStaff/data/repo/StaffRepoImpl.dart';
-import 'package:mediverse/Features/Beginning/FormStaff/presentation/Manager/SignUpRequestStates.dart';
 import 'package:meta/meta.dart';
 
 part 'staff_request_state.dart';
@@ -20,7 +19,7 @@ class StaffRequestCubit extends Cubit<StaffRequestState> {
     emit(StaffRequestLoading());
     try {
       UserCredential usercredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email!, password: password!);
+          .createUserWithEmailAndPassword(email: email, password: password);
       User? firebaseuser = usercredential.user;
       if (firebaseuser != null) {
         emit(StaffRequestSuccess());

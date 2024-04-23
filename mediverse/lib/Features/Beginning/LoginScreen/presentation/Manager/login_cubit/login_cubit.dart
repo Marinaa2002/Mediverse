@@ -18,8 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
       {required String email, required String password}) async {
     emit(LoginLoading());
     try {
-      var result =
-          await loginRepo.loginUser(email: email!, password: password!);
+      var result = await loginRepo.loginUser(email: email, password: password);
       result.fold((left) => emit(LoginFailure(left.errMsg)),
           (right) => emit(LoginSuccess()));
     } on FirebaseAuthException catch (e) {

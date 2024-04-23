@@ -131,7 +131,7 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Phone': '',
                           'Blogs': [],
                           'Bookings': [],
-                          'Hospital': requests[i].orgName,
+
                           'License_Number': requests[i].licenseNumber,
                           'NationalId': '',
                           'Previous_Appointments': [],
@@ -142,7 +142,7 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Speciality': '',
                           'State': 'Offline',
                           'Slots': [], // Empty list for slots
-                          'Clinic-Appointments': {},
+                          'Clinics': [],
                           'Condition':
                               'Verified' // Empty map for clinic appointments
                         });
