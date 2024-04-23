@@ -34,8 +34,8 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
       } else if (ex.code == 'email-already-in-use') {
         emit(SignUpDocFailure(errMsg: 'email-already-in-use'));
       }
+      return null;
     }
-    return null;
   }
 
   Future<void> signUpInfoDoctor(
@@ -67,7 +67,7 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
           location: location,
           name: name,
           status: "pending");
-      signUpInfoRepo.signUpInfoDoctor(requestModel: requestModel);
+      signUpInfoRepo.signUpInfoDoctor(requestModel: requestModel, id:uid!);
 
       emit(SignUpDocSuccess());
     } on Exception catch (e) {
