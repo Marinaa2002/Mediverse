@@ -68,6 +68,7 @@ void main() async {
   // await Hive.openBox<NoteModel>(kNotesBox); // here hat5do
   runApp(MyApp());
 }
+
 final NotesCubit notesCubit = NotesCubit();
 final StaffRequestCubit staffRequestCubit = StaffRequestCubit();
 final SignUpCubit signUpCubit = SignUpCubit();
@@ -98,13 +99,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ForgetPasswordCubit(LoginRepoImpl())),
         BlocProvider(create: (context) => LoginCubit(LoginRepoImpl())),
         BlocProvider(
-          create: (context) => LabResultCubit(LabResultRepoImpl())..getLabModels(),
+          create: (context) =>
+              LabResultCubit(LabResultRepoImpl())..getLabModels(),
         ),
         BlocProvider(
-          create: (context) => MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())..getLabModels(),
+          create: (context) =>
+              MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())
+                ..getLabModels(),
         ),
         BlocProvider(create: (context) => SaveDataCubit()),
-        BlocProvider(create: (context) => RetrDataCubit()..RetrDataMedicalRec()),
+        BlocProvider(
+            create: (context) => RetrDataCubit()..RetrDataMedicalRec()),
+        BlocProvider(create: ((context) => FetechPatientInfoCubit((GetPatientInfoRepoImpl()))))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -141,9 +147,7 @@ class MyApp extends StatelessWidget {
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  child: MainScreenWidget(
-                    id: globalcurrentUserId,
-                  ),
+                  child: MainScreenWidget(),
                 ),
               ),
           '/LabResultsScreen': (context) => BlocProvider(

@@ -68,7 +68,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         Name: name,
         Age: age,
         Phone: phoneNum,
-        National_id: '',
+        National_id: national_id,
         profile_picture: '',
         Medical_Record: [],
         Prescriptions: [],

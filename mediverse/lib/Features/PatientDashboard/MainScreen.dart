@@ -12,8 +12,8 @@ import 'tabs/MedicalBlogsTab.dart';
 import 'tabs/MedicalRecordTab/presentation/Views/MedicalRecordTab.dart';
 
 class MainScreenWidget extends StatefulWidget {
-  MainScreenWidget({Key? key, required this.id}) : super(key: key);
-  final String id;
+  MainScreenWidget({Key? key}) : super(key: key);
+
   @override
   State<MainScreenWidget> createState() => _MainScreenWidgetState();
 }

@@ -159,9 +159,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) {
-              return MainScreenWidget(
-                id: globalcurrentUserId,
-              );
+              return MainScreenWidget();
             }),
             (route) {
               return false;
