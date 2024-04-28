@@ -38,17 +38,19 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
     }
   }
 
-  Future<void> signUpInfoDoctor(
-      {required String name,
-      required String age,
-      required String phoneNum,
-      required String national_id,
-      required String hospital,
-      required String licNo,
-      required String speciality,
-      required String email,
-      required String password,
-      required String location}) async {
+  Future<void> signUpInfoDoctor({
+    required String name,
+    required String age,
+    required String phoneNum,
+    required String national_id,
+    required String hospital,
+    required String licNo,
+    required String speciality,
+    required String email,
+    required String password,
+    required String location,
+    required String orgType,
+  }) async {
     emit(SignUpDocLoading());
     try {
       final uid = await signUpDocUser(email: email, password: password);
@@ -62,12 +64,15 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
           email: email,
           staff: "Doctor",
           orgName: hospital,
-          orgType: "Hospital",
+          orgType: orgType,
           licenseNumber: licNo,
           location: location,
           name: name,
-          status: "pending");
-      signUpInfoRepo.signUpInfoDoctor(requestModel: requestModel, id:uid!);
+          status: "pending",
+          phoneNum: phoneNum,
+          specialty: speciality);
+
+      signUpInfoRepo.signUpInfoDoctor(requestModel: requestModel, id: uid!);
 
       emit(SignUpDocSuccess());
     } on Exception catch (e) {

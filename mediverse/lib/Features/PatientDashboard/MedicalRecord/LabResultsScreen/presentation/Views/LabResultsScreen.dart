@@ -73,10 +73,10 @@ class LabResultsScreen extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: labResults
             .orderBy('createdAt', descending: true)
-            .where(
-              'Lab_id',
-              isEqualTo: labresult_id,
-            )
+            // .where(
+            //   'Lab_id',
+            //   isEqualTo: labresult_id,
+            // )
             .where(
               'id',
               isEqualTo: globalcurrentUserId,

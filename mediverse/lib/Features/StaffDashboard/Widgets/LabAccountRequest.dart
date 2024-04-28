@@ -35,6 +35,14 @@ class LabRequestAccountWidget extends StatelessWidget {
                   requestModelField: requestModel.staff,
                   requestField: 'Requested Account',
                 ),
+                requestModel.staff == "Doctor"
+                    ? RowOfRequestWidget(
+                        requestModelField: requestModel.specialty,
+                        requestField: 'specialty',
+                      )
+                    : RowOfRequestWidget(
+                        requestModelField: requestModel.orgType,
+                        requestField: 'Organization Type'),
                 RowOfRequestWidget(
                   requestModelField: requestModel.orgName,
                   requestField: 'Organization Name',
@@ -45,6 +53,9 @@ class LabRequestAccountWidget extends StatelessWidget {
                 RowOfRequestWidget(
                     requestModelField: requestModel.location,
                     requestField: 'Address'),
+                RowOfRequestWidget(
+                    requestModelField: requestModel.phoneNum,
+                    requestField: 'Phone Number'),
                 RowOfRequestWidget(
                     requestModelField: requestModel.licenseNumber,
                     requestField: 'License Number')

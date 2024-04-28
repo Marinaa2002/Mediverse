@@ -69,7 +69,14 @@ class MedicalRecordsTab extends StatelessWidget {
                     CustomButtonMedicalRecord(
                       text: 'Lab Results',
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/LabResultsScreen');
+                        //********************************************************************************************
+                        //*******************
+                        //*******************************************
+                        //*To be changed to Lab ID */ */ */
+                        Navigator.of(context)
+                            .pushNamed('/LabResultsScreen', arguments: {
+                          'labresult_id': "A" //To be changed TO Lab id
+                        });
                       },
                     ),
                   ],

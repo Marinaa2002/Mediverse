@@ -3,13 +3,16 @@ class RequestModel {
   String name;
   String licenseNumber;
   String location;
+  String phoneNum;
   String orgName;
   String orgType;
   String staff;
   String status;
+  String specialty;
 
   RequestModel({
     required this.email,
+    required this.phoneNum,
     required this.name,
     required this.licenseNumber,
     required this.location,
@@ -17,6 +20,7 @@ class RequestModel {
     required this.orgType,
     required this.staff,
     required this.status,
+    required this.specialty,
   });
   factory RequestModel.fromJson(Map<String, dynamic> json) {
     return RequestModel(
@@ -28,6 +32,8 @@ class RequestModel {
       orgType: json['Org Type'] as String,
       staff: json['Staff'] as String,
       status: json['Status'] as String,
+      phoneNum: json['Phone Number'] as String,
+      specialty: json['Specialty'] as String,
     );
   }
 }

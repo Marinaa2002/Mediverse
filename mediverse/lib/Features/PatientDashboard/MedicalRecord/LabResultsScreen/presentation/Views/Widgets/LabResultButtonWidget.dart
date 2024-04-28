@@ -44,7 +44,7 @@ class LabResultButtonWidget extends StatelessWidget {
               id: globalcurrentUserId,
               lab_id: lab_id,
             );
-            BlocProvider.of<LabResultCubit>(context).getLabModels();
+            // BlocProvider.of<LabResultCubit>(context).getLabModels();
           } catch (e) {}
         },
         child: Container(

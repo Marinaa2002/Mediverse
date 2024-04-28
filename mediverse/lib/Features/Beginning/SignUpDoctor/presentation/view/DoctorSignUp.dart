@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Core/utils/Functions.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 import 'package:mediverse/Features/Beginning/SignUpDoctor/presentation/Manager/sign_up_cubit/sign_up_cubit.dart';
+import 'package:mediverse/GlobalWidgets/CustomAlignText.dart';
 import 'package:mediverse/GlobalWidgets/CustomSignUpLogin.dart';
 import 'package:mediverse/GlobalWidgets/CustomTextFormField.dart';
+import 'package:mediverse/GlobalWidgets/CustomTextFormField2.dart';
 import 'package:mediverse/GlobalWidgets/CustomTextFormField3.dart';
 import 'package:mediverse/GlobalWidgets/LogoContainer.dart';
 import 'package:mediverse/GlobalWidgets/StartingCont.dart';
@@ -40,8 +41,20 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
   String? location;
   String? name;
   String? age;
+  String? orgType; //PUBLIC OR PRIVATE
   bool isLoading = false;
+
   GlobalKey<FormState> formKey = GlobalKey();
+  List<String> dropdownItems = ["Please select...", 'Public', 'Private'];
+
+  @override
+  void initState() {
+    orgType = dropdownItems[selectedIndex2];
+    super.initState();
+  }
+
+  int selectedIndex = 0;
+  int selectedIndex2 = 0;
 
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpDocCubit, SignUpDocState>(
@@ -111,6 +124,23 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                           ),
                         ],
                       ),
+                      // AlignText(
+                      //   text: "Choose Type Of Staff",
+                      // ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                      //   child: CustomTextFormField2(
+                      //     selectedIndex: selectedIndex,
+                      //     items: dropdownItems,
+                      //     value: orgType,
+                      //     onChanged: (newValue) {
+                      //       setState(() {
+                      //         selectedIndex = dropdownItems.indexOf(newValue!);
+                      //         orgType = newValue;
+                      //       });
+                      //     },
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                         child: CustomTextFormField(
@@ -213,16 +243,18 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
 
                             BlocProvider.of<SignUpDocCubit>(context)
                                 .signUpInfoDoctor(
-                                    name: name!,
-                                    age: age!,
-                                    phoneNum: phoneNum!,
-                                    national_id: natId!,
-                                    hospital: hospital!,
-                                    licNo: licNo!,
-                                    speciality: speciality!,
-                                    email: email!,
-                                    password: password!,
-                                    location: location!);
+                              name: name!,
+                              age: age!,
+                              phoneNum: phoneNum!,
+                              national_id: natId!,
+                              hospital: hospital!,
+                              licNo: licNo!,
+                              speciality: speciality!,
+                              orgType: "Hospital",
+                              email: email!,
+                              password: password!,
+                              location: location!,
+                            );
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

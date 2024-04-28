@@ -14,57 +14,57 @@ class VerifyAccountWidget extends StatelessWidget {
     super.key,
   });
 
-  void fillCollection() {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
+  // void fillCollection() {
+  //   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-    // List to store the created dummy requests
-    List<RequestModel> requests = [];
+  //   // List to store the created dummy requests
+  //   List<RequestModel> requests = [];
 
-    // Create dummy variables with status set to "pending"
-    for (int i = 0; i < 2; i++) {
-      if (i % 2 == 0) {
-        requests.add(RequestModel(
-          email: 'email$i@example.com',
-          name: "Philo",
-          licenseNumber: 'License $i',
-          location: 'Location $i',
-          orgName: 'Organization $i',
-          orgType: 'Org Type $i',
-          staff: 'Staff $i',
-          status: 'pending',
-        ));
-      } else {
-        requests.add(RequestModel(
-          email: 'email$i@example.com',
-          name: "Philo",
-          licenseNumber: 'License $i',
-          location: 'Location $i',
-          orgName: 'Organization $i',
-          orgType: 'Org Type $i',
-          staff: 'Doctor',
-          status: 'pending',
-        ));
-      }
-    }
+  //   // Create dummy variables with status set to "pending"
+  //   for (int i = 0; i < 2; i++) {
+  //     if (i % 2 == 0) {
+  //       requests.add(RequestModel(
+  //         email: 'email$i@example.com',
+  //         name: "Philo",
+  //         licenseNumber: 'License $i',
+  //         location: 'Location $i',
+  //         orgName: 'Organization $i',
+  //         orgType: 'Org Type $i',
+  //         staff: 'Staff $i',
+  //         status: 'pending',
+  //       ));
+  //     } else {
+  //       requests.add(RequestModel(
+  //         email: 'email$i@example.com',
+  //         name: "Philo",
+  //         licenseNumber: 'License $i',
+  //         location: 'Location $i',
+  //         orgName: 'Organization $i',
+  //         orgType: 'Org Type $i',
+  //         staff: 'Doctor',
+  //         status: 'pending',
+  //       ));
+  //     }
+  //   }
 
-    // Add each request to the Firestore collection
-    for (var request in requests) {
-      firestore.collection('Form_Requests_Info').add({
-        'Email': request.email,
-        'Name': request.name,
-        'License_Number': request.licenseNumber,
-        'Location': request.location,
-        'Org Name': request.orgName,
-        'Org Type': request.orgType,
-        'Staff': request.staff,
-        'Status': request.status,
-      }).then((value) {
-        print('Request added with ID: ${value.id}');
-      }).catchError((error) {
-        print('Failed to add request: $error');
-      });
-    }
-  }
+  //   // Add each request to the Firestore collection
+  //   for (var request in requests) {
+  //     firestore.collection('Form_Requests_Info').add({
+  //       'Email': request.email,
+  //       'Name': request.name,
+  //       'License_Number': request.licenseNumber,
+  //       'Location': request.location,
+  //       'Org Name': request.orgName,
+  //       'Org Type': request.orgType,
+  //       'Staff': request.staff,
+  //       'Status': request.status,
+  //     }).then((value) {
+  //       print('Request added with ID: ${value.id}');
+  //     }).catchError((error) {
+  //       print('Failed to add request: $error');
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -114,15 +114,15 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Status': 'Verified',
                         });
                         // Add a new document with specified fields
-                        DocumentReference docRef = await metaData.add({
+                        await metaData.doc(requestId).set({
                           'type': 'Doctor',
                           'email': requests[i].email,
                           // 'status':'show'
                         });
                         FirebaseFirestore.instance
                             .collection('info_Doctors')
-                            .add({
-                          'id': docRef.id,
+                            .doc(requestId)
+                            .set({
                           'Email': requests[i].email,
                           'Name': requests[i].name,
                           'Age': '',
@@ -139,7 +139,7 @@ class VerifyAccountWidget extends StatelessWidget {
                               "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.jpeg.jpg?alt=media&token=817e3dcf-a8dd-484b-913a-8fcf65b70638",
                           'Rating': 0.0, // Assuming rating is a double
                           'Reviews': [],
-                          'Speciality': '',
+                          'Speciality': requests[i].specialty,
                           'State': 'Offline',
                           'Slots': [], // Empty list for slots
                           'Clinics': [],
@@ -154,7 +154,7 @@ class VerifyAccountWidget extends StatelessWidget {
                             'Request Acceptance', 'rinosamyramy@gmail.com');
                       } else {
                         // Retrieve the document ID of the request
-                        DocumentReference staffRef = await metaData.add({
+                        await metaData.doc(requestId).set({
                           'type': requests[i].staff,
                           'email': requests[i].email,
                           // 'status':'show'
@@ -168,8 +168,10 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Status': 'Accepted',
                         });
 
-                        FirebaseFirestore.instance.collection('Staff').add({
-                          'id': staffRef.id,
+                        FirebaseFirestore.instance
+                            .collection('Staff')
+                            .doc(requestId)
+                            .set({
                           'Email': requests[i].email,
                           'Name': requests[i].name,
                           'License_Number': requests[i].licenseNumber,
@@ -177,7 +179,8 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Org Name': requests[i].orgName,
                           'Org Type': requests[i].orgType,
                           'Staff': requests[i].staff,
-                          'Condition': 'Show'
+                          'Condition': 'Show',
+                          'Jobs': [],
                         });
                         FirebaseFirestore.instance
                             .collection('Form_Requests_Info')

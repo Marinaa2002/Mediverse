@@ -8,7 +8,8 @@ class SignUpDocInfoRepoImpl extends SignUpDocInfoRepo {
       FirebaseFirestore.instance.collection('Form_Requests_Info');
 
   @override
-  signUpInfoDoctor({required RequestModel requestModel,required String id}) async {
+  signUpInfoDoctor(
+      {required RequestModel requestModel, required String id}) async {
     // if(uid != null) {
     //   try {
     //     await details.doc(uid).set({
@@ -45,6 +46,7 @@ class SignUpDocInfoRepoImpl extends SignUpDocInfoRepo {
       'Email': requestModel.email,
       'Status': requestModel.status,
       'Name': requestModel.name,
+      'Phone Number': requestModel.phoneNum
     });
   }
 }

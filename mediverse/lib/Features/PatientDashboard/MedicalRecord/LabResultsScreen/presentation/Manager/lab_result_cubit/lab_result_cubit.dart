@@ -10,7 +10,6 @@ import '../../../data/repos/labResult_repo.dart';
 part 'lab_result_state.dart';
 
 class LabResultCubit extends Cubit<LabResultState> {
-
   LabResultCubit(
     this.labResultsRepo,
   ) : super(LabResultInitial());
@@ -77,7 +76,6 @@ class LabResultCubit extends Cubit<LabResultState> {
         result.fold((left) => emit(LabResultFailure(left.errMsg)),
             (right) => emit(LabResultSuccess(labModelList: right)));
       }
-
     });
   }
 }

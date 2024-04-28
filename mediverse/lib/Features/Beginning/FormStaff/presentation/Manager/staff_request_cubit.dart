@@ -35,15 +35,16 @@ class StaffRequestCubit extends Cubit<StaffRequestState> {
     return null;
   }
 
-  Future<void> sendRequest({
-    required String email,
-    required String staff,
-    required String orgName,
-    required String orgType,
-    required String licNo,
-    required String loc,
-    required String name,
-  }) async {
+  Future<void> sendRequest(
+      {required String email,
+      required String staff,
+      required String orgName,
+      required String orgType,
+      required String licNo,
+      required String loc,
+      required String name,
+      required String phoneNum,
+      required String id}) async {
     emit(StaffRequestLoading());
     try {
       // DocumentReference patientref = await metaData.add({
@@ -60,10 +61,10 @@ class StaffRequestCubit extends Cubit<StaffRequestState> {
           licenseNumber: licNo,
           location: loc,
           name: name,
-          status: "pending");
-      staffRepo.sendRequest(
-        requestModel: requestModel,
-      );
+          status: "pending",
+          phoneNum: phoneNum,
+          specialty: '');
+      staffRepo.sendRequest(requestModel: requestModel, id: id);
       emit(StaffRequestSuccess());
     } on Exception catch (e) {
       emit(StaffRequestFailure(errMsg: 'Something went wrong, Try again'));

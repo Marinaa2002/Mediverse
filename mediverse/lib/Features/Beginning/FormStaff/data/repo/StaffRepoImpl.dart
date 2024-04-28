@@ -8,9 +8,9 @@ class StaffRepoImpl extends StaffRepo {
       FirebaseFirestore.instance.collection('Form_Requests_Info');
 
   @override
-  sendRequest({required RequestModel requestModel}) async {
+  sendRequest({required RequestModel requestModel, required String id}) async {
     try {
-      await details.add({
+      await details.doc(id).set({
         'Staff': requestModel.staff,
         'Org Name': requestModel.orgName,
         'Org Type': requestModel.orgType,
@@ -19,6 +19,7 @@ class StaffRepoImpl extends StaffRepo {
         'Email': requestModel.email,
         'Status': requestModel.status,
         'Name': requestModel.name,
+        'Phone Number': requestModel.phoneNum
       });
     } on Exception catch (e) {}
   }

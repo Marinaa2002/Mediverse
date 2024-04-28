@@ -16,7 +16,6 @@ class MedicalPrescriptionCubit extends Cubit<MedicalPrescriptionState> {
   CollectionReference messages =
       FirebaseFirestore.instance.collection('medicalPrescriptions');
 
-
   void sendLabModel(
       {required String id,
       required String now_date,

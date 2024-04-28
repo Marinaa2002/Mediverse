@@ -55,6 +55,7 @@ class _FormStaffState extends State<FormStaff> {
   final TextEditingController licNoController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneNumController = TextEditingController();
 
   String? email;
   String? orgName;
@@ -64,6 +65,8 @@ class _FormStaffState extends State<FormStaff> {
   String? staff;
   String? licNo;
   String? password;
+  String? phoneNum;
+  bool isHospitalStaff = false;
 
   @override
   Widget build(BuildContext context) {
@@ -147,6 +150,9 @@ class _FormStaffState extends State<FormStaff> {
                             setState(() {
                               selectedIndex = dropdownItems.indexOf(newValue!);
                               staff = newValue;
+                              if (newValue == "Hospital Staff") {
+                                isHospitalStaff = true;
+                              }
                             });
                           },
                         ),
@@ -191,6 +197,13 @@ class _FormStaffState extends State<FormStaff> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                         child: CustomTextFormField(
+                          TextEditingController: phoneNumController,
+                          text: "Phone Number",
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                        child: CustomTextFormField(
                           TextEditingController: locController,
                           text: "Detailed Location",
                         ),
@@ -220,13 +233,16 @@ class _FormStaffState extends State<FormStaff> {
                             loc = locController.text.trim();
                             orgType = dropdownItems2[selectedIndex2];
                             licNo = licNoController.text.trim();
+                            phoneNum = phoneNumController.text.trim();
 
                             if (formKey.currentState!.validate() &&
                                 selectedIndex2 != 0 &&
                                 selectedIndex != 0) {
-                              BlocProvider.of<StaffRequestCubit>(context)
-                                  .signUpStaffUser(
-                                      email: email!, password: password!);
+                              final uid =
+                                  await BlocProvider.of<StaffRequestCubit>(
+                                          context)
+                                      .signUpStaffUser(
+                                          email: email!, password: password!);
                               BlocProvider.of<StaffRequestCubit>(context)
                                   .sendRequest(
                                 staff: staff!,
@@ -236,6 +252,8 @@ class _FormStaffState extends State<FormStaff> {
                                 loc: loc!,
                                 email: email!,
                                 name: name!,
+                                phoneNum: phoneNum!,
+                                id: uid!,
                               );
                               Navigator.pushReplacement(
                                   context,

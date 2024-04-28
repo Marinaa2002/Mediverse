@@ -72,6 +72,11 @@ class LoginScreen extends StatelessWidget {
                 if (type == 'Patient') {
                   kNotesBox = documentid;
                   await Hive.openBox<NoteModel>(kNotesBox);
+                  // Navigator.of(context)
+                  //     .pushNamed('/LabResultsScreen', arguments: {
+                  //   "labresult_id": "A",
+                  // });
+                  // Navigator.of(context).pushNamed('/DrNotes');
                   Navigator.pushReplacementNamed(context, '/mainScreenPatient');
                 } else if (type == 'Doctor') {
                   Navigator.pushReplacement(

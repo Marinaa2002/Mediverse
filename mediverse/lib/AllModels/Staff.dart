@@ -8,7 +8,7 @@ class StaffModel {
   String orgType;
   String staff;
   String condition;
-
+  List<String> jobs;
   StaffModel({
     required this.id,
     required this.email,
@@ -19,20 +19,21 @@ class StaffModel {
     required this.orgType,
     required this.staff,
     required this.condition,
+    required this.jobs,
   });
 
   factory StaffModel.fromJson(json) {
     return StaffModel(
-      id: json['id'],
-      email: json['Email'] ??
-          '', // Provide default values or handle null if needed
-      name: json['Name'] ?? '',
-      licenseNumber: json['License_Number'] ?? '',
-      location: json['Location'] ?? '',
-      orgName: json['Org Name'] ?? '',
-      orgType: json['Org Type'] ?? '',
-      staff: json['Staff'] ?? '',
-      condition: json['Condition'] ?? '',
-    );
+        id: json['id'],
+        email: json['Email'] ??
+            '', // Provide default values or handle null if needed
+        name: json['Name'] ?? '',
+        licenseNumber: json['License_Number'] ?? '',
+        location: json['Location'] ?? '',
+        orgName: json['Org Name'] ?? '',
+        orgType: json['Org Type'] ?? '',
+        staff: json['Staff'] ?? '',
+        condition: json['Condition'] ?? '',
+        jobs: json['Jobs'] ?? []);
   }
 }
