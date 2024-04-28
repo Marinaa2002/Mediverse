@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediverse/AllModels/doctor.dart';
-import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/widgets/chooseDetails.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/PatientChatScreen/presentation/Views/PatientChatScreen.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Views/RatingsScreen.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/CustomButtonAppointmentDetails.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDayWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
 
 class AppointmentDetailsScreen extends StatefulWidget {
   AppointmentDetailsScreen({super.key, required this.doctorID});

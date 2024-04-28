@@ -98,19 +98,21 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => ForgetPasswordCubit(LoginRepoImpl())),
         BlocProvider(create: (context) => LoginCubit(LoginRepoImpl())),
-        BlocProvider(
-          create: (context) =>
-              LabResultCubit(LabResultRepoImpl())..getLabModels(),
-        ),
-        BlocProvider(
-          create: (context) =>
-              MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())
-                ..getLabModels(),
-        ),
+        // BlocProvider(
+        //   create: (context) =>
+        //       LabResultCubit(LabResultRepoImpl()),
+        // ),
+        // BlocProvider(
+        //   create: (context) =>
+        //       MedicalPrescriptionCubit(MedicalPrescriptionRepoImpl())
+        //         ,
+        // ),
         BlocProvider(create: (context) => SaveDataCubit()),
         BlocProvider(
             create: (context) => RetrDataCubit()..RetrDataMedicalRec()),
-        BlocProvider(create: ((context) => FetechPatientInfoCubit((GetPatientInfoRepoImpl()))))
+        BlocProvider(
+            create: ((context) =>
+                FetechPatientInfoCubit((GetPatientInfoRepoImpl()))))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
