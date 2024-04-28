@@ -45,10 +45,8 @@ class MedicalRecordsTab extends StatelessWidget {
         }
         try {
           final data = snapshot.data!.data() as Map<String, dynamic>;
-          List<MRmodel> medicalRecords = List<MRmodel>.from(
-              data['Medical Records']
-                  .map((record) => MRmodel.fromJson(record)));
-          final record = medicalRecords[medicalRecords.length - 1];
+          List<MRmodel> medicalRecords = List<MRmodel>.from(data['Medical Records'].map((record) => MRmodel.fromJson(record)));
+          final record = medicalRecords[medicalRecords.length-1];
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -61,22 +59,16 @@ class MedicalRecordsTab extends StatelessWidget {
                     CustomButtonMedicalRecord(
                       text: 'Prescriptions',
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed('/MedicalPrescriptionsScreen');
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => MedicalPrescriptionsScreen()));
                       },
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                     CustomButtonMedicalRecord(
                       text: 'Lab Results',
                       onPressed: () {
-                        //********************************************************************************************
-                        //*******************
-                        //*******************************************
-                        //*To be changed to Lab ID */ */ */
-                        Navigator.of(context)
-                            .pushNamed('/LabResultsScreen', arguments: {
-                          'labresult_id': "A" //To be changed TO Lab id
-                        });
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => LabResultsScreen()));
                       },
                     ),
                   ],
@@ -85,7 +77,8 @@ class MedicalRecordsTab extends StatelessWidget {
               CustomButtonMedicalRecord(
                 text: 'Dr. Notes',
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/DrNotes');
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => DrNotesScreen()));
                 },
               ),
               const Padding(
@@ -99,25 +92,16 @@ class MedicalRecordsTab extends StatelessWidget {
                 height: record.height.isNotEmpty ? record.height : "",
                 weight: record.weight.isNotEmpty ? record.weight : "",
                 bloodType: record.bloodType.isNotEmpty ? record.bloodType : "",
-                bloodPressure:
-                    record.bloodPressure.isNotEmpty ? record.bloodPressure : "",
-                bloodGlucoseLevel: record.bloodGlucoseLevel.isNotEmpty
-                    ? record.bloodGlucoseLevel
-                    : "",
-                cholesterolLevels: record.cholesterolLevels.isNotEmpty
-                    ? record.cholesterolLevels
-                    : "",
+                bloodPressure: record.bloodPressure.isNotEmpty ? record.bloodPressure : "",
+                bloodGlucoseLevel: record.bloodGlucoseLevel.isNotEmpty ? record.bloodGlucoseLevel : "",
+                cholesterolLevels: record.cholesterolLevels.isNotEmpty ? record.cholesterolLevels : "",
                 allergies: record.allergies.isNotEmpty ? record.allergies : "",
                 heartRate: record.heartRate.isNotEmpty ? record.heartRate : "",
-                respiratoryRate: record.respiratoryRate.isNotEmpty
-                    ? record.respiratoryRate
-                    : "",
-                temperature:
-                    record.temperature.isNotEmpty ? record.temperature : "",
-                surgicalHistory: record.surgicalHistory.isNotEmpty
-                    ? record.surgicalHistory
-                    : "",
+                respiratoryRate: record.respiratoryRate.isNotEmpty ? record.respiratoryRate : "",
+                temperature: record.temperature.isNotEmpty ? record.temperature : "",
+                surgicalHistory: record.surgicalHistory.isNotEmpty ? record.surgicalHistory : "",
               ),
+
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                 child: GestureDetector(
@@ -150,26 +134,73 @@ class MedicalRecordsTab extends StatelessWidget {
             ),
           );
         }
-        return Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(100, 300, 100, 300),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Enter your Medical Records', style: Themes.title),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MedicalRecordEditScreen(),
+        return
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+            child:
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomButtonMedicalRecord(
+                        text: 'Prescriptions',
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => MedicalPrescriptionsScreen()));
+                        },
+                      ),
+                      SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                      CustomButtonMedicalRecord(
+                        text: 'Lab Results',
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => LabResultsScreen()));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                CustomButtonMedicalRecord(
+                  text: 'Dr. Notes',
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => DrNotesScreen()));
+                  },
+                ),
+                const Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  child: Divider(
+                    thickness: 2,
+                    color: Color.fromARGB(255, 224, 227, 231),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.25,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                        'Enter your Medical Records',
+                        style: Themes.title
                     ),
-                  );
-                },
-                child: CustomEditConfirm(text: 'Click Here'),
-              ),
-            ],
-          ),
-        );
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                          MaterialPageRoute(
+                            builder: (context) => MedicalRecordEditScreen(),
+                          ),
+                        );
+                      },
+                      child: CustomEditConfirm(text: 'Click Here'),
+                    ),
+                  ],)
+              ],
+            ),
+
+          );
       },
     );
   }

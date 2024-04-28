@@ -3,9 +3,10 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Constants/Themes.dart';
 
 class MedicalInfoRow extends StatelessWidget {
-  MedicalInfoRow({super.key, required this.text,this.controller});
+  MedicalInfoRow({super.key, required this.text,this.controller, this.hint});
   var controller;
   String text;
+  var hint;
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
@@ -49,6 +50,12 @@ class MedicalInfoRow extends StatelessWidget {
                     style: Themes.bodysmall,
                     decoration: InputDecoration(
                       border: InputBorder.none,
+                      hintText: hint,
+                      hintStyle:TextStyle(
+                        color: Colors.grey,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
