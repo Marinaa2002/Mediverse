@@ -133,30 +133,73 @@ class MedicalRecordsTab extends StatelessWidget {
             child: CustomEditConfirm(text: 'Edit'),
           ),
           );
-        }return
-
+        }
+       return
        Padding(
-       padding: EdgeInsetsDirectional.fromSTEB(100, 300, 100, 300),
+       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
        child:
-       Column(
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           Text(
-             'Enter your Medical Records',
-             style: Themes.title
+           Column(
+             children: [
+               Padding(
+                 padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     CustomButtonMedicalRecord(
+                       text: 'Prescriptions',
+                       onPressed: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                             builder: (ctx) => MedicalPrescriptionsScreen()));
+                       },
+                     ),
+                     SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                     CustomButtonMedicalRecord(
+                       text: 'Lab Results',
+                       onPressed: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                             builder: (ctx) => LabResultsScreen()));
+                       },
+                     ),
+                   ],
+                 ),
+               ),
+               CustomButtonMedicalRecord(
+                 text: 'Dr. Notes',
+                 onPressed: () {
+                   Navigator.of(context).push(MaterialPageRoute(
+                       builder: (ctx) => DrNotesScreen()));
+                 },
+               ),
+               const Padding(
+                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                 child: Divider(
+                   thickness: 2,
+                   color: Color.fromARGB(255, 224, 227, 231),
+                 ),
+               ),
+               SizedBox(height: MediaQuery.of(context).size.height*0.25,),
+               Column(
+                 crossAxisAlignment: CrossAxisAlignment.center,
+                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 children: [
+                   Text(
+                       'Enter your Medical Records',
+                       style: Themes.title
+                   ),
+                   GestureDetector(
+                     onTap: () {
+                       Navigator.push(context,
+                         MaterialPageRoute(
+                           builder: (context) => MedicalRecordEditScreen(),
+                         ),
+                       );
+                     },
+                     child: CustomEditConfirm(text: 'Click Here'),
+                   ),
+                 ],)
+             ],
            ),
-           GestureDetector(
-           onTap: () {
-           Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => MedicalRecordEditScreen(),
-            ),
-                 );
-               },
-               child: CustomEditConfirm(text: 'Click Here'),
-             ),
-         ],
-       ),
+
       );
      },
     );
