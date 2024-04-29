@@ -36,9 +36,17 @@ class LabRequestAccountWidget extends StatelessWidget {
                   requestField: 'Requested Account',
                 ),
                 requestModel.staff == "Doctor"
-                    ? RowOfRequestWidget(
-                        requestModelField: requestModel.specialty,
-                        requestField: 'specialty',
+                    ? Column(
+                        children: [
+                          RowOfRequestWidget(
+                            requestModelField: requestModel.specialty,
+                            requestField: 'specialty',
+                          ),
+                          RowOfRequestWidget(
+                            requestModelField: requestModel.specialty,
+                            requestField: 'National Id',
+                          ),
+                        ],
                       )
                     : RowOfRequestWidget(
                         requestModelField: requestModel.orgType,

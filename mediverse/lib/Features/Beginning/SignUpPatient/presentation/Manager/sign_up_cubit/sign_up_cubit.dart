@@ -15,6 +15,8 @@ class SignUpCubit extends Cubit<SignUpState> {
       FirebaseFirestore.instance.collection('info_Patients');
   CollectionReference metaData =
       FirebaseFirestore.instance.collection('MetaData');
+  CollectionReference patientProfile =
+      FirebaseFirestore.instance.collection('PatientProfile');
 
   final SignUpInfoRepo signUpInfoRepo = SignUpInfoRepoImpl();
 
@@ -37,7 +39,6 @@ class SignUpCubit extends Cubit<SignUpState> {
       }
       return null;
     }
-    
   }
 
   Future<void> signUpInfoPatient(

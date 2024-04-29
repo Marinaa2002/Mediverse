@@ -61,16 +61,19 @@ class SignUpDocCubit extends Cubit<SignUpDocState> {
       //   // 'status':'Show'
       // });
       RequestModel requestModel = new RequestModel(
-          email: email,
-          staff: "Doctor",
-          orgName: hospital,
-          orgType: orgType,
-          licenseNumber: licNo,
-          location: location,
-          name: name,
-          status: "pending",
-          phoneNum: phoneNum,
-          specialty: speciality);
+        email: email,
+        staff: "Doctor",
+        orgName: hospital,
+        orgType: orgType,
+        licenseNumber: licNo,
+        location: location,
+        name: name,
+        status: "pending",
+        phoneNum: phoneNum,
+        specialty: speciality,
+        age: age,
+        national_id: national_id,
+      );
 
       signUpInfoRepo.signUpInfoDoctor(requestModel: requestModel, id: uid!);
 

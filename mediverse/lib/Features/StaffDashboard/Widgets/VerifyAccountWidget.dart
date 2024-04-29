@@ -125,15 +125,15 @@ class VerifyAccountWidget extends StatelessWidget {
                             .set({
                           'Email': requests[i].email,
                           'Name': requests[i].name,
-                          'Age': '',
+                          'Age': requests[i].age,
                           'Location': requests[i]
                               .location, // Assuming age is a string, change accordingly
-                          'Phone': '',
+                          'Phone': requests[i].phoneNum,
                           'Blogs': [],
                           'Bookings': [],
 
                           'License_Number': requests[i].licenseNumber,
-                          'NationalId': '',
+                          'NationalId': requests[i].national_id,
                           'Previous_Appointments': [],
                           'Profile_Picture':
                               "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.jpeg.jpg?alt=media&token=817e3dcf-a8dd-484b-913a-8fcf65b70638",

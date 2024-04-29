@@ -54,16 +54,19 @@ class StaffRequestCubit extends Cubit<StaffRequestState> {
       //   // 'status':'Show'
       // });
       RequestModel requestModel = new RequestModel(
-          email: email,
-          staff: staff,
-          orgName: orgName,
-          orgType: orgType,
-          licenseNumber: licNo,
-          location: loc,
-          name: name,
-          status: "pending",
-          phoneNum: phoneNum,
-          specialty: '');
+        email: email,
+        staff: staff,
+        orgName: orgName,
+        orgType: orgType,
+        licenseNumber: licNo,
+        location: loc,
+        name: name,
+        status: "pending",
+        phoneNum: phoneNum,
+        specialty: '',
+        age: '',
+        national_id: '',
+      );
       staffRepo.sendRequest(requestModel: requestModel, id: id);
       emit(StaffRequestSuccess());
     } on Exception catch (e) {
