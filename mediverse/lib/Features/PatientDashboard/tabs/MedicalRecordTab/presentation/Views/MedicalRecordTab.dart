@@ -47,7 +47,8 @@ class MedicalRecordsTab extends StatelessWidget {
           final data = snapshot.data!.data() as Map<String, dynamic>;
           List<MRmodel> medicalRecords = List<MRmodel>.from(data['Medical Records'].map((record) => MRmodel.fromJson(record)));
           final record = medicalRecords[medicalRecords.length-1];
-          return Column(
+          return SingleChildScrollView(
+            child:Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -59,16 +60,22 @@ class MedicalRecordsTab extends StatelessWidget {
                     CustomButtonMedicalRecord(
                       text: 'Prescriptions',
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => MedicalPrescriptionsScreen()));
+                        Navigator.of(context)
+                            .pushNamed('/MedicalPrescriptionsScreen');
                       },
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                     CustomButtonMedicalRecord(
                       text: 'Lab Results',
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => LabResultsScreen()));
+                        //********************************************************************************************
+                        //*******************
+                        //*******************************************
+                        //*To be changed to Lab ID */ */ */
+                        Navigator.of(context)
+                            .pushNamed('/LabResultsScreen', arguments: {
+                          'labresult_id': "A" //To be changed TO Lab id
+                        });
                       },
                     ),
                   ],
@@ -77,8 +84,7 @@ class MedicalRecordsTab extends StatelessWidget {
               CustomButtonMedicalRecord(
                 text: 'Dr. Notes',
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (ctx) => DrNotesScreen()));
+                  Navigator.of(context).pushNamed('/DrNotes');
                 },
               ),
               const Padding(
@@ -117,6 +123,7 @@ class MedicalRecordsTab extends StatelessWidget {
                 ),
               ),
             ],
+           ),
           );
         } catch (e) {
           Padding(
@@ -148,16 +155,22 @@ class MedicalRecordsTab extends StatelessWidget {
                       CustomButtonMedicalRecord(
                         text: 'Prescriptions',
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => MedicalPrescriptionsScreen()));
+                          Navigator.of(context)
+                              .pushNamed('/MedicalPrescriptionsScreen');
                         },
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                       CustomButtonMedicalRecord(
                         text: 'Lab Results',
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => LabResultsScreen()));
+                          //********************************************************************************************
+                          //*******************
+                          //*******************************************
+                          //*To be changed to Lab ID */ */ */
+                          Navigator.of(context)
+                              .pushNamed('/LabResultsScreen', arguments: {
+                            'labresult_id': "A" //To be changed TO Lab id
+                          });
                         },
                       ),
                     ],
@@ -166,8 +179,7 @@ class MedicalRecordsTab extends StatelessWidget {
                 CustomButtonMedicalRecord(
                   text: 'Dr. Notes',
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => DrNotesScreen()));
+                    Navigator.of(context).pushNamed('/DrNotes');
                   },
                 ),
                 const Padding(
@@ -199,7 +211,6 @@ class MedicalRecordsTab extends StatelessWidget {
                   ],)
               ],
             ),
-
           );
       },
     );
