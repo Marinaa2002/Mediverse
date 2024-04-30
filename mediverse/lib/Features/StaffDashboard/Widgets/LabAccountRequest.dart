@@ -43,7 +43,7 @@ class LabRequestAccountWidget extends StatelessWidget {
                             requestField: 'specialty',
                           ),
                           RowOfRequestWidget(
-                            requestModelField: requestModel.specialty,
+                            requestModelField: requestModel.national_id,
                             requestField: 'National Id',
                           ),
                         ],
@@ -55,9 +55,6 @@ class LabRequestAccountWidget extends StatelessWidget {
                   requestModelField: requestModel.orgName,
                   requestField: 'Organization Name',
                 ),
-                RowOfRequestWidget(
-                    requestModelField: requestModel.orgType,
-                    requestField: 'Organization Type'),
                 RowOfRequestWidget(
                     requestModelField: requestModel.location,
                     requestField: 'Address'),

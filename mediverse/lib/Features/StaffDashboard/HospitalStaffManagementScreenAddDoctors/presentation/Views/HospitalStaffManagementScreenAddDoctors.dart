@@ -29,7 +29,7 @@ class _HospitalStaffManagementScreenAddDoctorsState
   ];
 
   late TabController _tabController;
-
+  String id = '';
   @override
   void initState() {
     super.initState();
@@ -44,8 +44,13 @@ class _HospitalStaffManagementScreenAddDoctorsState
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<FetecHMInfoCubit>(context)
-        .getHMInforCubitFunction("V4xmzSMXv8SPM4vW5ra2");
+    Map<String, dynamic>? args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+
+    if (args != null) {
+      id = args['id'];
+    }
+    BlocProvider.of<FetecHMInfoCubit>(context).getHMInforCubitFunction(id);
     return BlocBuilder<FetecHMInfoCubit, FetechHMInfoState>(
       builder: (context, state) {
         if (state is FetechHMInfoStateSuccess) {

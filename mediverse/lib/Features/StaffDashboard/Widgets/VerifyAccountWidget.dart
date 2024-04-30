@@ -178,6 +178,8 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Location': requests[i].location,
                           'Org Name': requests[i].orgName,
                           'Org Type': requests[i].orgType,
+                          'Profile_Picture':
+                              "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.jpeg.jpg?alt=media&token=817e3dcf-a8dd-484b-913a-8fcf65b70638",
                           'Staff': requests[i].staff,
                           'Condition': 'Show',
                           'Jobs': [],

@@ -19,7 +19,10 @@ class StaffRepoImpl extends StaffRepo {
         'Email': requestModel.email,
         'Status': requestModel.status,
         'Name': requestModel.name,
-        'Phone Number': requestModel.phoneNum
+        'Age': requestModel.age,
+        'Specialty': '',
+        'Phone Number': requestModel.phoneNum,
+        'National_Id': requestModel.national_id
       });
     } on Exception catch (e) {}
   }

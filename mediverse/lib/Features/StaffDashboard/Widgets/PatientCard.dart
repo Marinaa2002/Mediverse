@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/AllModels/doctor.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/NetworkImage.dart';
 import '../../../Constants/Themes.dart';
 import '../HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
 
@@ -30,9 +31,8 @@ class MedicalCard extends StatelessWidget {
             },
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(40),
-              child: Image.network(
-                profile_Picture ??
-                    "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2FCAP1530581265562441583.jpg?alt=media&token=6bcadeaf-c644-41dd-a183-999ed71e7434",
+              child: Image.asset(
+                "assets/images/Human.jpg",
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,

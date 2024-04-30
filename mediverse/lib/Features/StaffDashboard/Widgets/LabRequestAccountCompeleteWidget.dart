@@ -26,7 +26,7 @@ class LabRequestAccountCompeleteWidget extends StatelessWidget {
         ),
         child: Container(
           width: 370,
-          height: 300,
+          height: 330,
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(12),

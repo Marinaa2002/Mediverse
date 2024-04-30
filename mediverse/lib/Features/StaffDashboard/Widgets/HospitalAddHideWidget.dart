@@ -33,10 +33,13 @@ class HospitalAddHideWidget extends StatelessWidget {
           children: [
             Align(
               alignment: AlignmentDirectional(-1, 0),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
-                child: Text(
-                  hospitalName,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.3,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                  child: Text(
+                    hospitalName,
+                  ),
                 ),
               ),
             ),

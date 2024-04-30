@@ -52,6 +52,11 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescri
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/data/repos/FetechAdminInformationRepoImp.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/FetechAdminInfoCubit.dart/fetech_admin_info_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/AdminMainScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/data/repos/FetechHMInformationRepoImpl.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
+import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabStaffMainScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalMangmentAddDoctorsBody.dart';
 
 import 'Features/PatientDashboard/MainScreen.dart';
 
@@ -77,6 +82,8 @@ var loginRepoImpl = LoginRepoImpl();
 final LoginCubit loginCubit = LoginCubit(loginRepoImpl);
 final ForgetPasswordCubit forgetPasswordCubit =
     ForgetPasswordCubit(loginRepoImpl);
+final FetechPatientInfoCubit fetechPatientInfoCubit =
+    FetechPatientInfoCubit(GetPatientInfoRepoImpl());
 
 final AddNoteCubit addNoteCubit = AddNoteCubit();
 
@@ -143,9 +150,8 @@ class MyApp extends StatelessWidget {
                 child: DrNotesScreen(),
               ),
           kCameraScrenId: (context) => const CameraScreen(),
-          '/mainScreenPatient': (context) => BlocProvider(
-                create: (context) =>
-                    FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
+          '/mainScreenPatient': (context) => BlocProvider.value(
+                value: fetechPatientInfoCubit,
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
@@ -171,6 +177,14 @@ class MyApp extends StatelessWidget {
           '/DoctorChat': (context) => BlocProvider(
                 create: (context) => GetDoctorInfoCubit(GetDoctorInfoRepoImp()),
                 child: DoctorChat(),
+              ),
+          '/HospitalStaffManagementScreenAddDoctors': (context) => BlocProvider(
+                create: (context) => FetecHMInfoCubit(FetechHMRepoImp()),
+                child: HospitalStaffManagementScreenAddDoctors(),
+              ),
+          '/LabStaffScreen': (context) => BlocProvider(
+                create: (context) => FetecHMInfoCubit(FetechHMRepoImp()),
+                child: LabStaffScreen(),
               ),
 
           // '/EditNoteView': (context) => BlocProvider(

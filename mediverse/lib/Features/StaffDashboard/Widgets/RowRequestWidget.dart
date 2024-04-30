@@ -16,25 +16,27 @@ class RowOfRequestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            requestField,
-            style: const TextStyle(
-              fontFamily: 'Readex Pro',
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
+      child: SizedBox(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              requestField,
+              style: const TextStyle(
+                fontFamily: 'Readex Pro',
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-          Text(
-            requestModelField,
-            style: const TextStyle(
-              fontSize: 21,
+            Text(
+              requestModelField,
+              style: const TextStyle(
+                fontSize: 15,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

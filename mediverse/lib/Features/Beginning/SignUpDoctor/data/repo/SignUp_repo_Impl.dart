@@ -45,8 +45,11 @@ class SignUpDocInfoRepoImpl extends SignUpDocInfoRepo {
       'License_Number': requestModel.licenseNumber,
       'Email': requestModel.email,
       'Status': requestModel.status,
+      'Age': requestModel.age,
       'Name': requestModel.name,
-      'Phone Number': requestModel.phoneNum
+      'Specialty': requestModel.specialty,
+      'Phone Number': requestModel.phoneNum,
+      'National_Id': requestModel.national_id,
     });
   }
 }
