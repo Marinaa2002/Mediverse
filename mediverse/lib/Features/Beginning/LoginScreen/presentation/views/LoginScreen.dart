@@ -9,6 +9,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/ArchriveScreen.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/WaitingScreen.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/ForgetPasswordWidget.dart';
@@ -76,11 +77,6 @@ class LoginScreen extends StatelessWidget {
             if (type == 'Patient') {
               kNotesBox = documentid;
               await Hive.openBox<NoteModel>(kNotesBox);
-              // Navigator.of(context)
-              //     .pushNamed('/LabResultsScreen', arguments: {
-              //   "labresult_id": "A",
-              // });
-              // Navigator.of(context).pushNamed('/DrNotes');
               Navigator.pushReplacementNamed(context, '/mainScreenPatient');
             } else if (type == 'Doctor') {
               Navigator.pushReplacement(
@@ -93,12 +89,43 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ));
             } else if (type == 'Lab Staff') {
-              Navigator.pushReplacementNamed(context, '/LabStaffScreen',
-                  arguments: {'id': globalcurrentUserId},);
+              DocumentSnapshot documentSnapshot = await FirebaseFirestore
+                  .instance
+                  .collection('Staff')
+                  .doc(globalcurrentUserId)
+                  .get();
+              var condition = documentSnapshot['Condition'];
+              if (condition == 'Show') {
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/LabStaffScreen',
+                  arguments: {'id': globalcurrentUserId},
+                );
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ArchriveScreen(),
+                    ));
+              }
             } else if (type == 'Hospital Staff') {
-              Navigator.pushReplacementNamed(
-                  context, '/HospitalStaffManagementScreenAddDoctors',
-                  arguments: {'id': globalcurrentUserId});
+              DocumentSnapshot documentSnapshot = await FirebaseFirestore
+                  .instance
+                  .collection('Staff')
+                  .doc(globalcurrentUserId)
+                  .get();
+              var condition = documentSnapshot['Condition'];
+              if (condition == 'Show') {
+                Navigator.pushReplacementNamed(
+                    context, '/HospitalStaffManagementScreenAddDoctors',
+                    arguments: {'id': globalcurrentUserId});
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ArchriveScreen(),
+                    ));
+              }
             } else if (type == 'admin') {
               Navigator.pushReplacementNamed(context, '/AdminMainScreen');
             }
