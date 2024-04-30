@@ -18,12 +18,10 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widg
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldPassWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/TextFormFieldWidget.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/widgets/startingContWidget.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/repos/getDoctorInfoRepoImp.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/MainScreenDoctor.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/data/repos/GetPatientInfoRepoImpl.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
-import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
-import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabStaffMainScreen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../Constants/Themes.dart';
 import '../../../../../GlobalWidgets/titleText.dart';
@@ -79,15 +77,7 @@ class LoginScreen extends StatelessWidget {
               await Hive.openBox<NoteModel>(kNotesBox);
               Navigator.pushReplacementNamed(context, '/mainScreenPatient');
             } else if (type == 'Doctor') {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider(
-                      create: (context) =>
-                          FetechPatientInfoCubit(GetPatientInfoRepoImpl()),
-                      child: MainScreenDoctor(),
-                    ),
-                  ));
+              Navigator.pushReplacementNamed(context, '/mainScreenDoctor');
             } else if (type == 'Lab Staff') {
               DocumentSnapshot documentSnapshot = await FirebaseFirestore
                   .instance

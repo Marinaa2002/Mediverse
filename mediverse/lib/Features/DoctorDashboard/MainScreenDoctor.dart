@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/Tabs/PatientTab.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/AppBarDoctor.dart';
 
 import 'DoctorProfile/presentation/Views/DoctorProfile.dart';
 import 'tabs/BlogsTab.dart';
@@ -11,6 +15,8 @@ class MainScreenDoctor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<GetDoctorInfoCubit>(context)
+        .getDoctorInforCubitFunction(globalcurrentUserId);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -18,64 +24,7 @@ class MainScreenDoctor extends StatelessWidget {
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
         title: GestureDetector(
-          child: Align(
-            alignment: const AlignmentDirectional(0, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 20, 5),
-                  child: Container(
-                    width: 65,
-                    height: 65,
-                    decoration: const BoxDecoration(
-                      color: kprimaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Hero(
-                        tag: 'profile',
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                            'assets/images/Human.jpg',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        'Dr. Nader Nabil',
-                        style:
-                            Themes.titleSmall.copyWith(color: backgroundColor),
-                      ),
-                      Text(
-                        'nader.nabil@gmail.com',
-                        style: Themes.bodyXLarge.copyWith(
-                          color: backgroundColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          child: AppBarDoctor(),
           onTap: () {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (ctx) => const DoctorProfile()));

@@ -45,7 +45,12 @@ class PatientsTab extends StatelessWidget {
                       ),
                       elevation: 3,
                     ),
-                    child: const Text('Bookings'),
+                    child: const Text(
+                      'Bookings',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
@@ -72,7 +77,12 @@ class PatientsTab extends StatelessWidget {
                       ),
                       elevation: 3,
                     ),
-                    child: const Text('Chats'),
+                    child: const Text(
+                      'Chats',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -101,7 +111,12 @@ class PatientsTab extends StatelessWidget {
                 ),
                 elevation: 3,
               ),
-              child: const Text('Patinets\' History'),
+              child: const Text(
+                'Patinets\' History',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
           const Padding(
@@ -125,6 +140,7 @@ class PatientsTab extends StatelessWidget {
                   'Tues, Nov 07',
                   style: Themes.titleSmall.copyWith(
                     fontSize: 20,
+                    color: Colors.black,
                   ),
                 )
               ],

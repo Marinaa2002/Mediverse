@@ -25,6 +25,7 @@ import 'package:mediverse/Features/Beginning/SignUpPatient/presentation/view/Pat
 import 'package:mediverse/Features/Beginning/splashScreen/splashScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/repos/getDoctorInfoRepoImp.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
+import 'package:mediverse/Features/DoctorDashboard/MainScreenDoctor.dart';
 
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/data/repos/patient_review_repo_impl.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Manager/patient_review_cubit/patient_review_cubit.dart';
@@ -186,6 +187,10 @@ class MyApp extends StatelessWidget {
                 create: (context) => FetecHMInfoCubit(FetechHMRepoImp()),
                 child: LabStaffScreen(),
               ),
+          '/mainScreenDoctor': (context) => BlocProvider(
+                create: (context) => GetDoctorInfoCubit(GetDoctorInfoRepoImp()),
+                child: MainScreenDoctor(),
+              )
 
           // '/EditNoteView': (context) => BlocProvider(
           //       create: (context) => NotesCubit(),
