@@ -6,7 +6,11 @@ import 'package:mediverse/Features/StaffDashboard/Widgets/ActionButton.dart';
 class SlotsAddWidgetRow extends StatelessWidget {
   const SlotsAddWidgetRow({
     super.key,
+    required this.orgName,
+    required this.doctorId,
   });
+  final String orgName;
+  final String doctorId;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,11 @@ class SlotsAddWidgetRow extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const DateTimePicker()),
+              MaterialPageRoute(
+                  builder: (context) => DateTimePicker(
+                        id: doctorId,
+                        orgName: orgName,
+                      )),
             );
           },
         ),

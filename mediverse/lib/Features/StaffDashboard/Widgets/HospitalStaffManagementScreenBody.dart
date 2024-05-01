@@ -13,10 +13,14 @@ class HospitalStaffManagementScreenBody extends StatelessWidget {
     super.key,
     required this.textEditingController,
     required this.monthName,
+    required this.id,
+    required this.doctorOrgName,
   });
 
   final TextEditingController textEditingController;
   final String monthName;
+  final String id;
+  final String doctorOrgName;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,9 @@ class HospitalStaffManagementScreenBody extends StatelessWidget {
             padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
             child: BlocProvider(
               create: (context) => GetDoctorInfoCubit(GetDoctorInfoRepoImp()),
-              child: const DrInformation(),
+              child: DrInformation(
+                id: id,
+              ),
             ),
           ),
         ),
@@ -39,14 +45,19 @@ class HospitalStaffManagementScreenBody extends StatelessWidget {
             padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 12),
             child: PriceOfBookingWidget(
               textEditingController: textEditingController,
+              id: id,
+              orgName: doctorOrgName,
             ),
           ),
         ),
-        const Align(
+        Align(
           alignment: AlignmentDirectional(-1, 0),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-            child: SlotsAddWidgetRow(),
+            child: SlotsAddWidgetRow(
+              orgName: doctorOrgName,
+              doctorId: id,
+            ),
           ),
         ),
         Align(
@@ -64,7 +75,9 @@ class HospitalStaffManagementScreenBody extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
-          child: SlotsWidget(),
+          child: SlotsWidget(
+            id: id,
+          ),
         ),
       ],
     );

@@ -9,8 +9,10 @@ import 'package:mediverse/Features/StaffDashboard/Widgets/EachSlotWidget.dart';
 class SlotsWidget extends StatelessWidget {
   SlotsWidget({
     super.key,
+    required this.id,
   });
   final scrollController = ScrollController();
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class SlotsWidget extends StatelessWidget {
             'FromDateMonth',
             isEqualTo: currentMonth,
           )
+          .where('D_uid', isEqualTo: id)
           .orderBy(
             'FromDateDay',
             descending: false,
@@ -35,6 +38,8 @@ class SlotsWidget extends StatelessWidget {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
           List<DocumentSnapshot> documents = snapshot.data!.docs;
+          List<String> documentIds = documents.map((doc) => doc.id).toList();
+
           List<SlotsModel> slotsList = documents
               .map((doc) =>
                   SlotsModel.fromJson(doc.data() as Map<String, dynamic>))
@@ -61,7 +66,7 @@ class SlotsWidget extends StatelessWidget {
                 return SlotWidget(
                   slot: slotsList[index],
                   onDismissed: () {
-                    deleteDocumentsByField('Appointments', 'D_uid', 'A');
+                    deleteDocumentsByField('Appointments', documentIds[index]);
                   },
                 );
               },
@@ -79,18 +84,19 @@ class SlotsWidget extends StatelessWidget {
   }
 }
 
-void deleteDocumentsByField(
-    String collectionPath, String fieldName, dynamic fieldValue) async {
+void deleteDocumentsByField(String collectionPath, String slotId) async {
   try {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection(collectionPath)
-        .where(fieldName, isEqualTo: fieldValue)
-        .get();
+// Get a reference to the document
+    DocumentReference<Map<String, dynamic>> documentRef =
+        FirebaseFirestore.instance.collection(collectionPath).doc(slotId);
 
     // Delete each document in the query results
-    for (var doc in querySnapshot.docs) {
-      doc.reference.delete();
-    }
+    // Delete the document
+    documentRef.delete().then((value) {
+      print("Document successfully deleted!");
+    }).catchError((error) {
+      print("Error deleting document: $error");
+    });
   } catch (e) {
     print(e.toString());
   }

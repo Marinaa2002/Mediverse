@@ -12,12 +12,16 @@ import '../../../Constants/constant.dart';
 import 'RateWidget.dart';
 
 class DrInformation extends StatelessWidget {
-  const DrInformation({super.key});
+  const DrInformation({
+    super.key,
+    required this.id,
+  });
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<GetDoctorInfoCubit>(context)
-        .getDoctorInforCubitFunction("GCdsPwoGDUp36lOBGJUJ");
+        .getDoctorInforCubitFunction(id);
     return BlocBuilder<GetDoctorInfoCubit, GetDoctorInfoState>(
       builder: (context, state) {
         if (state is GetDoctorInfoSuccess) {
@@ -89,11 +93,9 @@ class DrInformation extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      
-                      
                       RateWidget(
                         rating: state.doctor.rating!,
-                        ratingCount: 12,
+                        ratingCount: state.doctor.reviews!.length,
                         size: 24,
                       ),
                     ],

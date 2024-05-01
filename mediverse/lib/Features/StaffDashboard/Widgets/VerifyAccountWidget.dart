@@ -119,6 +119,9 @@ class VerifyAccountWidget extends StatelessWidget {
                           'email': requests[i].email,
                           // 'status':'show'
                         });
+                        CollectionReference doctorProfile = FirebaseFirestore
+                            .instance
+                            .collection('DoctorProfile');
                         FirebaseFirestore.instance
                             .collection('info_Doctors')
                             .doc(requestId)
@@ -146,12 +149,24 @@ class VerifyAccountWidget extends StatelessWidget {
                           'Condition':
                               'Verified' // Empty map for clinic appointments
                         });
-                        FirebaseFirestore.instance
-                            .collection('Form_Requests_Info')
-                            .doc(requestId)
-                            .delete();
-                        EmailService().sendEmail(acceptanceMailDoctor,
-                            'Request Acceptance', 'rinosamyramy@gmail.com');
+                        await doctorProfile.doc(requestId).set({
+                          'Name': requests[i].name,
+                          'Age': requests[i].age,
+                          'Email': requests[i].email,
+                          'Phone Number': requests[i].phoneNum,
+                          'NationalId': requests[i].national_id,
+                          'Profile Picture':
+                              "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2FCAP7401140941351194398.jpg?alt=media&token=f5c0a2b4-127d-4b29-aadd-594a4de7cfeb",
+                        });
+                        // FirebaseFirestore.instance
+                        //     .collection('Form_Requests_Info')
+                        //     .doc(requestId)
+                        //     .delete();
+                        EmailService().sendEmail(
+                            context,
+                            acceptanceMailDoctor,
+                            'Request Acceptance',
+                            'rinosamyramy@gmail.com'); //change to required Email
                       } else {
                         // Retrieve the document ID of the request
                         await metaData.doc(requestId).set({
@@ -188,7 +203,7 @@ class VerifyAccountWidget extends StatelessWidget {
                             .collection('Form_Requests_Info')
                             .doc(requestId)
                             .delete();
-                        EmailService().sendEmail(acceptaneMailStaff,
+                        EmailService().sendEmail(context, acceptaneMailStaff,
                             'Request Accepted', 'rinosamyramy@gmail.com');
                       }
                     },
@@ -207,7 +222,7 @@ class VerifyAccountWidget extends StatelessWidget {
                         // Error occurred while deleting the document
                         print('Failed to decline and remove request: $error');
                       });
-                      EmailService().sendEmail(rejectionMail,
+                      EmailService().sendEmail(context, rejectionMail,
                           'Request Rejection', 'rinosamyramy@gmail.com');
                     },
                   );

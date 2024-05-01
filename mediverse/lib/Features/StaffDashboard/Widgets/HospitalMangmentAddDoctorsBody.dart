@@ -37,9 +37,9 @@ class _HospitalMangmentAddDoctorsBodyState
     super.initState();
     _searchController = TextEditingController();
     _doctorStream = FirebaseFirestore.instance
-        .collection('info_Doctors')
-        .where('Hospital', isEqualTo: widget.staffModel.orgName)
-        .where('Condition', isEqualTo: "Verified")
+        .collection('Form_Requests_Info')
+        .where('Org Name', isEqualTo: widget.staffModel.orgName)
+        .where('Status', isEqualTo: "Verified")
         .snapshots();
   }
 
@@ -106,9 +106,9 @@ class _HospitalMangmentAddDoctorsBodyState
   void _onSearchTextChanged(String searchText) {
     setState(() {
       _doctorStream = FirebaseFirestore.instance
-          .collection('info_Doctors')
-          .where('Hospital', isEqualTo: widget.staffModel.orgName)
-          .where('Condition', isEqualTo: "Verified")
+          .collection('Form_Requests_Info')
+          .where('Org Name', isEqualTo: widget.staffModel.orgName)
+          .where('Status', isEqualTo: "Verified")
           .where('Name', isGreaterThanOrEqualTo: searchText)
           .snapshots();
     });

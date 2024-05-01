@@ -6,24 +6,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Views/DoctorProfile.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/data/models/PatientProfileModel.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/PatientProfileScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/NetworkImage.dart';
 import '../../../Constants/Themes.dart';
 import '../HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
 
-class MedicalCard extends StatelessWidget {
-  const MedicalCard({
+class DoctorCard extends StatelessWidget {
+  const DoctorCard({
     Key? key,
     required this.id,
+    required this.orgName,
   }) : super(key: key);
 
   final String id;
+  final String orgName;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
-            .collection('Patient_Profile')
+            .collection('DoctorProfile')
             .doc(id)
             .snapshots(),
         builder: (context, snapshot) {
@@ -38,8 +41,13 @@ class MedicalCard extends StatelessWidget {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } //
-          PatientProfileModel patientProfileModel =
-              PatientProfileModel.fromJson(snapshot.data!.data());
+          if (!snapshot.hasData) {
+            return Center(
+              child: Text('No Doctor available'),
+            ); // Show a loading indicator while waiting for data
+          }
+          PatientProfileModel doctorProfileModel = PatientProfileModel.fromJson(
+              snapshot.data!.data()); //5aif a3ml edit bs hwa doctor
           return Column(
             children: [
               Padding(
@@ -47,20 +55,21 @@ class MedicalCard extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
                 child: ListTile(
                   onTap: () {
-                    Navigator.pushNamed(context, '/LabResultsScreenStaff',
-                        arguments: {'id': id});
+                    Navigator.pushNamed(
+                        context, '/HospitalStaffManagementScreen',
+                        arguments: {'id': id, 'orgName': orgName});
                   },
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(40),
                     child: CachedNetworkImage(
-                      imageUrl: patientProfileModel.profilePicture,
+                      imageUrl: doctorProfileModel.profilePicture,
                       width: 60,
                       height: 60,
                       fit: BoxFit.cover,
                     ),
                   ),
                   title: Text(
-                    patientProfileModel.name,
+                    doctorProfileModel.name,
                     style: Themes.bodyLarge,
                   ),
                   trailing: Icon(

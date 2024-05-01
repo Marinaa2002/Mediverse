@@ -26,6 +26,8 @@ class _HospitalStaffManagementScreenState
       FirebaseFirestore.instance.collection('Appointments');
 
   ScrollController scrollController = ScrollController();
+  String id = '';
+  String orgName = '';
 
   TextEditingController textEditingController = TextEditingController();
 
@@ -41,6 +43,13 @@ class _HospitalStaffManagementScreenState
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     String monthName = DateFormat('MMMM').format(now);
+    Map<String, dynamic>? args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+
+    if (args != null) {
+      id = args['id'];
+      orgName = args['orgName'];
+    }
     return Scaffold(
       backgroundColor: kSecondryBackgroundColor,
       appBar: AppBar(
@@ -72,8 +81,11 @@ class _HospitalStaffManagementScreenState
           child: SafeArea(
             top: true,
             child: HospitalStaffManagementScreenBody(
-                textEditingController: textEditingController,
-                monthName: monthName),
+              textEditingController: textEditingController,
+              monthName: monthName,
+              id: id,
+              doctorOrgName: orgName,
+            ),
           ),
         ),
       ),

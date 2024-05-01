@@ -6,8 +6,9 @@ import 'package:mediverse/Core/utils/Functions.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 
 class DateTimePicker extends StatefulWidget {
-  const DateTimePicker({super.key});
-
+  const DateTimePicker({super.key, required this.id, required this.orgName});
+  final String id;
+  final String orgName;
   @override
   _DateTimePickerState createState() => _DateTimePickerState();
 }
@@ -58,9 +59,8 @@ class _DateTimePickerState extends State<DateTimePicker> {
     );
     if (slot != null) {
       appointments.add({
-        'D_uid': "A",
-        'P_uid': "P",
-        'HospitalName': 'St Philo',
+        'D_uid': widget.id,
+        'HospitalName': widget.orgName,
         'FromDateDay': selectedDateTime.day,
         'FromDateHour': selectedDateTime.hour,
         'FromDateMonth': selectedDateTime.month,

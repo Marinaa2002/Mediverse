@@ -1,7 +1,8 @@
 import 'package:emailjs/emailjs.dart';
+import 'package:mediverse/Core/utils/Functions.dart';
 
 class EmailService {
-  void sendEmail(message, subject, email) async {
+  void sendEmail(context, message, subject, email) async {
     try {
       await EmailJS.send(
         'service_yo90c7i',
@@ -16,7 +17,7 @@ class EmailService {
           privateKey: 'eNTW3JYpW0Xz5opCIs4-v',
         ),
       );
-      print('SUCCESS!');
+      showSnackBar(context, 'Recipient Notified Successfully!');
     } catch (error) {
       if (error is EmailJSResponseStatus) {
         print('ERROR... ${error.status}: ${error.text}');
