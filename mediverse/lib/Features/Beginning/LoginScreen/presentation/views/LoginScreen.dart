@@ -54,6 +54,7 @@ class LoginScreen extends StatelessWidget {
           } else if (state is LoginSuccess) {
             CollectionReference metaData =
                 FirebaseFirestore.instance.collection('MetaData');
+
             QuerySnapshot querySnapshot =
                 await metaData.where('email', isEqualTo: email).limit(1).get();
             // If document(s) found, return the ID of the first one
@@ -215,8 +216,13 @@ class LoginScreen extends StatelessWidget {
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
                             log(email!);
-                            BlocProvider.of<LoginCubit>(context)
-                                .loginUser(email: email!, password: password!);
+                            email!.trim();
+                            try {
+                              BlocProvider.of<LoginCubit>(context).loginUser(
+                                  email: email!, password: password!);
+                            } on Exception catch (e) {
+                              showSnackbar(context, e.toString());
+                            }
                           } else {}
                         },
                       ),

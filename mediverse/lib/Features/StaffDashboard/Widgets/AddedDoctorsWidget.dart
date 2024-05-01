@@ -36,8 +36,8 @@ class AddedDoctorsWidget extends StatelessWidget {
                 return Center(child: const CircularProgressIndicator());
               }
               var doctorsApproved = snapshot.data?.docs
-                  .map((doc) =>
-                      Doctor.fromJson(doc.data() as Map<String, dynamic>, doc.id))
+                  .map((doc) => Doctor.fromJson(
+                      doc.data() as Map<String, dynamic>, doc.id))
                   .toList();
               if (doctorsApproved!.isEmpty) {
                 return Center(
@@ -47,10 +47,10 @@ class AddedDoctorsWidget extends StatelessWidget {
               return ListView.builder(
                 itemCount: doctorsApproved.length,
                 itemBuilder: (context, i) {
-                  return MedicalCard(
-                    name: doctorsApproved[i].name!,
-                    profile_Picture: doctorsApproved[i].profilePicture!,
-                  );
+                  // return MedicalCard(
+                  //   name: doctorsApproved[i].name!,
+                  //   profile_Picture: doctorsApproved[i].profilePicture!,
+                  // );
                 },
               );
             },

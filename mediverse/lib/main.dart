@@ -53,9 +53,11 @@ import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalPrescri
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/data/repos/FetechAdminInformationRepoImp.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/FetechAdminInfoCubit.dart/fetech_admin_info_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/AdminMainScreen.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/data/repos/FetechHMInformationRepoImpl.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
+import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabResultPatientStaffPortal.dart';
 import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabStaffMainScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalMangmentAddDoctorsBody.dart';
 
@@ -190,7 +192,19 @@ class MyApp extends StatelessWidget {
           '/mainScreenDoctor': (context) => BlocProvider(
                 create: (context) => GetDoctorInfoCubit(GetDoctorInfoRepoImp()),
                 child: MainScreenDoctor(),
-              )
+              ),
+          '/HospitalStaffManagementScreen': (context) => BlocProvider(
+                create: (context) => GetDoctorInfoCubit(
+                  GetDoctorInfoRepoImp(),
+                ),
+                child: HospitalStaffManagementScreen(),
+              ),
+          '/LabResultsScreenStaff': (context) => BlocProvider(
+                create: (context) => LabResultCubit(
+                  LabResultRepoImpl(),
+                ),
+                child: LabResultPatientStaffPortal(),
+              ),
 
           // '/EditNoteView': (context) => BlocProvider(
           //       create: (context) => NotesCubit(),

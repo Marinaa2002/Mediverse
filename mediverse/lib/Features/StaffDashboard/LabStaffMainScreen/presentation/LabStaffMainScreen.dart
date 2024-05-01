@@ -69,14 +69,29 @@ class LabStaffScreen extends StatelessWidget {
                           textEditingController: textEditingController,
                           title: "Add Patient 's national id",
                           hintText: 'National id');
+                      var id = '';
+                      textEditingController.clear();
                       if (national_id != null) {
                         try {
+                          QuerySnapshot snapshot = await FirebaseFirestore
+                              .instance
+                              .collection('info_Patients')
+                              .where('NationalId', isEqualTo: national_id)
+                              .get();
+
+                          if (snapshot.docs.isNotEmpty) {
+                            id = snapshot.docs.first.id;
+                          } else {
+                            showSnackBar(context,
+                                "No Patient With this national id"); // Handle case when no document is found
+                          }
+
                           // Update the array in Firestore using arrayUnion
                           await FirebaseFirestore.instance
                               .collection('Staff')
                               .doc(globalcurrentUserId)
                               .update({
-                            'Jobs': FieldValue.arrayUnion([national_id]),
+                            'Jobs': FieldValue.arrayUnion([id]),
                           });
                           print('National ID added to the array successfully');
                         } catch (error) {

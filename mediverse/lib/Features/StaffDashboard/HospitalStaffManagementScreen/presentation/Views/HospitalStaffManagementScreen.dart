@@ -53,10 +53,8 @@ class _HospitalStaffManagementScreenState
           ),
           color: kSecondryBackgroundColor,
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const AdminMainScreenWidget()),
             );
           },
         ),
