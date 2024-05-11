@@ -17,21 +17,29 @@ import 'SendButtonIcon.dart';
 String textData = "";
 
 class ChatCoumn extends StatelessWidget {
-  const ChatCoumn({
-    super.key,
-    required ScrollController controller2,
-    required this.textEditingcontroller,
-    required this.messages,
-  }) : _scrollablecontroller = controller2;
+  const ChatCoumn(
+      {super.key,
+      required ScrollController controller2,
+      required this.textEditingcontroller,
+      required this.messages,
+      required this.doctorId,
+      required this.patientId})
+      : _scrollablecontroller = controller2;
 
   final ScrollController _scrollablecontroller;
   final TextEditingController textEditingcontroller;
   final CollectionReference<Object?> messages;
+  final String doctorId;
+  final String patientId;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: messages.orderBy(kCreatedAt, descending: true).snapshots(),
+      stream: messages
+          .orderBy(kCreatedAt, descending: true)
+          .where('doctor_id', isEqualTo: doctorId)
+          .where('patient_id', isEqualTo: patientId)
+          .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Message> messagesList = [];
@@ -44,6 +52,8 @@ class ChatCoumn extends StatelessWidget {
             children: [
               const DateOfChat(),
               MessagesListView(
+                doc_id: doctorId,
+                patient_id: patientId,
                 messagesList: messagesList,
                 controller: _scrollablecontroller,
               ),
@@ -55,9 +65,15 @@ class ChatCoumn extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const CameraScreen()),
+                      builder: (context) => CameraScreen(
+                        patient_id: patientId,
+                        doc_id: doctorId,
+                      ),
+                    ),
                   );
                 },
+                patient_id: patientId,
+                doctor_id: doctorId,
               ),
             ],
           );

@@ -10,12 +10,13 @@ import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manag
 class AppBarRowIconChat extends StatelessWidget {
   AppBarRowIconChat({
     Key? key,
+    required this.doctor_id,
   }) : super(key: key);
-
+  final String doctor_id;
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<GetDoctorInfoCubit>(context)
-        .getDoctorInforCubitFunction("GCdsPwoGDUp36lOBGJUJ");
+        .getDoctorInforCubitFunction(doctor_id);
     return BlocBuilder<GetDoctorInfoCubit, GetDoctorInfoState>(
       builder: (context, state) {
         if (state is GetDoctorInfoSuccess) {

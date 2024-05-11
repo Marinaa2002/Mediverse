@@ -27,12 +27,11 @@ import '../../../../../Constants/Themes.dart';
 import '../../../../../GlobalWidgets/titleText.dart';
 import '../Manager/login_cubit/login_cubit.dart';
 
-bool isLoading = false;
-
 class LoginScreen extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
 
   static String id = 'LoginPage';
+  bool isLoading = false;
 
   String? email;
   String? password;
@@ -40,98 +39,101 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(
-      inAsyncCall: isLoading,
-      progressIndicator: SpinKitSpinningCircle(
-        color: kprimaryColor,
-        size: 50,
-      ),
-      child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) async {
-          String type = '', documentid = '', status = '';
-          if (state is LoginLoading) {
-            isLoading = true;
-          } else if (state is LoginSuccess) {
-            CollectionReference metaData =
-                FirebaseFirestore.instance.collection('MetaData');
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) async {
+        String type = '', documentid = '', status = '';
+        if (state is LoginLoading) {
+          isLoading = true;
+        } else if (state is LoginSuccess) {
+          // Navigator.push(context, MaterialPageRoute(
+          //   builder: (context) {
+          //     return ArchriveScreen();
+          //   },
+          // ));
+          CollectionReference metaData =
+              FirebaseFirestore.instance.collection('MetaData');
 
-            QuerySnapshot querySnapshot =
-                await metaData.where('email', isEqualTo: email).limit(1).get();
-            // If document(s) found, return the ID of the first one
-            if (querySnapshot.docs.isNotEmpty) {
-              DocumentSnapshot firstDocument = querySnapshot.docs.first;
-              Map<String, dynamic> documentData =
-                  firstDocument.data() as Map<String, dynamic>;
-              documentid = querySnapshot.docs.first.id;
-              type = documentData['type'];
-              globalcurrentUserId = documentid;
-              // status=documentData['status']; // Change 'type' to the actual field name} else {
+          QuerySnapshot querySnapshot =
+              await metaData.where('email', isEqualTo: email).limit(1).get();
+          // If document(s) found, return the ID of the first one
+          if (querySnapshot.docs.isNotEmpty) {
+            DocumentSnapshot firstDocument = querySnapshot.docs.first;
+            Map<String, dynamic> documentData =
+                firstDocument.data() as Map<String, dynamic>;
+            documentid = querySnapshot.docs.first.id;
+            type = documentData['type'];
+            globalcurrentUserId = documentid;
+            // status=documentData['status']; // Change 'type' to the actual field name} else {
+          } else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WaitingForApprovalScreen(),
+                ));
+          }
+          if (type == 'Patient') {
+            kNotesBox = documentid;
+            await Hive.openBox<NoteModel>(kNotesBox);
+            Navigator.pushReplacementNamed(context, '/mainScreenPatient');
+          } else if (type == 'Doctor') {
+            Navigator.pushReplacementNamed(context, '/mainScreenDoctor');
+          } else if (type == 'Lab Staff') {
+            DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+                .collection('Staff')
+                .doc(globalcurrentUserId)
+                .get();
+            var condition = documentSnapshot['Condition'];
+            if (condition == 'Show') {
+              Navigator.pushReplacementNamed(
+                context,
+                '/LabStaffScreen',
+                arguments: {'id': globalcurrentUserId},
+              );
             } else {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => WaitingForApprovalScreen(),
+                    builder: (context) => ArchriveScreen(),
                   ));
             }
-            if (type == 'Patient') {
-              kNotesBox = documentid;
-              await Hive.openBox<NoteModel>(kNotesBox);
-              Navigator.pushReplacementNamed(context, '/mainScreenPatient');
-            } else if (type == 'Doctor') {
-              Navigator.pushReplacementNamed(context, '/mainScreenDoctor');
-            } else if (type == 'Lab Staff') {
-              DocumentSnapshot documentSnapshot = await FirebaseFirestore
-                  .instance
-                  .collection('Staff')
-                  .doc(globalcurrentUserId)
-                  .get();
-              var condition = documentSnapshot['Condition'];
-              if (condition == 'Show') {
-                Navigator.pushReplacementNamed(
+          } else if (type == 'Hospital Staff') {
+            DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+                .collection('Staff')
+                .doc(globalcurrentUserId)
+                .get();
+            var condition = documentSnapshot['Condition'];
+            if (condition == 'Show') {
+              Navigator.pushReplacementNamed(
+                  context, '/HospitalStaffManagementScreenAddDoctors',
+                  arguments: {'id': globalcurrentUserId});
+            } else {
+              Navigator.push(
                   context,
-                  '/LabStaffScreen',
-                  arguments: {'id': globalcurrentUserId},
-                );
-              } else {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ArchriveScreen(),
-                    ));
-              }
-            } else if (type == 'Hospital Staff') {
-              DocumentSnapshot documentSnapshot = await FirebaseFirestore
-                  .instance
-                  .collection('Staff')
-                  .doc(globalcurrentUserId)
-                  .get();
-              var condition = documentSnapshot['Condition'];
-              if (condition == 'Show') {
-                Navigator.pushReplacementNamed(
-                    context, '/HospitalStaffManagementScreenAddDoctors',
-                    arguments: {'id': globalcurrentUserId});
-              } else {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ArchriveScreen(),
-                    ));
-              }
-            } else if (type == 'admin') {
-              Navigator.pushReplacementNamed(context, '/AdminMainScreen');
+                  MaterialPageRoute(
+                    builder: (context) => ArchriveScreen(),
+                  ));
             }
-            isLoading = false;
-          } else if (state is LoginFailure) {
-            isLoading = false;
-            print(state.errMessage);
-            showSnackbar(context, state.errMessage);
+          } else if (type == 'admin') {
+            Navigator.pushReplacementNamed(context, '/AdminMainScreen');
           }
-        },
-        builder: (context, state) {
-          if (state is LoginLoading) {
-            return Loading();
-          }
-          return Scaffold(
+          isLoading = false;
+        } else if (state is LoginFailure) {
+          isLoading = false;
+          print(state.errMessage);
+          showSnackbar(context, state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        if (state is LoginLoading) {
+          isLoading = true;
+        }
+        return ModalProgressHUD(
+          inAsyncCall: isLoading,
+          progressIndicator: SpinKitSpinningCircle(
+            color: kprimaryColor,
+            size: 50,
+          ),
+          child: Scaffold(
             body: Form(
               key: formKey,
               child: Stack(
@@ -267,9 +269,9 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

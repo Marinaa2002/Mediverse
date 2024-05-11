@@ -1,18 +1,30 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Message {
   final String message;
-  final String id;
+  final String patient_id;
+  final String createdAt;
+  final String doctor_id;
   final String? imageUrl;
 
   //final Image? image;
-  Message(this.message, this.id, this.imageUrl);
+  Message(
+      {required this.message,
+      this.imageUrl,
+      required this.patient_id,
+      required this.doctor_id,
+      required this.createdAt});
 
   factory Message.fromJson(jsonData) {
+    print(jsonData['createdAt'].runtimeType);
     return Message(
-      jsonData['message'],
-      jsonData['id'],
-      jsonData['imageUrl'] ?? '',
+      message: jsonData['message'],
+      createdAt: jsonData['createdAt'].toString(), // Cast to Timestamp
+      patient_id: jsonData['patient_id'],
+      doctor_id: jsonData['doctor_id'],
+      imageUrl: jsonData['imageUrl'] ?? '',
     );
   }
 }

@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatMessage.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatMessageWithPhoto.dart';
 
 class MessagesListView extends StatelessWidget {
-  const MessagesListView(
-      {super.key, required this.messagesList, required this.controller});
+  MessagesListView(
+      {super.key,
+      required this.messagesList,
+      required this.controller,
+      this.doc_id,
+      this.patient_id});
 
   final List<Message> messagesList;
   final ScrollController controller;
+  String? patient_id = '';
+  String? doc_id = '';
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,25 +25,50 @@ class MessagesListView extends StatelessWidget {
           controller: controller,
           itemCount: messagesList.length,
           itemBuilder: (context, index) {
-            if (messagesList[index].id == "A" &&
+            if (messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
               return ChatMessage(
                 message: messagesList[index],
                 isMe: true,
               );
-            } else if (messagesList[index].id == "A" &&
+            } else if (messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
               return ChatMessageWithPhoto(
                 message: messagesList[index],
                 isMe: true,
               );
-            } else if (messagesList[index].id == "B" &&
+            } else if (messagesList[index].patient_id != globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
               return ChatMessage(
                 message: messagesList[index],
                 isMe: false,
               );
-            } else if (messagesList[index].id == "B" &&
+            } else if (messagesList[index].patient_id != globalcurrentUserId &&
+                messagesList[index].imageUrl != '') {
+              return ChatMessageWithPhoto(
+                message: messagesList[index],
+                isMe: false,
+              );
+            }
+            if (messagesList[index].patient_id == globalcurrentUserId &&
+                messagesList[index].imageUrl == '') {
+              return ChatMessage(
+                message: messagesList[index],
+                isMe: true,
+              );
+            } else if (messagesList[index].patient_id == globalcurrentUserId &&
+                messagesList[index].imageUrl != '') {
+              return ChatMessageWithPhoto(
+                message: messagesList[index],
+                isMe: true,
+              );
+            } else if (messagesList[index].doctor_id != globalcurrentUserId &&
+                messagesList[index].imageUrl == '') {
+              return ChatMessage(
+                message: messagesList[index],
+                isMe: false,
+              );
+            } else if (messagesList[index].doctor_id != globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
               return ChatMessageWithPhoto(
                 message: messagesList[index],

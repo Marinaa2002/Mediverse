@@ -10,29 +10,29 @@ class ChatsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: kprimaryColor,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.chevron_left,
-            color: Colors.white,
-            size: 24,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: Text(
-          'Chats',
-          style: Themes.headlineMedium.copyWith(
-            color: backgroundColor,
-          ),
-        ),
-        actions: const [],
-        centerTitle: true,
-        elevation: 2,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: kprimaryColor,
+      //   automaticallyImplyLeading: false,
+      //   leading: IconButton(
+      //     icon: const Icon(
+      //       Icons.chevron_left,
+      //       color: Colors.white,
+      //       size: 24,
+      //     ),
+      //     onPressed: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //   ),
+      //   title: Text(
+      //     'Chats',
+      //     style: Themes.headlineMedium.copyWith(
+      //       color: backgroundColor,
+      //     ),
+      //   ),
+      //   actions: const [],
+      //   centerTitle: true,
+      //   elevation: 2,
+      // ),
       body: SafeArea(
         top: true,
         child: Column(

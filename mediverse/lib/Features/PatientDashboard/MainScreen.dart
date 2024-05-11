@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
+import 'package:mediverse/Features/DoctorDashboard/ChatsList/presentation/Views/ChatsList.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/DrNotesScreen/data/models/NoteModel.dart';
 import 'package:mediverse/Features/PatientDashboard/tabs/Appointment%20Tab.dart';
@@ -25,6 +26,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
     Tab(text: 'LEFT'),
     Tab(text: 'Middle'),
     Tab(text: 'RIGHT'),
+    Tab(text: 'AFTERRIGHT'),
   ];
 
   @override
@@ -73,6 +75,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
                 Tab(text: 'Appointment'),
                 Tab(text: 'Medical Record'),
                 Tab(text: 'Medical Blogs'),
+                Tab(text: 'Chats'),
               ],
             ),
           ),
@@ -83,6 +86,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
                 AppointmentTab(),
                 const MedicalRecordsTab(),
                 MedicalBlogsTab(),
+                ChatsList(),
               ],
             ),
           ),

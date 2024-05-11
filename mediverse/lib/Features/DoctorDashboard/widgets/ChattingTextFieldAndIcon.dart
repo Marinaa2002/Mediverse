@@ -11,6 +11,8 @@ class ChattingTextFieldAndIcons extends StatelessWidget {
     required this.textEditingcontroller,
     required this.messages,
     required ScrollController scrollablecontroller,
+    required this.doc_id,
+    required this.patient_id,
     required this.onPressedCameraIcon,
   }) : _scrollablecontroller = scrollablecontroller;
 
@@ -18,6 +20,8 @@ class ChattingTextFieldAndIcons extends StatelessWidget {
   final CollectionReference<Object?> messages;
   final ScrollController _scrollablecontroller;
   final VoidCallback onPressedCameraIcon;
+  final String patient_id;
+  final String doc_id;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +29,20 @@ class ChattingTextFieldAndIcons extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         TextFieldForMsgs(
-            controller: textEditingcontroller,
-            messages: messages,
-            controller2: _scrollablecontroller),
+          controller: textEditingcontroller,
+          messages: messages,
+          controller2: _scrollablecontroller,
+          doc_id: doc_id,
+          patient_id: patient_id,
+        ),
         CameraIconButton(
           onPressed: onPressedCameraIcon,
+          doc_id: doc_id,
+          patient_id: patient_id,
         ),
         SendButtonWithAlign(
+            doc_id: doc_id,
+            patient_id: patient_id,
             messages: messages,
             textEditingcontroller: textEditingcontroller,
             scrollablecontroller: _scrollablecontroller),

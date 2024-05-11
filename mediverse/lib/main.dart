@@ -152,7 +152,7 @@ class MyApp extends StatelessWidget {
                 ],
                 child: DrNotesScreen(),
               ),
-          kCameraScrenId: (context) => const CameraScreen(),
+          kCameraScrenId: (context) => CameraScreen(),
           '/mainScreenPatient': (context) => BlocProvider.value(
                 value: fetechPatientInfoCubit,
                 child: SizedBox(

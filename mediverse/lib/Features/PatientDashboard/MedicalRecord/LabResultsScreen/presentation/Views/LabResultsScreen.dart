@@ -107,7 +107,7 @@ class LabResultsScreen extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: LabResultButtonWidget(
                       scrollController: _scrollController,
-                      lab_id: 'A',
+                      lab_id: labresult_id,
                     ),
                   ),
                 ],
@@ -144,7 +144,7 @@ class LabResultsScreen extends StatelessWidget {
                     ),
                     LabResultButtonWidget(
                       scrollController: _scrollController,
-                      lab_id: 'A',
+                      lab_id: labresult_id,
                     ),
                   ],
                 ),
@@ -156,7 +156,7 @@ class LabResultsScreen extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: LabResultButtonWidget(
                       scrollController: _scrollController,
-                      lab_id: 'A',
+                      lab_id: labresult_id,
                     ),
                   ),
                 ],
@@ -169,7 +169,7 @@ class LabResultsScreen extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: LabResultButtonWidget(
                     scrollController: _scrollController,
-                    lab_id: 'A',
+                    lab_id: labresult_id,
                   ),
                 ),
               ],

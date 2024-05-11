@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +28,7 @@ class CustomCardRatings extends StatelessWidget {
               value: BlocProvider.of<AppointmentDetailsCubit>(context),
               child: AppointmentDetailsScreen(
                 doctorID: doctor.id,
+                // profilePicture: doctor.profilePicture!,
               ),
             ),
           ),
@@ -102,8 +104,8 @@ class CustomCardRatings extends StatelessWidget {
                                 height: 150,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(80.0),
-                                  child: Image.asset(
-                                    'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
+                                  child: CachedNetworkImage(
+                                    imageUrl: doctor.profilePicture!,
                                     width: 300,
                                     height: 200,
                                     fit: BoxFit.fill,

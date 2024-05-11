@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/widgets/chooseDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
 
 class AppointmentDetailsScreen extends StatefulWidget {
-  AppointmentDetailsScreen({super.key, required this.doctorID});
+  AppointmentDetailsScreen({
+    super.key,
+    required this.doctorID,
+  });
 
   String doctorID;
+  // String profilePicture;
 
   @override
   State<AppointmentDetailsScreen> createState() =>
@@ -69,7 +74,9 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const CustomDoctorDetails(),
+                    CustomDoctorDetails(
+                        // profilePicture: widget.profilePicture,
+                        ),
                     BlocProvider(
                       create: (context) => ChooseDetailsCubit(),
                       child: chooseDetails(doctor: state.doctor),
@@ -80,9 +87,13 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
             ),
           );
         } else if (state is AppointmentDetailsLoading) {
-          return const CircularProgressIndicator();
+          return const Loading();
+        } else if (state is AppointmentDetailsFail) {
+          return Center(
+            child: Text("Error"),
+          );
         } else {
-          return const CircularProgressIndicator();
+          return Container();
         }
       },
     );

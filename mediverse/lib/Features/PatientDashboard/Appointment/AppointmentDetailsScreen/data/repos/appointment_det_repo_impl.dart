@@ -11,13 +11,13 @@ class AppointmentDetailsRepoImpl implements AppointmentDetailsRepo {
     try {
       DocumentSnapshot snapshot = await FirebaseFirestore.instance
           .collection('info_Doctors')
-          .doc('GCdsPwoGDUp36lOBGJUJ')
+          .doc(doctorID)
           .get();
 
       Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
 
       Doctor dummydoc = Doctor(
-        id: 'GCdsPwoGDUp36lOBGJUJ',
+        id: doctorID,
         name: data['Name'],
         age: data['Age'],
         phone: data['Phone'],

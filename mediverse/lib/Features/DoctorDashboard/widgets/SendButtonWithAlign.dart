@@ -8,11 +8,15 @@ class SendButtonWithAlign extends StatelessWidget {
     required this.messages,
     required this.textEditingcontroller,
     required ScrollController scrollablecontroller,
+    required this.doc_id,
+    required this.patient_id,
   }) : _scrollablecontroller = scrollablecontroller;
 
   final CollectionReference<Object?> messages;
   final TextEditingController textEditingcontroller;
   final ScrollController _scrollablecontroller;
+  final String patient_id;
+  final String doc_id;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,8 @@ class SendButtonWithAlign extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
         child: SendIconButton(
+            patient_id: patient_id,
+            doc_id: doc_id,
             messages: messages,
             textEditingcontroller: textEditingcontroller,
             scrollablecontroller: _scrollablecontroller),

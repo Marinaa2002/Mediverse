@@ -6,8 +6,12 @@ class CameraIconButton extends StatelessWidget {
   const CameraIconButton({
     super.key,
     required this.onPressed,
+    required this.doc_id,
+    required this.patient_id,
   });
   final VoidCallback onPressed;
+  final String doc_id;
+  final String patient_id;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +24,13 @@ class CameraIconButton extends StatelessWidget {
           size: 24,
         ),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (builder) => const CameraScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (builder) => CameraScreen(
+                        patient_id: patient_id,
+                        doc_id: doc_id,
+                      )));
         },
       ),
     );

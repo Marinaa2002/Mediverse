@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
@@ -11,7 +12,9 @@ import 'CustomRatingIcon.dart';
 class CustomDoctorDetails extends StatelessWidget {
   const CustomDoctorDetails({
     super.key,
+    // required this.profilePicture,
   });
+  // final String profilePicture;
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +45,9 @@ class CustomDoctorDetails extends StatelessWidget {
                         height: 120,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(80.0),
-                          child: Image.asset(
-                            'assets/images/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg',
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.jpeg.jpg?alt=media&token=817e3dcf-a8dd-484b-913a-8fcf65b70638",
                             width: 250,
                             height: 150,
                             fit: BoxFit.fill,

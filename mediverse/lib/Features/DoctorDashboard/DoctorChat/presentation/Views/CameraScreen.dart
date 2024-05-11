@@ -12,8 +12,9 @@ import 'package:mediverse/Features/DoctorDashboard/widgets/FutureBuilderToTakePh
 List<CameraDescription>? cameras;
 
 class CameraScreen extends StatefulWidget {
-  const CameraScreen({super.key});
-
+  CameraScreen({super.key, this.patient_id, this.doc_id});
+  String? patient_id = '';
+  String? doc_id = '';
   @override
   _CameraScreenState createState() => _CameraScreenState();
 }
@@ -147,6 +148,8 @@ class _CameraScreenState extends State<CameraScreen> {
       context,
       MaterialPageRoute(
         builder: (builder) => CameraViewPage(
+          doctor_id: widget.doc_id,
+          patient_id: widget.patient_id,
           path: file!.path,
           fileName: fileName,
           imageFile: file,
@@ -166,6 +169,8 @@ class _CameraScreenState extends State<CameraScreen> {
       context,
       MaterialPageRoute(
         builder: (builder) => CameraViewPage(
+          doctor_id: widget.doc_id,
+          patient_id: widget.patient_id,
           path: pickedFile!.path,
           fileName: fileName,
           imageFile: pickedFile,

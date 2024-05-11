@@ -82,12 +82,14 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
                         messages: messages,
                         scrollablecontroller: _controller,
                         onPressedCameraIcon: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CameraScreen()),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const CameraScreen()),
+                          // );
                         },
+                        patient_id: '',
+                        doctor_id: '',
                       ),
                     ),
                   ),

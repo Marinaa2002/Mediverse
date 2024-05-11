@@ -9,12 +9,16 @@ class AllAboutTextFieldAndIconsSendAndCamera extends StatelessWidget {
     required this.messages,
     required ScrollController scrollablecontroller,
     required this.onPressedCameraIcon,
+    required this.patient_id,
+    required this.doctor_id,
   }) : _scrollablecontroller = scrollablecontroller;
 
   final TextEditingController textEditingcontroller;
   final CollectionReference<Object?> messages;
   final ScrollController _scrollablecontroller;
   final VoidCallback onPressedCameraIcon;
+  final String patient_id;
+  final String doctor_id;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,8 @@ class AllAboutTextFieldAndIconsSendAndCamera extends StatelessWidget {
             messages: messages,
             scrollablecontroller: _scrollablecontroller,
             onPressedCameraIcon: onPressedCameraIcon,
+            doc_id: doctor_id,
+            patient_id: patient_id,
           ),
         ),
       ),

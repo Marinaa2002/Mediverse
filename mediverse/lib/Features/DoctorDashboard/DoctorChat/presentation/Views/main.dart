@@ -27,9 +27,12 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        kCameraScrenId: (context) => const CameraScreen(),
+        // kCameraScrenId: (context) => const CameraScreen(),
       },
-      home: DoctorChat(),
+      home: DoctorChat(
+        patientId: '',
+        doctorID: '',
+      ),
     );
   }
 }

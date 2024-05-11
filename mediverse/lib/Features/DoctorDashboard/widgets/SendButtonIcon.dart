@@ -4,16 +4,20 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 
 class SendIconButton extends StatelessWidget {
-  const SendIconButton({
+  SendIconButton({
     super.key,
     required this.messages,
     required this.textEditingcontroller,
     required ScrollController scrollablecontroller,
+    required this.doc_id,
+    required this.patient_id,
   }) : _scrollablecontroller = scrollablecontroller;
 
   final CollectionReference<Object?> messages;
   final TextEditingController textEditingcontroller;
   final ScrollController _scrollablecontroller;
+  final String patient_id;
+  final String? doc_id;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +33,9 @@ class SendIconButton extends StatelessWidget {
             {
               kMessage: textData,
               kCreatedAt: DateTime.now(),
-              'id': "A",
-              "imageUrl": ''
+              'patient_id': patient_id,
+              'doctor_id': doc_id,
+              'imageUrl': ''
             },
           );
         }

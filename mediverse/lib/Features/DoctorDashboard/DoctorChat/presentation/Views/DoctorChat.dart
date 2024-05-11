@@ -14,15 +14,23 @@ import 'package:mediverse/Features/DoctorDashboard/widgets/PopUpMenu.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 
 class DoctorChat extends StatelessWidget {
-  DoctorChat({super.key});
+  DoctorChat({super.key, this.patientId, this.doctorID});
 
   final _controller = ScrollController();
 
   CollectionReference messages = FirebaseFirestore.instance.collection('Chats');
   TextEditingController controller = TextEditingController();
-
+  String? patientId = '';
+  String? doctorID = '';
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic>? args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+
+    if (args != null) {
+      patientId = args['patient_id'];
+      doctorID = args['doctor_id'];
+    }
     //refactor do not need to rebuild all screen
 // Replace 'doctor_id' with the ID of the specific doctor
 //3ayez a7ot al bloc Provider fo2 shwia 3ashan a3ml call mara wa7da
@@ -43,7 +51,9 @@ class DoctorChat extends StatelessWidget {
               // );
               Navigator.pop(context);
             },
-            child: AppBarRowIconChat(),
+            child: AppBarRowIconChat(
+              doctor_id: doctorID!,
+            ),
           ),
           title: NameIconChat(),
           actions: const [
@@ -53,9 +63,12 @@ class DoctorChat extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ChatCoumn(
-              controller2: _controller,
-              textEditingcontroller: controller,
-              messages: messages),
+            controller2: _controller,
+            textEditingcontroller: controller,
+            messages: messages,
+            doctorId: doctorID!,
+            patientId: patientId!,
+          ),
         ),
       ),
     );

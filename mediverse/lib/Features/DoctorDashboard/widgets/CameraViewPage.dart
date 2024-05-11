@@ -16,11 +16,16 @@ class CameraViewPage extends StatelessWidget {
       {key,
       required this.path,
       required this.fileName,
-      required this.imageFile})
+      required this.imageFile,
+      this.doctor_id,
+      this.patient_id})
       : super(key: key);
   final String path;
   final String fileName;
   final XFile imageFile;
+  String? patient_id = '';
+  String? doctor_id = '';
+
   final _controller = ScrollController();
 
   CollectionReference messages = FirebaseFirestore.instance.collection('Chats');
@@ -96,7 +101,8 @@ class CameraViewPage extends StatelessWidget {
                             {
                               kMessage: textData,
                               kCreatedAt: DateTime.now(),
-                              'id': "B",
+                              'patient_id': patient_id,
+                              'doctor_id': doctor_id,
                               'imageUrl': downloadUrl
                             },
                           );

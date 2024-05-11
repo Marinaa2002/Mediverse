@@ -10,11 +10,15 @@ class TextFieldForMsgs extends StatelessWidget {
     required this.controller,
     required this.messages,
     required ScrollController controller2,
+    required this.doc_id,
+    required this.patient_id,
   }) : _controller = controller2;
 
   final TextEditingController controller;
   final CollectionReference<Object?> messages;
   final ScrollController _controller;
+  final String doc_id;
+  final String patient_id;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,8 @@ class TextFieldForMsgs extends StatelessWidget {
                 {
                   kMessage: data,
                   kCreatedAt: DateTime.now(),
-                  'id': "B",
+                  'patient_id': patient_id,
+                  'doctor_id': doc_id,
                   "imageUrl": ''
                 },
               );

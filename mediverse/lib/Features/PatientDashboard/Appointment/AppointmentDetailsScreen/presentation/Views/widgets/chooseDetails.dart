@@ -5,6 +5,7 @@ import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Core/utils/serviceLocator.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/DoctorChat.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
@@ -129,7 +130,10 @@ class _chooseDetailsState extends State<chooseDetails> {
                   children: [
                     CustomButtonAppointmentDetails(
                       onTap: () {
-                        Navigator.pushNamed(context, '/DoctorChat');
+                        Navigator.pushNamed(context, '/DoctorChat', arguments: {
+                          'patient_id': globalcurrentUserId,
+                          'doctor_id': widget.doctor.id
+                        });
                       },
                       buttonName: 'Chat',
                       icon: Icons.chat,
