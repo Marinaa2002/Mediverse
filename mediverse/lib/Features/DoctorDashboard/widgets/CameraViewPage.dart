@@ -29,6 +29,8 @@ class CameraViewPage extends StatelessWidget {
   final _controller = ScrollController();
 
   CollectionReference messages = FirebaseFirestore.instance.collection('Chats');
+  CollectionReference chatHistory =
+      FirebaseFirestore.instance.collection('ChatHistory');
   TextEditingController controller = TextEditingController();
 
   @override
@@ -104,6 +106,12 @@ class CameraViewPage extends StatelessWidget {
                               'patient_id': patient_id,
                               'doctor_id': doctor_id,
                               'imageUrl': downloadUrl
+                            },
+                          );
+                          chatHistory.add(
+                            {
+                              'patient_id': patient_id,
+                              'doctor_id': doctor_id,
                             },
                           );
                           controller.clear();

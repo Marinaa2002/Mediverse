@@ -59,7 +59,9 @@ class PatientsTab extends StatelessWidget {
                     onPressed: () {
                       print('Button pressed ...');
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const ChatsList()));
+                          builder: (ctx) => ChatsList(
+                                role: 'Doctor',
+                              )));
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(

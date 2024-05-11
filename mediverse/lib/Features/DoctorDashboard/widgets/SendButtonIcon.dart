@@ -18,6 +18,8 @@ class SendIconButton extends StatelessWidget {
   final ScrollController _scrollablecontroller;
   final String patient_id;
   final String? doc_id;
+  CollectionReference chatHistory =
+      FirebaseFirestore.instance.collection('ChatHistory');
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,12 @@ class SendIconButton extends StatelessWidget {
               'patient_id': patient_id,
               'doctor_id': doc_id,
               'imageUrl': ''
+            },
+          );
+          chatHistory.add(
+            {
+              'patient_id': patient_id,
+              'doctor_id': doc_id,
             },
           );
         }

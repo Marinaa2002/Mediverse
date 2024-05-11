@@ -23,6 +23,8 @@ class _CameraScreenState extends State<CameraScreen> {
   CameraController? _cameraController;
   Future<void>? cameraValue;
   CollectionReference messages = FirebaseFirestore.instance.collection('Chats');
+  CollectionReference chatHistory =
+      FirebaseFirestore.instance.collection('ChatHistory');
   TextEditingController controller = TextEditingController();
   final ScrollController _scrollablecontroller = ScrollController();
   // bool isRecoring = false;

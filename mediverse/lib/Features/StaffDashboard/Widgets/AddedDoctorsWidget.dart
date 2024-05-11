@@ -1,12 +1,9 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/AllModels/Staff.dart';
-import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/DoctorCard.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/PatientCard.dart';
 
 import 'HospitalMangmentAddDoctorsBody.dart';
 

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mediverse/Constants/constant.dart';
@@ -60,6 +62,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
           Align(
             alignment: Alignment.center,
             child: TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
               controller: _tabController,
               isScrollable: false,
               labelColor: kprimaryColor,
@@ -71,10 +74,12 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
               ),
               unselectedLabelStyle: const TextStyle(),
               indicatorColor: kprimaryColor,
-              tabs: const [
-                Tab(text: 'Appointment'),
-                Tab(text: 'Medical Record'),
-                Tab(text: 'Medical Blogs'),
+              tabs: [
+                Tab(
+                  text: 'Booking',
+                ),
+                Tab(text: 'Record'),
+                Tab(text: 'Blogs'),
                 Tab(text: 'Chats'),
               ],
             ),
@@ -86,7 +91,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget>
                 AppointmentTab(),
                 const MedicalRecordsTab(),
                 MedicalBlogsTab(),
-                ChatsList(),
+                ChatsList(
+                  role: "Patient",
+                ),
               ],
             ),
           ),

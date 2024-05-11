@@ -5,7 +5,7 @@ import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/TextFieldSendMessageAndCloudFireStore.dart';
 
 class TextFieldForMsgs extends StatelessWidget {
-  const TextFieldForMsgs({
+  TextFieldForMsgs({
     super.key,
     required this.controller,
     required this.messages,
@@ -18,7 +18,10 @@ class TextFieldForMsgs extends StatelessWidget {
   final CollectionReference<Object?> messages;
   final ScrollController _controller;
   final String doc_id;
+
   final String patient_id;
+  CollectionReference chatHistory =
+      FirebaseFirestore.instance.collection('ChatHistory');
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,12 @@ class TextFieldForMsgs extends StatelessWidget {
                   'patient_id': patient_id,
                   'doctor_id': doc_id,
                   "imageUrl": ''
+                },
+              );
+              chatHistory.add(
+                {
+                  'patient_id': patient_id,
+                  'doctor_id': doc_id,
                 },
               );
             }

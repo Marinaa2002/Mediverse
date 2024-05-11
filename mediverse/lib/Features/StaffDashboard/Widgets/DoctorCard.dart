@@ -1,17 +1,10 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Views/DoctorProfile.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/data/models/PatientProfileModel.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/PatientProfileScreen.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/NetworkImage.dart';
 import '../../../Constants/Themes.dart';
-import '../HospitalStaffManagementScreenAddDoctors/presentation/Views/HospitalStaffManagementScreenAddDoctors.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
@@ -37,7 +30,6 @@ class DoctorCard extends StatelessWidget {
               size: 50,
             )); // Show a loading indicator while waiting for data
           }
-
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } //
