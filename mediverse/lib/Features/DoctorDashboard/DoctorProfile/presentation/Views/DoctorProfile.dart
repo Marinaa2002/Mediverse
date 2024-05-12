@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Views/Widgets/DoctorProfilePictureWidget.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Views/Widgets/DoctorProfileSettingsWidget.dart';
 
 import 'Widgets/DoctorProfileLoadingIndicatorWidget.dart';
@@ -52,8 +53,9 @@ class DoctorProfile extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           SizedBox(
-                            height: 25,
+                            height: 5,
                           ),
+                          DoctorProfilePictureWidget(userData: userData),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0, 10, 0, 4),
@@ -73,7 +75,7 @@ class DoctorProfile extends StatelessWidget {
                                 color: kprimaryTextColor,
                                 fontSize: 20),
                           ),
-                          SizedBox(height: 50),
+                          SizedBox(height: 20),
                           DoctorProfileSettingsWidget(userData: userData,),
                         ]));
               } else {
