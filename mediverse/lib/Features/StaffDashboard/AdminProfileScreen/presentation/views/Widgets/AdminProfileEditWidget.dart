@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminProfileScreen/data/Models/AdminProfileModel.dart';
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
 import '../../Manager/Admin_Profile_Edit_Cubit/admin_profile_edit_cubit.dart';
@@ -11,6 +12,7 @@ import 'AdminProfileSaveButton.dart';
 
 class AdminProfileEditWidget extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
+  var userData;
   final currentUser = FirebaseAuth.instance.currentUser;
 
   CollectionReference details =
@@ -23,11 +25,9 @@ class AdminProfileEditWidget extends StatelessWidget {
   String? phoneNum;
   bool isLoading = false;
 
-  //PatientProfileModel? patientProfileModel;
-  //var userData;
   AdminProfileEditWidget({
     super.key,
-    //required this.userData
+    required this.userData
   });
 
   @override
@@ -83,7 +83,7 @@ class AdminProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: AdminProfileTextFormField(
-                              text: "Name",
+                              text: userData['Name'],
                               onChanged: (value) {
                                 name = value;
                                 BlocProvider.of<AdminProfileEditCubit>(context)
@@ -105,7 +105,7 @@ class AdminProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: AdminProfileTextFormField(
-                              text: "Phone Number",
+                              text: userData['Phone'],
                               onChanged: (value) {
                                 phoneNum = value;
                                 BlocProvider.of<AdminProfileEditCubit>(context)
