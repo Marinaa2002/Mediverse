@@ -258,6 +258,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                                 ),
                                 btnOkOnPress: () {
                                   Navigator.pop(context);
+                                  Navigator.pop(context);
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
                                 },
                                 btnCancelOnPress: () {
