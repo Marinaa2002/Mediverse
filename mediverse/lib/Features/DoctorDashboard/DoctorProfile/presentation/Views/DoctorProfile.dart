@@ -74,7 +74,7 @@ class DoctorProfile extends StatelessWidget {
                                 fontSize: 20),
                           ),
                           SizedBox(height: 50),
-                          DoctorProfileSettingsWidget(),
+                          DoctorProfileSettingsWidget(userData: userData,),
                         ]));
               } else {
                 return DoctorProfileLoadingIndicatorWidget();

@@ -7,11 +7,11 @@ import '../../../../../../Constants/constant.dart';
 import '../../../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 
 class DoctorProfileSettingsWidget extends StatelessWidget {
-  //var userData;
+  var userData;
 
   DoctorProfileSettingsWidget({
     super.key,
-    //required this.userData,
+    required this.userData,
   });
 
   @override
@@ -84,7 +84,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '89',//userData['Age'] ,
+                            userData['Age'],
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -121,7 +121,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '01009345581',
+                            userData['Phone'],
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -158,7 +158,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Pediatrics',
+                            userData['Speciality'],
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -195,7 +195,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '67878999',//userData['NationalId'] ,
+                            userData['NationalId'] ,
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
