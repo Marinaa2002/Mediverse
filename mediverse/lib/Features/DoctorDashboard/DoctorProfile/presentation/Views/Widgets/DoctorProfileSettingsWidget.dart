@@ -85,7 +85,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Age'],
+                            userData['Age'] ?? 'Age',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -122,7 +122,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Phone'],
+                            userData['Phone'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -159,7 +159,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Speciality'],
+                            userData['Speciality'] ?? 'Speciality',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -196,7 +196,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['NationalId'] ,
+                            userData['NationalId'] ?? 'NationalId',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -233,7 +233,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['License_Number'] ,
+                            userData['License_Number'] ?? 'License Number',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -347,7 +347,9 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                             onTap: (){
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) =>
-                                      DoctorProfileEditWidget(),));
+                                      DoctorProfileEditWidget(
+                                        userData: userData,
+                                      ),));
                             },
                             child: Text(
                               'Edit Profile',

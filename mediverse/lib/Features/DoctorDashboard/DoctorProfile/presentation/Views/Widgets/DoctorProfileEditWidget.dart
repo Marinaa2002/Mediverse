@@ -14,6 +14,7 @@ class DoctorProfileEditWidget extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
   final currentUser = FirebaseAuth.instance.currentUser;
 
+  var userData;
   CollectionReference details =
   FirebaseFirestore.instance.collection('info_Patients');
   final TextEditingController nameController = TextEditingController();
@@ -28,11 +29,9 @@ class DoctorProfileEditWidget extends StatelessWidget {
   String? speciality;
   bool isLoading = false;
 
-  //PatientProfileModel? patientProfileModel;
-  //var userData;
   DoctorProfileEditWidget({
     super.key,
-    //required this.userData
+    required this.userData
   });
 
   @override
@@ -88,7 +87,7 @@ class DoctorProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: DoctorProfileTextFormField(
-                              text: "Name",
+                              text: userData['Name'] ?? 'Name',
                               onChanged: (value) {
                                 name = value;
                                 BlocProvider.of<DoctorProfileEditCubit>(context)
@@ -110,7 +109,7 @@ class DoctorProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: DoctorProfileTextFormField(
-                              text: "Age",
+                              text: userData['Age'] ?? 'Age',
                               onChanged: (value) {
                                 age = value;
                                 BlocProvider.of<DoctorProfileEditCubit>(context)
@@ -132,7 +131,7 @@ class DoctorProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: DoctorProfileTextFormField(
-                              text: "Phone Number",
+                              text: userData['Phone'] ?? 'Phone Number',
                               onChanged: (value) {
                                 phoneNum = value;
                                 BlocProvider.of<DoctorProfileEditCubit>(context)
@@ -154,7 +153,7 @@ class DoctorProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 10),
                             child: DoctorProfileTextFormField(
-                              text: "National ID",
+                              text: userData['NationalId']?? "National ID",
                               onChanged: (value) {
                                 national_id = value;
                                 BlocProvider.of<DoctorProfileEditCubit>(context)
@@ -176,7 +175,7 @@ class DoctorProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 10),
                             child: DoctorProfileTextFormField(
-                              text: "Speciality",
+                              text: userData['Speciality'] ?? "Speciality",
                               onChanged: (value) {
                                 speciality = value;
                                 BlocProvider.of<DoctorProfileEditCubit>(context)

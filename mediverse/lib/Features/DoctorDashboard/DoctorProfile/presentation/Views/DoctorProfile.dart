@@ -60,7 +60,7 @@ class DoctorProfile extends StatelessWidget {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0, 10, 0, 4),
                             child: Text(
-                              'Dr.' + userData['Name'],
+                              'Dr.' + ( userData['Name'] ?? 'Name'),
                               textAlign: TextAlign.center,
                               style: Themes.headlineSmall.copyWith(
                                 fontFamily: 'Outfit',
@@ -69,7 +69,7 @@ class DoctorProfile extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Email'],
+                            userData['Email'] ?? 'Email',
                             style: Themes.titleSmall.copyWith(
                                 fontFamily: 'Outfit',
                                 color: kprimaryTextColor,
