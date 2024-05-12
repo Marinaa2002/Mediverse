@@ -51,9 +51,7 @@ class Patient {
       Lab_Results: List<Map<String, String>>.from(json['Lab Results']),
       Doctor_Notes: List<Map<String, String>>.from(json['Doctor Notes']),
       Doctors: List<String>.from(json['Doctors']),
-      Bookings: (json['Bookings'] as List<dynamic>)
-          .map((bookingJson) => Booking.fromJson(bookingJson))
-          .toList(),
+      Bookings: List<dynamic>.from(json['Bookings']),
     );
   }
 }

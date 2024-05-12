@@ -287,7 +287,7 @@ class _chooseDetailsState extends State<chooseDetails> {
                           Booking booking = Booking(
                               id: documentId,
                               Doctor_id: widget.doctor.id,
-                              Patient_id: 'Patient_id',
+                              Patient_id: globalcurrentUserId,
                               Date: state.selectedDate,
                               Day: state.selectedDay,
                               Time: state.selectedTime,
