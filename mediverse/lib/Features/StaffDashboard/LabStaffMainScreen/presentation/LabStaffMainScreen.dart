@@ -1,4 +1,6 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +11,8 @@ import 'package:mediverse/Core/utils/Functions.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/ListViewPatient.dart';
+
+import '../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 
 class LabStaffScreen extends StatelessWidget {
   LabStaffScreen({super.key});
@@ -29,10 +33,43 @@ class LabStaffScreen extends StatelessWidget {
           AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        title: Text(
-          'Alpha Lab',
-          style: Themes.headlineSmall,
+        title: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Center(
+                child: Text(
+                  'Alpha Lab',
+                  style: Themes.headlineSmall,
+                ),
+              ),
+            ),
+            GestureDetector(
+              child: Icon(color: Colors.white,Icons.logout),
+              onTap: (){
+                AwesomeDialog(context: context,
+                  dialogType: DialogType.warning,
+                  animType: AnimType.rightSlide,
+                  //title: 'Error',
+                  title: 'Are you sure you want to Logout?',
+                  titleTextStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold
+                  ),
+                  btnOkOnPress: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                  },
+                  btnCancelOnPress: () {
+                    //Navigator.pop(context);
+                  },
+                ).show();
+              },
+            ),
+          ],
         ),
+
         actions: [],
         centerTitle: true,
         elevation: 0,

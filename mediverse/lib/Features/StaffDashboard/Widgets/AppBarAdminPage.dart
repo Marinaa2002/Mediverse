@@ -1,6 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/FetechAdminInfoCubit.dart/fetech_admin_info_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/NetworkImage.dart';
 
@@ -68,7 +71,28 @@ class AppBarAdminPage extends StatelessWidget {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.15,
-              )
+              ),
+              GestureDetector(
+                  child: Icon(color: Colors.white,Icons.logout),
+                onTap: (){
+                  AwesomeDialog(context: context,
+                    dialogType: DialogType.warning,
+                    animType: AnimType.rightSlide,
+                    //title: 'Error',
+                    title: 'Are you sure you want to Logout?',
+                  titleTextStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold
+                  ),
+                  btnOkOnPress: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                  },
+                    btnCancelOnPress: () {
+                      //Navigator.pop(context);
+                    },
+                  ).show();
+                },
+              ),
             ],
           );
         } else if (state is FetechAdminInfoLoading) {
