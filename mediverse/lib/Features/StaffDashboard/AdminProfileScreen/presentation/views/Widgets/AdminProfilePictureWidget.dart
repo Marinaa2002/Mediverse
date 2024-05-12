@@ -7,7 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../../Constants/constant.dart';
+import '../../Manager/Admin_Profile_Edit_Cubit/admin_profile_edit_cubit.dart';
 import 'AdminProfileLoadingIndicatorWidget.dart';
+import 'AdminProfilePictureInteractive.dart';
 
 class AdminProfilePictureWidget extends StatefulWidget {
   var userData;
@@ -28,14 +30,14 @@ class _ProfilePictureWidgetState extends State<AdminProfilePictureWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileEditCubit, ProfileEditState>(
+    return BlocConsumer<AdminProfileEditCubit, AdminProfileEditState>(
       listener: (context, state) {
-        if (state is ProfileEditLoading) {
+        if (state is AdminProfileEditLoading) {
           isLoading = true;
           CircularProgressIndicator();
-        } else if (state is ProfileEditSuccess) {
+        } else if (state is AdminProfileEditSuccess) {
           isLoading = false;
-        } else if (state is ProfileEditFailure) {
+        } else if (state is AdminProfileEditFailure) {
           isLoading = false;
           Text('Something went wrong, Try again');
         }
@@ -81,9 +83,9 @@ class _ProfilePictureWidgetState extends State<AdminProfilePictureWidget> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          ProfilePictureInteractive(
+                                          AdminProfilePictureInteractive(
                                               imageUrl: widget
-                                                  .userData['Profile Picture']
+                                                  .userData['imageUrl']
                                                   .toString()),
                                     ));
                               },
@@ -91,7 +93,7 @@ class _ProfilePictureWidgetState extends State<AdminProfilePictureWidget> {
                                 height: 200,
                                 width: 300,
                                 fit: BoxFit.cover,
-                                imageUrl: widget.userData['Profile Picture']
+                                imageUrl: widget.userData['imageUrl']
                                     .toString(),
                                 errorWidget: (context, url, error) =>
                                     const Icon(
@@ -139,7 +141,7 @@ class _ProfilePictureWidgetState extends State<AdminProfilePictureWidget> {
                                   .putFile(File(file!.path));
                               imageUrl =
                                   await referenceImageToUpload.getDownloadURL();
-                              BlocProvider.of<ProfileEditCubit>(context)
+                              BlocProvider.of<AdminProfileEditCubit>(context)
                                   .editPicture(picture: imageUrl);
                             } catch (e) {}
                           },

@@ -66,43 +66,6 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                             padding:
                             EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.numbers,
-                              color: kSecondaryTextColor,
-                              size: 24,
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                              child: Text(
-                                'Age',
-                                textAlign: TextAlign.start,
-                                style: Themes.bodyXLarge,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            userData['Age'] ,
-                            textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
-                            child: Icon(
                               Icons.work_outline,
                               color: kSecondaryTextColor,
                               size: 24,
@@ -120,44 +83,7 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Phone Number'] ,
-                            textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
-                            child: Icon(
-                              Icons.perm_identity_rounded,
-                              color: kSecondaryTextColor,
-                              size: 24,
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                              child: Text(
-                                'National ID',
-                                textAlign: TextAlign.start,
-                                style: Themes.bodyXLarge,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            userData['NationalId'] ,
+                            userData['Phone'] ,
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',

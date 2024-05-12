@@ -6,7 +6,7 @@ import 'AdminProfileRepo.dart';
 class AdminProfileRepoImpl extends AdminProfileRepo {
   CollectionReference details =
   FirebaseFirestore.instance.collection("Admins");
-  final User? user = FirebaseAuth.instance.currentUser;
+  User? user = FirebaseAuth.instance.currentUser;
   final currentUser = FirebaseAuth.instance.currentUser!.uid;
 
   @override
@@ -48,7 +48,7 @@ class AdminProfileRepoImpl extends AdminProfileRepo {
       await details.doc(currentUser).update({'Email': email});
       if (user != null) {
         try {
-          await user?.updateEmail(email!);
+          await user!.updateEmail(email!);
         } on Exception catch (e) {
           print("Error adding document: $e");
         }

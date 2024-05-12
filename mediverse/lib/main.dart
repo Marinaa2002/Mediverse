@@ -64,6 +64,8 @@ import 'package:mediverse/Features/StaffDashboard/Widgets/HospitalMangmentAddDoc
 import 'Features/DoctorDashboard/DoctorProfile/data/repos/DoctorProfileRepoImpl.dart';
 import 'Features/DoctorDashboard/DoctorProfile/presentation/Manager/Doctor_profile_edit_cubit/doctor_profile_edit_cubit.dart';
 import 'Features/PatientDashboard/MainScreen.dart';
+import 'Features/StaffDashboard/AdminProfileScreen/data/Repos/AdminProfileRepoImpl.dart';
+import 'Features/StaffDashboard/AdminProfileScreen/presentation/Manager/Admin_Profile_Edit_Cubit/admin_profile_edit_cubit.dart';
 
 void main() async {
   setupIDServiceLocator();
@@ -110,6 +112,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => DoctorProfileEditCubit(DoctorProfileRepoImpl()),
+        ),
+        BlocProvider(
+          create: (context) => AdminProfileEditCubit(AdminProfileRepoImpl()),
         ),
         BlocProvider(create: (context) => ForgetPasswordCubit(LoginRepoImpl())),
         BlocProvider(create: (context) => LoginCubit(LoginRepoImpl())),

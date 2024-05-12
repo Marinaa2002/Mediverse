@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Manager/profile_edit_cubit/profile_edit_cubit.dart';
-
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
+import '../../Manager/Admin_Profile_Edit_Cubit/admin_profile_edit_cubit.dart';
 import 'AdminProfileEditTextFormField.dart';
 import 'AdminProfileSaveButton.dart';
 
@@ -17,12 +16,10 @@ class AdminProfileEditWidget extends StatelessWidget {
   CollectionReference details =
   FirebaseFirestore.instance.collection('Admins');
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController natIDController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumController = TextEditingController();
   String? name;
-  String? age;
-  String? national_id;
+  String? email;
   String? phoneNum;
   bool isLoading = false;
 
@@ -60,11 +57,11 @@ class AdminProfileEditWidget extends StatelessWidget {
           centerTitle: true,
           elevation: 2,
         ),
-        body: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+        body: BlocBuilder<AdminProfileEditCubit, AdminProfileEditState>(
           builder: (context, state) {
-            if(state is ProfileEditLoading) {
+            if(state is AdminProfileEditLoading) {
               return CircularProgressIndicator();
-            }else if (state is ProfileEditFailure) {
+            }else if (state is AdminProfileEditFailure) {
                 return Text('Try again');
               } else {
                 return Padding(
@@ -89,32 +86,10 @@ class AdminProfileEditWidget extends StatelessWidget {
                               text: "Name",
                               onChanged: (value) {
                                 name = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
+                                BlocProvider.of<AdminProfileEditCubit>(context)
                                 .editName(name: name);
                               },
                               controller: nameController,
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your Age:',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: AdminProfileTextFormField(
-                              text: "Age",
-                              onChanged: (value) {
-                                age = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editAge(age: age);
-                              },
-                              controller: ageController,
                             ),
                           ),
                           Align(
@@ -133,34 +108,34 @@ class AdminProfileEditWidget extends StatelessWidget {
                               text: "Phone Number",
                               onChanged: (value) {
                                 phoneNum = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
+                                BlocProvider.of<AdminProfileEditCubit>(context)
                                     .editPhoneNum(phoneNum: phoneNum);
                               },
                               controller: phoneNumController,
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your National ID:',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 10),
-                            child: AdminProfileTextFormField(
-                              text: "National ID",
-                              onChanged: (value) {
-                                national_id = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editNationalId(nationalId: national_id);
-                              },
-                              controller: natIDController,
-                            ),
-                          ),
+                          // Align(
+                          //   alignment: const AlignmentDirectional(-1, -1),
+                          //   child: Padding(
+                          //     padding: const EdgeInsetsDirectional.fromSTEB(
+                          //         15, 5, 0, 10),
+                          //     child: Text('Change Your Email:',
+                          //         style: Themes.titleButton),
+                          //   ),
+                          // ),
+                          // Padding(
+                          //   padding: EdgeInsetsDirectional.fromSTEB(
+                          //       12, 0, 12, 10),
+                          //   child: AdminProfileTextFormField(
+                          //     text: "Email",
+                          //     onChanged: (value) {
+                          //       email = value;
+                          //       BlocProvider.of<AdminProfileEditCubit>(context)
+                          //       .editEmail(email: email);
+                          //     },
+                          //     controller: emailController,
+                          //   ),
+                          // ),
                           AdminProfileSaveButton(
                             text: "Save",
                             screen: null,
