@@ -24,12 +24,11 @@ class ProfileEditWidget extends StatelessWidget {
   String? national_id;
   String? phoneNum;
   bool isLoading = false;
+  var userData;
 
-  //PatientProfileModel? patientProfileModel;
-  //var userData;
   ProfileEditWidget({
     super.key,
-    //required this.userData
+    required this.userData
   });
 
   @override
@@ -85,7 +84,7 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: ProfileTextFormField(
-                              text: "Name",
+                              text:  userData['Name'] ?? 'Name',
                               onChanged: (value) {
                                 name = value;
                                 BlocProvider.of<ProfileEditCubit>(context)
@@ -107,7 +106,7 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: ProfileTextFormField(
-                              text: "Age",
+                              text: userData['Age'] ?? 'Age',
                               onChanged: (value) {
                                 age = value;
                                 BlocProvider.of<ProfileEditCubit>(context)
@@ -129,7 +128,7 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: ProfileTextFormField(
-                              text: "Phone Number",
+                              text: userData['Phone Number'] ?? 'Phone Number',
                               onChanged: (value) {
                                 phoneNum = value;
                                 BlocProvider.of<ProfileEditCubit>(context)
@@ -151,7 +150,7 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 10),
                             child: ProfileTextFormField(
-                              text: "National ID",
+                              text: userData['NationalId'] ?? 'NationalId',
                               onChanged: (value) {
                                 national_id = value;
                                 BlocProvider.of<ProfileEditCubit>(context)

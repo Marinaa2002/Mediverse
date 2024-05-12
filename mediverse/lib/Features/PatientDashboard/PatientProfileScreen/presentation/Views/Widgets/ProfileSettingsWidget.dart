@@ -83,7 +83,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Age'] ,
+                            userData['Age'] ?? 'Age',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -120,7 +120,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Phone Number'] ,
+                            userData['Phone Number'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -157,7 +157,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['NationalId'] ,
+                            userData['NationalId'] ?? 'NationalId',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
@@ -271,7 +271,9 @@ class ProfileSettingsWidget extends StatelessWidget {
                             onTap: (){
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) =>
-                                      ProfileEditWidget(),));
+                                      ProfileEditWidget(
+                                        userData: userData,
+                                      ),));
                             },
                             child: Text(
                               'Edit Profile',
