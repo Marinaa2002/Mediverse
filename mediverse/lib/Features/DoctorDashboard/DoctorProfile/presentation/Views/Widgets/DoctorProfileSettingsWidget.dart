@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
 import '../../../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
+import 'DoctorProfileEditWidget.dart';
 
 class DoctorProfileSettingsWidget extends StatelessWidget {
   var userData;
@@ -206,6 +207,43 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                            child: Icon(
+                              Icons.data_thresholding_rounded,
+                              color: kSecondaryTextColor,
+                              size: 24,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Text(
+                                'License Number',
+                                textAlign: TextAlign.start,
+                                style: Themes.bodyXLarge,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            userData['License_Number'] ,
+                            textAlign: TextAlign.center,
+                            style: Themes.bodyXLarge.copyWith(
+                              fontFamily: 'Readex Pro',
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -231,12 +269,19 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text(
-                            'Edit Profile',
-                            textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
-                              fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) =>
+                                      DoctorProfileEditWidget(),));
+                            },
+                            child: Text(
+                              'Edit Profile',
+                              textAlign: TextAlign.center,
+                              style: Themes.bodyXLarge.copyWith(
+                                fontFamily: 'Readex Pro',
+                                color: kprimaryColor,
+                              ),
                             ),
                           ),
                         ],
