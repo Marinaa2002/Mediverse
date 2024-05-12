@@ -156,8 +156,8 @@ class ChooseDetailsCubit extends Cubit<ChooseDetailsState> {
     }
     print(timeListBool);
 
-    String selectedTime =
-        doctor.slots![selectedClinicIndex]['Time Slots'][index]['Time'][index];
+    String selectedTime = doctor.slots![selectedClinicIndex]['Time Slots']
+        [selectedDayIndex]['Time'][index];
 
     if (doctor.slots![selectedClinicIndex]['Time Slots'][selectedDayIndex]
             ['Status'][index] ==

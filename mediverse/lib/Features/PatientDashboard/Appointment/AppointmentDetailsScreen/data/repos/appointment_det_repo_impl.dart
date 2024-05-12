@@ -27,7 +27,7 @@ class AppointmentDetailsRepoImpl implements AppointmentDetailsRepo {
         state: data['State'],
         speciality: data['Speciality'],
         licenseNumber: data['License_Number'],
-        rating: data['Rating'],
+        rating: data['Rating'].toDouble(),
         reviews: data['Reviews'],
         Clinics: data['Clinics'],
         slots: data['Slots'],

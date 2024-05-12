@@ -32,6 +32,10 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (!isCash) {
           if (state is PaymentStripeStateSuccess) {
+            // paid in visa
+            BlocProvider.of<PaymentStripeCubit>(context)
+                .completeBooking('paid in visa');
+
             Navigator.of(context)
                 .pushReplacement(MaterialPageRoute(builder: (context) {
               return const ThankYouView(
@@ -53,6 +57,10 @@ class CustomButtonBlocConsumer extends StatelessWidget {
             }
           }
         } else {
+          //paid in cash
+          BlocProvider.of<PaymentStripeCubit>(context)
+                .completeBooking('paid in cash');
+
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -71,6 +79,10 @@ class CustomButtonBlocConsumer extends StatelessWidget {
               var transctionsData = getTranscationData();
               exceutePaypalPayment(context, transctionsData);
             } else if (isCash) {
+              // paid in cash
+              BlocProvider.of<PaymentStripeCubit>(context)
+                .completeBooking('paid in cash');
+
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -136,6 +148,11 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           log("onSuccess: $params");
+          
+          //paid in paypal
+          BlocProvider.of<PaymentStripeCubit>(context)
+                .completeBooking('paid in paypal');
+          
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) {
