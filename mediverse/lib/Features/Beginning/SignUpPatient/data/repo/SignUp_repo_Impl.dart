@@ -23,7 +23,7 @@ class SignUpInfoRepoImpl extends SignUpInfoRepo {
       'Medical Prescriptions': [],
       'Medical Records': [],
       'Profile Picture':
-          "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2FCAP7401140941351194398.jpg?alt=media&token=f5c0a2b4-127d-4b29-aadd-594a4de7cfeb",
+          "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.png?alt=media&token=e8dc6906-f46c-4325-ac3d-cd9e7f348087",
     });
     await patientProfile.doc(patient.id).set({
       'Name': patient.Name,
@@ -32,7 +32,7 @@ class SignUpInfoRepoImpl extends SignUpInfoRepo {
       'Phone Number': patient.Phone,
       'NationalId': patient.National_id,
       'Profile Picture':
-          "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2FCAP7401140941351194398.jpg?alt=media&token=f5c0a2b4-127d-4b29-aadd-594a4de7cfeb",
+          "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.png?alt=media&token=e8dc6906-f46c-4325-ac3d-cd9e7f348087",
     });
   }
 }

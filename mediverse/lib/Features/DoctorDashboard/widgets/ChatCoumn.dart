@@ -50,7 +50,7 @@ class ChatCoumn extends StatelessWidget {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const DateOfChat(),
+              // const DateOfChat(),
               MessagesListView(
                 doc_id: doctorId,
                 patient_id: patientId,

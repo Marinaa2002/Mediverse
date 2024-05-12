@@ -3,7 +3,7 @@ import 'package:mediverse/AllModels/Slot.dart';
 
 class Doctor {
   final String id;
-  final String name;
+  late final String name;
   final String? age;
   final String? phone;
   final List<dynamic>? blogs;
@@ -21,8 +21,6 @@ class Doctor {
   final List<dynamic>? patients;
   final String? state;
   final String condition;
-
-
 
   Doctor(
       {required this.id,
@@ -44,7 +42,6 @@ class Doctor {
       this.patients,
       this.state,
       required this.condition});
-
 
   factory Doctor.fromJson(Map<String, dynamic> json, String doctorID) {
     return Doctor(
@@ -69,7 +66,6 @@ class Doctor {
       speciality: json['Speciality'],
       state: json['State'],
       condition: json['Condition'],
-
     );
   }
 }

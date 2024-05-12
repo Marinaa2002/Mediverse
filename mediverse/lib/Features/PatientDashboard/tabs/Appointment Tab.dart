@@ -21,6 +21,7 @@ class _AppointmentTabState extends State<AppointmentTab> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   late TextEditingController _searchController = TextEditingController();
+  var searchedDoctors;
 
   late Stream<QuerySnapshot> _doctorStream;
   late Stream<QuerySnapshot> _originalDoctorStream;
@@ -54,7 +55,7 @@ class _AppointmentTabState extends State<AppointmentTab> {
               StreamBuilder<QuerySnapshot>(
                 stream: _doctorStream,
                 builder: (context, snapshot) {
-                  final doctors = snapshot.data?.docs
+                  var doctors = snapshot.data?.docs
                       .map((doc) => Doctor.fromJson(
                           doc.data() as Map<String, dynamic>, doc.id))
                       .toList();
@@ -64,21 +65,21 @@ class _AppointmentTabState extends State<AppointmentTab> {
                       child: Text("No doctors Available"),
                     );
                   } else {
-                    // if (_searchController.text.isNotEmpty) {
-                    //   doctors = doctors?.where((doctor) {
-                    //     final name = doctor.name?.toLowerCase();
-                    //     final searchValue =
-                    //         _searchController.text.toLowerCase();
-                    //     return name!.contains(searchValue);
-                    //   }).toList();
-                    // }
+                    if (_searchController.text.isNotEmpty) {
+                      doctors = doctors?.where((doctor) {
+                        final name = doctor.name?.toLowerCase();
+                        final searchValue =
+                            _searchController.text.toLowerCase();
+                        return name!.contains(searchValue);
+                      }).toList();
+                    }
                     return Expanded(
                       child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: doctors.length,
+                          itemCount: doctors!.length,
                           itemBuilder: (context, i) {
                             return CustomCardRatings(
-                              doctor: doctors[i],
+                              doctor: doctors![i],
                             );
                           }),
                     );

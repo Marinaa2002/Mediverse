@@ -51,16 +51,22 @@ class ChatsList extends StatelessWidget {
             role == "Patient"
                 ? StreamBuilder<QuerySnapshot>(
                     stream: chatHistory
-                        .orderBy(kCreatedAt, descending: true)
+                        // .orderBy(kCreatedAt, descending: true)
                         .where('patient_id', isEqualTo: globalcurrentUserId)
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                            child: SpinKitChasingDots(
+                          color: kprimaryColor,
+                        ));
                       }
 
                       if (!snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(child: Text("No chats History"));
                       }
 
                       final chats = snapshot.data!.docs;
@@ -86,8 +92,8 @@ class ChatsList extends StatelessWidget {
                       );
                     })
                 : StreamBuilder<QuerySnapshot>(
-                    stream: messages
-                        .orderBy(kCreatedAt, descending: true)
+                    stream: chatHistory
+                        // .orderBy(kCreatedAt, descending: true)
                         .where('doctor_id', isEqualTo: globalcurrentUserId)
                         .snapshots(),
                     builder: (context, snapshot) {

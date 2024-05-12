@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
@@ -29,7 +31,7 @@ class SendIconButton extends StatelessWidget {
         color: kSecondaryTextColor,
         size: 24,
       ),
-      onPressed: () {
+      onPressed: () async {
         if (textData.trim().isNotEmpty) {
           messages.add(
             {
@@ -40,12 +42,22 @@ class SendIconButton extends StatelessWidget {
               'imageUrl': ''
             },
           );
-          chatHistory.add(
-            {
-              'patient_id': patient_id,
-              'doctor_id': doc_id,
-            },
-          );
+          QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+              .collection('ChatHistory')
+              .where('doctor_id', isEqualTo: doc_id)
+              .where('patient_id', isEqualTo: patient_id)
+              .get();
+
+          if (querySnapshot.docs.isEmpty) {
+            // Document with specified fields exists
+            chatHistory.add(
+              {
+                'patient_id': patient_id,
+                'doctor_id': doc_id,
+              },
+            );
+            log('Document do not exist!');
+          }
         }
         textEditingcontroller.clear();
         _scrollablecontroller.animateTo(0,

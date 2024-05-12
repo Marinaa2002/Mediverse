@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -108,12 +109,23 @@ class CameraViewPage extends StatelessWidget {
                               'imageUrl': downloadUrl
                             },
                           );
-                          chatHistory.add(
-                            {
-                              'patient_id': patient_id,
-                              'doctor_id': doctor_id,
-                            },
-                          );
+                          QuerySnapshot querySnapshot = await FirebaseFirestore
+                              .instance
+                              .collection('ChatHistory')
+                              .where('doctor_id', isEqualTo: doctor_id)
+                              .where('patient_id', isEqualTo: patient_id)
+                              .get();
+
+                          if (querySnapshot.docs.isEmpty) {
+                            // Document with specified fields exists
+                            chatHistory.add(
+                              {
+                                'patient_id': patient_id,
+                                'doctor_id': doctor_id,
+                              },
+                            );
+                            log('Document do not exist!');
+                          }
                           controller.clear();
 
                           textData = "";
