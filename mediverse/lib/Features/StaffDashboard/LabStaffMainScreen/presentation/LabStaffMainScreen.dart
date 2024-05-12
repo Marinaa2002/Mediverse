@@ -9,7 +9,10 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Functions.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/FetechAdminInfoCubit.dart/fetech_admin_info_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_State.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/AppBarLabResultScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/ListViewPatient.dart';
 
 import '../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
@@ -33,44 +36,17 @@ class LabStaffScreen extends StatelessWidget {
           AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Center(
-                child: Text(
-                  'Alpha Lab',
-                  style: Themes.headlineSmall,
-                ),
-              ),
-            ),
-            GestureDetector(
-              child: Icon(color: Colors.white,Icons.logout),
-              onTap: (){
-                AwesomeDialog(context: context,
-                  dialogType: DialogType.warning,
-                  animType: AnimType.rightSlide,
-                  //title: 'Error',
-                  title: 'Are you sure you want to Logout?',
-                  titleTextStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold
-                  ),
-                  btnOkOnPress: () {
-                  Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                  },
-                  btnCancelOnPress: () {
-                    //Navigator.pop(context);
-                  },
-                ).show();
-              },
-            ),
-          ],
+        title: BlocBuilder<FetecHMInfoCubit, FetechHMInfoState>(
+          builder: (context, state) {
+            if (state is FetechHMInfoStateSuccess) {
+              return AppBarLabResultScreen(
+                lab_name: state.staffModel.orgName,
+              );
+            } else {
+              return AppBarLabResultScreen();
+            }
+          },
         ),
-
         actions: [],
         centerTitle: true,
         elevation: 0,

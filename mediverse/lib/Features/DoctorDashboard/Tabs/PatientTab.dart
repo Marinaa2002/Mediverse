@@ -59,9 +59,7 @@ class PatientsTab extends StatelessWidget {
                     onPressed: () {
                       print('Button pressed ...');
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => ChatsList(
-                                role: 'Doctor',
-                              )));
+                          builder: (ctx) => const PatientHistory()));
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(
@@ -80,7 +78,7 @@ class PatientsTab extends StatelessWidget {
                       elevation: 3,
                     ),
                     child: const Text(
-                      'Chats',
+                      'Patinets\' History',
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -90,37 +88,37 @@ class PatientsTab extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-            child: ElevatedButton(
-              onPressed: () {
-                print('Button pressed ...');
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => const PatientHistory()));
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(
-                  MediaQuery.sizeOf(context).width * 0.45,
-                  37,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                backgroundColor: kprimaryColor,
-                textStyle: Themes.bodyXLarge.copyWith(
-                  color: backgroundColor,
-                ),
-                elevation: 3,
-              ),
-              child: const Text(
-                'Patinets\' History',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+          //   child: ElevatedButton(
+          //     onPressed: () {
+          //       print('Button pressed ...');
+          //       Navigator.of(context).push(MaterialPageRoute(
+          //           builder: (ctx) => const PatientHistory()));
+          //     },
+          //     style: ElevatedButton.styleFrom(
+          //       minimumSize: Size(
+          //         MediaQuery.sizeOf(context).width * 0.45,
+          //         37,
+          //       ),
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(8),
+          //       ),
+          //       padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+          //       backgroundColor: kprimaryColor,
+          //       textStyle: Themes.bodyXLarge.copyWith(
+          //         color: backgroundColor,
+          //       ),
+          //       elevation: 3,
+          //     ),
+          //     child: const Text(
+          //       'Patinets\' History',
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           const Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
             child: Divider(

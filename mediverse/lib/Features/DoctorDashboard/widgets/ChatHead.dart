@@ -54,7 +54,8 @@ class ChatHead extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(context, '/DoctorChat', arguments: {
                           'patient_id': patient_id,
-                          'doctor_id': doctor_id
+                          'doctor_id': doctor_id,
+                          'NowRole': "Patient"
                         });
                       },
                       leading: ClipRRect(
@@ -116,7 +117,8 @@ class ChatHead extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(context, '/DoctorChat', arguments: {
                           'patient_id': patient_id,
-                          'doctor_id': doctor_id
+                          'doctor_id': doctor_id,
+                          'NowRole': "Doctor"
                         });
                       },
                       leading: ClipRRect(

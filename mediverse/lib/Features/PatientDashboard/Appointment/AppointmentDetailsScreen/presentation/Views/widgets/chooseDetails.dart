@@ -132,7 +132,8 @@ class _chooseDetailsState extends State<chooseDetails> {
                       onTap: () {
                         Navigator.pushNamed(context, '/DoctorChat', arguments: {
                           'patient_id': globalcurrentUserId,
-                          'doctor_id': widget.doctor.id
+                          'doctor_id': widget.doctor.id,
+                          'NowRole': "Patient"
                         });
                       },
                       buttonName: 'Chat',

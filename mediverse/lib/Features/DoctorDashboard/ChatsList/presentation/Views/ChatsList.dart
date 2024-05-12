@@ -19,7 +19,7 @@ class ChatsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      // appBar: AppBar(
+      // appBar:role!="Patient"? AppBar(
       //   backgroundColor: kprimaryColor,
       //   automaticallyImplyLeading: false,
       //   leading: IconButton(
@@ -41,7 +41,7 @@ class ChatsList extends StatelessWidget {
       //   actions: const [],
       //   centerTitle: true,
       //   elevation: 2,
-      // ),
+      // ):AppBar(),
       body: SafeArea(
         top: true,
         child: Column(
@@ -100,9 +100,15 @@ class ChatsList extends StatelessWidget {
                       if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       }
-
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                            child: SpinKitSpinningCircle(
+                          color: kprimaryColor,
+                          size: 50,
+                        )); // Show a loading indicator while waiting for data
+                      }
                       if (!snapshot.hasData) {
-                        return Center(child: SpinKitCircle());
+                        return Center(child: Text("No chat History"));
                       }
 
                       final chats = snapshot.data!.docs;

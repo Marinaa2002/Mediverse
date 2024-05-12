@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 
 class SendIconButton extends StatelessWidget {
@@ -33,13 +34,20 @@ class SendIconButton extends StatelessWidget {
       ),
       onPressed: () async {
         if (textData.trim().isNotEmpty) {
+          String nowRole = "";
+          if (patient_id == globalcurrentUserId) {
+            nowRole = "Patient";
+          } else {
+            nowRole = "Doctor";
+          }
           messages.add(
             {
               kMessage: textData,
               kCreatedAt: DateTime.now(),
               'patient_id': patient_id,
               'doctor_id': doc_id,
-              'imageUrl': ''
+              'imageUrl': '',
+              'Sender': nowRole
             },
           );
           QuerySnapshot querySnapshot = await FirebaseFirestore.instance

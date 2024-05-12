@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
+import 'package:mediverse/Features/DoctorDashboard/ChatsList/presentation/Views/ChatsList.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/Tabs/PatientTab.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/AppBarDoctor.dart';
@@ -38,7 +39,7 @@ class MainScreenDoctor extends StatelessWidget {
         child: Column(
           children: [
             DefaultTabController(
-              length: 2,
+              length: 3,
               child: Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -60,15 +61,20 @@ class MainScreenDoctor extends StatelessWidget {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(2, 5, 2, 5),
                             child: Tab(text: 'Blogs'),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(2, 5, 2, 5),
+                            child: Tab(text: 'Chats'),
                           )
                         ],
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       child: TabBarView(
                         children: [
                           PatientsTab(),
                           BlogsTab(),
+                          ChatsList(role: 'Doctor')
                         ],
                       ),
                     )

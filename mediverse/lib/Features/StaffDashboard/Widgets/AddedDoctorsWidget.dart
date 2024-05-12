@@ -2,16 +2,18 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/AllModels/Staff.dart';
+import 'package:mediverse/Core/utils/Functions.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/DoctorCard.dart';
 
 import 'HospitalMangmentAddDoctorsBody.dart';
 
 class AddedDoctorsWidget extends StatelessWidget {
-  const AddedDoctorsWidget({
+  AddedDoctorsWidget({
     super.key,
     required this.widget,
   });
+  TextEditingController textEditingController = TextEditingController();
 
   final HospitalMangmentAddDoctorsBody widget;
 
@@ -57,6 +59,51 @@ class AddedDoctorsWidget extends StatelessWidget {
             },
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.only(right: 10.0, bottom: 20),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton(
+              child: Icon(
+                Icons.add,
+              ),
+              onPressed: () async {
+                final license_Number = await showTextFieldDialog(context,
+                    textEditingController: textEditingController,
+                    title: "Add Doctor 's License Number",
+                    hintText: 'License Number');
+                var id = '';
+                textEditingController.clear();
+                if (license_Number != null) {
+                  try {
+                    QuerySnapshot snapshot = await FirebaseFirestore.instance
+                        .collection('info_Doctors')
+                        .where('License_Number', isEqualTo: license_Number)
+                        .get();
+
+                    if (snapshot.docs.isNotEmpty) {
+                      id = snapshot.docs.first.id;
+                    } else {
+                      showSnackBar(context,
+                          "No Doctor With this license Number"); // Handle case when no document is found
+                    }
+
+                    // Update the array in Firestore using arrayUnion
+                    await FirebaseFirestore.instance
+                        .collection('Staff')
+                        .doc(globalcurrentUserId)
+                        .update({
+                      'Jobs': FieldValue.arrayUnion([id]),
+                    });
+                    print('license Number added to the array successfully');
+                  } catch (error) {
+                    print('Error adding license Number to the array: $error');
+                  }
+                }
+              },
+            ),
+          ),
+        )
       ],
     );
   }

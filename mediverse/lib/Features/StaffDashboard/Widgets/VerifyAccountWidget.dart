@@ -166,7 +166,7 @@ class VerifyAccountWidget extends StatelessWidget {
                             context,
                             acceptanceMailDoctor,
                             'Request Acceptance',
-                            'rinosamyramy@gmail.com'); //change to required Email
+                            requests[i].email); //change to required Email
                       } else {
                         // Retrieve the document ID of the request
                         await metaData.doc(requestId).set({
@@ -204,7 +204,7 @@ class VerifyAccountWidget extends StatelessWidget {
                             .doc(requestId)
                             .delete();
                         EmailService().sendEmail(context, acceptaneMailStaff,
-                            'Request Accepted', 'rinosamyramy@gmail.com');
+                            'Request Accepted', requests[i].email);
                       }
                     },
                     onPressedDecline: () async {
@@ -223,7 +223,7 @@ class VerifyAccountWidget extends StatelessWidget {
                         print('Failed to decline and remove request: $error');
                       });
                       EmailService().sendEmail(context, rejectionMail,
-                          'Request Rejection', 'rinosamyramy@gmail.com');
+                          'Request Rejection', requests[i].email);
                     },
                   );
                 },

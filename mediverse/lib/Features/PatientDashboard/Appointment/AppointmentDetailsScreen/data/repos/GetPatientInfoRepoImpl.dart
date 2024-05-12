@@ -11,7 +11,8 @@ class GetPatientInfoRepoImpl extends GetPatientInfoRepo {
     try {
       final DocumentSnapshot snapshot = await FirebaseFirestore.instance
           .collection('info_Patients')
-          .doc(globalcurrentUserId).get();
+          .doc(id)
+          .get();
 
       if (snapshot.exists) {
         final patientData = snapshot.data();

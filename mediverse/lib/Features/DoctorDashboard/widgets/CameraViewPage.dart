@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 
 //Sending Takes time fa lazm al network speed taba kabira
@@ -99,6 +100,12 @@ class CameraViewPage extends StatelessWidget {
                           // Get download URL from Firebase Storage
                           String downloadUrl =
                               await storageTaskSnapshot.ref.getDownloadURL();
+                          String nowRole = "";
+                          if (patient_id == globalcurrentUserId) {
+                            nowRole = "Patient";
+                          } else {
+                            nowRole = "Doctor";
+                          }
                           //nrkz
                           messages.add(
                             {
@@ -106,7 +113,8 @@ class CameraViewPage extends StatelessWidget {
                               kCreatedAt: DateTime.now(),
                               'patient_id': patient_id,
                               'doctor_id': doctor_id,
-                              'imageUrl': downloadUrl
+                              'imageUrl': downloadUrl,
+                              'Sender': nowRole
                             },
                           );
                           QuerySnapshot querySnapshot = await FirebaseFirestore

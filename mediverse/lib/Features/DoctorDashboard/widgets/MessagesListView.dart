@@ -10,12 +10,14 @@ class MessagesListView extends StatelessWidget {
       required this.messagesList,
       required this.controller,
       this.doc_id,
-      this.patient_id});
+      this.patient_id,
+      this.nowRole});
 
   final List<Message> messagesList;
   final ScrollController controller;
   String? patient_id = '';
   String? doc_id = '';
+  String? nowRole = '';
 
   @override
   Widget build(BuildContext context) {
@@ -25,50 +27,58 @@ class MessagesListView extends StatelessWidget {
           controller: controller,
           itemCount: messagesList.length,
           itemBuilder: (context, index) {
-            if (messagesList[index].doctor_id == globalcurrentUserId &&
+            if (messagesList[index].sender == "Doctor" &&
+                messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
               return ChatMessage(
                 message: messagesList[index],
                 isMe: true,
               );
-            } else if (messagesList[index].doctor_id == globalcurrentUserId &&
+            } else if (messagesList[index].sender == "Doctor" &&
+                messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
               return ChatMessageWithPhoto(
                 message: messagesList[index],
                 isMe: true,
               );
-            } else if (messagesList[index].patient_id != globalcurrentUserId &&
+            } else if (messagesList[index].sender != "Doctor" &&
+                messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
               return ChatMessage(
                 message: messagesList[index],
                 isMe: false,
               );
-            } else if (messagesList[index].patient_id != globalcurrentUserId &&
+            } else if (messagesList[index].sender != "Doctor" &&
+                messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
               return ChatMessageWithPhoto(
                 message: messagesList[index],
                 isMe: false,
               );
             }
-            if (messagesList[index].patient_id == globalcurrentUserId &&
+            if (messagesList[index].sender == "Patient" &&
+                messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
               return ChatMessage(
                 message: messagesList[index],
                 isMe: true,
               );
-            } else if (messagesList[index].patient_id == globalcurrentUserId &&
+            } else if (messagesList[index].sender == "Patient" &&
+                messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
               return ChatMessageWithPhoto(
                 message: messagesList[index],
                 isMe: true,
               );
-            } else if (messagesList[index].doctor_id != globalcurrentUserId &&
+            } else if (messagesList[index].sender != "Patient" &&
+                messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
               return ChatMessage(
                 message: messagesList[index],
                 isMe: false,
               );
-            } else if (messagesList[index].doctor_id != globalcurrentUserId &&
+            } else if (messagesList[index].sender != "Patient" &&
+                messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
               return ChatMessageWithPhoto(
                 message: messagesList[index],

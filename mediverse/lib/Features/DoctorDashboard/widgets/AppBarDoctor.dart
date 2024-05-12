@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoStates.dart';
+
+import '../../PatientDashboard/PatientProfileScreen/data/models/PatientProfileModel.dart';
 
 class AppBarDoctor extends StatelessWidget {
   const AppBarDoctor({
@@ -12,9 +17,29 @@ class AppBarDoctor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetDoctorInfoCubit, GetDoctorInfoState>(
-      builder: (context, state) {
-        if (state is GetDoctorInfoSuccess) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection("DoctorProfile")
+            .doc(globalcurrentUserId)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+                child: SpinKitSpinningCircle(
+              color: kprimaryColor,
+              size: 50,
+            )); // Show a loading indicator while waiting for data
+          }
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } //
+          if (!snapshot.hasData) {
+            return Center(
+              child: Text('No Doctor available'),
+            ); // Show a loading indicator while waiting for data
+          }
+          PatientProfileModel profileModel =
+              PatientProfileModel.fromJson(snapshot.data!.data());
           return Align(
             alignment: const AlignmentDirectional(0, 0),
             child: Row(
@@ -43,7 +68,7 @@ class AppBarDoctor extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: Image.network(
-                            state.doctor.profilePicture!,
+                            profileModel.profilePicture,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -57,12 +82,12 @@ class AppBarDoctor extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        state.doctor.name,
+                        profileModel.name,
                         style:
                             Themes.titleSmall.copyWith(color: backgroundColor),
                       ),
                       Text(
-                        state.doctor.email,
+                        profileModel.email,
                         style: Themes.bodyXLarge.copyWith(
                           color: backgroundColor,
                         ),
@@ -73,10 +98,6 @@ class AppBarDoctor extends StatelessWidget {
               ],
             ),
           );
-        } else {
-          return Container();
-        }
-      },
-    );
+        });
   }
 }

@@ -33,7 +33,7 @@ class ChatMessage extends StatelessWidget {
                   bottomRight: Radius.circular(32),
                 ),
           //lo za3lo 8ir al color lo la2 5lassssss
-          color: kprimaryColor,
+          color: isMe ? kprimaryColor : Color(0xffee8b60),
         ),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 150),

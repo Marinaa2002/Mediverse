@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/TextFieldSendMessageAndCloudFireStore.dart';
 
@@ -35,13 +36,20 @@ class TextFieldForMsgs extends StatelessWidget {
           messages: messages,
           onSubmitted: (data) async {
             if (data.trim().isNotEmpty) {
+              String nowRole = "";
+              if (patient_id == globalcurrentUserId) {
+                nowRole = "Patient";
+              } else {
+                nowRole = "Doctor";
+              }
               messages.add(
                 {
                   kMessage: data,
                   kCreatedAt: DateTime.now(),
                   'patient_id': patient_id,
                   'doctor_id': doc_id,
-                  "imageUrl": ''
+                  "imageUrl": '',
+                  'Sender': nowRole
                 },
               );
               QuerySnapshot querySnapshot = await FirebaseFirestore.instance

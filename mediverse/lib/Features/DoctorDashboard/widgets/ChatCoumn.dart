@@ -23,7 +23,8 @@ class ChatCoumn extends StatelessWidget {
       required this.textEditingcontroller,
       required this.messages,
       required this.doctorId,
-      required this.patientId})
+      required this.patientId,
+      required this.nowRole})
       : _scrollablecontroller = controller2;
 
   final ScrollController _scrollablecontroller;
@@ -31,6 +32,7 @@ class ChatCoumn extends StatelessWidget {
   final CollectionReference<Object?> messages;
   final String doctorId;
   final String patientId;
+  final String nowRole;
 
   @override
   Widget build(BuildContext context) {
