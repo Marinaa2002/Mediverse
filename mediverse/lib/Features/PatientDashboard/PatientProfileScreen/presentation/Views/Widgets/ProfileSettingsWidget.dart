@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -86,7 +87,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -123,7 +124,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -160,7 +161,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -237,10 +238,6 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
-                              Navigator.pop(context);
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                            },
                             child: Text(
                               'Log Out?',
                               textAlign: TextAlign.center,
@@ -249,6 +246,25 @@ class ProfileSettingsWidget extends StatelessWidget {
                                 color: kprimaryColor,
                               ),
                             ),
+                            onTap: (){
+                              AwesomeDialog(context: context,
+                                dialogType: DialogType.warning,
+                                animType: AnimType.rightSlide,
+                                //title: 'Error',
+                                title: 'Are you sure you want to Logout?',
+                                titleTextStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold
+                                ),
+                                btnOkOnPress: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                                },
+                                btnCancelOnPress: () {
+                                  //Navigator.pop(context);
+                                },
+                              ).show();
+                            },
                           ),
                         ],
                       ),

@@ -59,6 +59,7 @@ class PatientProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  SizedBox(height: 25,),
                   ProfilePictureWidget(userData: userData),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 4),
@@ -78,8 +79,7 @@ class PatientProfileScreen extends StatelessWidget {
                         color: kprimaryTextColor,
                         fontSize: 20),
                   ),
-                  const ProfileInfoWidget(),
-                  //ProfileSettingsWidget(patientProfileModel: patientProfileModel!)
+                  SizedBox(height: 50,),
                   ProfileSettingsWidget(
                     userData: userData,
                   ),
