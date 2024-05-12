@@ -27,7 +27,7 @@ class MainScreenDoctor extends StatelessWidget {
           child: AppBarDoctor(),
           onTap: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (ctx) => const DoctorProfile()));
+                MaterialPageRoute(builder: (ctx) =>  DoctorProfile()));
           },
         ),
         centerTitle: false,
