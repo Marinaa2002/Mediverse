@@ -85,8 +85,10 @@ class AppBarAdminPage extends StatelessWidget {
                     fontWeight: FontWeight.bold
                   ),
                   btnOkOnPress: () {
+                    Navigator.pop(context);
                     Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                  },
+
+                    },
                     btnCancelOnPress: () {
                       //Navigator.pop(context);
                     },
