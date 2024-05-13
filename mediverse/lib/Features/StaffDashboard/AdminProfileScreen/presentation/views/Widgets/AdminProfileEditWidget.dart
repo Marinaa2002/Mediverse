@@ -86,8 +86,6 @@ class AdminProfileEditWidget extends StatelessWidget {
                               text: userData['Name'],
                               onChanged: (value) {
                                 name = value;
-                                BlocProvider.of<AdminProfileEditCubit>(context)
-                                .editName(name: name);
                               },
                               controller: nameController,
                             ),
@@ -108,8 +106,6 @@ class AdminProfileEditWidget extends StatelessWidget {
                               text: userData['Phone'],
                               onChanged: (value) {
                                 phoneNum = value;
-                                BlocProvider.of<AdminProfileEditCubit>(context)
-                                    .editPhoneNum(phoneNum: phoneNum);
                               },
                               controller: phoneNumController,
                             ),
@@ -140,6 +136,20 @@ class AdminProfileEditWidget extends StatelessWidget {
                             text: "Save",
                             screen: null,
                             onPressed: () async {
+                              if(nameController.text.isEmpty){
+                                name = userData['Name'];
+                              }
+                              else{
+                                await BlocProvider.of<AdminProfileEditCubit>(context)
+                                    .editName(name: name);
+                              }
+                              if(phoneNumController.text.isEmpty){
+                                phoneNum = userData['Phone'];
+                              }
+                              else{
+                                await BlocProvider.of<AdminProfileEditCubit>(context)
+                                    .editPhoneNum(phoneNum: phoneNum);
+                              }
                               Navigator.pop(context);
                             },
                           ),
