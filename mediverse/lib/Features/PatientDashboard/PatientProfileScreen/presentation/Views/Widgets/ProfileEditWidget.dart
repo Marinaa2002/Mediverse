@@ -19,12 +19,15 @@ class ProfileEditWidget extends StatelessWidget {
   final TextEditingController ageController = TextEditingController();
   final TextEditingController natIDController = TextEditingController();
   final TextEditingController phoneNumController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   String? name;
   String? age;
   String? national_id;
   String? phoneNum;
+  String? email;
   bool isLoading = false;
   var userData;
+  User? user = FirebaseAuth.instance.currentUser;
 
   ProfileEditWidget({
     super.key,
@@ -87,8 +90,6 @@ class ProfileEditWidget extends StatelessWidget {
                               text:  userData['Name'] ?? 'Name',
                               onChanged: (value) {
                                 name = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                .editName(name: name);
                               },
                               controller: nameController,
                             ),
@@ -109,9 +110,7 @@ class ProfileEditWidget extends StatelessWidget {
                               text: userData['Age'] ?? 'Age',
                               onChanged: (value) {
                                 age = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editAge(age: age);
-                              },
+                                },
                               controller: ageController,
                             ),
                           ),
@@ -131,8 +130,6 @@ class ProfileEditWidget extends StatelessWidget {
                               text: userData['Phone Number'] ?? 'Phone Number',
                               onChanged: (value) {
                                 phoneNum = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editPhoneNum(phoneNum: phoneNum);
                               },
                               controller: phoneNumController,
                             ),
@@ -153,17 +150,73 @@ class ProfileEditWidget extends StatelessWidget {
                               text: userData['NationalId'] ?? 'NationalId',
                               onChanged: (value) {
                                 national_id = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editNationalId(nationalId: national_id);
                               },
                               controller: natIDController,
                             ),
                           ),
+
+
+                          // Padding(
+                          //   padding: EdgeInsetsDirectional.fromSTEB(
+                          //       12, 0, 12, 10),
+                          //   child: ProfileTextFormField(
+                          //     text: userData['Email'] ?? 'Email',
+                          //     onChanged: (value) async{
+                          //       email = value;
+                          //
+                          //       // BlocProvider.of<ProfileEditCubit>(context)
+                          //       //     .editNationalId(nationalId: national_id);
+                          //     },
+                          //     controller: emailController,
+                          //   ),
+                          // ),
+
+
                           ProfileSaveButton(
                             text: "Save",
                             screen: null,
                             onPressed: () async {
+                              if(nameController.text.isEmpty){
+                                name = userData['Name'];
+                              }
+                              else{
+                                BlocProvider.of<ProfileEditCubit>(context)
+                                    .editName(name: name);
+                              }
+                              if(ageController.text.isEmpty){
+                                age = userData['Age'];
+                              }
+                              else{
+                                BlocProvider.of<ProfileEditCubit>(context)
+                                    .editAge(age: age);
+                              }
+                              if(phoneNumController.text.isEmpty){
+                                phoneNum = userData['Phone Number'];
+                              }
+                              else{
+                                BlocProvider.of<ProfileEditCubit>(context)
+                                    .editPhoneNum(phoneNum: phoneNum);
+                              }
+                              if(natIDController.text.isEmpty){
+                                national_id = userData['NationalId'];
+                              }
+                              else{
+                                BlocProvider.of<ProfileEditCubit>(context)
+                                    .editNationalId(nationalId: national_id);
+                              }
                               Navigator.pop(context);
+                              // String newEmail = emailController.text.trim();
+                              // try {
+                              //   // Update the email for the current user
+                              //   await FirebaseAuth.instance.currentUser?.updateEmail(newEmail);
+                              //
+                              //   // If successful, navigate back or show a success message
+                              //   Navigator.pop(context); // Navigate back
+                              // } catch (e) {
+                              //   // Handle errors, such as invalid email format or email already in use
+                              //   print("Error updating email: $e");
+                              //   // You can display an error message to the user if needed
+                              // }
                             },
                           ),
                         ],
