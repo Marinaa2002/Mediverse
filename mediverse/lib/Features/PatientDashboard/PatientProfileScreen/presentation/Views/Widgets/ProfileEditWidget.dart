@@ -180,28 +180,28 @@ class ProfileEditWidget extends StatelessWidget {
                                 name = userData['Name'];
                               }
                               else{
-                                BlocProvider.of<ProfileEditCubit>(context)
+                                await BlocProvider.of<ProfileEditCubit>(context)
                                     .editName(name: name);
                               }
                               if(ageController.text.isEmpty){
                                 age = userData['Age'];
                               }
                               else{
-                                BlocProvider.of<ProfileEditCubit>(context)
+                                await BlocProvider.of<ProfileEditCubit>(context)
                                     .editAge(age: age);
                               }
                               if(phoneNumController.text.isEmpty){
                                 phoneNum = userData['Phone Number'];
                               }
                               else{
-                                BlocProvider.of<ProfileEditCubit>(context)
+                                await BlocProvider.of<ProfileEditCubit>(context)
                                     .editPhoneNum(phoneNum: phoneNum);
                               }
                               if(natIDController.text.isEmpty){
                                 national_id = userData['NationalId'];
                               }
                               else{
-                                BlocProvider.of<ProfileEditCubit>(context)
+                                await BlocProvider.of<ProfileEditCubit>(context)
                                     .editNationalId(nationalId: national_id);
                               }
                               Navigator.pop(context);
