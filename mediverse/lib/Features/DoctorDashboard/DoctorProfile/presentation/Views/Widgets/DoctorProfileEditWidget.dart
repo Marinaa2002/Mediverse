@@ -90,8 +90,6 @@ class DoctorProfileEditWidget extends StatelessWidget {
                               text: userData['Name'] ?? 'Name',
                               onChanged: (value) {
                                 name = value;
-                                BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editName(name: name);
                               },
                               controller: nameController,
                             ),
@@ -112,8 +110,6 @@ class DoctorProfileEditWidget extends StatelessWidget {
                               text: userData['Age'] ?? 'Age',
                               onChanged: (value) {
                                 age = value;
-                                BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editAge(age: age);
                               },
                               controller: ageController,
                             ),
@@ -134,8 +130,6 @@ class DoctorProfileEditWidget extends StatelessWidget {
                               text: userData['Phone'] ?? 'Phone Number',
                               onChanged: (value) {
                                 phoneNum = value;
-                                BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editPhoneNum(phoneNum: phoneNum);
                               },
                               controller: phoneNumController,
                             ),
@@ -156,8 +150,6 @@ class DoctorProfileEditWidget extends StatelessWidget {
                               text: userData['NationalId']?? "National ID",
                               onChanged: (value) {
                                 national_id = value;
-                                BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editNationalId(nationalId: national_id);
                               },
                               controller: natIDController,
                             ),
@@ -178,8 +170,6 @@ class DoctorProfileEditWidget extends StatelessWidget {
                               text: userData['Speciality'] ?? "Speciality",
                               onChanged: (value) {
                                 speciality = value;
-                                BlocProvider.of<DoctorProfileEditCubit>(context)
-                                .editSpeciality(speciality: speciality);
                               },
                               controller: specialityController,
                             ),
@@ -188,6 +178,41 @@ class DoctorProfileEditWidget extends StatelessWidget {
                             text: "Save",
                             screen: null,
                             onPressed: () async {
+                              if(nameController.text.isEmpty){
+                                name = userData['Name'];
+                              }
+                              else{
+                                await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                    .editName(name: name);
+                              }
+                              if(ageController.text.isEmpty){
+                                age = userData['Age'];
+                              }
+                              else{
+                                await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                    .editAge(age: age);
+                              }
+                              if(phoneNumController.text.isEmpty){
+                                phoneNum = userData['Phone'];
+                              }
+                              else{
+                                await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                    .editPhoneNum(phoneNum: phoneNum);
+                              }
+                              if(natIDController.text.isEmpty){
+                                national_id = userData['NationalId'];
+                              }
+                              else{
+                                await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                    .editNationalId(nationalId: national_id);
+                              }
+                              if(specialityController.text.isEmpty){
+                                speciality = userData['Speciality'];
+                              }
+                              else{
+                                await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                    .editSpeciality(speciality: speciality);
+                              }
                               Navigator.pop(context);
                             },
                           ),
