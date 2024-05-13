@@ -83,7 +83,7 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Phone'] ,
+                            userData['Phone'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
                             style: Themes.bodyXLarge.copyWith(
                               fontFamily: 'Readex Pro',
