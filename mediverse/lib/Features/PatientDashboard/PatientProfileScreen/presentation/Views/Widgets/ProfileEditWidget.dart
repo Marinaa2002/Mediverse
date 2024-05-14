@@ -205,17 +205,12 @@ class ProfileEditWidget extends StatelessWidget {
                                     .editNationalId(nationalId: national_id);
                               }
                               Navigator.pop(context);
+
                               // String newEmail = emailController.text.trim();
                               // try {
-                              //   // Update the email for the current user
-                              //   await FirebaseAuth.instance.currentUser?.updateEmail(newEmail);
-                              //
-                              //   // If successful, navigate back or show a success message
-                              //   Navigator.pop(context); // Navigate back
+                              //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
                               // } catch (e) {
-                              //   // Handle errors, such as invalid email format or email already in use
                               //   print("Error updating email: $e");
-                              //   // You can display an error message to the user if needed
                               // }
                             },
                           ),

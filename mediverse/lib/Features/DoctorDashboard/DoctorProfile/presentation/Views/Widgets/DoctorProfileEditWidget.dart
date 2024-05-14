@@ -22,11 +22,13 @@ class DoctorProfileEditWidget extends StatelessWidget {
   final TextEditingController natIDController = TextEditingController();
   final TextEditingController phoneNumController = TextEditingController();
   final TextEditingController specialityController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   String? name;
   String? age;
   String? national_id;
   String? phoneNum;
   String? speciality;
+  String? email;
   bool isLoading = false;
 
   DoctorProfileEditWidget({
@@ -174,6 +176,24 @@ class DoctorProfileEditWidget extends StatelessWidget {
                               controller: specialityController,
                             ),
                           ),
+
+
+                          // Padding(
+                          //   padding: EdgeInsetsDirectional.fromSTEB(
+                          //       12, 0, 12, 10),
+                          //   child: DoctorProfileTextFormField(
+                          //     text: userData['Email'] ?? 'Email',
+                          //     onChanged: (value) async{
+                          //       email = value;
+                          //
+                          //       // BlocProvider.of<ProfileEditCubit>(context)
+                          //       //     .editNationalId(nationalId: national_id);
+                          //     },
+                          //     controller: emailController,
+                          //   ),
+                          // ),
+
+
                           DoctorProfileSaveButton(
                             text: "Save",
                             screen: null,
@@ -214,6 +234,14 @@ class DoctorProfileEditWidget extends StatelessWidget {
                                     .editSpeciality(speciality: speciality);
                               }
                               Navigator.pop(context);
+
+                              // String newEmail = emailController.text.trim();
+                              // try {
+                              //   // EmailAuthProvider.credential(email: newEmail, password: '');
+                              //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
+                              // } catch (e) {
+                              //   print("Error updating email: $e");
+                              // }
                             },
                           ),
                         ],
