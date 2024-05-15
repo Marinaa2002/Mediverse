@@ -6,6 +6,7 @@ import '../models/reviewModel.dart';
 
 abstract class PatientReviewRepo{
 
-  sendReviews({required double rating, required String textReview, required String name, required String doctor_id});
+  Future<Either<Failure, String>> sendReviews({required double rating, required String textReview, required String name, required String doctor_id});
   Future<Either<Failure , List<ReviewModel>>> getReviews({required QuerySnapshot event});
+  Future<Either<Failure , List<ReviewModel>>> getDocReviews({required String doctor_id});
 }

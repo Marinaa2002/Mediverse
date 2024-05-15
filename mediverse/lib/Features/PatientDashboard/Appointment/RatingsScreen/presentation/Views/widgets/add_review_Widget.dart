@@ -25,34 +25,34 @@ class AddReviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: kprimaryColor,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.chevron_left,
-            color: kSecondryBackgroundColor,
-            size: 24,
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          backgroundColor: kprimaryColor,
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.chevron_left,
+              color: kSecondryBackgroundColor,
+              size: 24,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: const Text(
-          'Add Review',
-          style: TextStyle(
-            fontFamily: 'Outfit',
-            color: Colors.white,
-            fontSize: 20,
+          title: const Text(
+            'Add Review',
+            style: TextStyle(
+              fontFamily: 'Outfit',
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
+          actions: [],
+          centerTitle: true,
+          elevation: 0,
         ),
-        actions: [],
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: BlocBuilder<PatientReviewCubit, PatientReviewState>(
-        builder: (context, state) {
+        body: BlocBuilder<PatientReviewCubit, PatientReviewState>(
+            builder: (context, state) {
           if (state is PatientReviewSuccess) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -64,8 +64,8 @@ class AddReviewWidget extends StatelessWidget {
                         alignment: AlignmentDirectional(-1, -1),
                         child: Padding(
                           padding: EdgeInsets.all(6),
-                          child: Text('Add Your Review :', style: Themes
-                              .labelLarge18),
+                          child: Text('Add Your Review :',
+                              style: Themes.labelLarge18),
                         ),
                       ),
                       Align(
@@ -94,8 +94,8 @@ class AddReviewWidget extends StatelessWidget {
                             child: Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5, 5, 5, 8),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 5, 5, 8),
                                 child: TextFormField(
                                   obscureText: false,
                                   onChanged: (value) {
@@ -108,7 +108,8 @@ class AddReviewWidget extends StatelessWidget {
                                     errorBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     contentPadding:
-                                    EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
                                   ),
                                   maxLines: 20,
                                 ),
@@ -121,11 +122,12 @@ class AddReviewWidget extends StatelessWidget {
                         alignment: AlignmentDirectional(-1, 0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(10, 0, 15, 0),
-                          child:
-                          Text('Tell others what you think',
-                              style: TextStyle(fontFamily: 'Readex Pro',
+                          child: Text('Tell others what you think',
+                              style: TextStyle(
+                                fontFamily: 'Readex Pro',
                                 fontSize: 16,
-                                color: Colors.black,)),
+                                color: Colors.black,
+                              )),
                         ),
                       ),
                       RatingBar.builder(
@@ -135,11 +137,10 @@ class AddReviewWidget extends StatelessWidget {
                         allowHalfRating: true,
                         itemCount: 5,
                         itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) =>
-                            Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
                         onRatingUpdate: (rate) {
                           rating = rate;
                         },
@@ -170,8 +171,8 @@ class AddReviewWidget extends StatelessWidget {
                             child: Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5, 8, 5, 8),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 8, 5, 8),
                                 child: TextFormField(
                                   obscureText: false,
                                   onChanged: (value) {
@@ -184,7 +185,8 @@ class AddReviewWidget extends StatelessWidget {
                                     errorBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     contentPadding:
-                                    EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
                                   ),
                                   maxLines: 20,
                                 ),
@@ -193,12 +195,16 @@ class AddReviewWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      AddButtonWidget(text: 'Save', onPressed: () {
-                        BlocProvider.of<PatientReviewCubit>(context)
-                            .sendReviewModel(rating: rating!, doctor_id: '',
-                            textReview: text!, name: name!);
-                        Navigator.pop(context);
-                      }),
+                      AddButtonWidget(
+                          text: 'Save',
+                          onPressed: () {
+                            BlocProvider.of<PatientReviewCubit>(context)
+                                .sendReviewModel(
+                                    rating: rating!,
+                                    textReview: text!,
+                                    name: name!);
+                            Navigator.of(context).pop();
+                          }),
                     ],
                   ),
                 ),
@@ -209,12 +215,6 @@ class AddReviewWidget extends StatelessWidget {
           } else {
             return Center(child: CircularProgressIndicator());
           }
-        }
-      )
-    );
+        }));
   }
 }
-
-
-
-
