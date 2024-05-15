@@ -92,7 +92,9 @@ class _HospitalMangmentAddDoctorsBodyState
                     ),
                   ],
                 ),
-                AddedDoctorsWidget(widget: widget),
+                AddedDoctorsWidget(
+                  widget: widget,
+                ),
               ],
             ))
           ],
