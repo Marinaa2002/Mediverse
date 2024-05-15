@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/data/models/reviewModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/data/repos/patient_review_repo.dart';
@@ -48,22 +47,42 @@ class PatientReviewCubit extends Cubit<PatientReviewState> {
     }
   }
 
-  void getReviewModels() async {
-    emit(PatientReviewLoading());
-    await messages
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .listen((event) async {
-      var result = await patientReviewRepo.getReviews(event: event);
-      result.fold((left) => emit(PatientReviewFailure(left.errMsg)),
-          (right) => emit(PatientReviewSuccess(reviewModellList: right)));
-    });
+  // void getReviewModels() async {
+  //   emit(PatientReviewLoading());
+  //   await messages
+  //       .orderBy('createdAt', descending: true)
+  //       .snapshots()
+  //       .listen((event) async {
+  //     var result = await patientReviewRepo.getReviews(event: event);
+  //     result.fold((left) => emit(PatientReviewFailure(left.errMsg)),
+  //         (right) => emit(PatientReviewSuccess(reviewModellList: right)));
+  //   });
+  // }
+
+  double getRating(List<ReviewModel> reviews) {
+    double totalRating = 0.0;
+    for (var review in reviews) {
+      totalRating += review.Rating;
+    }
+    double avg_Ratings = totalRating / reviews.length;
+    return avg_Ratings;
   }
 
   void getDoctorReviews() async {
     emit(PatientReviewLoading());
     var result = await patientReviewRepo.getDocReviews(doctor_id: Doctor_id);
-    result.fold((left) => emit(PatientReviewFailure(left.errMsg)),
-        (right) => emit(PatientReviewSuccess(reviewModellList: right)));
+    result.fold(
+      (left) => emit(PatientReviewFailure(left.errMsg)),
+      (right) {
+        List<ReviewModel> reviews = [];
+        for (int i = 0; i < right.length; i++) {
+          reviews.add(right[right.length - 1 - i]);
+        }
+        double rating = getRating(reviews);
+        patientReviewRepo.updateDoctorRating(
+            doctor_id: Doctor_id, rating: rating);
+        emit(PatientReviewSuccess(reviewModellList: reviews, rating: rating));
+      },
+    );
   }
 }

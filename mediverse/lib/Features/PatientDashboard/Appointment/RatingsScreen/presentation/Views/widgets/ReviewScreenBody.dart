@@ -46,11 +46,11 @@ class _ReviewScreenBodyState extends State<ReviewScreenBody> {
         if (state is PatientReviewSuccess) {
           reviewModelList = state.reviewModellList;
 
-          double totalRating = 0.0;
-          for (var review in reviewModelList) {
-            totalRating += review.Rating;
-          }
-          avg_Ratings = totalRating / reviewModelList.length;
+          // double totalRating = 0.0;
+          // for (var review in reviewModelList) {
+          //   totalRating += review.Rating;
+          // }
+          // avg_Ratings = totalRating / reviewModelList.length;
 
           print(reviewModelList);
           return Column(
@@ -84,9 +84,7 @@ class _ReviewScreenBodyState extends State<ReviewScreenBody> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
                             child: Text(
-                                double.parse(
-                                        (totalRating / reviewModelList.length)
-                                            .toString())
+                                double.parse(state.rating.toString())
                                     .toStringAsFixed(1),
                                 style: Themes.labelLarge26),
                           ),
@@ -106,15 +104,17 @@ class _ReviewScreenBodyState extends State<ReviewScreenBody> {
               AddButtonWidget(
                   text: 'Add Your Review',
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => BlocProvider.value(
-                          value: BlocProvider.of<PatientReviewCubit>(context),
-                          child: AddReviewWidget(),
-                        ),
-                      ),
-                    ).then((value) => initState());
-                    
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value:
+                                  BlocProvider.of<PatientReviewCubit>(context),
+                              child: AddReviewWidget(),
+                            ),
+                          ),
+                        )
+                        .then((value) => initState());
                   }),
               Expanded(
                 child: ListView.builder(

@@ -73,4 +73,13 @@ class PatientReviewRepoImpl extends PatientReviewRepo {
       return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
     }
   }
+
+  @override
+  void updateDoctorRating({required String doctor_id, required double rating}) {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('info_Doctors').doc(doctor_id);
+    documentReference.update({
+      'Rating': (!rating.isNaN) ? rating : 0,
+    });
+  }
 }
