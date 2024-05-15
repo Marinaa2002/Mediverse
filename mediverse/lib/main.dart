@@ -99,10 +99,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SignUpCubit()),
         BlocProvider(create: (context) => SignUpDocCubit()),
         BlocProvider(create: (context) => StaffRequestCubit()),
-        BlocProvider(
-          create: (context) =>
-              PatientReviewCubit(PatientReviewRepoImpl())..getReviewModels(),
-        ),
+        // BlocProvider(
+        //   create: (context) =>
+        //       PatientReviewCubit(PatientReviewRepoImpl())..getDoctorReviews(),
+        // ),
         BlocProvider(
           create: (context) => ProfileEditCubit(ProfilePatientRepoImpl()),
         ),

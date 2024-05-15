@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,20 +15,35 @@ import 'RatingIconWidget.dart';
 import 'add_button_widget.dart';
 import 'add_review_Widget.dart';
 
-class ReviewScreenBody extends StatelessWidget {
-  List<ReviewModel> reviewModelList = [];
-  String? noOfRatings;
-  double? avg_Ratings;
-  ReviewModel? reviewModel;
+class ReviewScreenBody extends StatefulWidget {
   ReviewScreenBody({
     super.key,
   });
 
   @override
+  State<ReviewScreenBody> createState() => _ReviewScreenBodyState();
+}
+
+class _ReviewScreenBodyState extends State<ReviewScreenBody> {
+  List<ReviewModel> reviewModelList = [];
+
+  String? noOfRatings;
+
+  double? avg_Ratings;
+
+  ReviewModel? reviewModel;
+
+  @override
+  void initState() {
+    BlocProvider.of<PatientReviewCubit>(context).getDoctorReviews();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<PatientReviewCubit, PatientReviewState>(
       builder: (context, state) {
-        if(state is PatientReviewSuccess) {
+        if (state is PatientReviewSuccess) {
           reviewModelList = state.reviewModellList;
 
           double totalRating = 0.0;
@@ -41,7 +55,9 @@ class ReviewScreenBody extends StatelessWidget {
           print(reviewModelList);
           return Column(
             children: [
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -52,7 +68,8 @@ class ReviewScreenBody extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
-                        child: Text(reviewModelList.length.toString(), style: Themes.labelLarge26),
+                        child: Text(reviewModelList.length.toString(),
+                            style: Themes.labelLarge26),
                       ),
                       Text('# of Ratings', style: Themes.DateText),
                     ],
@@ -65,15 +82,17 @@ class ReviewScreenBody extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
-                            child: Text(double.parse((totalRating / reviewModelList.length)
-                                .toString()).toStringAsFixed(1)
-                                , style: Themes.labelLarge26),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                            child: Text(
+                                double.parse(
+                                        (totalRating / reviewModelList.length)
+                                            .toString())
+                                    .toStringAsFixed(1),
+                                style: Themes.labelLarge26),
                           ),
                           Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(4, 0, 0, 12),
+                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 12),
                               child: RatingIconWidget(
                                 color: Colors.amber,
                               )),
@@ -84,10 +103,18 @@ class ReviewScreenBody extends StatelessWidget {
                   ),
                 ],
               ),
-              AddButtonWidget(text: 'Add Your Review',
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => AddReviewWidget(),));
+              AddButtonWidget(
+                  text: 'Add Your Review',
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider.value(
+                          value: BlocProvider.of<PatientReviewCubit>(context),
+                          child: AddReviewWidget(),
+                        ),
+                      ),
+                    ).then((value) => initState());
+                    
                   }),
               Expanded(
                 child: ListView.builder(
@@ -98,7 +125,8 @@ class ReviewScreenBody extends StatelessWidget {
                     return Column(
                       children: [
                         RatingCardWidget(
-                          reviewModel: reviewModelList[index],),
+                          reviewModel: reviewModelList[index],
+                        ),
                       ],
                     );
                   },
@@ -106,9 +134,9 @@ class ReviewScreenBody extends StatelessWidget {
               ),
             ],
           );
-        } else if (state is PatientReviewFailure){
+        } else if (state is PatientReviewFailure) {
           return Text('Try again');
-        } else{
+        } else {
           return Center(child: CircularProgressIndicator());
         }
       },

@@ -11,6 +11,7 @@ import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/presentation/Views/BookingScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/PatientChatScreen/presentation/Views/PatientChatScreen.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Manager/patient_review_cubit/patient_review_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Views/RatingsScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomButtonAppointmentDetails.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomTimeWidget.dart';
@@ -151,11 +152,15 @@ class _chooseDetailsState extends State<chooseDetails> {
                     ),
                     CustomButtonAppointmentDetails(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RatingsScreen(),
-                            ));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value:
+                                  BlocProvider.of<PatientReviewCubit>(context),
+                              child: RatingsScreen(),
+                            ),
+                          ),
+                        );
                       },
                       buttonName: 'Rate',
                       icon: Icons.star_rate_sharp,
@@ -325,11 +330,22 @@ class _chooseDetailsState extends State<chooseDetails> {
                     ),
                     CustomButtonAppointmentDetails(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RatingsScreen(),
-                            ));
+                        // BlocProvider.of<PatientReviewCubit>(context).Doctor_id =
+                        //     widget.doctor.id;
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => RatingsScreen(),
+                        //     ));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value:
+                                  BlocProvider.of<PatientReviewCubit>(context),
+                              child: RatingsScreen(),
+                            ),
+                          ),
+                        );
                       },
                       buttonName: 'Rate',
                       icon: Icons.star_rate_sharp,

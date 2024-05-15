@@ -6,6 +6,8 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Load
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/choose_details_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/widgets/chooseDetails.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/data/repos/patient_review_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/RatingsScreen/presentation/Manager/patient_review_cubit/patient_review_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomDoctorDetails.dart';
 
 class AppointmentDetailsScreen extends StatefulWidget {
@@ -77,8 +79,16 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                     CustomDoctorDetails(
                         // profilePicture: widget.profilePicture,
                         ),
-                    BlocProvider(
-                      create: (context) => ChooseDetailsCubit(),
+                    MultiBlocProvider(
+                      providers: [
+                        BlocProvider(
+                          create: (context) => ChooseDetailsCubit(),
+                        ),
+                        BlocProvider(
+                          create: (context) => PatientReviewCubit(
+                              PatientReviewRepoImpl(), state.doctor.id),
+                        ),
+                      ],
                       child: chooseDetails(doctor: state.doctor),
                     ),
                   ],
