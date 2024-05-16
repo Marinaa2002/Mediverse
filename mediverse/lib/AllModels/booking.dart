@@ -34,9 +34,9 @@ class Booking {
     };
   }
 
-  factory Booking.fromJson(Map<String, dynamic> json) {
+  factory Booking.fromJson(Map<String, dynamic> json, String id) {
     return Booking(
-      id: json['id'],
+      id: id,
       Doctor_id: json['Doctor_id'],
       Patient_id: json['Patient_id'],
       // Convert the date string from JSON to a DateTime object

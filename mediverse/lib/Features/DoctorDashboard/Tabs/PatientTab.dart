@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/AppointmentsDoctor/presentation/Managers/cubit/doc_appoints_cubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/BookingDoctor/presentation/BookingDoctor.dart';
 
 import '../ChatsList/presentation/Views/ChatsList.dart';
@@ -146,7 +148,10 @@ class PatientsTab extends StatelessWidget {
               ],
             ),
           ),
-          CurBookingsList(),
+          BlocProvider(
+            create: (context) => DocAppointsCubit(),
+            child: CurBookingsList(),
+          ),
         ],
       ),
     );

@@ -50,8 +50,8 @@ class AppBarDoctor extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 20, 5),
                   child: Container(
-                    width: 65,
-                    height: 65,
+                    width: 55,
+                    height: 55,
                     decoration: const BoxDecoration(
                       color: kprimaryColor,
                       shape: BoxShape.circle,
@@ -61,8 +61,8 @@ class AppBarDoctor extends StatelessWidget {
                       child: Hero(
                         tag: 'profile',
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: 50,
+                          height: 50,
                           clipBehavior: Clip.antiAlias,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
@@ -77,7 +77,7 @@ class AppBarDoctor extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [

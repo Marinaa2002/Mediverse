@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class CurBookingCard extends StatelessWidget {
-  const CurBookingCard({super.key});
+  CurBookingCard({
+    super.key,
+    required this.booking,
+    required this.patient_name,
+  });
+
+  Booking booking;
+  String patient_name;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +49,7 @@ class CurBookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Ahmed Hassan',
+                          patient_name,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -59,7 +67,7 @@ class CurBookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Sat, Oct 04 - 7:00pm',
+                          '${booking.Day.substring(0, 3)}, ${booking.Date} - ${booking.Time}',
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -77,7 +85,7 @@ class CurBookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Tiba Dental Care',
+                          booking.Location,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
