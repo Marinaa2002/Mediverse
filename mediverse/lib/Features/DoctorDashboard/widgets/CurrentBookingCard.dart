@@ -113,6 +113,7 @@ class CurBookingCard extends StatelessWidget {
                             icon: const Icon(
                               Icons.check_circle,
                               size: 20,
+                              color: backgroundColor,
                             ),
                             label: Text(
                               'Done',
@@ -137,6 +138,7 @@ class CurBookingCard extends StatelessWidget {
                             icon: const Icon(
                               Icons.cancel_rounded,
                               size: 20,
+                              color: backgroundColor,
                             ),
                             label: Text(
                               'Decline',

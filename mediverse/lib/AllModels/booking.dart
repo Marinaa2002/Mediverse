@@ -34,19 +34,19 @@ class Booking {
     };
   }
 
-  factory Booking.fromJson(Map<String, dynamic> json, String id) {
+  factory Booking.fromJson(jsonData, String id) {
     return Booking(
       id: id,
-      Doctor_id: json['Doctor_id'],
-      Patient_id: json['Patient_id'],
-      // Convert the date string from JSON to a DateTime object
-      //dateTime: DateTime.parse(json['dateTime']),
-      Day: json['Day'],
-      Date: json['Date'],
-      Time: json['Time'],
-      Location: json['Location'],
-      Cost: json['Cost'],
-      State: json['State'],
+      Doctor_id: jsonData['Doctor_id'],
+      Patient_id: jsonData['Patient_id'],
+      // Convert the date string from jsonData to a DateTime object
+      //dateTime: DateTime.parse(jsonData['dateTime']),
+      Day: jsonData['Day'],
+      Date: jsonData['Date'],
+      Time: jsonData['Time'],
+      Location: jsonData['Location'],
+      Cost: jsonData['Cost'],
+      State: jsonData['State'],
     );
   }
 }
