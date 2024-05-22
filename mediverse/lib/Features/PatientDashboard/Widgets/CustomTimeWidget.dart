@@ -29,7 +29,7 @@ class CustomTimeWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
-          width: 120,
+          width: 140,
           height: 50,
           decoration: BoxDecoration(
             color: (isBooked)
