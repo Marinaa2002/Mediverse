@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/AppointmentsDoctor/presentation/Managers/cubit/doc_appoints_cubit.dart';
 
 class CurBookingCard extends StatelessWidget {
   CurBookingCard({
@@ -15,6 +17,9 @@ class CurBookingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DocAppointsSuccess appState =
+        context.watch<DocAppointsCubit>().state as DocAppointsSuccess;
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Material(
@@ -109,7 +114,15 @@ class CurBookingCard extends StatelessWidget {
                               ),
                               backgroundColor: kprimaryColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              booking.State = 'done';
+                              BlocProvider.of<DocAppointsCubit>(context)
+                                  .changeBookingStatus(
+                                appState.bookings,
+                                appState.names,
+                                booking,
+                              );
+                            },
                             icon: const Icon(
                               Icons.check_circle,
                               size: 20,
@@ -134,7 +147,15 @@ class CurBookingCard extends StatelessWidget {
                               ),
                               backgroundColor: kprimaryColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              booking.State = 'declined';
+                              BlocProvider.of<DocAppointsCubit>(context)
+                                  .changeBookingStatus(
+                                appState.bookings,
+                                appState.names,
+                                booking,
+                              );
+                            },
                             icon: const Icon(
                               Icons.cancel_rounded,
                               size: 20,

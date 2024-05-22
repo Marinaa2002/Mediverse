@@ -39,4 +39,24 @@ class DocAppointsCubit extends Cubit<DocAppointsState> {
       },
     );
   }
+
+  void changeBookingStatus(
+    List<Booking> bookingsList,
+    List<String> namesList,
+    Booking booking,
+  ) async {
+    var result = await docAppointsRepoImpl.moveToPrevAppoints(booking);
+    result.fold(
+      (l) => emit(DocAppointsFailed()),
+      (r) {
+        int bookingIndex = -1;
+        for (int i = 0; i < bookingsList.length; i++) {
+          if (bookingsList[i].id == booking.id) bookingIndex = i;
+        }
+        bookingsList.removeAt(bookingIndex);
+        namesList.removeAt(bookingIndex);
+        emit(DocAppointsSuccess(bookings: bookingsList, names: namesList));
+      },
+    );
+  }
 }

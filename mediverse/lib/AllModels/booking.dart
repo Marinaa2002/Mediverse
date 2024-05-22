@@ -1,5 +1,5 @@
 class Booking {
-  const Booking({
+  Booking({
     required this.id,
     required this.Doctor_id,
     required this.Patient_id,
@@ -19,7 +19,7 @@ class Booking {
   final String Time;
   final String Location;
   final String Cost;
-  final String State;
+  String State;
 
   Map<String, dynamic> toMap() {
     return {

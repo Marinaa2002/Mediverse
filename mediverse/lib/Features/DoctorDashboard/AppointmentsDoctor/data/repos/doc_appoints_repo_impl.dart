@@ -46,4 +46,31 @@ class DocAppointsRepoImpl extends DocAppointsRepo {
       return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
     }
   }
+
+  Future<Either<Failure, void>> moveToPrevAppoints(Booking booking) async {
+    try {
+      DocumentReference bookingReference = await FirebaseFirestore.instance
+          .collection('Bookings')
+          .doc(booking.id);
+      bookingReference.update({
+        'State': booking.State,
+      });
+
+      DocumentReference doctorReference = await FirebaseFirestore.instance
+          .collection('info_Doctors')
+          .doc(booking.Doctor_id);
+
+      doctorReference.update({
+        'Previous_Appointments': FieldValue.arrayUnion([booking.id]),
+      });
+
+      doctorReference.update({
+        'Bookings': FieldValue.arrayRemove([booking.id]),
+      });
+
+      return right(null);
+    } on Exception catch (e) {
+      return left(ServerFailure(errMsg: 'Something went wrong, Try again'));
+    }
+  }
 }
