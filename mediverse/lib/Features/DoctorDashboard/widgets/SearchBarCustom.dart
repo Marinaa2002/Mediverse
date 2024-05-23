@@ -46,7 +46,7 @@ class SearchBarCustom extends StatelessWidget {
                       controller: _textController,
                       style: Themes.bodyMedium.copyWith(fontSize: 15),
                       cursorHeight: 20,
-                      autofocus: true,
+                      autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
                         hintText: 'Search ',

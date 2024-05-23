@@ -50,7 +50,7 @@ class PatientsTab extends StatelessWidget {
                       elevation: 3,
                     ),
                     child: const Text(
-                      'Bookings',
+                      'Prev. Bookings',
                       style: TextStyle(
                         color: Colors.white,
                       ),

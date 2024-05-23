@@ -72,7 +72,7 @@ class CurBookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          '${booking.Day.substring(0, 3)}, ${booking.Date} - ${booking.Time}',
+                          '${booking.Day.substring(0, 3)}, ${booking.Date}, ${booking.Time}',
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
