@@ -10,7 +10,7 @@ class DocBookingsCubit extends Cubit<DocBookingsState> {
 
   final DocBookingsRepoImpl docBookingsRepoImpl;
 
-  void getDocPrevBookings(String doctor_id) async{
+  void getDocPrevBookings(String doctor_id) async {
     emit(DocBookingsLoading());
     var bookings_result = await docBookingsRepoImpl.getAppointments(doctor_id);
     bookings_result.fold(
@@ -24,5 +24,32 @@ class DocBookingsCubit extends Cubit<DocBookingsState> {
         );
       },
     );
+  }
+
+  void searchDocPrevBookings(
+      List<Booking> bookings, List<String> names, String searchText) {
+    emit(DocBookingsLoading());
+    if (bookings.isEmpty) {
+      emit(DocBookingsSuccess(bookings: [], names: []));
+    } else {
+      List<int> indexes = [];
+      for (int i = 0; i < names.length; i++) {
+        String temp = names[i];
+        if ((temp.toLowerCase()).contains(searchText.toLowerCase())) {
+          indexes.add(i);
+        }
+      }
+      List<Booking> newBookings = [];
+      List<String> newNames = [];
+      for (int index in indexes) {
+        newBookings.add(bookings[index]);
+        newNames.add(names[index]);
+      }
+      emit(DocBookingsSearch(
+          newBookings: newBookings,
+          newNames: newNames,
+          bookings: bookings,
+          names: names));
+    }
   }
 }

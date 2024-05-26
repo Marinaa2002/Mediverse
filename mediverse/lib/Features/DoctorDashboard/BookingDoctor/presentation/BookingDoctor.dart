@@ -42,7 +42,7 @@ class _BookingDoctorState extends State<BookingDoctor> {
         centerTitle: true,
         elevation: 2,
       ),
-      body:  SafeArea(
+      body: SafeArea(
         top: true,
         child: BlocProvider(
           create: (context) => DocBookingsCubit(DocBookingsRepoImpl()),
@@ -50,7 +50,7 @@ class _BookingDoctorState extends State<BookingDoctor> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              SearchBarCustom(),
+              SearchBarDoctor(),
               PrevBookingsList(),
             ],
           ),

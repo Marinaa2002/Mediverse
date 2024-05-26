@@ -10,7 +10,22 @@ final class DocBookingsSuccess extends DocBookingsState {
     required this.bookings,
     required this.names,
   });
-  
+
+  List<Booking> bookings;
+  List<String> names;
+}
+
+
+final class DocBookingsSearch extends DocBookingsSuccess {
+  DocBookingsSearch({
+    required this.newBookings,
+    required this.newNames,
+    required this.bookings,
+    required this.names,
+  }) : super(bookings: bookings, names: names);
+
+  List<Booking> newBookings;
+  List<String> newNames;
   List<Booking> bookings;
   List<String> names;
 }
