@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/BookingDoctor/data/repos/doc_bookings_repo_impl.dart';
+import 'package:mediverse/Features/DoctorDashboard/BookingDoctor/presentation/Managers/cubit/doc_bookings_cubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/PrevBookingsList.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/SearchBarCustom.dart';
 
@@ -39,15 +42,18 @@ class _BookingDoctorState extends State<BookingDoctor> {
         centerTitle: true,
         elevation: 2,
       ),
-      body: const SafeArea(
+      body: SafeArea(
         top: true,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SearchBarCustom(),
-            PrevBookingsList(),
-          ],
+        child: BlocProvider(
+          create: (context) => DocBookingsCubit(DocBookingsRepoImpl()),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SearchBarDoctor(),
+              PrevBookingsList(),
+            ],
+          ),
         ),
       ),
     );

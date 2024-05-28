@@ -1,5 +1,5 @@
 class Booking {
-  const Booking({
+  Booking({
     required this.id,
     required this.Doctor_id,
     required this.Patient_id,
@@ -19,7 +19,7 @@ class Booking {
   final String Time;
   final String Location;
   final String Cost;
-  final String State;
+  String State;
 
   Map<String, dynamic> toMap() {
     return {
@@ -34,19 +34,19 @@ class Booking {
     };
   }
 
-  factory Booking.fromJson(Map<String, dynamic> json) {
+  factory Booking.fromJson(jsonData, String id) {
     return Booking(
-      id: json['id'],
-      Doctor_id: json['Doctor_id'],
-      Patient_id: json['Patient_id'],
-      // Convert the date string from JSON to a DateTime object
-      //dateTime: DateTime.parse(json['dateTime']),
-      Day: json['Day'],
-      Date: json['Date'],
-      Time: json['Time'],
-      Location: json['Location'],
-      Cost: json['Cost'],
-      State: json['State'],
+      id: id,
+      Doctor_id: jsonData['Doctor_id'],
+      Patient_id: jsonData['Patient_id'],
+      // Convert the date string from jsonData to a DateTime object
+      //dateTime: DateTime.parse(jsonData['dateTime']),
+      Day: jsonData['Day'],
+      Date: jsonData['Date'],
+      Time: jsonData['Time'],
+      Location: jsonData['Location'],
+      Cost: jsonData['Cost'],
+      State: jsonData['State'],
     );
   }
 }
