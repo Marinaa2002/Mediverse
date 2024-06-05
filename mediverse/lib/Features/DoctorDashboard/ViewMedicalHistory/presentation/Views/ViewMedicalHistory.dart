@@ -4,7 +4,20 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/InfoRow.dart';
 
 class ViewHistory extends StatelessWidget {
-  const ViewHistory({super.key});
+  final String patientName;
+  final String age;
+  final String email;
+  final String profilePicture;
+  final List<Map<String, String>> medicalHistory;
+
+  const ViewHistory({
+    super.key,
+    required this.patientName,
+    required this.age,
+    required this.email,
+    required this.profilePicture,
+    required this.medicalHistory,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +38,10 @@ class ViewHistory extends StatelessWidget {
         ),
         title: Text(
           'Medical History',
-          style: Themes.headlineMedium.copyWith(
+          style: Themes.bodyMedium.copyWith(
             color: backgroundColor,
           ),
         ),
-        actions: const [],
         centerTitle: true,
         elevation: 2,
       ),
@@ -37,7 +49,6 @@ class ViewHistory extends StatelessWidget {
         top: true,
         child: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Align(
@@ -64,8 +75,8 @@ class ViewHistory extends StatelessWidget {
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
-                          child: Image.asset(
-                            'assets/images/Human.jpg',
+                          child: Image.network(
+                            profilePicture,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -74,26 +85,25 @@ class ViewHistory extends StatelessWidget {
                     Align(
                       alignment: const AlignmentDirectional(0, 0),
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(14, 20, 8, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(14, 20, 8, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Janny Wilson',
+                              patientName,
                               textAlign: TextAlign.start,
-                              style: Themes.bodyMedium,
+                              style: Themes.bodyMedium.copyWith(fontWeight: FontWeight.w700),
                             ),
                             Text(
-                              'Age : 53',
+                              'Age: $age',
                               textAlign: TextAlign.start,
-                              style: Themes.titleSmall,
+                              style: Themes.bodyMedium.copyWith(fontSize: 18),
                             ),
                             Text(
-                              'jannyWilson.gmail.com',
+                              email,
                               textAlign: TextAlign.start,
-                              style: Themes.titleSmall.copyWith(fontSize: 18),
+                              style: Themes.bodyMedium.copyWith(fontSize: 18),
                             ),
                           ],
                         ),
@@ -103,23 +113,43 @@ class ViewHistory extends StatelessWidget {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-1, 0),
+                alignment: const AlignmentDirectional(-1, -1),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
                   child: Text(
                     'Medical History:',
-                    style: Themes.bodyMedium
-                        .copyWith(decoration: TextDecoration.underline),
+                    style: Themes.bodyMedium.copyWith(decoration: TextDecoration.underline),
                   ),
                 ),
               ),
-              const SingleChildScrollView(
+              medicalHistory.isNotEmpty
+                  ? SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    InfoRow(),
-                    InfoRow(),
-                  ],
+                  children: medicalHistory.map((json) {
+                    return InfoRow(
+                      height: json['Height'] ?? '',
+                      weight: json['Weight'] ?? '',
+                      bloodType: json['Blood Type'] ?? '',
+                      bloodPressure: json['Blood Pressure'] ?? '',
+                      bloodGlucoseLevel: json['Blood Glucose Level'] ?? '',
+                      cholesterolLevels: json['Cholesterol Levels'] ?? '',
+                      allergies: json['Allergies'] ?? '',
+                      heartRate: json['Heart Rate'] ?? '',
+                      respiratoryRate: json['Respiratory Rate'] ?? '',
+                      temperature: json['Temperature'] ?? '',
+                      surgicalHistory: json['Surgical History'] ?? '',
+                    );
+                  }).toList(),
+                ),
+              )
+                  : Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    "No data entered yet",
+                    style: Themes.bodyMedium.copyWith(fontSize: 18),
+                  ),
                 ),
               ),
             ],
