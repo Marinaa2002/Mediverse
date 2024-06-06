@@ -48,10 +48,17 @@ class MainScreenDoctor extends StatelessWidget {
                     Align(
                       alignment: const Alignment(0, 0),
                       child: TabBar(
-                        isScrollable: true,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        //controller: _tabController,
+                        isScrollable: false,
                         labelColor: kprimaryColor,
-                        unselectedLabelColor: kSecondaryTextColor,
-                        labelStyle: Themes.bodyMedium,
+                        unselectedLabelColor: Colors.grey,
+                        labelStyle: const TextStyle(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        unselectedLabelStyle: const TextStyle(),
                         indicatorColor: kprimaryColor,
                         tabs: const [
                           Padding(
