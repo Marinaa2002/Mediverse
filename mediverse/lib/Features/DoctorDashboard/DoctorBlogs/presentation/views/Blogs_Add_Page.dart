@@ -155,7 +155,6 @@ class _BlogsAddState extends State<BlogsAdd> {
                 ),
               ),
               SizedBox(height: 5),
-              SizedBox(height: 2),
               Align(
                 alignment: const AlignmentDirectional(0, 0),
                 child: Padding(
