@@ -20,15 +20,15 @@ class MedicalBlogsTab extends StatelessWidget {
                 searchController: _searchController,
                 onSearchTextChanged: (String) {},
               ),
-              BlogCardDoc(
-                  title: 'How Much Coffee Is Too\nMuch Coffee?',
-                  DrName: 'Dr. Salem Ahmed'),
-              BlogCardDoc(
-                  title: 'Food Allergies and \nAnaphylactic Shocks',
-                  DrName: 'Dr. Waheed Amr'),
-              BlogCardDoc(
-                  title: 'What to do with \n a diabetes patient?',
-                  DrName: 'Dr. Hoda Raouf'),
+              // BlogCardDoc(
+              //     title: 'How Much Coffee Is Too\nMuch Coffee?',
+              //     DrName: 'Dr. Salem Ahmed'),
+              // BlogCardDoc(
+              //     title: 'Food Allergies and \nAnaphylactic Shocks',
+              //     DrName: 'Dr. Waheed Amr'),
+              // BlogCardDoc(
+              //     title: 'What to do with \n a diabetes patient?',
+              //     DrName: 'Dr. Hoda Raouf'),
             ],
           ),
         ),
