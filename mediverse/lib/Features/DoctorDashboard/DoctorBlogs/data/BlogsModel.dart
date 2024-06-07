@@ -1,5 +1,3 @@
-
-
 class BlogModel {
   final String title;
   final String author;
@@ -8,10 +6,11 @@ class BlogModel {
   final String blogBody;
   final String image;
   final String profile;
- // final int likes;
+  String docId;
+  int likes;
+  List<String> likedUsers;
 
   BlogModel({
-  //  required this.likes,
     required this.title,
     required this.author,
     required this.date,
@@ -19,6 +18,9 @@ class BlogModel {
     required this.blogBody,
     required this.image,
     required this.profile,
+    required this.docId,
+    this.likes = 0,
+    this.likedUsers = const [],
   });
 
   factory BlogModel.fromJson(Map<String, dynamic> json) {
@@ -30,8 +32,9 @@ class BlogModel {
       blogBody: json['blog body'] ?? '',
       image: json['image'] ?? '',
       profile: json['profile'] ?? '',
-      //likes: json['likes']??0,
-
+      docId: json['docId'] ?? '',
+      likes: json['likes']?? 0,
+      likedUsers: List<String>.from(json['likedUsers'] ?? []),
     );
   }
 
@@ -44,9 +47,9 @@ class BlogModel {
       'blog body': blogBody,
       'image': image,
       'profile':profile,
-   //   'likes':likes
+      'docId': docId,
+      'likes':likes,
+      'likedUsers': likedUsers,
     };
   }
 }
-
-//'assets/images/Human.jpg',

@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +74,9 @@ class _BlogsTabState extends State<_BlogsTab> {
 
     final formattedTime = period == 'AM'
         ? (hour == '12' ? '00' : hour) + ':' + minute
-        : (hour == '12' ? hour : (int.parse(hour) + 12).toString()) + ':' + minute;
+        : (hour == '12' ? hour : (int.parse(hour) + 12).toString()) +
+            ':' +
+            minute;
 
     final formattedDate = '$year-$month-$day $formattedTime:00';
     return DateTime.parse(formattedDate);
@@ -114,7 +115,9 @@ class _BlogsTabState extends State<_BlogsTab> {
 
           List<BlogModel> blogs = snapshot.data!.docs.map((doc) {
             var blogData = doc.data() as Map<String, dynamic>;
-            return BlogModel.fromJson(blogData);
+            var blog = BlogModel.fromJson(blogData);
+            blog.docId = doc.id;
+            return blog;
           }).toList();
 
           blogs.sort((a, b) {
@@ -131,13 +134,6 @@ class _BlogsTabState extends State<_BlogsTab> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                SearchBoxAppointmentWidget(
-                  controller: _searchController,
-                  onChanged: (value) {},
-                  onSearchPressed: _onSearchPressed,
-                  onSubmitted: (value) => _onSearchPressed(),
-                ),
-                SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -149,7 +145,8 @@ class _BlogsTabState extends State<_BlogsTab> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                      padding:
+                      const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -161,7 +158,8 @@ class _BlogsTabState extends State<_BlogsTab> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                          padding:
+                          const EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                           backgroundColor: kprimaryColor,
                           textStyle: Themes.bodyMedium.copyWith(
                             color: backgroundColor,
@@ -177,27 +175,46 @@ class _BlogsTabState extends State<_BlogsTab> {
                     ),
                   ],
                 ),
+                Divider(
+                  thickness: 2,
+                  color: Color.fromARGB(255, 224, 227, 231),
+                ),
+                SizedBox(height: 10),
+                SearchBoxAppointmentWidget(
+                  controller: _searchController,
+                  onChanged: (value) {},
+                  onSearchPressed: _onSearchPressed,
+                  onSubmitted: (value) => _onSearchPressed(),
+                ),
+                SizedBox(height: 10),
                 Expanded(
                   child: blogs.isEmpty
-                      ? Center(child: Text(
-                    "No Results Found",
-                    style: Themes.bodyLarge.copyWith(fontSize: 24,fontWeight:FontWeight.w600,color: Colors.grey),
-                  ))
+                      ? Center(
+                          child: Text(
+                          "No Results Found",
+                          style: Themes.bodyLarge.copyWith(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.grey),
+                        ))
                       : ListView.builder(
-                    itemCount: blogs.length > 10 ? 10 : blogs.length,
-                    itemBuilder: (context, index) {
-                      var blog = blogs[index];
-                      return BlogCardDoc(
-                        title: blog.title,
-                        author: blog.author,
-                        date: blog.date,
-                        time: blog.time,
-                        body: blog.blogBody,
-                        image: blog.image,
-                        profile: blog.profile,
-                      );
-                    },
-                  ),
+                          itemCount: blogs.length > 10 ? 10 : blogs.length,
+                          itemBuilder: (context, index) {
+                            var blog = blogs[index];
+                            return BlogCardDoc(
+                              title: blog.title,
+                              author: blog.author,
+                              date: blog.date,
+                              time: blog.time,
+                              body: blog.blogBody,
+                              image: blog.image,
+                              profile: blog.profile,
+                              likes: blog.likes,
+                              likedUsers: blog.likedUsers,
+                              docId: blog.docId,
+                            );
+                          },
+                        ),
                 ),
               ],
             ),

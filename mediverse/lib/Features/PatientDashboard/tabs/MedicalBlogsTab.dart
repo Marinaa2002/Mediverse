@@ -110,7 +110,9 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
 
           List<BlogModel> blogs = snapshot.data!.docs.map((doc) {
             var blogData = doc.data() as Map<String, dynamic>;
-            return BlogModel.fromJson(blogData);
+            var blog = BlogModel.fromJson(blogData);
+            blog.docId = doc.id;
+            return blog;
           }).toList();
 
           blogs.sort((a, b) {
@@ -154,6 +156,9 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
                               body: blog.blogBody,
                               image: blog.image,
                               profile: blog.profile,
+                              likes: blog.likes,
+                              likedUsers: blog.likedUsers,
+                              docId: blog.docId,
                             );
                           },
                         ),
