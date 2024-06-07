@@ -87,7 +87,8 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['Age'] ?? 'Age',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -124,7 +125,8 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['Phone'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -161,7 +163,8 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['Speciality'] ?? 'Speciality',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -198,7 +201,8 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['NationalId'] ?? 'NationalId',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -235,7 +239,8 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['License_Number'] ?? 'License Number',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -272,7 +277,8 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                           Text(
                             'Egyptian Pound',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -309,7 +315,8 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                           Text(
                             'English(eng)',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),

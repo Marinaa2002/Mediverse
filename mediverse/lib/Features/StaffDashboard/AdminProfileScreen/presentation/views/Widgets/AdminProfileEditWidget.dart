@@ -83,7 +83,7 @@ class AdminProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: AdminProfileTextFormField(
-                              text: userData['Name'],
+                              text: userData['Name'] ?? 'Name',
                               onChanged: (value) {
                                 name = value;
                               },
@@ -103,7 +103,7 @@ class AdminProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: AdminProfileTextFormField(
-                              text: userData['Phone'],
+                              text: userData['Phone'] ?? 'Phone',
                               onChanged: (value) {
                                 phoneNum = value;
                               },

@@ -85,7 +85,8 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['Phone'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -122,7 +123,8 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                           Text(
                             'Egyptian Pound',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -159,7 +161,8 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                           Text(
                             'English(eng)',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),

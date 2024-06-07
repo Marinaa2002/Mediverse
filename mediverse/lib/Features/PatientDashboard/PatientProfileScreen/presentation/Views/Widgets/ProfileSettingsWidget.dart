@@ -85,7 +85,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['Age'] ?? 'Age',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -122,7 +123,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['Phone Number'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -159,7 +161,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           Text(
                             userData['NationalId'] ?? 'NationalId',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -196,7 +199,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           Text(
                             'Egyptian Pound',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
@@ -233,7 +237,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           Text(
                             'English(eng)',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
                               color: Colors.black,
                             ),
