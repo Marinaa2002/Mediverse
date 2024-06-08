@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/SearchBoxAppointmentWidget.dart';
 
 import '../../../Constants/Themes.dart';
 import '../../../Constants/constant.dart';
 import '../../PatientDashboard/Widgets/BlogCard.dart';
-import '../DoctorBlogs/data/BlogsModel.dart';
+import '../DoctorBlogs/data/models/BlogsModel.dart';
 import '../DoctorBlogs/presentation/views/Blogs_Add_Page.dart';
 
 class BlogsTab extends StatelessWidget {
@@ -102,7 +103,7 @@ class _BlogsTabState extends State<_BlogsTab> {
         stream: FirebaseFirestore.instance.collection('Blogs').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: Loading());
           }
 
           if (snapshot.hasError) {

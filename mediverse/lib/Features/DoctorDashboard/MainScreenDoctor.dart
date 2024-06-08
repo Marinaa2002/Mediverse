@@ -4,6 +4,7 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/DoctorDashboard/ChatsList/presentation/Views/ChatsList.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/presentation/views/MyBlogs.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/Tabs/PatientTab.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/AppBarDoctor.dart';
@@ -24,6 +25,16 @@ class MainScreenDoctor extends StatelessWidget {
         toolbarHeight: 65,
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.bookmark,size:25,color: Colors.white,),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx) => MyBlogs()),
+              );
+            },
+          ),
+        ],
         title: GestureDetector(
           child: AppBarDoctor(),
           onTap: () {

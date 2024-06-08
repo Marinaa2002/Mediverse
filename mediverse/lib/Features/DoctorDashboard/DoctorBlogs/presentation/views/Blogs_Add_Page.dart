@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
-import 'package:mediverse/Features/DoctorDashboard/Tabs/BlogsTab.dart';
-
 import '../../../../PatientDashboard/Widgets/CustomEditConfirm.dart';
 import '../../../widgets/CustomTextFieldBlogs.dart';
 

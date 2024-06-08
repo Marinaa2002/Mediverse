@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/data/BlogsModel.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/data/models/BlogsModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/BlogCard.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/SearchBoxAppointmentWidget.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
