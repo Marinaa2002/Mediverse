@@ -1,17 +1,18 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileEditWidget.dart';
-
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
+import '../../../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
+import 'StaffProfileEditWidget.dart';
 
-class ProfileSettingsWidget extends StatelessWidget {
+class StaffProfileSettingsWidget extends StatelessWidget {
   var userData;
-  ProfileSettingsWidget({
-    super.key, required this.userData,
+
+  StaffProfileSettingsWidget({
+    super.key,
+    required this.userData,
   });
 
   @override
@@ -20,7 +21,7 @@ class ProfileSettingsWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 400,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: kSecondryBackgroundColor,
           boxShadow: [
             BoxShadow(
@@ -42,17 +43,18 @@ class ProfileSettingsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                       child: Text(
                         'Settings',
                         style: Themes.headlineSmall.copyWith(
-                          color: kprimaryTextColor,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -66,7 +68,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             padding:
                             EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.numbers,
+                              Icons.type_specimen_outlined,
                               color: kSecondaryTextColor,
                               size: 24,
                             ),
@@ -76,14 +78,14 @@ class ProfileSettingsWidget extends StatelessWidget {
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
-                                'Age',
+                                'Org Type',
                                 textAlign: TextAlign.start,
                                 style: Themes.bodyXLarge,
                               ),
                             ),
                           ),
                           Text(
-                            userData['Age'] ?? 'Age',
+                            userData['Org Type'] ?? 'Org Type',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -95,33 +97,33 @@ class ProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.work_outline,
+                              Icons.data_thresholding_rounded,
                               color: kSecondaryTextColor,
                               size: 24,
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
                               child: Text(
-                                'Phone Number',
+                                'License Number',
                                 textAlign: TextAlign.start,
                                 style: Themes.bodyXLarge,
                               ),
                             ),
                           ),
                           Text(
-                            userData['Phone Number'] ?? 'Phone Number',
+                            userData['License_Number'] ?? 'License No',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -133,33 +135,33 @@ class ProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.perm_identity_rounded,
+                              Icons.place,
                               color: kSecondaryTextColor,
                               size: 24,
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
                               child: Text(
-                                'National ID',
+                                'Location',
                                 textAlign: TextAlign.start,
                                 style: Themes.bodyXLarge,
                               ),
                             ),
                           ),
                           Text(
-                            userData['NationalId'] ?? 'NationalId',
+                            userData['Location'] ?? 'Location',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -247,14 +249,14 @@ class ProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.edit,
                               color: kSecondaryTextColor,
@@ -263,8 +265,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
                               child: Text(
                                 'Profile Settings',
                                 textAlign: TextAlign.start,
@@ -276,7 +278,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             onTap: (){
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) =>
-                                      ProfileEditWidget(
+                                      StaffProfileEditWidget(
                                         userData: userData,
                                       ),));
                             },
@@ -293,14 +295,14 @@ class ProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.logout_rounded,
                               color: kSecondaryTextColor,
@@ -309,8 +311,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
                               child: Text(
                                 'Log out of account',
                                 textAlign: TextAlign.start,

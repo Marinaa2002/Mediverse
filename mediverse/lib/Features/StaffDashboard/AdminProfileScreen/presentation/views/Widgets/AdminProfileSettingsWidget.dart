@@ -2,15 +2,15 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileEditWidget.dart';
 
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
+import '../../../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
+import 'AdminProfileEditWidget.dart';
 
-class ProfileSettingsWidget extends StatelessWidget {
+class AdminProfileSettingsWidget extends StatelessWidget {
   var userData;
-  ProfileSettingsWidget({
+  AdminProfileSettingsWidget({
     super.key, required this.userData,
   });
 
@@ -66,44 +66,6 @@ class ProfileSettingsWidget extends StatelessWidget {
                             padding:
                             EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.numbers,
-                              color: kSecondaryTextColor,
-                              size: 24,
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                              child: Text(
-                                'Age',
-                                textAlign: TextAlign.start,
-                                style: Themes.bodyXLarge,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            userData['Age'] ?? 'Age',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
-                            child: Icon(
                               Icons.work_outline,
                               color: kSecondaryTextColor,
                               size: 24,
@@ -121,45 +83,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Phone Number'] ?? 'Phone Number',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
-                            child: Icon(
-                              Icons.perm_identity_rounded,
-                              color: kSecondaryTextColor,
-                              size: 24,
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                              child: Text(
-                                'National ID',
-                                textAlign: TextAlign.start,
-                                style: Themes.bodyXLarge,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            userData['NationalId'] ?? 'NationalId',
+                            userData['Phone'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -276,9 +200,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             onTap: (){
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) =>
-                                      ProfileEditWidget(
-                                        userData: userData,
-                                      ),));
+                                      AdminProfileEditWidget(userData: userData,),));
                             },
                             child: Text(
                               'Edit Profile',

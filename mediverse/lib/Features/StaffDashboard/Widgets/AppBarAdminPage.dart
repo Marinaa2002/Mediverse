@@ -1,10 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Manager/FetechAdminInfoCubit.dart/fetech_admin_info_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/AdminProfileScreen/presentation/views/AdminProfileScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/NetworkImage.dart';
 
 class AppBarAdminPage extends StatelessWidget {
@@ -22,25 +24,30 @@ class AppBarAdminPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 20, 10),
-                child: Container(
-                  width: 53,
-                  height: 53,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AdminProfileScreen(),));
+                },
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 20, 10),
                   child: Container(
-                    width: 50,
-                    height: 50,
-                    clipBehavior: Clip.antiAlias,
+                    width: 53,
+                    height: 53,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: ClipOval(
-                      child: CachedNetworkImageLarge(
-                        imageUrl: state.admin.imageUrl,
-                        sizeOfPlaceHolder: 50,
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: ClipOval(
+                        child: CachedNetworkImageLarge(
+                          imageUrl: state.admin.imageUrl,
+                          sizeOfPlaceHolder: 50,
+                        ),
                       ),
                     ),
                   ),

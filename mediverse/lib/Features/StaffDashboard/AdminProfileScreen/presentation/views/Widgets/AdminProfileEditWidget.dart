@@ -2,34 +2,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Manager/profile_edit_cubit/profile_edit_cubit.dart';
-
+import 'package:mediverse/Features/StaffDashboard/AdminProfileScreen/data/Models/AdminProfileModel.dart';
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
-import 'ProfileEditTextFormField.dart';
-import 'ProfileSaveButton.dart';
+import '../../Manager/Admin_Profile_Edit_Cubit/admin_profile_edit_cubit.dart';
+import 'AdminProfileEditTextFormField.dart';
+import 'AdminProfileSaveButton.dart';
 
-class ProfileEditWidget extends StatelessWidget {
+
+class AdminProfileEditWidget extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
+  var userData;
   final currentUser = FirebaseAuth.instance.currentUser;
 
   CollectionReference details =
-  FirebaseFirestore.instance.collection('info_Patients');
+  FirebaseFirestore.instance.collection('Admins');
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController natIDController = TextEditingController();
-  final TextEditingController phoneNumController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneNumController = TextEditingController();
   String? name;
-  String? age;
-  String? national_id;
-  String? phoneNum;
   String? email;
+  String? phoneNum;
   bool isLoading = false;
-  var userData;
-  User? user = FirebaseAuth.instance.currentUser;
 
-  ProfileEditWidget({
+  AdminProfileEditWidget({
     super.key,
     required this.userData
   });
@@ -61,11 +57,11 @@ class ProfileEditWidget extends StatelessWidget {
           centerTitle: true,
           elevation: 2,
         ),
-        body: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+        body: BlocBuilder<AdminProfileEditCubit, AdminProfileEditState>(
           builder: (context, state) {
-            if(state is ProfileEditLoading) {
+            if(state is AdminProfileEditLoading) {
               return CircularProgressIndicator();
-            }else if (state is ProfileEditFailure) {
+            }else if (state is AdminProfileEditFailure) {
                 return Text('Try again');
               } else {
                 return Padding(
@@ -86,32 +82,12 @@ class ProfileEditWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
-                            child: ProfileTextFormField(
-                              text:  userData['Name'] ?? 'Name',
+                            child: AdminProfileTextFormField(
+                              text: userData['Name'] ?? 'Name',
                               onChanged: (value) {
                                 name = value;
                               },
                               controller: nameController,
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your Age:',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: ProfileTextFormField(
-                              text: userData['Age'] ?? 'Age',
-                              onChanged: (value) {
-                                age = value;
-                                },
-                              controller: ageController,
                             ),
                           ),
                           Align(
@@ -126,53 +102,37 @@ class ProfileEditWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
-                            child: ProfileTextFormField(
-                              text: userData['Phone Number'] ?? 'Phone Number',
+                            child: AdminProfileTextFormField(
+                              text: userData['Phone'] ?? 'Phone',
                               onChanged: (value) {
                                 phoneNum = value;
                               },
                               controller: phoneNumController,
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your National ID:',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 10),
-                            child: ProfileTextFormField(
-                              text: userData['NationalId'] ?? 'NationalId',
-                              onChanged: (value) {
-                                national_id = value;
-                              },
-                              controller: natIDController,
-                            ),
-                          ),
-
-
+                          // Align(
+                          //   alignment: const AlignmentDirectional(-1, -1),
+                          //   child: Padding(
+                          //     padding: const EdgeInsetsDirectional.fromSTEB(
+                          //         15, 5, 0, 10),
+                          //     child: Text('Change Your Email:',
+                          //         style: Themes.titleButton),
+                          //   ),
+                          // ),
                           // Padding(
                           //   padding: EdgeInsetsDirectional.fromSTEB(
                           //       12, 0, 12, 10),
-                          //   child: ProfileTextFormField(
-                          //     text: userData['Email'] ?? 'Email',
-                          //     onChanged: (value) async{
+                          //   child: AdminProfileTextFormField(
+                          //     text: "Email",
+                          //     onChanged: (value) {
                           //       email = value;
-                          //
-                          //       // BlocProvider.of<ProfileEditCubit>(context)
-                          //       //     .editNationalId(nationalId: national_id);
+                          //       BlocProvider.of<AdminProfileEditCubit>(context)
+                          //       .editEmail(email: email);
                           //     },
                           //     controller: emailController,
                           //   ),
                           // ),
-
-
-                          ProfileSaveButton(
+                          AdminProfileSaveButton(
                             text: "Save",
                             screen: null,
                             onPressed: () async {
@@ -180,38 +140,17 @@ class ProfileEditWidget extends StatelessWidget {
                                 name = userData['Name'];
                               }
                               else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
+                                await BlocProvider.of<AdminProfileEditCubit>(context)
                                     .editName(name: name);
                               }
-                              if(ageController.text.isEmpty){
-                                age = userData['Age'];
-                              }
-                              else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
-                                    .editAge(age: age);
-                              }
                               if(phoneNumController.text.isEmpty){
-                                phoneNum = userData['Phone Number'];
+                                phoneNum = userData['Phone'];
                               }
                               else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
+                                await BlocProvider.of<AdminProfileEditCubit>(context)
                                     .editPhoneNum(phoneNum: phoneNum);
                               }
-                              if(natIDController.text.isEmpty){
-                                national_id = userData['NationalId'];
-                              }
-                              else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
-                                    .editNationalId(nationalId: national_id);
-                              }
                               Navigator.pop(context);
-
-                              // String newEmail = emailController.text.trim();
-                              // try {
-                              //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
-                              // } catch (e) {
-                              //   print("Error updating email: $e");
-                              // }
                             },
                           ),
                         ],

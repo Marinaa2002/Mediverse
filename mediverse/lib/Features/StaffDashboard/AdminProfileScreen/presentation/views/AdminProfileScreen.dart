@@ -9,9 +9,12 @@ import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetai
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileInfoWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileLoadingIndicatorWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileSettingsWidget.dart';
-import 'Widgets/ProfilePictureWidget.dart';
 
-class PatientProfileScreen extends StatelessWidget {
+import 'Widgets/AdminProfileLoadingIndicatorWidget.dart';
+import 'Widgets/AdminProfilePictureWidget.dart';
+import 'Widgets/AdminProfileSettingsWidget.dart';
+
+class AdminProfileScreen extends StatelessWidget {
   final currentUser = FirebaseAuth.instance.currentUser;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -29,8 +32,6 @@ class PatientProfileScreen extends StatelessWidget {
             size: 24,
           ),
           onPressed: () {
-            BlocProvider.of<FetechPatientInfoCubit>(context)
-                .getPatientInforCubitFunction(globalcurrentUserId);
             Navigator.of(context).pop();
           },
         ),
@@ -47,7 +48,7 @@ class PatientProfileScreen extends StatelessWidget {
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
-            .collection("info_Patients")
+            .collection("Admins")
             .doc(currentUser!.uid)
             .snapshots(),
         builder: (context, snapshot) {
@@ -60,7 +61,7 @@ class PatientProfileScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   SizedBox(height: 25,),
-                  ProfilePictureWidget(userData: userData),
+                  AdminProfilePictureWidget(userData: userData),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 4),
                     child: Text(
@@ -79,15 +80,15 @@ class PatientProfileScreen extends StatelessWidget {
                         color: kprimaryTextColor,
                         fontSize: 20),
                   ),
-                  SizedBox(height: 30,),
-                  ProfileSettingsWidget(
+                  SizedBox(height: 50,),
+                  AdminProfileSettingsWidget(
                     userData: userData,
                   ),
                 ],
               ),
             );
           } else {
-            return ProfileLoadingIndicatorWidget();
+            return AdminProfileLoadingIndicatorWidget();
           }
         },
       ),

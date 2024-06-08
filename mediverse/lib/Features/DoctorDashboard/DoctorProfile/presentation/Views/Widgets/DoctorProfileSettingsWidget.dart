@@ -1,17 +1,18 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileEditWidget.dart';
-
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
+import '../../../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
+import 'DoctorProfileEditWidget.dart';
 
-class ProfileSettingsWidget extends StatelessWidget {
+class DoctorProfileSettingsWidget extends StatelessWidget {
   var userData;
-  ProfileSettingsWidget({
-    super.key, required this.userData,
+
+  DoctorProfileSettingsWidget({
+    super.key,
+    required this.userData,
   });
 
   @override
@@ -20,7 +21,7 @@ class ProfileSettingsWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 400,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: kSecondryBackgroundColor,
           boxShadow: [
             BoxShadow(
@@ -42,17 +43,18 @@ class ProfileSettingsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                       child: Text(
                         'Settings',
                         style: Themes.headlineSmall.copyWith(
-                          color: kprimaryTextColor,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -95,14 +97,14 @@ class ProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.work_outline,
                               color: kSecondaryTextColor,
@@ -111,8 +113,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
                               child: Text(
                                 'Phone Number',
                                 textAlign: TextAlign.start,
@@ -121,7 +123,45 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Phone Number'] ?? 'Phone Number',
+                            userData['Phone'] ?? 'Phone Number',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Readex Pro',
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                            child: Icon(
+                              Icons.local_hospital,
+                              color: kSecondaryTextColor,
+                              size: 24,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
+                              child: Text(
+                                'Speciality',
+                                textAlign: TextAlign.start,
+                                style: Themes.bodyXLarge,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            userData['Speciality'] ?? 'Speciality',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -160,6 +200,44 @@ class ProfileSettingsWidget extends StatelessWidget {
                           ),
                           Text(
                             userData['NationalId'] ?? 'NationalId',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Readex Pro',
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                            child: Icon(
+                              Icons.data_thresholding_rounded,
+                              color: kSecondaryTextColor,
+                              size: 24,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Text(
+                                'License Number',
+                                textAlign: TextAlign.start,
+                                style: Themes.bodyXLarge,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            userData['License_Number'] ?? 'License Number',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -247,14 +325,14 @@ class ProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.edit,
                               color: kSecondaryTextColor,
@@ -263,8 +341,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
                               child: Text(
                                 'Profile Settings',
                                 textAlign: TextAlign.start,
@@ -276,7 +354,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             onTap: (){
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) =>
-                                      ProfileEditWidget(
+                                      DoctorProfileEditWidget(
                                         userData: userData,
                                       ),));
                             },
@@ -293,14 +371,14 @@ class ProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
                               Icons.logout_rounded,
                               color: kSecondaryTextColor,
@@ -309,8 +387,8 @@ class ProfileSettingsWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 12, 0),
                               child: Text(
                                 'Log out of account',
                                 textAlign: TextAlign.start,

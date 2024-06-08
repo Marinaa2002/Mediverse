@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileInfoWidget.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileLoadingIndicatorWidget.dart';
-import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileSettingsWidget.dart';
-import 'Widgets/ProfilePictureWidget.dart';
 
-class PatientProfileScreen extends StatelessWidget {
+import 'Widgets/StaffProfileLoadingIndicatorWidget.dart';
+import 'Widgets/StaffProfilePictureWidget.dart';
+import 'Widgets/StaffProfileSettingsWidget.dart';
+
+
+class StaffProfileScreen extends StatelessWidget {
   final currentUser = FirebaseAuth.instance.currentUser;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -29,8 +29,6 @@ class PatientProfileScreen extends StatelessWidget {
             size: 24,
           ),
           onPressed: () {
-            BlocProvider.of<FetechPatientInfoCubit>(context)
-                .getPatientInforCubitFunction(globalcurrentUserId);
             Navigator.of(context).pop();
           },
         ),
@@ -47,7 +45,7 @@ class PatientProfileScreen extends StatelessWidget {
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
-            .collection("info_Patients")
+            .collection("Staff")
             .doc(currentUser!.uid)
             .snapshots(),
         builder: (context, snapshot) {
@@ -59,12 +57,12 @@ class PatientProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  SizedBox(height: 25,),
-                  ProfilePictureWidget(userData: userData),
+                  SizedBox(height: 15,),
+                  StaffProfilePictureWidget(userData: userData),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 4),
                     child: Text(
-                      userData['Name'] ?? 'Name',
+                      userData['Org Name'] ?? 'Org Name',
                       textAlign: TextAlign.center,
                       style: Themes.headlineSmall.copyWith(
                         fontFamily: 'Outfit',
@@ -79,15 +77,15 @@ class PatientProfileScreen extends StatelessWidget {
                         color: kprimaryTextColor,
                         fontSize: 20),
                   ),
-                  SizedBox(height: 30,),
-                  ProfileSettingsWidget(
+                  SizedBox(height: 20,),
+                  StaffProfileSettingsWidget(
                     userData: userData,
                   ),
                 ],
               ),
             );
           } else {
-            return ProfileLoadingIndicatorWidget();
+            return StaffProfileLoadingIndicatorWidget();
           }
         },
       ),
