@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
+import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
@@ -139,7 +140,13 @@ class _AppointmentTabState extends State<AppointmentTab> {
 
                   return Expanded(
                     child: doctors.isEmpty
-                        ? Center(child: Text("No doctors found"))
+                        ? Center(child: Text(
+                      "No Results Found",
+                      style: Themes.bodyLarge.copyWith(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey),
+                    ),)
                         : ListView.builder(
                       itemCount: doctors.length,
                       itemBuilder: (context, index) {
