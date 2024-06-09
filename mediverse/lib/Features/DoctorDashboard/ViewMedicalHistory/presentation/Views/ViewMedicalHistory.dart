@@ -38,8 +38,8 @@ class ViewHistory extends StatelessWidget {
         ),
         title: Text(
           'Medical History',
-          style: Themes.bodyMedium.copyWith(
-            color: backgroundColor,
+             style: Themes.headlineMedium.copyWith(
+             color: backgroundColor,
           ),
         ),
         centerTitle: true,
@@ -93,17 +93,17 @@ class ViewHistory extends StatelessWidget {
                             Text(
                               patientName,
                               textAlign: TextAlign.start,
-                              style: Themes.bodyMedium.copyWith(fontWeight: FontWeight.w700),
+                              style: Themes.bodyMed.copyWith(fontSize: 22),
                             ),
                             Text(
                               'Age: $age',
                               textAlign: TextAlign.start,
-                              style: Themes.bodyMedium.copyWith(fontSize: 18),
+                              style: Themes.bodyMed.copyWith(fontSize: 18),
                             ),
                             Text(
                               email,
                               textAlign: TextAlign.start,
-                              style: Themes.bodyMedium.copyWith(fontSize: 18),
+                              style: Themes.bodyMed.copyWith(fontSize: 16),
                             ),
                           ],
                         ),
@@ -143,15 +143,16 @@ class ViewHistory extends StatelessWidget {
                   }).toList(),
                 ),
               )
-                  : Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    "No data entered yet",
-                    style: Themes.bodyMedium.copyWith(fontSize: 18),
-                  ),
-                ),
-              ),
+                  : Column(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height*0.25,),
+                    Center(
+                      child: Text(
+                        "No data entered yet",
+                        style: Themes.bodyLarge.copyWith(fontSize: 24,fontWeight:FontWeight.w600,color: Colors.grey),
+                      ),
+                    )
+                  ]),
             ],
           ),
         ),

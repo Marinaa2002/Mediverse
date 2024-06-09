@@ -133,16 +133,49 @@ class _PatientHistoryState extends State<PatientHistory> {
           List<dynamic> prevBookings = List<dynamic>.from(data?['Previous_Appointments'] ?? []);
 
           if (bookings.isEmpty && prevBookings.isEmpty) {
-            return Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    "No bookings yet",
-                    style: Themes.bodyMedium.copyWith(fontSize: 18),
+            return Scaffold(
+              backgroundColor: backgroundColor,
+              appBar: AppBar(
+                backgroundColor: kprimaryColor,
+                automaticallyImplyLeading: false,
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.chevron_left,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                title: Text(
+                  'Patients\' History',
+                  style: Themes.headlineMedium.copyWith(
+                    color: backgroundColor,
                   ),
                 ),
+                centerTitle: true,
+                elevation: 2,
+              ),
+              body: SafeArea(
+                top: true,
+                  child:Column(
+                    children: [
+                      SearchBoxAppointmentWidget(
+                        controller: _searchController,
+                        onChanged: (value) {},
+                        onSearchPressed: _onSearchPressed,
+                        onSubmitted: (value) => _onSearchPressed(), // Add this line
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.35,),
+                      Center(
+                        child: Text(
+                          "No Patient History Found",
+                          style: Themes.bodyLarge.copyWith(fontSize: 24,fontWeight:FontWeight.w600,color: Colors.grey),
+                        ),
+                      )
+                    ],
+                  )
               ),
             );
           }
@@ -275,9 +308,42 @@ class _PatientHistoryState extends State<PatientHistory> {
             },
           );
         } catch (e) {
-          return Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(100, 300, 100, 300),
-            child: Text("Error loading data"),
+          return Scaffold(
+            backgroundColor: backgroundColor,
+            appBar: AppBar(
+              backgroundColor: kprimaryColor,
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.chevron_left,
+                  color: Colors.white,
+                  size: 24,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              title: Text(
+                'Patients\' History',
+                style: Themes.headlineMedium.copyWith(
+                  color: backgroundColor,
+                ),
+              ),
+              centerTitle: true,
+              elevation: 2,
+            ),
+            body: SafeArea(
+              top: true,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    "Error loading data",
+                    style: Themes.bodyMedium.copyWith(fontSize: 18),
+                  ),
+                ),
+              ),
+            ),
           );
         }
       },

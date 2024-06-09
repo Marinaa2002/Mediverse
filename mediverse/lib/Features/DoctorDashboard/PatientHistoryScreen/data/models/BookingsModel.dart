@@ -1,6 +1,7 @@
 
 class BookingsModel {
   final String name;
+  final String age;
   final String patientId;
   final String email;
   final String profilePicture;
@@ -14,6 +15,7 @@ class BookingsModel {
     required this.profilePicture,
     required this.medicalHistory,
     required this.date,
+    required this.age
   });
 
   factory BookingsModel.fromJson(Map<String, dynamic> bookingData) {
@@ -24,7 +26,8 @@ class BookingsModel {
       profilePicture: bookingData['Profile Picture'] ?? '',
       medicalHistory: List<Map<String, String>>.from(
         (bookingData['Medical Record'] ?? []).map((item) => Map<String, String>.from(item)),
-      ), date:bookingData['Date']?? '',
+      ),
+      date:bookingData['Date']?? '', age:bookingData['Age']??'',
     );
   }
 }
