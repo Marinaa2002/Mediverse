@@ -37,6 +37,7 @@ class _PrevBookingsListState extends State<PrevBookingsList> {
                         return BookingCard(
                           booking: state.newBookings[i],
                           patient_name: state.newNames[i],
+                          displayPatientName: true,
                         );
                       }),
                 )
@@ -53,6 +54,7 @@ class _PrevBookingsListState extends State<PrevBookingsList> {
                         return BookingCard(
                           booking: state.bookings[i],
                           patient_name: state.names[i],
+                          displayPatientName: true,
                         );
                       }),
                 )

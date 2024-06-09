@@ -6,6 +6,9 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/FetechPatientCubit/fetechPatientCubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingHistory/data/repos/booking_history_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingHistory/presentation/Managers/cubit/booking_history_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingHistory/presentation/views/BookingHistory.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileInfoWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileLoadingIndicatorWidget.dart';
 import 'package:mediverse/Features/PatientDashboard/PatientProfileScreen/presentation/Views/Widgets/ProfileSettingsWidget.dart';
@@ -59,7 +62,9 @@ class PatientProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  SizedBox(height: 25,),
+                  SizedBox(
+                    height: 25,
+                  ),
                   ProfilePictureWidget(userData: userData),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 4),
@@ -79,7 +84,49 @@ class PatientProfileScreen extends StatelessWidget {
                         color: kprimaryTextColor,
                         fontSize: 20),
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.symmetric(horizontal: 20),
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(
+                          MediaQuery.sizeOf(context).width * 0.8,
+                          40,
+                        ),
+                        backgroundColor: kprimaryColor,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                              create: (context) =>
+                                  BookingHistoryCubit(BookingHistoryRepoImpl())
+                                    ..getBookingHistory(globalcurrentUserId),
+                              child: BookingHistory(),
+                            ),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.calendar_month_outlined,
+                        size: 23,
+                        color: backgroundColor,
+                      ),
+                      label: Text(
+                        'Bookings History',
+                        style: Themes.bodyXLarge.copyWith(
+                          color: backgroundColor,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
                   ProfileSettingsWidget(
                     userData: userData,
                   ),

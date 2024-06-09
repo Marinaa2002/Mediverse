@@ -4,14 +4,12 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class BookingCard extends StatelessWidget {
-  const BookingCard({
-    super.key,
-    required this.booking,
-    required this.patient_name,
-  });
+  const BookingCard(
+      {super.key, required this.booking, required this.patient_name, required this.displayPatientName});
 
   final Booking booking;
   final String patient_name;
+  final bool displayPatientName;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,7 @@ class BookingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Patient Name',
+                         (displayPatientName) ? 'Patient Name' : 'Doctor Name',
                           style: Themes.bodyXLarge,
                         ),
                         Text(
