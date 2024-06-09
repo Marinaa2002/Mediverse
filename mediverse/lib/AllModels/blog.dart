@@ -1,20 +1,55 @@
+class BlogModel {
+  final String title;
+  final String author;
+  final String date;
+  final String time;
+  final String blogBody;
+  final String image;
+  final String profile;
+  String docId;
+  int likes;
+  List<String> likedUsers;
 
-class Blog {
-  const Blog({
-    required this.Doctor_Name,
-    required this.Doctor_Picture,
-    required this.id,
+  BlogModel({
     required this.title,
-    required this.Doctor_id,
-    required this.likes,
-    required this.Text,
+    required this.author,
+    required this.date,
+    required this.time,
+    required this.blogBody,
+    required this.image,
+    required this.profile,
+    required this.docId,
+    this.likes = 0,
+    this.likedUsers = const [],
   });
 
-  final String id;
-  final String title;
-  final String Doctor_id;
-  final String Doctor_Name;
-  final String Doctor_Picture;
-  final num likes;
-  final String Text;
+  factory BlogModel.fromJson(Map<String, dynamic> json) {
+    return BlogModel(
+      title: json['title'] ?? '',
+      author: json['author'] ?? '',
+      date: json['date'] ?? '',
+      time: json['time'] ?? '',
+      blogBody: json['blog body'] ?? '',
+      image: json['image'] ?? '',
+      profile: json['profile'] ?? '',
+      docId: json['docId'] ?? '',
+      likes: json['likes']?? 0,
+      likedUsers: List<String>.from(json['likedUsers'] ?? []),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'author': author,
+      'date': date,
+      'time': time,
+      'blog body': blogBody,
+      'image': image,
+      'profile':profile,
+      'docId': docId,
+      'likes':likes,
+      'likedUsers': likedUsers,
+    };
+  }
 }

@@ -4,7 +4,6 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/data/models/BlogsModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/BlogCard.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/SearchBoxAppointmentWidget.dart';
-import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
 class MedicalBlogsTab extends StatelessWidget {
   const MedicalBlogsTab({Key? key}) : super(key: key);
@@ -26,10 +25,9 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  void _onSearchPressed() {
+  void _onSearchChanged(String query) {
     setState(() {
-      _searchQuery = _searchController.text;
-      _search();
+      _searchQuery = query;
     });
   }
 
@@ -37,10 +35,6 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
   void dispose() {
     _searchController.dispose();
     super.dispose();
-  }
-
-  void _search() {
-    setState(() {});
   }
 
   DateTime parseDate(String date, String time) {
@@ -95,55 +89,60 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('Blogs').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text('Error loading blogs'));
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text('No blogs found'));
-          }
+      body: SafeArea(
+        child: Column(
+          children: [
+            SearchBoxAppointmentWidget(
+              controller: _searchController,
+              onChanged: _onSearchChanged,
+              onSearchPressed:
+                  () {},
+              onSubmitted:
+                  (value) {},
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream:
+                    FirebaseFirestore.instance.collection('Blogs').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error loading blogs'));
+                  }
+                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return Center(child: Text('No blogs found'));
+                  }
 
-          List<BlogModel> blogs = snapshot.data!.docs.map((doc) {
-            var blogData = doc.data() as Map<String, dynamic>;
-            var blog = BlogModel.fromJson(blogData);
-            blog.docId = doc.id;
-            return blog;
-          }).toList();
+                  List<BlogModel> blogs = snapshot.data!.docs.map((doc) {
+                    var blogData = doc.data() as Map<String, dynamic>;
+                    var blog = BlogModel.fromJson(blogData);
+                    blog.docId = doc.id;
+                    return blog;
+                  }).toList();
 
-          blogs.sort((a, b) {
-            var aDateTime = parseDate(a.date, a.time);
-            var bDateTime = parseDate(b.date, b.time);
-            return bDateTime.compareTo(aDateTime);
-          });
-          if (_searchQuery.isNotEmpty) {
-            blogs = _filterBlogs(blogs, _searchQuery);
-          }
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SearchBoxAppointmentWidget(
-                  controller: _searchController,
-                  onChanged: (value) {},
-                  onSearchPressed: _onSearchPressed,
-                  onSubmitted: (value) => _onSearchPressed(),
-                ),
-                SizedBox(height: 10),
-                Expanded(
-                  child: blogs.isEmpty
+                  blogs.sort((a, b) {
+                    var aDateTime = parseDate(a.date, a.time);
+                    var bDateTime = parseDate(b.date, b.time);
+                    return bDateTime.compareTo(aDateTime);
+                  });
+
+                  if (_searchQuery.isNotEmpty) {
+                    blogs = _filterBlogs(blogs, _searchQuery);
+                  }
+
+                  return blogs.isEmpty
                       ? Center(
                           child: Text(
-                          "No Results Found",
-                          style: Themes.bodyLarge.copyWith(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey),
-                        ))
+                            "No Results Found",
+                            style: Themes.bodyLarge.copyWith(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey),
+                          ),
+                        )
                       : ListView.builder(
                           itemCount: blogs.length > 10 ? 10 : blogs.length,
                           itemBuilder: (context, index) {
@@ -161,12 +160,12 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
                               docId: blog.docId,
                             );
                           },
-                        ),
-                ),
-              ],
+                        );
+                },
+              ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

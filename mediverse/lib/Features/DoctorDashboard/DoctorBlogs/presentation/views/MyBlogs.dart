@@ -5,8 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/data/BlogsModel.dart';
-import 'package:mediverse/Features/PatientDashboard/Widgets/BlogCard.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/data/models/BlogsModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/BlogCardEdit.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/SearchBoxAppointmentWidget.dart';
 
