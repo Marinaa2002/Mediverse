@@ -162,7 +162,7 @@ class _MyBlogsState extends State<MyBlogs> {
         future: _fetchBlogs(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: Loading());
+            return Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {

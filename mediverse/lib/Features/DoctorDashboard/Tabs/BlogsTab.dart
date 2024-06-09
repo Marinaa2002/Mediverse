@@ -30,10 +30,9 @@ class _BlogsTabState extends State<_BlogsTab> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  void _onSearchPressed() {
+  void _onSearchChanged(String query) {
     setState(() {
-      _searchQuery = _searchController.text;
-      _search();
+      _searchQuery = query;
     });
   }
 
@@ -41,10 +40,6 @@ class _BlogsTabState extends State<_BlogsTab> {
   void dispose() {
     _searchController.dispose();
     super.dispose();
-  }
-
-  void _search() {
-    setState(() {});
   }
 
   DateTime parseDate(String date, String time) {
@@ -99,128 +94,131 @@ class _BlogsTabState extends State<_BlogsTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('Blogs').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: Loading());
-          }
-
-          if (snapshot.hasError) {
-            return Center(child: Text('Error loading blogs'));
-          }
-
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text('No blogs found'));
-          }
-
-          List<BlogModel> blogs = snapshot.data!.docs.map((doc) {
-            var blogData = doc.data() as Map<String, dynamic>;
-            var blog = BlogModel.fromJson(blogData);
-            blog.docId = doc.id;
-            return blog;
-          }).toList();
-
-          blogs.sort((a, b) {
-            var aDateTime = parseDate(a.date, a.time);
-            var bDateTime = parseDate(b.date, b.time);
-            return bDateTime.compareTo(aDateTime);
-          });
-
-          if (_searchQuery.isNotEmpty) {
-            blogs = _filterBlogs(blogs, _searchQuery);
-          }
-
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'Write a new Blog:',
-                        style: Themes.primaryText,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      'Write a new Blog:',
+                      style: Themes.primaryText,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => BlogsAdd()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        backgroundColor: kprimaryColor,
+                        textStyle: Themes.bodyMedium.copyWith(
+                          color: backgroundColor,
+                        ),
+                        elevation: 3,
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 24,
                       ),
                     ),
-                    Padding(
-                      padding:
-                      const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => BlogsAdd()),
+                  ),
+                ],
+              ),
+              Divider(
+                thickness: 2,
+                color: Color.fromARGB(255, 224, 227, 231),
+              ),
+              SizedBox(height: 10),
+              SearchBoxAppointmentWidget(
+                controller: _searchController,
+                onChanged: _onSearchChanged,
+                onSearchPressed: () {},
+                onSubmitted: (value) => (value) {},
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('Blogs')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    if (snapshot.hasError) {
+                      return Center(child: Text('Error loading blogs'));
+                    }
+
+                    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      return Center(child: Text('No blogs found'));
+                    }
+
+                    List<BlogModel> blogs = snapshot.data!.docs.map((doc) {
+                      var blogData = doc.data() as Map<String, dynamic>;
+                      var blog = BlogModel.fromJson(blogData);
+                      blog.docId = doc.id;
+                      return blog;
+                    }).toList();
+
+                    blogs.sort((a, b) {
+                      var aDateTime = parseDate(a.date, a.time);
+                      var bDateTime = parseDate(b.date, b.time);
+                      return bDateTime.compareTo(aDateTime);
+                    });
+
+                    if (_searchQuery.isNotEmpty) {
+                      blogs = _filterBlogs(blogs, _searchQuery);
+                    }
+
+                    return blogs.isEmpty
+                        ? Center(
+                            child: Text(
+                            "No Results Found",
+                            style: Themes.bodyLarge.copyWith(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey),
+                          ))
+                        : ListView.builder(
+                            itemCount: blogs.length > 10 ? 10 : blogs.length,
+                            itemBuilder: (context, index) {
+                              var blog = blogs[index];
+                              return BlogCardDoc(
+                                title: blog.title,
+                                author: blog.author,
+                                date: blog.date,
+                                time: blog.time,
+                                body: blog.blogBody,
+                                image: blog.image,
+                                profile: blog.profile,
+                                likes: blog.likes,
+                                likedUsers: blog.likedUsers,
+                                docId: blog.docId,
+                              );
+                            },
                           );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding:
-                          const EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                          backgroundColor: kprimaryColor,
-                          textStyle: Themes.bodyMedium.copyWith(
-                            color: backgroundColor,
-                          ),
-                          elevation: 3,
-                        ),
-                        child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 24,
-                        ),
-                      ),
-                    ),
-                  ],
+                  },
                 ),
-                Divider(
-                  thickness: 2,
-                  color: Color.fromARGB(255, 224, 227, 231),
-                ),
-                SizedBox(height: 10),
-                SearchBoxAppointmentWidget(
-                  controller: _searchController,
-                  onChanged: (value) {},
-                  onSearchPressed: _onSearchPressed,
-                  onSubmitted: (value) => _onSearchPressed(),
-                ),
-                SizedBox(height: 10),
-                Expanded(
-                  child: blogs.isEmpty
-                      ? Center(
-                          child: Text(
-                          "No Results Found",
-                          style: Themes.bodyLarge.copyWith(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey),
-                        ))
-                      : ListView.builder(
-                          itemCount: blogs.length > 10 ? 10 : blogs.length,
-                          itemBuilder: (context, index) {
-                            var blog = blogs[index];
-                            return BlogCardDoc(
-                              title: blog.title,
-                              author: blog.author,
-                              date: blog.date,
-                              time: blog.time,
-                              body: blog.blogBody,
-                              image: blog.image,
-                              profile: blog.profile,
-                              likes: blog.likes,
-                              likedUsers: blog.likedUsers,
-                              docId: blog.docId,
-                            );
-                          },
-                        ),
-                ),
-              ],
-            ),
-          );
-        },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
