@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/data/models/BlogsModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/BlogCard.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/SearchBoxAppointmentWidget.dart';
@@ -23,6 +24,7 @@ class _MedicalBlogsTab extends StatefulWidget {
 
 class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   String _searchQuery = '';
 
   void _onSearchChanged(String query) {
@@ -34,6 +36,7 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
   @override
   void dispose() {
     _searchController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -95,10 +98,8 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
             SearchBoxAppointmentWidget(
               controller: _searchController,
               onChanged: _onSearchChanged,
-              onSearchPressed:
-                  () {},
-              onSubmitted:
-                  (value) {},
+              onSearchPressed: () {},
+              onSubmitted: (value) {},
             ),
             SizedBox(height: 10),
             Expanded(
@@ -107,7 +108,7 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
                     FirebaseFirestore.instance.collection('Blogs').snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(child: Loading());
                   }
                   if (snapshot.hasError) {
                     return Center(child: Text('Error loading blogs'));
@@ -144,6 +145,7 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
                           ),
                         )
                       : ListView.builder(
+                          controller: _scrollController,
                           itemCount: blogs.length > 10 ? 10 : blogs.length,
                           itemBuilder: (context, index) {
                             var blog = blogs[index];

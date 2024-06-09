@@ -17,13 +17,14 @@ class MyBlogs extends StatefulWidget {
 class _MyBlogsState extends State<MyBlogs> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
+  List<BlogModel> _allBlogs = [];
 
   void _onSearchPressed() {
     setState(() {
       _searchQuery = _searchController.text;
-      _search();
     });
   }
+
   void onDelete() {
     setState(() {});
   }
@@ -31,6 +32,7 @@ class _MyBlogsState extends State<MyBlogs> {
   void onEdit() {
     setState(() {});
   }
+
   void _search() {
     setState(() {});
   }
@@ -75,10 +77,7 @@ class _MyBlogsState extends State<MyBlogs> {
       return bDateTime.compareTo(aDateTime);
     });
 
-    if (_searchQuery.isNotEmpty) {
-      blogs = _filterBlogs(blogs, _searchQuery);
-    }
-
+    _allBlogs = blogs;
     return blogs;
   }
 
@@ -124,8 +123,8 @@ class _MyBlogsState extends State<MyBlogs> {
     final formattedTime = period == 'AM'
         ? (hour == '12' ? '00' : hour) + ':' + minute
         : (hour == '12' ? hour : (int.parse(hour) + 12).toString()) +
-        ':' +
-        minute;
+            ':' +
+            minute;
 
     final formattedDate = '$year-$month-$day $formattedTime:00';
     return DateTime.parse(formattedDate);
@@ -145,7 +144,7 @@ class _MyBlogsState extends State<MyBlogs> {
             color: backgroundColor,
           ),
         ),
-        leading:IconButton(
+        leading: IconButton(
           icon: const Icon(
             Icons.chevron_left,
             color: Colors.white,
@@ -154,7 +153,7 @@ class _MyBlogsState extends State<MyBlogs> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-        ) ,
+        ),
         centerTitle: true,
         elevation: 2,
       ),
@@ -162,7 +161,7 @@ class _MyBlogsState extends State<MyBlogs> {
         future: _fetchBlogs(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: Loading());
           }
 
           if (snapshot.hasError) {
@@ -170,27 +169,28 @@ class _MyBlogsState extends State<MyBlogs> {
           }
 
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-               child:  Column(
-               children: [
+            return Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Column(children: [
                   SearchBoxAppointmentWidget(
-                   controller: _searchController,
-                   onChanged: (value) {},
-                   onSearchPressed: _onSearchPressed,
-                   onSubmitted: (value) => _onSearchPressed(),
-                ),SizedBox(height: MediaQuery.of(context).size.height*0.35,),
-                 Center(child: Text('No blogs found')),
-           ]
-            )
-              );
+                    controller: _searchController,
+                    onChanged: (value) {},
+                    onSearchPressed: _onSearchPressed,
+                    onSubmitted: (value) => _onSearchPressed(),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.35,
+                  ),
+                  Center(child: Text('No blogs found')),
+                ]));
           }
 
-          List<BlogModel> blogs = snapshot.data!;
+          List<BlogModel> blogs = _searchQuery.isEmpty
+              ? snapshot.data!
+              : _filterBlogs(_allBlogs, _searchQuery);;
 
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(0.0),
             child: Column(
               children: [
                 SearchBoxAppointmentWidget(
@@ -203,31 +203,32 @@ class _MyBlogsState extends State<MyBlogs> {
                 Expanded(
                   child: blogs.isEmpty
                       ? Center(
-                    child: Text(
-                      "No Results Found",
-                      style: Themes.bodyLarge.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey),
-                    ),
-                  )
+                          child: Text(
+                            "No Results Found",
+                            style: Themes.bodyLarge.copyWith(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey),
+                          ),
+                        )
                       : ListView.builder(
-                    itemCount: blogs.length > 10 ? 10 : blogs.length,
-                    itemBuilder: (context, index) {
-                      var blog = blogs[index];
-                      return BlogCardEdit(
-                        title: blog.title,
-                        author: blog.author,
-                        date: blog.date,
-                        time: blog.time,
-                        body: blog.blogBody,
-                        image: blog.image,
-                        profile: blog.profile,
-                        docId: blog.docId, onDelete: onDelete,
-                        onEdit: onEdit,
-                      );
-                    },
-                  ),
+                          itemCount: blogs.length > 10 ? 10 : blogs.length,
+                          itemBuilder: (context, index) {
+                            var blog = blogs[index];
+                            return BlogCardEdit(
+                              title: blog.title,
+                              author: blog.author,
+                              date: blog.date,
+                              time: blog.time,
+                              body: blog.blogBody,
+                              image: blog.image,
+                              profile: blog.profile,
+                              docId: blog.docId,
+                              onDelete: onDelete,
+                              onEdit: onEdit,
+                            );
+                          },
+                        ),
                 ),
               ],
             ),

@@ -96,7 +96,7 @@ class _BlogsTabState extends State<_BlogsTab> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(0.0),
           child: Column(
             children: [
               Row(
@@ -158,7 +158,7 @@ class _BlogsTabState extends State<_BlogsTab> {
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return Center(child: Loading());
                     }
 
                     if (snapshot.hasError) {

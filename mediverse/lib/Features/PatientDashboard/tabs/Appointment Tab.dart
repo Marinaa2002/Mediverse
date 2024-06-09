@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
@@ -121,7 +122,7 @@ class _AppointmentTabState extends State<AppointmentTab> {
                 stream: _doctorStream,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(child: Loading());
                   }
                   if (snapshot.hasError) {
                     return Center(child: Text('Error loading doctors'));
