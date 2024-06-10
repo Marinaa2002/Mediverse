@@ -123,8 +123,8 @@ class _MyBlogsState extends State<MyBlogs> {
     final formattedTime = period == 'AM'
         ? (hour == '12' ? '00' : hour) + ':' + minute
         : (hour == '12' ? hour : (int.parse(hour) + 12).toString()) +
-            ':' +
-            minute;
+        ':' +
+        minute;
 
     final formattedDate = '$year-$month-$day $formattedTime:00';
     return DateTime.parse(formattedDate);
@@ -157,83 +157,67 @@ class _MyBlogsState extends State<MyBlogs> {
         centerTitle: true,
         elevation: 2,
       ),
-      body: FutureBuilder<List<BlogModel>>(
-        future: _fetchBlogs(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: Loading());
-          }
+      body: Column(
+        children: [
+          SearchBoxAppointmentWidget(
+            controller: _searchController,
+            onChanged: (value) {},
+            onSearchPressed: _onSearchPressed,
+            onSubmitted: (value) => _onSearchPressed(),
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            child: FutureBuilder<List<BlogModel>>(
+              future: _fetchBlogs(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: Loading());
+                }
 
-          if (snapshot.hasError) {
-            return Center(child: Text('Error loading blogs'));
-          }
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error loading blogs'));
+                }
 
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Padding(
-                padding: const EdgeInsets.all(0.0),
-                child: Column(children: [
-                  SearchBoxAppointmentWidget(
-                    controller: _searchController,
-                    onChanged: (value) {},
-                    onSearchPressed: _onSearchPressed,
-                    onSubmitted: (value) => _onSearchPressed(),
+                if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(child: Text('No blogs found'));
+                }
+
+                List<BlogModel> blogs = _searchQuery.isEmpty
+                    ? snapshot.data!
+                    : _filterBlogs(_allBlogs, _searchQuery);
+
+                return blogs.isEmpty
+                    ? Center(
+                  child: Text(
+                    "No Results Found",
+                    style: Themes.bodyLarge.copyWith(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.35,
-                  ),
-                  Center(child: Text('No blogs found')),
-                ]));
-          }
-
-          List<BlogModel> blogs = _searchQuery.isEmpty
-              ? snapshot.data!
-              : _filterBlogs(_allBlogs, _searchQuery);;
-
-          return Padding(
-            padding: const EdgeInsets.all(0.0),
-            child: Column(
-              children: [
-                SearchBoxAppointmentWidget(
-                  controller: _searchController,
-                  onChanged: (value) {},
-                  onSearchPressed: _onSearchPressed,
-                  onSubmitted: (value) => _onSearchPressed(),
-                ),
-                SizedBox(height: 10),
-                Expanded(
-                  child: blogs.isEmpty
-                      ? Center(
-                          child: Text(
-                            "No Results Found",
-                            style: Themes.bodyLarge.copyWith(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey),
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: blogs.length > 10 ? 10 : blogs.length,
-                          itemBuilder: (context, index) {
-                            var blog = blogs[index];
-                            return BlogCardEdit(
-                              title: blog.title,
-                              author: blog.author,
-                              date: blog.date,
-                              time: blog.time,
-                              body: blog.blogBody,
-                              image: blog.image,
-                              profile: blog.profile,
-                              docId: blog.docId,
-                              onDelete: onDelete,
-                              onEdit: onEdit,
-                            );
-                          },
-                        ),
-                ),
-              ],
+                )
+                    : ListView.builder(
+                  itemCount: blogs.length > 10 ? 10 : blogs.length,
+                  itemBuilder: (context, index) {
+                    var blog = blogs[index];
+                    return BlogCardEdit(
+                      title: blog.title,
+                      author: blog.author,
+                      date: blog.date,
+                      time: blog.time,
+                      body: blog.blogBody,
+                      image: blog.image,
+                      profile: blog.profile,
+                      docId: blog.docId,
+                      onDelete: onDelete,
+                      onEdit: onEdit,
+                    );
+                  },
+                );
+              },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

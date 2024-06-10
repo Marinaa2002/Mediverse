@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorBlogs/data/models/BlogsModel.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/BlogCard.dart';
@@ -92,6 +93,7 @@ class _MedicalBlogsTabState extends State<_MedicalBlogsTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
           children: [

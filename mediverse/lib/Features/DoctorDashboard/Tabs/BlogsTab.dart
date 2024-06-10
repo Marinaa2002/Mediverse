@@ -94,6 +94,7 @@ class _BlogsTabState extends State<_BlogsTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(0.0),
