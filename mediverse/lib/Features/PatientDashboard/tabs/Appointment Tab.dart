@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
@@ -78,6 +79,7 @@ class _AppointmentTabState extends State<AppointmentTab> {
     return BlocProvider(
       create: (context) => AppointmentDetailsCubit(),
       child: Scaffold(
+        backgroundColor: backgroundColor,
         body: SafeArea(
           child: Column(
             children: [

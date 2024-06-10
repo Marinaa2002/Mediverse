@@ -25,7 +25,7 @@ class SearchBoxAppointmentWidget extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width * 0.95,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: Colors.grey[300],
               borderRadius: BorderRadius.circular(20.0),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 10.0),

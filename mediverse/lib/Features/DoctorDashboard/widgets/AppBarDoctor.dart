@@ -77,21 +77,27 @@ class AppBarDoctor extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(42, 0, 0, 0),
-
+                  padding: const EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
                         profileModel.name,
                         style:
-                            Themes.titleSmall.copyWith(color: backgroundColor),
+                        TextStyle(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                       Text(
                         profileModel.email,
-                        style: Themes.bodyXLarge.copyWith(
-                          color: backgroundColor,
-                        ),
+                        style:
+                        TextStyle(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white),
                       ),
                     ],
                   ),

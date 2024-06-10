@@ -25,16 +25,16 @@ class MainScreenDoctor extends StatelessWidget {
         toolbarHeight: 65,
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.bookmark,size:25,color: Colors.white,),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (ctx) => MyBlogs()),
-              );
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(Icons.bookmark,size:25,color: Colors.white,),
+        //     onPressed: () {
+        //       Navigator.of(context).push(
+        //         MaterialPageRoute(builder: (ctx) => MyBlogs()),
+        //       );
+        //     },
+        //   ),
+        // ],
         title: GestureDetector(
           child: AppBarDoctor(),
           onTap: () {

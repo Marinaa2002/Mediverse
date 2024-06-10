@@ -6,6 +6,7 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Views/Widgets/DoctorProfilePictureWidget.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Views/Widgets/DoctorProfileSettingsWidget.dart';
 
+import '../../../DoctorBlogs/presentation/views/MyBlogs.dart';
 import 'Widgets/DoctorProfileLoadingIndicatorWidget.dart';
 
 class DoctorProfile extends StatelessWidget {
@@ -60,7 +61,7 @@ class DoctorProfile extends StatelessWidget {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0, 10, 0, 4),
                             child: Text(
-                              'Dr.' + ( userData['Name'] ?? 'Name'),
+                              'Dr.' + (userData['Name'] ?? 'Name'),
                               textAlign: TextAlign.center,
                               style: Themes.headlineSmall.copyWith(
                                 fontFamily: 'Outfit',
@@ -75,8 +76,40 @@ class DoctorProfile extends StatelessWidget {
                                 color: kprimaryTextColor,
                                 fontSize: 20),
                           ),
-                          SizedBox(height: 20),
-                          DoctorProfileSettingsWidget(userData: userData,),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                                horizontal: 20, vertical: 20),
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(
+                                  MediaQuery.sizeOf(context).width * 0.8,
+                                  40,
+                                ),
+                                backgroundColor: kprimaryColor,
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (ctx) => MyBlogs()),
+                                );
+                              },
+                              icon: Icon(
+                                Icons.newspaper,
+                                size: 30,
+                                color: Colors.white,
+                              ),
+                              label: Text(
+                                'My Blogs',
+                                style: Themes.bodyXLarge.copyWith(
+                                  color: backgroundColor,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                          DoctorProfileSettingsWidget(
+                            userData: userData,
+                          ),
                         ]));
               } else {
                 return DoctorProfileLoadingIndicatorWidget();

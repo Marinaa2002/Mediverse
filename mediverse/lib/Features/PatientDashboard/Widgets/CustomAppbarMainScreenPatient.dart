@@ -38,7 +38,7 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
           } //
           if (!snapshot.hasData) {
             return Center(
-              child: Text('No Doctor available'),
+              child: Text('No Patient available'),
             ); // Show a loading indicator while waiting for data
           }
           PatientProfileModel profileModel = PatientProfileModel.fromJson(
@@ -90,30 +90,30 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                 SizedBox(
                   width: 40,
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        profileModel.name,
-                        style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      Text(
-                        profileModel.email,
-                        style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white),
-                      ),
-                    ],
+                Column(children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    child: Text(
+                      profileModel.name,
+                      style: TextStyle(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    child: Text(
+                      profileModel.email,
+                      style: TextStyle(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white),
+                    ),
+                  ),
+                ]),
               ],
             ),
           );
