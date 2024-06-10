@@ -9,9 +9,11 @@ class ProfileTextFormField extends StatelessWidget {
     super.key,
     required this.text,
     required this.onChanged,
-    required this.controller
+    required this.controller,
+    this.onSubmitted
   });
   Function(String)? onChanged;
+  Function(String)? onSubmitted;
   TextEditingController? controller;
 
 
@@ -20,6 +22,7 @@ class ProfileTextFormField extends StatelessWidget {
     return Container(
       width: 390,
       child: TextFormField(
+        onFieldSubmitted: onSubmitted,
           onChanged: onChanged,
           controller: controller,
           autofocus: false,

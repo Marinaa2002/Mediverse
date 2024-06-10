@@ -15,6 +15,8 @@ class AddedDoctorsWidget extends StatelessWidget {
   });
   TextEditingController textEditingController = TextEditingController();
 
+// final String orgName;
+// final String orgType;
   final HospitalMangmentAddDoctorsBody widget;
 
   @override
@@ -94,6 +96,19 @@ class AddedDoctorsWidget extends StatelessWidget {
                         .doc(globalcurrentUserId)
                         .update({
                       'Jobs': FieldValue.arrayUnion([id]),
+                    });
+                    FirebaseFirestore.instance
+                        .collection('info_Doctors')
+                        .doc(id)
+                        .update({
+                      'Condition': 'Approved',
+                      'Clinics': FieldValue.arrayUnion([
+                        {
+                          'cost': 0,
+                          'name': widget.staffModel.orgName,
+                          'type': widget.staffModel.orgType,
+                        }
+                      ]),
                     });
                     print('license Number added to the array successfully');
                   } catch (error) {

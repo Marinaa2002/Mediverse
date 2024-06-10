@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
+import 'package:mediverse/Constants/Themes.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
-import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Views/AppointmentDetailsScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
 import '../Widgets/CustomCardRatings.dart';
-import '../Widgets/SearchBoxAppointmentWidget.dart';
 
 class AppointmentTab extends StatefulWidget {
   AppointmentTab({super.key});
@@ -20,21 +19,58 @@ class AppointmentTab extends StatefulWidget {
 class _AppointmentTabState extends State<AppointmentTab> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  late TextEditingController _searchController = TextEditingController();
-  var searchedDoctors;
+  late TextEditingController _searchController;
+  String _searchQuery = '';
 
   late Stream<QuerySnapshot> _doctorStream;
-  late Stream<QuerySnapshot> _originalDoctorStream;
+  final Map<String, bool> _specialties = {
+    'Cardiologist': false,
+    'Neurologist': false,
+    'Dentist': false,
+    'Dermatologist': false,
+    'Psychiatrist': false,
+  };
+
   @override
   void initState() {
     _searchController = TextEditingController();
-    _originalDoctorStream = FirebaseFirestore.instance
+    _doctorStream = FirebaseFirestore.instance
         .collection('info_Doctors')
         .where('Condition', isEqualTo: 'Approved')
         .snapshots();
-    _doctorStream = _originalDoctorStream;
-    // TODO: implement initState
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchPressed() {
+    setState(() {
+      _searchQuery = _searchController.text;
+    });
+  }
+
+  void _onSpecialtySelected(String specialty) {
+    setState(() {
+      _specialties.updateAll((key, value) => false);
+      _specialties[specialty] = true;
+      _searchQuery = specialty;
+      _searchController.clear();
+    });
+  }
+
+  List<Doctor> _filterDoctors(List<Doctor> doctors, String query) {
+    if (query.isEmpty) return doctors;
+    final lowerCaseQuery = query.toLowerCase();
+    return doctors.where((doctor) {
+      final name = doctor.name?.toLowerCase();
+      final specialty = doctor.speciality?.toLowerCase();
+      return (name != null && name.contains(lowerCaseQuery)) ||
+          (specialty != null && specialty.contains(lowerCaseQuery));
+    }).toList();
   }
 
   @override
@@ -47,43 +83,77 @@ class _AppointmentTabState extends State<AppointmentTab> {
             children: [
               SearchBarProject(
                 searchController: _searchController,
-                onSearchTextChanged: _onSearchTextChanged,
+                onSearchTextChanged: (_) => _onSearchPressed(),
               ),
-              SizedBox(
-                height: 12,
+              SizedBox(height: 10),
+              Container(
+                height: 20,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: _specialties.keys.map((specialty) {
+                    return Row(
+                      children: [
+                        Checkbox(
+                          value: _specialties[specialty],
+                          onChanged: (bool? value) {
+                            if (value == true) {
+                              _onSpecialtySelected(specialty);
+                            } else {
+                              setState(() {
+                                _specialties[specialty] = false;
+                                _searchQuery = '';
+                              });
+                            }
+                          },
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _onSpecialtySelected(specialty);
+                          },
+                          child: Text(specialty),
+                        ),
+                        SizedBox(width: 10),
+                      ],
+                    );
+                  }).toList(),
+                ),
               ),
+              SizedBox(height: 12),
               StreamBuilder<QuerySnapshot>(
                 stream: _doctorStream,
                 builder: (context, snapshot) {
-                  var doctors = snapshot.data?.docs
-                      .map((doc) => Doctor.fromJson(
-                          doc.data() as Map<String, dynamic>, doc.id))
-                      .toList();
-
-                  if (doctors == null || doctors.isEmpty) {
-                    return Center(
-                      child: Text("No doctors Available"),
-                    );
-                  } else {
-                    if (_searchController.text.isNotEmpty) {
-                      doctors = doctors?.where((doctor) {
-                        final name = doctor.name?.toLowerCase();
-                        final searchValue =
-                            _searchController.text.toLowerCase();
-                        return name!.contains(searchValue);
-                      }).toList();
-                    }
-                    return Expanded(
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: doctors!.length,
-                          itemBuilder: (context, i) {
-                            return CustomCardRatings(
-                              doctor: doctors![i],
-                            );
-                          }),
-                    );
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: Loading());
                   }
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error loading doctors'));
+                  }
+                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return Center(child: Text('No doctors available'));
+                  }
+
+                  var doctors = snapshot.data!.docs.map((doc) {
+                    return Doctor.fromJson(doc.data() as Map<String, dynamic>, doc.id);
+                  }).toList();
+
+                  doctors = _filterDoctors(doctors, _searchQuery);
+
+                  return Expanded(
+                    child: doctors.isEmpty
+                        ? Center(child: Text(
+                      "No Results Found",
+                      style: Themes.bodyLarge.copyWith(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey),
+                    ),)
+                        : ListView.builder(
+                      itemCount: doctors.length,
+                      itemBuilder: (context, index) {
+                        return CustomCardRatings(doctor: doctors[index]);
+                      },
+                    ),
+                  );
                 },
               ),
             ],
@@ -92,21 +162,5 @@ class _AppointmentTabState extends State<AppointmentTab> {
       ),
     );
   }
-
-  void _onSearchTextChanged(String searchText) {
-    setState(() {
-      if (searchText.isNotEmpty) {
-        _doctorStream = FirebaseFirestore.instance
-            .collection('info_Doctors')
-            .where('Name', isGreaterThanOrEqualTo: searchText.toLowerCase())
-            .where('Name',
-                isLessThanOrEqualTo: searchText.toLowerCase() + '\uf8ff')
-            .where('Condition', isEqualTo: 'Approved')
-            .snapshots();
-      } else {
-        // If search text is empty, keep the current search results
-        _doctorStream = _originalDoctorStream;
-      }
-    });
-  }
 }
+

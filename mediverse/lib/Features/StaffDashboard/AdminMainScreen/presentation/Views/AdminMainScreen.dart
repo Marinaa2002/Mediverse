@@ -38,7 +38,7 @@ class _AdminMainScreenWidgetState extends State<AdminMainScreenWidget>
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<FetechAdminInfoCubit>(context)
-        .getDoctorInforCubitFunction("jNVIQIAAsAOw6ltr4eBr");
+        .getDoctorInforCubitFunction("PrBUlYMk5Hh8D6CqGItcrodaVxo2");
     return Scaffold(
       backgroundColor: kSecondryBackgroundColor,
       appBar: AppBar(

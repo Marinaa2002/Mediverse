@@ -1,168 +1,170 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
-class BlogCardDoc extends StatelessWidget {
-  const BlogCardDoc({super.key, required this.title, required this.DrName});
+class BlogCardDoc extends StatefulWidget {
+  BlogCardDoc({
+    Key? key,
+    required this.title,
+    required this.author,
+    required this.image,
+    required this.time,
+    required this.date,
+    required this.body,
+    required this.profile,
+    required this.likes,
+    required this.likedUsers,
+    required this.docId,
+  }) : super(key: key);
 
-  final String title, DrName;
+  final String title, author, image, time, date, body, profile, docId;
+  int likes;
+  List<String> likedUsers;
+
+  @override
+  _BlogCardDocState createState() => _BlogCardDocState();
+}
+
+class _BlogCardDocState extends State<BlogCardDoc> {
+  bool isLiked = false;
+  late User? user;
+  @override
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.currentUser;
+    if (user != null && widget.likedUsers.contains(user!.uid)) {
+      isLiked = true;
+    }
+  }
+
+  Future<void> _updateLikes() async {
+    final docRef = FirebaseFirestore.instance.collection('Blogs').doc(widget.docId);
+    if (isLiked) {
+      widget.likes++;
+      widget.likedUsers.add(user!.uid);
+    } else {
+      widget.likes--;
+      widget.likedUsers.remove(user!.uid);
+    }
+    await docRef.update({'likes': widget.likes, 'likedUsers': widget.likedUsers});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
       child: Container(
-        width: MediaQuery.sizeOf(context).width * 0.96,
+        width: MediaQuery.of(context).size.width * 0.96,
         decoration: BoxDecoration(
           color: kSecondryBackgroundColor,
           boxShadow: const [
             BoxShadow(
-              blurRadius: 4,
+              blurRadius: 15,
               color: Color(0x33000000),
               offset: Offset(0, 2),
             )
           ],
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(2),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '$title',
-                          textAlign: TextAlign.start,
-                          style: Themes.bodyMedium,
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                1, 0, 0, 0),
-                            child: Text(
-                              'By: $DrName',
-                              style: Themes.labelMedium,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                            'assets/images/Human.jpg',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            if (widget.image.isNotEmpty)
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                child: Image.network(
+                  widget.image,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width * 0.6,
+                  fit: BoxFit.cover,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 12),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        style: Themes.bodyLarge.copyWith(
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ),
-                  ],
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                widget.title,
+                style: Themes.bodyMedium
+                    .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.body,
+                  style:
+                  Themes.bodyLarge.copyWith(fontWeight: FontWeight.normal),
                 ),
               ),
-              Align(
-                alignment: const AlignmentDirectional(0, 0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  '${widget.date} at ${widget.time.substring(widget.time.indexOf(' ') + 1)}',
+                  style: Themes.labelMedium,
+                ),
+              ),
+            ),
+
+            Divider(
+              thickness: 2,
+              color: Color.fromARGB(255, 224, 227, 231),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
                     children: [
-                      const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                        size: 24,
+                      CircleAvatar(
+                        backgroundImage: widget.profile.isNotEmpty
+                            ? NetworkImage(widget.profile)
+                            : AssetImage('assets/images/Human.jpg')
+                        as ImageProvider,
+                        radius: 20,
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                        child: Text(
-                          '45',
-                          style: Themes.bodyLarge,
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                        child: CircleAvatar(
-                          backgroundColor: accentBack,
-                          child: IconButton(
-                            iconSize: 44,
-                            icon: const Icon(
-                              Icons.favorite_border,
-                              color: accent1,
-                              size: 22,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              20, 0, 20, 0),
-                          child: CircleAvatar(
-                            backgroundColor: accentBack,
-                            child: IconButton(
-                              iconSize: 44,
-                              icon: const Icon(
-                                Icons.ios_share,
-                                color: accent1,
-                                size: 22,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                        ),
+                      SizedBox(width: 10),
+                      Text(
+                        'Dr. ${widget.author}',
+                        style: Themes.labelColored,
                       ),
                     ],
                   ),
-                ),
+
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          isLiked ? Icons.favorite : Icons.favorite_border,
+                          color: isLiked ? Colors.red : Colors.grey,
+                        ),
+                        onPressed: user != null
+                            ? () {
+                          setState(() {
+                            isLiked = !isLiked;
+                            _updateLikes();
+                          });
+                        }
+                            : null,
+                      ),
+                      Text(
+                        '${widget.likes}',
+                        style: Themes.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

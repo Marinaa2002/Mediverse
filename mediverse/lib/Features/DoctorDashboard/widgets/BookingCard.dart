@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 
 class BookingCard extends StatelessWidget {
-  const BookingCard({super.key});
+  const BookingCard(
+      {super.key, required this.booking, required this.patient_name, required this.displayPatientName});
+
+  final Booking booking;
+  final String patient_name;
+  final bool displayPatientName;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +43,11 @@ class BookingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Patient Name',
+                         (displayPatientName) ? 'Patient Name' : 'Doctor Name',
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Ahmed Hassan',
+                          patient_name,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -59,7 +65,7 @@ class BookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Sat, Oct 04 - 7:00pm',
+                          '${booking.Day.substring(0, 3)}, ${booking.Date}, ${booking.Time}',
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -77,7 +83,7 @@ class BookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Tiba Dental Care',
+                          booking.Location,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -95,7 +101,7 @@ class BookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Done',
+                          booking.State,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),

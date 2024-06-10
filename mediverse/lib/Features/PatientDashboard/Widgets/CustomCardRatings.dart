@@ -79,7 +79,7 @@ class CustomCardRatings extends StatelessWidget {
                                       0, 4, 0, 4),
                                   child: RatingBarIndicator(
                                     rating:
-                                        doctor.rating!, //state.doctor.Rating,
+                                        doctor.rating!.toDouble(), //state.doctor.Rating,
                                     itemBuilder: (context, index) => const Icon(
                                       Icons.star,
                                       color: Colors.amber,

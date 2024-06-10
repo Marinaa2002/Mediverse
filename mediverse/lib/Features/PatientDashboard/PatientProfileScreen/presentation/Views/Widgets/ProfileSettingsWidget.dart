@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -82,11 +83,12 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Age'] ,
+                            userData['Age'] ?? 'Age',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -119,11 +121,12 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['Phone Number'] ,
+                            userData['Phone Number'] ?? 'Phone Number',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -156,11 +159,88 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            userData['NationalId'] ,
+                            userData['NationalId'] ?? 'NationalId',
                             textAlign: TextAlign.center,
-                            style: Themes.bodyXLarge.copyWith(
+                            style: TextStyle(
+                              fontSize: 16,
                               fontFamily: 'Readex Pro',
-                              color: kprimaryColor,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                            child: Icon(
+                              Icons.money_rounded,
+                              color: kSecondaryTextColor,
+                              size: 24,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Text(
+                                'Currency',
+                                textAlign: TextAlign.start,
+                                style: Themes.bodyXLarge,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Egyptian Pound',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Readex Pro',
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                            child: Icon(
+                              Icons.language,
+                              color: kSecondaryTextColor,
+                              size: 24,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Text(
+                                'Language',
+                                textAlign: TextAlign.start,
+                                style: Themes.bodyXLarge,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'English(eng)',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Readex Pro',
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -196,7 +276,9 @@ class ProfileSettingsWidget extends StatelessWidget {
                             onTap: (){
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) =>
-                                      ProfileEditWidget(),));
+                                      ProfileEditWidget(
+                                        userData: userData,
+                                      ),));
                             },
                             child: Text(
                               'Edit Profile',
@@ -220,7 +302,7 @@ class ProfileSettingsWidget extends StatelessWidget {
                             padding:
                             EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.login_rounded,
+                              Icons.logout_rounded,
                               color: kSecondaryTextColor,
                               size: 24,
                             ),
@@ -237,10 +319,6 @@ class ProfileSettingsWidget extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
-                              Navigator.pop(context);
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                            },
                             child: Text(
                               'Log Out?',
                               textAlign: TextAlign.center,
@@ -249,6 +327,26 @@ class ProfileSettingsWidget extends StatelessWidget {
                                 color: kprimaryColor,
                               ),
                             ),
+                            onTap: (){
+                              AwesomeDialog(context: context,
+                                dialogType: DialogType.warning,
+                                animType: AnimType.rightSlide,
+                                //title: 'Error',
+                                title: 'Are you sure you want to Logout?',
+                                titleTextStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold
+                                ),
+                                btnOkOnPress: () {
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                                },
+                                btnCancelOnPress: () {
+                                  //Navigator.pop(context);
+                                },
+                              ).show();
+                            },
                           ),
                         ],
                       ),

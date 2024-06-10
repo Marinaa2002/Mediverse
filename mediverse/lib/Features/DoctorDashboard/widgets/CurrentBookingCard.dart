@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/AppointmentsDoctor/presentation/Managers/cubit/doc_appoints_cubit.dart';
 
 class CurBookingCard extends StatelessWidget {
-  const CurBookingCard({super.key});
+  CurBookingCard({
+    super.key,
+    required this.booking,
+    required this.patient_name,
+  });
+
+  Booking booking;
+  String patient_name;
 
   @override
   Widget build(BuildContext context) {
+    final DocAppointsSuccess appState =
+        context.watch<DocAppointsCubit>().state as DocAppointsSuccess;
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Material(
@@ -41,7 +54,7 @@ class CurBookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Ahmed Hassan',
+                          patient_name,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -59,7 +72,7 @@ class CurBookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Sat, Oct 04 - 7:00pm',
+                          '${booking.Day.substring(0, 3)}, ${booking.Date}, ${booking.Time}',
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -77,7 +90,7 @@ class CurBookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          'Tiba Dental Care',
+                          booking.Location,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -101,10 +114,19 @@ class CurBookingCard extends StatelessWidget {
                               ),
                               backgroundColor: kprimaryColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              booking.State = 'done';
+                              BlocProvider.of<DocAppointsCubit>(context)
+                                  .changeBookingStatus(
+                                appState.bookings,
+                                appState.names,
+                                booking,
+                              );
+                            },
                             icon: const Icon(
                               Icons.check_circle,
                               size: 20,
+                              color: backgroundColor,
                             ),
                             label: Text(
                               'Done',
@@ -125,10 +147,19 @@ class CurBookingCard extends StatelessWidget {
                               ),
                               backgroundColor: kprimaryColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              booking.State = 'declined';
+                              BlocProvider.of<DocAppointsCubit>(context)
+                                  .changeBookingStatus(
+                                appState.bookings,
+                                appState.names,
+                                booking,
+                              );
+                            },
                             icon: const Icon(
                               Icons.cancel_rounded,
                               size: 20,
+                              color: backgroundColor,
                             ),
                             label: Text(
                               'Decline',

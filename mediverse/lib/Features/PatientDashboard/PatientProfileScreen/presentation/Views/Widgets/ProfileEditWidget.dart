@@ -19,17 +19,19 @@ class ProfileEditWidget extends StatelessWidget {
   final TextEditingController ageController = TextEditingController();
   final TextEditingController natIDController = TextEditingController();
   final TextEditingController phoneNumController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   String? name;
   String? age;
   String? national_id;
   String? phoneNum;
+  String? email;
   bool isLoading = false;
+  var userData;
+  User? user = FirebaseAuth.instance.currentUser;
 
-  //PatientProfileModel? patientProfileModel;
-  //var userData;
   ProfileEditWidget({
     super.key,
-    //required this.userData
+    required this.userData
   });
 
   @override
@@ -85,11 +87,9 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: ProfileTextFormField(
-                              text: "Name",
+                              text:  userData['Name'] ?? 'Name',
                               onChanged: (value) {
                                 name = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                .editName(name: name);
                               },
                               controller: nameController,
                             ),
@@ -107,12 +107,10 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: ProfileTextFormField(
-                              text: "Age",
+                              text: userData['Age'] ?? 'Age',
                               onChanged: (value) {
                                 age = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editAge(age: age);
-                              },
+                                },
                               controller: ageController,
                             ),
                           ),
@@ -129,11 +127,9 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
                             child: ProfileTextFormField(
-                              text: "Phone Number",
+                              text: userData['Phone Number'] ?? 'Phone Number',
                               onChanged: (value) {
                                 phoneNum = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editPhoneNum(phoneNum: phoneNum);
                               },
                               controller: phoneNumController,
                             ),
@@ -151,20 +147,71 @@ class ProfileEditWidget extends StatelessWidget {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 10),
                             child: ProfileTextFormField(
-                              text: "National ID",
+                              text: userData['NationalId'] ?? 'NationalId',
                               onChanged: (value) {
                                 national_id = value;
-                                BlocProvider.of<ProfileEditCubit>(context)
-                                    .editNationalId(nationalId: national_id);
                               },
                               controller: natIDController,
                             ),
                           ),
+
+
+                          // Padding(
+                          //   padding: EdgeInsetsDirectional.fromSTEB(
+                          //       12, 0, 12, 10),
+                          //   child: ProfileTextFormField(
+                          //     text: userData['Email'] ?? 'Email',
+                          //     onChanged: (value) async{
+                          //       email = value;
+                          //
+                          //       // BlocProvider.of<ProfileEditCubit>(context)
+                          //       //     .editNationalId(nationalId: national_id);
+                          //     },
+                          //     controller: emailController,
+                          //   ),
+                          // ),
+
+
                           ProfileSaveButton(
                             text: "Save",
                             screen: null,
                             onPressed: () async {
+                              if(nameController.text.isEmpty){
+                                name = userData['Name'];
+                              }
+                              else{
+                                await BlocProvider.of<ProfileEditCubit>(context)
+                                    .editName(name: name);
+                              }
+                              if(ageController.text.isEmpty){
+                                age = userData['Age'];
+                              }
+                              else{
+                                await BlocProvider.of<ProfileEditCubit>(context)
+                                    .editAge(age: age);
+                              }
+                              if(phoneNumController.text.isEmpty){
+                                phoneNum = userData['Phone Number'];
+                              }
+                              else{
+                                await BlocProvider.of<ProfileEditCubit>(context)
+                                    .editPhoneNum(phoneNum: phoneNum);
+                              }
+                              if(natIDController.text.isEmpty){
+                                national_id = userData['NationalId'];
+                              }
+                              else{
+                                await BlocProvider.of<ProfileEditCubit>(context)
+                                    .editNationalId(nationalId: national_id);
+                              }
                               Navigator.pop(context);
+
+                              // String newEmail = emailController.text.trim();
+                              // try {
+                              //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
+                              // } catch (e) {
+                              //   print("Error updating email: $e");
+                              // }
                             },
                           ),
                         ],
