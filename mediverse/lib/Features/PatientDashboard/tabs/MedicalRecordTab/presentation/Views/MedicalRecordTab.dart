@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalRecordEditScreen/presentation/Views/MedicalRecordEditScreen.dart';
 import '../../../../../../Constants/Themes.dart';
+import '../../../../../Beginning/LoginScreen/presentation/views/Loading.dart';
 import '../../../../MedicalRecord/DrNotesScreen/presentation/Views/DrNotesScreen.dart';
 import '../../../../MedicalRecord/LabResultsScreen/presentation/Views/LabResultsScreen.dart';
 import '../../../../MedicalRecord/MedicalPrescriptionsScreen/presentation/Views/MedicalPrescriptionsScreen.dart';
@@ -24,7 +25,7 @@ class MedicalRecordsTab extends StatelessWidget {
           .get(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: Loading());
         }
 
         if (!snapshot.hasData || snapshot.data!.data() == null) {
@@ -46,8 +47,7 @@ class MedicalRecordsTab extends StatelessWidget {
         try {
           final data = snapshot.data!.data() as Map<String, dynamic>;
           List<MRmodel> medicalRecords = List<MRmodel>.from(
-              data['Medical Records']
-                  .map((record) => MRmodel.fromJson(record)));
+              data['Medical Records'].map((record) => MRmodel.fromJson(record)));
           final record = medicalRecords[medicalRecords.length - 1];
           return SingleChildScrollView(
             child: Column(

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/MainScreen.dart';
 import 'package:mediverse/Features/PatientDashboard/MedicalRecord/MedicalRecordEditScreen/presentation/Manager/save_data_cubit.dart';
 import '../../../../../../Constants/constant.dart';
@@ -27,7 +28,6 @@ class MedicalRecordEditScreen extends StatelessWidget {
   String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
   bool isLoading = false;
   GlobalKey<FormState> formKey = GlobalKey();
-  //DocumentReference userDocRef = FirebaseFirestore.instance.collection('info_Patientss').doc(FirebaseAuth.instance.currentUser!.uid);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class MedicalRecordEditScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           print("Token::${FirebaseAuth.instance.currentUser!.uid}");
-          return CircularProgressIndicator();
+          return Loading();
         }
 
         if (snapshot.hasData && snapshot.data!.exists) {
