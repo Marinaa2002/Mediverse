@@ -103,165 +103,126 @@ class _PatientHistoryState extends State<PatientHistory> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<DocumentSnapshot>(
-      future: FirebaseFirestore.instance
-          .collection('info_Doctors')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .get(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Loading();
-        }
-
-        if (!snapshot.hasData || snapshot.data!.data() == null) {
-          return Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "No data available",
-                  style: Themes.bodyMedium.copyWith(fontSize: 18),
-                ),
-              ),
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        backgroundColor: kprimaryColor,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.chevron_left,
+            color: Colors.white,
+            size: 24,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        title: Text(
+          'Patients\' History',
+          style: Themes.headlineMedium.copyWith(
+            color: backgroundColor,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 2,
+      ),
+      body: SafeArea(
+        top: true,
+        child: Column(
+          children: [
+            SearchBoxAppointmentWidget(
+              controller: _searchController,
+              onChanged: (value) {},
+              onSearchPressed: _onSearchPressed,
+              onSubmitted: (value) => _onSearchPressed(), // Add this line
             ),
-          );
-        }
-        try {
-          final data = snapshot.data!.data() as Map<String, dynamic>?;
-          List<dynamic> bookings = List<dynamic>.from(data?['Bookings'] ?? []);
-          List<dynamic> prevBookings = List<dynamic>.from(data?['Previous_Appointments'] ?? []);
-
-          if (bookings.isEmpty && prevBookings.isEmpty) {
-            return Scaffold(
-              backgroundColor: backgroundColor,
-              appBar: AppBar(
-                backgroundColor: kprimaryColor,
-                automaticallyImplyLeading: false,
-                leading: IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                title: Text(
-                  'Patients\' History',
-                  style: Themes.headlineMedium.copyWith(
-                    color: backgroundColor,
-                  ),
-                ),
-                centerTitle: true,
-                elevation: 2,
-              ),
-              body: SafeArea(
-                top: true,
-                  child:Column(
-                    children: [
-                      SearchBoxAppointmentWidget(
-                        controller: _searchController,
-                        onChanged: (value) {},
-                        onSearchPressed: _onSearchPressed,
-                        onSubmitted: (value) => _onSearchPressed(), // Add this line
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.35,),
-                      Center(
-                        child: Text(
-                          "No Patient History Found",
-                          style: Themes.bodyLarge.copyWith(fontSize: 24,fontWeight:FontWeight.w600,color: Colors.grey),
-                        ),
-                      )
-                    ],
-                  )
-              ),
-            );
-          }
-
-          return FutureBuilder<List<DocumentSnapshot>>(
-            future: filterPrevBookings(bookings, prevBookings),
-            builder: (context, filteredBookingsSnapshot) {
-              if (filteredBookingsSnapshot.connectionState == ConnectionState.waiting) {
-                return Loading();
-              }
-
-              if (!filteredBookingsSnapshot.hasData) {
-                return const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text("Error loading previous bookings"),
-                );
-              }
-
-              List<DocumentSnapshot> filteredBookings = filteredBookingsSnapshot.data!;
-
-              return FutureBuilder<Map<String, DocumentSnapshot>>(
-                future: fetchAllPatients(filteredBookings),
-                builder: (context, patientsSnapshot) {
-                  if (patientsSnapshot.connectionState == ConnectionState.waiting) {
+            Expanded(
+              child: FutureBuilder<DocumentSnapshot>(
+                future: FirebaseFirestore.instance
+                    .collection('info_Doctors')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .get(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return Loading();
                   }
 
-                  if (!patientsSnapshot.hasData) {
-                    return const Padding(
+                  if (!snapshot.hasData || snapshot.data!.data() == null) {
+                    return Padding(
                       padding: EdgeInsets.all(16.0),
-                      child: Text("Error loading patients data"),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            "No data available",
+                            style: Themes.bodyMedium.copyWith(fontSize: 18),
+                          ),
+                        ),
+                      ),
                     );
                   }
+                  try {
+                    final data = snapshot.data!.data() as Map<String, dynamic>?;
+                    List<dynamic> bookings = List<dynamic>.from(data?['Bookings'] ?? []);
+                    List<dynamic> prevBookings = List<dynamic>.from(data?['Previous_Appointments'] ?? []);
 
-                  final patientsData = patientsSnapshot.data!;
-
-                  final searchQueryLower = _searchQuery.toLowerCase();
-                  final filteredByName = filteredBookings.where((doc) {
-                    final bookingData = doc.data() as Map<String, dynamic>?;
-                    final patientData = patientsData[bookingData?['Patient_id']]?.data() as Map<String, dynamic>?;
-                    return patientData?['Name'].toString().toLowerCase().contains(searchQueryLower) ?? false;
-                  }).toList();
-
-                  final displayedBookings = _searchQuery.isEmpty
-                      ? filteredByName.take(8).toList()
-                      : filteredByName;
-
-                  return Scaffold(
-                    backgroundColor: backgroundColor,
-                    appBar: AppBar(
-                      backgroundColor: kprimaryColor,
-                      automaticallyImplyLeading: false,
-                      leading: IconButton(
-                        icon: const Icon(
-                          Icons.chevron_left,
-                          color: Colors.white,
-                          size: 24,
+                    if (bookings.isEmpty && prevBookings.isEmpty) {
+                      return Center(
+                        child: Text(
+                          "No Patient History Found",
+                          style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
                         ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      title: Text(
-                        'Patients\' History',
-                        style: Themes.headlineMedium.copyWith(
-                          color: backgroundColor,
-                        ),
-                      ),
-                      centerTitle: true,
-                      elevation: 2,
-                    ),
-                    body: SafeArea(
-                      top: true,
-                      child: Column(
-                        children: [
-                          SearchBoxAppointmentWidget(
-                            controller: _searchController,
-                            onChanged: (value) {},
-                            onSearchPressed: _onSearchPressed,
-                            onSubmitted: (value) => _onSearchPressed(), // Add this line
-                          ),
-                          Expanded(
-                            child: displayedBookings.isEmpty ? Center(
+                      );
+                    }
+
+                    return FutureBuilder<List<DocumentSnapshot>>(
+                      future: filterPrevBookings(bookings, prevBookings),
+                      builder: (context, filteredBookingsSnapshot) {
+                        if (filteredBookingsSnapshot.connectionState == ConnectionState.waiting) {
+                          return Loading();
+                        }
+
+                        if (!filteredBookingsSnapshot.hasData) {
+                          return const Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Text("Error loading previous bookings"),
+                          );
+                        }
+
+                        List<DocumentSnapshot> filteredBookings = filteredBookingsSnapshot.data!;
+
+                        return FutureBuilder<Map<String, DocumentSnapshot>>(
+                          future: fetchAllPatients(filteredBookings),
+                          builder: (context, patientsSnapshot) {
+                            if (patientsSnapshot.connectionState == ConnectionState.waiting) {
+                              return Loading();
+                            }
+
+                            if (!patientsSnapshot.hasData) {
+                              return const Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Text("Error loading patients data"),
+                              );
+                            }
+
+                            final patientsData = patientsSnapshot.data!;
+
+                            final searchQueryLower = _searchQuery.toLowerCase();
+                            final filteredByName = filteredBookings.where((doc) {
+                              final bookingData = doc.data() as Map<String, dynamic>?;
+                              final patientData = patientsData[bookingData?['Patient_id']]?.data() as Map<String, dynamic>?;
+                              return patientData?['Name'].toString().toLowerCase().contains(searchQueryLower) ?? false;
+                            }).toList();
+
+                            final displayedBookings = _searchQuery.isEmpty
+                                ? filteredByName.take(8).toList()
+                                : filteredByName;
+
+                            return displayedBookings.isEmpty ? Center(
                               child: Text(
                                 "No Results Found",
-                                style: Themes.bodyLarge.copyWith(fontSize: 24,fontWeight:FontWeight.w600,color: Colors.grey),
+                                style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
                               ),
                             )
                                 : ListView.builder(
@@ -297,56 +258,28 @@ class _PatientHistoryState extends State<PatientHistory> {
                                   ),
                                 );
                               },
-                            ),
-                          ),
-                        ],
+                            );
+                          },
+                        );
+                      },
+                    );
+                  } catch (e) {
+                    return Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          "Error loading data",
+                          style: Themes.bodyMedium.copyWith(fontSize: 18),
+                        ),
                       ),
-                    ),
-                  );
-                },
-              );
-            },
-          );
-        } catch (e) {
-          return Scaffold(
-            backgroundColor: backgroundColor,
-            appBar: AppBar(
-              backgroundColor: kprimaryColor,
-              automaticallyImplyLeading: false,
-              leading: IconButton(
-                icon: const Icon(
-                  Icons.chevron_left,
-                  color: Colors.white,
-                  size: 24,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
+                    );
+                  }
                 },
               ),
-              title: Text(
-                'Patients\' History',
-                style: Themes.headlineMedium.copyWith(
-                  color: backgroundColor,
-                ),
-              ),
-              centerTitle: true,
-              elevation: 2,
             ),
-            body: SafeArea(
-              top: true,
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    "Error loading data",
-                    style: Themes.bodyMedium.copyWith(fontSize: 18),
-                  ),
-                ),
-              ),
-            ),
-          );
-        }
-      },
+          ],
+        ),
+      ),
     );
   }
 }
