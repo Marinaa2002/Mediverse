@@ -46,7 +46,7 @@ class Doctor {
   final Map<String, String> Clinics; // <clinic name, hospital name or private>
   final int Cost_H_booking;
   final int Cost_C_booking;
-  final List<Blog> Blogs;
+  final List<BlogModel> Blogs;
   final List<Patient> Patients;
   final List<Booking> DocAppointments;
   final List<Booking> Bookings;
