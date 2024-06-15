@@ -71,7 +71,10 @@ class _CameraScreenState extends State<CameraScreen> {
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         leading: IconButton(
-          icon: const Icon(Icons.close),
+          icon: const Icon(
+            Icons.close,
+            color: Colors.white,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },

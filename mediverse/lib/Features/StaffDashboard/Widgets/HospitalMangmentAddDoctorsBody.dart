@@ -13,12 +13,11 @@ import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 class HospitalMangmentAddDoctorsBody extends StatefulWidget {
   const HospitalMangmentAddDoctorsBody({
     Key? key,
-    required TabController tabController,
+    // required TabController tabController,
     required this.staffModel,
-  })  : _tabController = tabController,
-        super(key: key);
+  }) : super(key: key);
 
-  final TabController _tabController;
+  // final TabController _tabController;
   final StaffModel staffModel;
 
   @override
@@ -46,61 +45,61 @@ class _HospitalMangmentAddDoctorsBodyState
     return SafeArea(
       top: true,
       child: Expanded(
-        child: Column(
-          children: [
-            Align(
-              alignment: const Alignment(0, 0),
-              child: TabBar(
-                controller: widget._tabController,
-                isScrollable: true,
-                labelColor: kprimaryColor,
-                unselectedLabelColor: const Color(0xff79828a),
-                labelStyle: const TextStyle(
-                  fontFamily: 'Readex Pro',
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
-                ),
-                unselectedLabelStyle: const TextStyle(),
-                indicatorColor: Colors.grey,
-                tabs: const [
-                  Tab(
-                    text: 'Add Doctors',
-                  ),
-                  Tab(
-                    text: 'My Doctors',
-                  ),
-                ],
-                onTap: (i) async {
-                  [() async {}, () async {}][i]();
-                },
-              ),
-            ),
-            Expanded(
-                child: TabBarView(
-              controller: widget._tabController,
-              children: [
-                Column(
-                  children: [
-                    SearchBarProject(
-                      searchController: _searchController,
-                      onSearchTextChanged: _onSearchTextChanged,
-                    ),
-                    Expanded(
-                      child: DoctorsRequestWidget(
-                          doctorStream: _doctorStream,
-                          searchController: _searchController),
-                    ),
-                  ],
-                ),
-                AddedDoctorsWidget(
-                  widget: widget,
-                ),
-              ],
-            ))
-          ],
-        ),
-      ),
+          child: Column(children: [
+        // Align(
+        //   alignment: const Alignment(0, 0),
+        //   child: TabBar(
+        //     controller: widget._tabController,
+        //     isScrollable: true,
+        //     labelColor: kprimaryColor,
+        //     unselectedLabelColor: const Color(0xff79828a),
+        //     labelStyle: const TextStyle(
+        //       fontFamily: 'Readex Pro',
+        //       fontSize: 15,
+        //       fontWeight: FontWeight.normal,
+        //     ),
+        //     unselectedLabelStyle: const TextStyle(),
+        //     indicatorColor: Colors.grey,
+        //     tabs: const [
+        //       // Tab(
+        //       //   text: 'Add Doctors',
+        //       // ),
+        //       // Tab(
+        //       //   text: 'My Doctors',
+        //       // ),
+        //     ],
+        //     onTap: (i) async {
+        //       [() async {}, () async {}][i]();
+        //     },
+        //   ),
+        // ),
+        Expanded(
+          //   child: TabBarView(
+          // controller: widget._tabController,
+          // children: [
+          // Column(
+          //   children: [
+          //     SearchBarProject(
+          //       searchController: _searchController,
+          //       onSearchTextChanged: _onSearchTextChanged,
+          //     ),
+          //     Expanded(
+          //       child: DoctorsRequestWidget(
+          //           doctorStream: _doctorStream,
+          //           searchController: _searchController),
+          //     ),
+          //   ],
+          // ),
+          child: AddedDoctorsWidget(
+            widget: widget,
+          ),
+          // ],
+        )
+      ])
+          // ],
+          ),
     );
+    // );
   }
 
   void _onSearchTextChanged(String searchText) {

@@ -21,22 +21,22 @@ class HospitalStaffManagementScreenAddDoctors extends StatefulWidget {
 class _HospitalStaffManagementScreenAddDoctorsState
     extends State<HospitalStaffManagementScreenAddDoctors>
     with SingleTickerProviderStateMixin {
-  static const List<Tab> myTabs = <Tab>[
-    Tab(text: 'LEFT'),
-    Tab(text: 'RIGHT'),
-  ];
+  // static const List<Tab> myTabs = <Tab>[
+  // Tab(text: 'LEFT'),
+  // Tab(text: 'RIGHT'),
+  // ];
 
-  late TabController _tabController;
+  // late TabController _tabController;
   String id = '';
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: myTabs.length);
+    // _tabController = TabController(vsync: this, length: myTabs.length);
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    // _tabController.dispose();
     super.dispose();
   }
 
@@ -71,20 +71,23 @@ class _HospitalStaffManagementScreenAddDoctorsState
                     ),
                   ),
                   GestureDetector(
-                    child: Icon(color: Colors.white,Icons.logout),
-                    onTap: (){
-                      AwesomeDialog(context: context,
+                    child: Icon(color: Colors.white, Icons.logout),
+                    onTap: () {
+                      AwesomeDialog(
+                        context: context,
                         dialogType: DialogType.warning,
                         animType: AnimType.rightSlide,
                         //title: 'Error',
                         title: 'Are you sure you want to Logout?',
                         titleTextStyle: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold
-                        ),
+                            fontSize: 14, fontWeight: FontWeight.bold),
                         btnOkOnPress: () {
-                        Navigator.pop(context);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ));
                         },
                         btnCancelOnPress: () {
                           //Navigator.pop(context);
@@ -99,7 +102,7 @@ class _HospitalStaffManagementScreenAddDoctorsState
               elevation: 2,
             ),
             body: HospitalMangmentAddDoctorsBody(
-              tabController: _tabController,
+              // tabController: _tabController,
               staffModel: state.staffModel,
             ),
           );
