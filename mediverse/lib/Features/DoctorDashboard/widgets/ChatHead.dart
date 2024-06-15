@@ -12,10 +12,18 @@ class ChatHead extends StatelessWidget {
     required this.patient_id,
     required this.doctor_id,
     required this.chatterRole,
+    required this.isPhoto,
+    required this.lattestSender,
+    required this.latestMsg,
+    required this.isRead,
   }) : super(key: key);
 
   final String doctor_id;
   final String patient_id;
+  final bool isPhoto;
+  final String lattestSender;
+  final String? latestMsg;
+  final bool isRead;
 
   final String chatterRole;
 
@@ -71,13 +79,83 @@ class ChatHead extends StatelessWidget {
                         profileModel.name,
                         style: Themes.bodyLarge,
                       ),
-                      trailing: Icon(
-                        Icons.keyboard_arrow_right_rounded,
-                        color: const Color(0xFF57636C),
-                        size: 24,
-                      ),
+                      subtitle: isPhoto &&
+                              latestMsg != null &&
+                              lattestSender == "Doctor"
+                          ? Row(
+                              children: [
+                                Icon(Icons.camera_alt),
+                                Text(" "),
+                                Text(
+                                  latestMsg!,
+                                  maxLines: 1,
+                                ),
+                              ],
+                            )
+                          : isPhoto &&
+                                  latestMsg != null &&
+                                  lattestSender == "Patient"
+                              ? Row(
+                                  children: [
+                                    Text("You: "),
+                                    Icon(
+                                      Icons.camera_alt,
+                                      size: 20,
+                                    ),
+                                    Text(" "),
+                                    Text(
+                                      latestMsg!,
+                                      maxLines: 1,
+                                    ),
+                                  ],
+                                )
+                              : !isPhoto &&
+                                      latestMsg != null &&
+                                      lattestSender == "Patient"
+                                  ? Row(
+                                      children: [
+                                        Text("You: "),
+                                        Text(
+                                          latestMsg!,
+                                          maxLines: 1,
+                                        ),
+                                      ],
+                                    )
+                                  : !isPhoto &&
+                                          latestMsg != null &&
+                                          lattestSender == "Doctor"
+                                      ? Text(
+                                          latestMsg!,
+                                          maxLines: 1,
+                                        )
+                                      : isPhoto &&
+                                              latestMsg == null &&
+                                              lattestSender == "Doctor"
+                                          ? Icon(Icons.camera_alt)
+                                          : isPhoto &&
+                                                  latestMsg == null &&
+                                                  lattestSender == "Patient"
+                                              ? Row(
+                                                  children: [
+                                                    Text("You: "),
+                                                    Icon(Icons.camera_alt),
+                                                  ],
+                                                )
+                                              : Text(""),
+                      trailing: !isRead && lattestSender == "Doctor"
+                          ? Icon(
+                              Icons.mark_chat_unread,
+                              color: kprimaryColor,
+                              size: 24,
+                            )
+                          : Icon(
+                              Icons.mark_chat_unread,
+                              color: Colors.grey,
+                              size: 24,
+                            ),
                     ),
                   ),
+
                   Divider(
                       height: 1,
                       thickness: 1,
@@ -130,17 +208,87 @@ class ChatHead extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
+                      subtitle: isPhoto &&
+                              latestMsg != null &&
+                              lattestSender == "Doctor"
+                          ? Row(
+                              children: [
+                                Text("You: "),
+                                Icon(Icons.camera_alt),
+                                Text(" "),
+                                Text(
+                                  latestMsg!,
+                                  maxLines: 1,
+                                ),
+                              ],
+                            )
+                          : isPhoto &&
+                                  latestMsg != null &&
+                                  lattestSender == "Patient"
+                              ? Row(
+                                  children: [
+                                    Icon(
+                                      Icons.camera_alt,
+                                      size: 20,
+                                    ),
+                                    Text(" "),
+                                    Text(
+                                      latestMsg!,
+                                      maxLines: 1,
+                                    ),
+                                  ],
+                                )
+                              : !isPhoto &&
+                                      latestMsg != null &&
+                                      lattestSender == "Patient"
+                                  ? Text(
+                                      latestMsg!,
+                                      maxLines: 1,
+                                    )
+                                  : !isPhoto &&
+                                          latestMsg != null &&
+                                          lattestSender == "Doctor"
+                                      ? Row(
+                                          children: [
+                                            Text("You: "),
+                                            Text(
+                                              latestMsg!,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        )
+                                      : isPhoto &&
+                                              latestMsg == null &&
+                                              lattestSender == "Doctor"
+                                          ? Row(
+                                              children: [
+                                                Text("You: "),
+                                                Icon(Icons.camera_alt),
+                                              ],
+                                            )
+                                          : isPhoto &&
+                                                  latestMsg == null &&
+                                                  lattestSender == "Patient"
+                                              ? Icon(Icons.camera_alt)
+                                              : Text(""),
                       title: Text(
                         profileModel.name,
                         style: Themes.bodyLarge,
                       ),
-                      trailing: Icon(
-                        Icons.keyboard_arrow_right_rounded,
-                        color: const Color(0xFF57636C),
-                        size: 24,
-                      ),
+                      trailing: !isRead && lattestSender == "Patient"
+                          ? Icon(
+                              Icons.mark_chat_unread,
+                              color: kprimaryColor,
+                              size: 24,
+                            )
+                          : Icon(
+                              Icons.mark_chat_unread,
+                              color: Colors.grey,
+                              size: 24,
+                            ),
                     ),
                   ),
+
                   Divider(
                       height: 1,
                       thickness: 1,

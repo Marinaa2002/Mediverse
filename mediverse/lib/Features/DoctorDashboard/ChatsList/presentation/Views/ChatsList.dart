@@ -102,6 +102,10 @@ class ChatsList extends StatelessWidget {
                                 patient_id: globalcurrentUserId,
                                 doctor_id: doctorId,
                                 chatterRole: "DoctorProfile",
+                                isPhoto: chats[index].get('isPhoto'),
+                                lattestSender: chats[index].get('latestSender'),
+                                latestMsg: chats[index].get('latestMsg'),
+                                isRead: chats[index].get('isRead'),
                               ); // Assuming ChatHead takes doctorId
                             },
                           ),
@@ -160,6 +164,10 @@ class ChatsList extends StatelessWidget {
                                 patient_id: patient_id,
                                 doctor_id: globalcurrentUserId,
                                 chatterRole: "Patient_Profile",
+                                isPhoto: chats[index].get('isPhoto'),
+                                lattestSender: chats[index].get('latestSender'),
+                                latestMsg: chats[index].get('latestMsg'),
+                                isRead: chats[index].get('isRead'),
                               ); // Assuming ChatHead takes doctorId
                             },
                           ),

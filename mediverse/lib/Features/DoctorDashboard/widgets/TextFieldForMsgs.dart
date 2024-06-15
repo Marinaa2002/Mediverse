@@ -65,15 +65,22 @@ class TextFieldForMsgs extends StatelessWidget {
                     'patient_id': patient_id,
                     'doctor_id': doc_id,
                     kCreatedAt: DateTime.now(),
+                    'latestSender': nowRole,
+                    'latestMsg': data,
+                    'isPhoto': false,
                     'isRead': false
                   },
                 );
                 log('Document do not exist!');
               } else {
                 // Document with specified fields exists
-                chatHistory
-                    .doc(querySnapshot.docs[0].id)
-                    .update({kCreatedAt: DateTime.now(), 'isRead': false});
+                chatHistory.doc(querySnapshot.docs[0].id).update({
+                  kCreatedAt: DateTime.now(),
+                  'isRead': false,
+                  'latestSender': nowRole,
+                  'latestMsg': data,
+                  'isPhoto': false,
+                });
                 log('Document exist!');
               }
             }

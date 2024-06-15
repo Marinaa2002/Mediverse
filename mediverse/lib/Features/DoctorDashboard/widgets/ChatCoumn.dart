@@ -1,22 +1,17 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
-import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/UploadScreenPhoto.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/AllAboutTextFieldAndIconsSendAndCamera.dart';
-import 'package:mediverse/Features/DoctorDashboard/widgets/CameraIconButton.dart';
-import 'package:mediverse/Features/DoctorDashboard/widgets/ChattingTextFieldAndIcon.dart';
-import 'package:mediverse/Features/DoctorDashboard/widgets/DateChat.dart';
-import 'package:mediverse/Features/DoctorDashboard/widgets/MessagesListView.dart';
-import 'package:mediverse/Features/DoctorDashboard/widgets/SendButtonWithAlign.dart';
-import 'package:mediverse/Features/DoctorDashboard/widgets/TextFieldForMsgs.dart';
 
-import 'SendButtonIcon.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/MessagesListView.dart';
 
 String textData = "";
 
-class ChatCoumn extends StatelessWidget {
+class ChatCoumn extends StatefulWidget {
   const ChatCoumn(
       {super.key,
       required ScrollController controller2,
@@ -35,12 +30,24 @@ class ChatCoumn extends StatelessWidget {
   final String nowRole;
 
   @override
+  State<ChatCoumn> createState() => _ChatCoumnState();
+}
+
+class _ChatCoumnState extends State<ChatCoumn> {
+  @override
+  void initState() {
+    super.initState();
+    // Call function to mark chat as read when screen is first initialized
+    markChatAsRead();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: messages
+      stream: widget.messages
           .orderBy(kCreatedAt, descending: true)
-          .where('doctor_id', isEqualTo: doctorId)
-          .where('patient_id', isEqualTo: patientId)
+          .where('doctor_id', isEqualTo: widget.doctorId)
+          .where('patient_id', isEqualTo: widget.patientId)
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -54,28 +61,28 @@ class ChatCoumn extends StatelessWidget {
             children: [
               // const DateOfChat(),
               MessagesListView(
-                doc_id: doctorId,
-                patient_id: patientId,
+                doc_id: widget.doctorId,
+                patient_id: widget.patientId,
                 messagesList: messagesList,
-                controller: _scrollablecontroller,
+                controller: widget._scrollablecontroller,
               ),
               AllAboutTextFieldAndIconsSendAndCamera(
-                textEditingcontroller: textEditingcontroller,
-                messages: messages,
-                scrollablecontroller: _scrollablecontroller,
+                textEditingcontroller: widget.textEditingcontroller,
+                messages: widget.messages,
+                scrollablecontroller: widget._scrollablecontroller,
                 onPressedCameraIcon: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => CameraScreen(
-                        patient_id: patientId,
-                        doc_id: doctorId,
+                        patient_id: widget.patientId,
+                        doc_id: widget.doctorId,
                       ),
                     ),
                   );
                 },
-                patient_id: patientId,
-                doctor_id: doctorId,
+                patient_id: widget.patientId,
+                doctor_id: widget.doctorId,
               ),
             ],
           );
@@ -89,5 +96,28 @@ class ChatCoumn extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> markChatAsRead() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('ChatHistory')
+          .where('doctor_id', isEqualTo: widget.doctorId)
+          .where('patient_id', isEqualTo: widget.patientId)
+          .where('latestSender', isNotEqualTo: widget.nowRole)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        // Update the first document found (assuming there's only one match)
+        var documentId = querySnapshot.docs[0].id;
+        await FirebaseFirestore.instance
+            .collection('ChatHistory')
+            .doc(documentId)
+            .update({'isRead': true});
+      }
+    } catch (e) {
+      log('Error marking chat as read: $e');
+      // Handle error as needed
+    }
   }
 }

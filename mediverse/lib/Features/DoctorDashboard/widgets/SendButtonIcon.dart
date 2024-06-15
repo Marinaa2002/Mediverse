@@ -62,6 +62,9 @@ class SendIconButton extends StatelessWidget {
               {
                 'patient_id': patient_id,
                 'doctor_id': doc_id,
+                'latestMsg': textData,
+                'latestSender': nowRole,
+                'isPhoto': false,
                 kCreatedAt: DateTime.now(),
                 'isRead': false
               },
@@ -69,9 +72,15 @@ class SendIconButton extends StatelessWidget {
             log('Document do not exist!');
           } else {
             // Document with specified fields exists
-            chatHistory
-                .doc(querySnapshot.docs[0].id)
-                .update({kCreatedAt: DateTime.now(), 'isRead': false});
+            chatHistory.doc(querySnapshot.docs[0].id).update(
+              {
+                kCreatedAt: DateTime.now(),
+                'isRead': false,
+                'latestMsg': textData,
+                'isPhoto': false,
+                'latestSender': nowRole,
+              },
+            );
             log('Document exist!');
           }
         }
