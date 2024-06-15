@@ -133,6 +133,12 @@ class CameraViewPage extends StatelessWidget {
                               },
                             );
                             log('Document do not exist!');
+                          } else {
+                            // Document with specified fields exists
+                            chatHistory.doc(querySnapshot.docs[0].id).update({
+                              kCreatedAt: DateTime.now(),
+                            });
+                            log('Document exist!');
                           }
                           controller.clear();
 

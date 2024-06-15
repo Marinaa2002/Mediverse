@@ -62,9 +62,16 @@ class SendIconButton extends StatelessWidget {
               {
                 'patient_id': patient_id,
                 'doctor_id': doc_id,
+                kCreatedAt: DateTime.now(),
               },
             );
             log('Document do not exist!');
+          } else {
+            // Document with specified fields exists
+            chatHistory.doc(querySnapshot.docs[0].id).update({
+              kCreatedAt: DateTime.now(),
+            });
+            log('Document exist!');
           }
         }
         textEditingcontroller.clear();

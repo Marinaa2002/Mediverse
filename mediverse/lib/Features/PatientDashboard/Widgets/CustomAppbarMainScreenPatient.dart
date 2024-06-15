@@ -45,21 +45,21 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
               snapshot.data!.data()); //5aif a3ml edit bs hwa doctor
           return Align(
             alignment: AlignmentDirectional(0, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PatientProfileScreen(),
-                      ),
-                    );
-                  },
-                  child: Padding(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PatientProfileScreen(),
+                  ),
+                );
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 10),
                     child: Container(
                       width: 50,
@@ -86,35 +86,35 @@ class CustomAppbarMainScreenPatient extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 40,
-                ),
-                Column(children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    child: Text(
-                      profileModel.name,
-                      style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
+                  SizedBox(
+                    width: 40,
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    child: Text(
-                      profileModel.email,
-                      style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white),
+                  Column(children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      child: Text(
+                        profileModel.name,
+                        style: TextStyle(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
                     ),
-                  ),
-                ]),
-              ],
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      child: Text(
+                        profileModel.email,
+                        style: TextStyle(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ]),
+                ],
+              ),
             ),
           );
         });

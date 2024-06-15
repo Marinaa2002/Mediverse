@@ -53,6 +53,7 @@ class ChatsList extends StatelessWidget {
                     stream: chatHistory
                         // .orderBy(kCreatedAt, descending: true)
                         .where('patient_id', isEqualTo: globalcurrentUserId)
+                        .orderBy(kCreatedAt, descending: true)
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
@@ -70,6 +71,22 @@ class ChatsList extends StatelessWidget {
                       }
 
                       final chats = snapshot.data!.docs;
+                      if (snapshot.data!.docs.isEmpty) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.3,
+                            ),
+                            const Center(
+                                child: Text(
+                              "No chats History",
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            )),
+                          ],
+                        );
+                      }
                       return Expanded(
                         child: Padding(
                           padding:
@@ -93,7 +110,7 @@ class ChatsList extends StatelessWidget {
                     })
                 : StreamBuilder<QuerySnapshot>(
                     stream: chatHistory
-                        // .orderBy(kCreatedAt, descending: true)
+                        .orderBy(kCreatedAt, descending: true)
                         .where('doctor_id', isEqualTo: globalcurrentUserId)
                         .snapshots(),
                     builder: (context, snapshot) {
@@ -112,6 +129,22 @@ class ChatsList extends StatelessWidget {
                       }
 
                       final chats = snapshot.data!.docs;
+                      if (snapshot.data!.docs.isEmpty) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.3,
+                            ),
+                            const Center(
+                                child: Text(
+                              "No chats History",
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            )),
+                          ],
+                        );
+                      }
                       return Expanded(
                         child: Padding(
                           padding:
