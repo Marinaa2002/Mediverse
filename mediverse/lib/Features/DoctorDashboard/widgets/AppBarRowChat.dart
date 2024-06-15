@@ -88,6 +88,7 @@ class AppBarRowIconChat extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.arrow_back,
+                  color: Colors.white,
                   size: 24,
                 ),
                 const SizedBox(

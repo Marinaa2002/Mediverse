@@ -112,7 +112,7 @@ class DoctorChat extends StatelessWidget {
               patient_id: patientId!,
             ),
             actions: const [
-              PopUpWindow(),
+              // PopUpWindow(),
             ],
           ),
           body: Padding(
