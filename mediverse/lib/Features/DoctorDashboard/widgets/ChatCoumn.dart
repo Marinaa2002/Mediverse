@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
@@ -43,6 +44,19 @@ class _ChatCoumnState extends State<ChatCoumn> {
     markChatAsRead();
   }
 
+  String formatDateddmmyyyy(String timestampMsg) {
+    int seconds = int.parse(timestampMsg.split(',')[0].split('=')[1]);
+    int nanoseconds =
+        int.parse(timestampMsg.split(',')[1].split('=')[1].replaceAll(')', ''));
+
+    DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(
+        seconds * 1000000 + nanoseconds ~/ 1000);
+
+    // Format the DateTime to 'dd/MM/yyyy' to use as a group key
+    String formattedDate = DateFormat('dd/MM/yyyy').format(dateTime);
+    return formattedDate;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -54,20 +68,33 @@ class _ChatCoumnState extends State<ChatCoumn> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Message> messagesList = [];
+          List<String> dates = [];
           for (int i = 0; i < snapshot.data!.docs.length; i++) {
+            dates.add(formatDateddmmyyyy(
+                snapshot.data!.docs[i].get('createdAt').toString()));
             messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
           }
-          log(messagesList.elementAt(0).createdAt);
+          // var objList = dates.reversed;
+
+          // // creating a new list with the object
+          // dates = new List.from(objList);
+          // var messageListIter = messagesList.reversed;
+
+          // // creating a new list with the object
+          // messagesList = new List<Message>.from(messageListIter);
 
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // counterOfDateOfMessage==0? const DateOfChat(): ,
+              // DateOfChat(
+              //   dates: dates,
+              // ),
               MessagesListView(
                 doc_id: widget.doctorId,
                 patient_id: widget.patientId,
                 messagesList: messagesList,
                 controller: widget._scrollablecontroller,
+                dates: dates,
               ),
               AllAboutTextFieldAndIconsSendAndCamera(
                 textEditingcontroller: widget.textEditingcontroller,

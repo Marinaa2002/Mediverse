@@ -4,48 +4,59 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/ChatCoumn.dart';
 
-class DateOfChat extends StatelessWidget {
-  const DateOfChat({
-    super.key,
-    required this.firstMsgSent,
-  });
-  final Message firstMsgSent;
-  String formatDate(String timestampString) {
-    // Extract seconds and nanoseconds from the string
-    int seconds = int.parse(timestampString.split(',')[0].split('=')[1]);
-    int nanoseconds = int.parse(
-        timestampString.split(',')[1].split('=')[1].replaceAll(')', ''));
+String lastMsgDate = '';
 
-    // Create a DateTime object from seconds and nanoseconds
+class DateOfChat extends StatelessWidget {
+  DateOfChat({
+    super.key,
+    required this.currentDate,
+    required this.chatesSize,
+    required this.currentIndex,
+  });
+  final int chatesSize;
+  final int currentIndex;
+
+  final String currentDate;
+  int counterOfDateOfMessage = 0;
+  // Function to parse and format the timestamp
+  String formatToDate(String timestamp) {
+    int seconds = int.parse(timestamp.split(',')[0].split('=')[1]);
+    int nanoseconds =
+        int.parse(timestamp.split(',')[1].split('=')[1].replaceAll(')', ''));
+
     DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(
         seconds * 1000000 + nanoseconds ~/ 1000);
 
-    // Get current date and compare
-    DateTime now = DateTime.now();
-    DateTime date = dateTime.toLocal();
-
-    // Check if it's today
-    if (now.year == date.year &&
-        now.month == date.month &&
-        now.day == date.day) {
-      return 'Today';
-    }
-
-    // Check if it's yesterday
-    DateTime yesterday = now.subtract(Duration(days: 1));
-    if (yesterday.year == date.year &&
-        yesterday.month == date.month &&
-        yesterday.day == date.day) {
-      return 'Yesterday';
-    }
-    counterOfDateOfMessage++;
-    // Otherwise, return the formatted date
-    return DateFormat('dd MMM yyyy').format(date);
+    // Format the DateTime to 'dd/MM/yyyy'
+    return DateFormat('dd/MM/yyyy').format(dateTime);
   }
 
   @override
   Widget build(BuildContext context) {
-    // String dateOfChat
-    return Center(child: Text('12/5/2022', style: Themes.DateText));
+    if (currentIndex == chatesSize) {
+      return SizedBox(
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+          child: Text(currentDate, style: Themes.DateText),
+        ),
+      );
+    }
+    if (lastMsgDate != currentDate && counterOfDateOfMessage == 0) {
+      counterOfDateOfMessage++;
+      lastMsgDate = currentDate;
+      return SizedBox(
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+          child: Text(currentDate, style: Themes.DateText),
+        ),
+      );
+    } else {
+      lastMsgDate = currentDate;
+      counterOfDateOfMessage = 0;
+      return SizedBox
+          .shrink(); // Return an empty widget if date has already been displayed
+    }
   }
 }
