@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,9 +14,19 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the current time
-    String formattedTime = DateFormat.Hm().format(DateTime.now());
+    // Extract seconds and nanoseconds from the string
+    int seconds = int.parse(message.createdAt.split(',')[0].split('=')[1]);
+    int nanoseconds = int.parse(
+        message.createdAt.split(',')[1].split('=')[1].replaceAll(')', ''));
 
+    // Create a DateTime object from seconds and nanoseconds
+    DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(
+        seconds * 1000000 + nanoseconds ~/ 1000);
+
+    // Format the DateTime to 'HH:mm'
+    String formattedTime =
+        '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
+    log(formattedTime);
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
