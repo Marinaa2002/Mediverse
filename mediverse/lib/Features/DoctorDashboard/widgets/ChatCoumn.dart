@@ -6,10 +6,12 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/CameraScreen.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/AllAboutTextFieldAndIconsSendAndCamera.dart';
+import 'package:mediverse/Features/DoctorDashboard/widgets/DateChat.dart';
 
 import 'package:mediverse/Features/DoctorDashboard/widgets/MessagesListView.dart';
 
 String textData = "";
+int counterOfDateOfMessage = 0;
 
 class ChatCoumn extends StatefulWidget {
   const ChatCoumn(
@@ -55,11 +57,12 @@ class _ChatCoumnState extends State<ChatCoumn> {
           for (int i = 0; i < snapshot.data!.docs.length; i++) {
             messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
           }
+          log(messagesList.elementAt(0).createdAt);
 
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // const DateOfChat(),
+              // counterOfDateOfMessage==0? const DateOfChat(): ,
               MessagesListView(
                 doc_id: widget.doctorId,
                 patient_id: widget.patientId,

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/data/models/MessageModel.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Views/FullScreenImage.dart'; // Import the intl package for date formatting
+import 'package:intl/intl.dart';
 
 class ChatMessageWithPhoto extends StatelessWidget {
   const ChatMessageWithPhoto(
@@ -15,8 +16,17 @@ class ChatMessageWithPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the current time
-    String formattedTime = DateFormat.Hm().format(DateTime.now());
+    int seconds = int.parse(message.createdAt.split(',')[0].split('=')[1]);
+    int nanoseconds = int.parse(
+        message.createdAt.split(',')[1].split('=')[1].replaceAll(')', ''));
+
+    // Create a DateTime object from seconds and nanoseconds
+    DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(
+        seconds * 1000000 + nanoseconds ~/ 1000);
+
+    // Format the DateTime to 'HH:mm'
+    String formattedTime =
+        '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
 
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
