@@ -33,6 +33,7 @@ class RowOfRequestWidget extends StatelessWidget {
               requestModelField,
               style: const TextStyle(
                 fontSize: 15,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

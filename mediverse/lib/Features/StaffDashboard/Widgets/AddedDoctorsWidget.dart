@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:mediverse/AllModels/Staff.dart';
 import 'package:mediverse/Core/utils/Functions.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
+import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabStaffMainScreen.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/DoctorCard.dart';
+import 'package:mediverse/Features/StaffDashboard/Widgets/SlotsWidget.dart';
 
 import 'HospitalMangmentAddDoctorsBody.dart';
 
@@ -52,9 +54,23 @@ class AddedDoctorsWidget extends StatelessWidget {
               return ListView.builder(
                 itemCount: staff!.jobs.length,
                 itemBuilder: (context, i) {
-                  return DoctorCard(
-                    id: staff!.jobs[i],
-                    orgName: staff!.orgName,
+                  return Dismissible(
+                    key: UniqueKey(),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+                      deleteElemetInArray(
+                          'Staff', globalcurrentUserId, 'Jobs', staff!.jobs[i]);
+                    },
+                    // Background when swiping to delete
+                    background: Container(
+                      alignment: Alignment.centerRight,
+                      color: Colors.red,
+                      child: const Icon(Icons.delete, color: Colors.white),
+                    ),
+                    child: DoctorCard(
+                      id: staff!.jobs[i],
+                      orgName: staff!.orgName,
+                    ),
                   );
                 },
               );

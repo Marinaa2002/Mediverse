@@ -4,11 +4,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mediverse/AllModels/Staff.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
+import 'package:mediverse/Features/StaffDashboard/LabStaffMainScreen/presentation/LabStaffMainScreen.dart';
 
 import 'PatientCard.dart';
 
 class ListViewPatient extends StatelessWidget {
-  const ListViewPatient({super.key});
+  const ListViewPatient({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +42,22 @@ class ListViewPatient extends StatelessWidget {
           return ListView.builder(
             itemCount: staff.jobs.length,
             itemBuilder: (context, index) {
-              return MedicalCard(
-                id: staff.jobs[index],
+              return Dismissible(
+                key: UniqueKey(),
+                direction: DismissDirection.endToStart,
+                onDismissed: (direction) {
+                  deleteElemetInArray(
+                      'Staff', globalcurrentUserId, 'Jobs', staff.jobs[index]);
+                },
+                // Background when swiping to delete
+                background: Container(
+                  alignment: Alignment.centerRight,
+                  color: Colors.red,
+                  child: const Icon(Icons.delete, color: Colors.white),
+                ),
+                child: MedicalCard(
+                  id: staff.jobs[index],
+                ),
               );
             },
           );

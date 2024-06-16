@@ -145,3 +145,23 @@ class LabStaffScreen extends StatelessWidget {
     );
   }
 }
+
+void deleteElemetInArray(String collectionPath, String documentId,
+    String fieldPath, dynamic elementToRemove) async {
+  try {
+    // Get a reference to the document
+    DocumentReference<Map<String, dynamic>> documentRef =
+        FirebaseFirestore.instance.collection(collectionPath).doc(documentId);
+
+    // Remove the specified element from the array
+    documentRef.update({
+      fieldPath: FieldValue.arrayRemove([elementToRemove])
+    }).then((_) {
+      print("Element removed successfully from array!");
+    }).catchError((error) {
+      print("Error removing element from array: $error");
+    });
+  } catch (e) {
+    print("Error: $e");
+  }
+}
