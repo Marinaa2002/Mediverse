@@ -79,6 +79,7 @@ class PatientReviewCubit extends Cubit<PatientReviewState> {
           reviews.add(right[right.length - 1 - i]);
         }
         double rating = getRating(reviews);
+        // rating = double.parse((rating).toStringAsFixed(2));
         patientReviewRepo.updateDoctorRating(
             doctor_id: Doctor_id, rating: rating);
         emit(PatientReviewSuccess(reviewModellList: reviews, rating: rating));
