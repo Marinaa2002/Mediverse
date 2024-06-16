@@ -18,7 +18,7 @@ class AddedDoctorsWidget extends StatelessWidget {
 // final String orgName;
 // final String orgType;
   final HospitalMangmentAddDoctorsBody widget;
-
+  StaffModel? staff;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,18 +43,18 @@ class AddedDoctorsWidget extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: const CircularProgressIndicator());
               }
-              StaffModel staff = StaffModel.fromJson(snapshot.data!.data()!);
+              staff = StaffModel.fromJson(snapshot.data!.data()!);
               if (staff!.jobs.isEmpty) {
                 return Center(
                   child: Text("No Doctors Added"),
                 );
               }
               return ListView.builder(
-                itemCount: staff.jobs.length,
+                itemCount: staff!.jobs.length,
                 itemBuilder: (context, i) {
                   return DoctorCard(
-                    id: staff.jobs[i],
-                    orgName: staff.orgName,
+                    id: staff!.jobs[i],
+                    orgName: staff!.orgName,
                   );
                 },
               );
@@ -89,28 +89,32 @@ class AddedDoctorsWidget extends StatelessWidget {
                       showSnackBar(context,
                           "No Doctor With this license Number"); // Handle case when no document is found
                     }
-
-                    // Update the array in Firestore using arrayUnion
-                    await FirebaseFirestore.instance
-                        .collection('Staff')
-                        .doc(globalcurrentUserId)
-                        .update({
-                      'Jobs': FieldValue.arrayUnion([id]),
-                    });
-                    FirebaseFirestore.instance
-                        .collection('info_Doctors')
-                        .doc(id)
-                        .update({
-                      'Condition': 'Approved',
-                      'Clinics': FieldValue.arrayUnion([
-                        {
-                          'cost': 0,
-                          'name': widget.staffModel.orgName,
-                          'type': widget.staffModel.orgType,
-                        }
-                      ]),
-                    });
-                    print('license Number added to the array successfully');
+                    if (id != "") {
+                      // Update the array in Firestore using arrayUnion
+                      await FirebaseFirestore.instance
+                          .collection('Staff')
+                          .doc(globalcurrentUserId)
+                          .update({
+                        'Jobs': FieldValue.arrayUnion([id]),
+                      });
+                      FirebaseFirestore.instance
+                          .collection('info_Doctors')
+                          .doc(id)
+                          .update({
+                        'Condition': 'Approved',
+                        'Clinics': FieldValue.arrayUnion([
+                          {
+                            'cost': 0,
+                            'name': staff!.orgName,
+                            'type': staff!.orgType,
+                          }
+                        ]),
+                      });
+                      print('license Number added to the array successfully');
+                    } else {
+                      showSnackBar(
+                          context, "No Doctor With this license Number");
+                    }
                   } catch (error) {
                     print('Error adding license Number to the array: $error');
                   }

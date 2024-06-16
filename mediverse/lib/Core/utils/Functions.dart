@@ -63,9 +63,7 @@ Future<String?> showTextFieldDialog(BuildContext context,
               backgroundColor: kprimaryColor, // Set the background color
             ),
             onPressed: () {
-              if (!isError) {
-                Navigator.of(context).pop(textEditingController.text);
-              }
+              Navigator.of(context).pop(textEditingController.text);
             },
             child: const Text(
               'Save',

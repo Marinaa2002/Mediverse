@@ -14,11 +14,11 @@ class HospitalMangmentAddDoctorsBody extends StatefulWidget {
   const HospitalMangmentAddDoctorsBody({
     Key? key,
     // required TabController tabController,
-    required this.staffModel,
+    // required this.staffModel,
   }) : super(key: key);
 
   // final TabController _tabController;
-  final StaffModel staffModel;
+  // final StaffModel staffModel;
 
   @override
   State<HospitalMangmentAddDoctorsBody> createState() =>
@@ -27,17 +27,17 @@ class HospitalMangmentAddDoctorsBody extends StatefulWidget {
 
 class _HospitalMangmentAddDoctorsBodyState
     extends State<HospitalMangmentAddDoctorsBody> {
-  late TextEditingController _searchController;
+  // late TextEditingController _searchController;
   late Stream<QuerySnapshot> _doctorStream;
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
-    _doctorStream = FirebaseFirestore.instance
-        .collection('Form_Requests_Info')
-        .where('Org Name', isEqualTo: widget.staffModel.orgName)
-        .where('Status', isEqualTo: "Verified")
-        .snapshots();
+    // _searchController = TextEditingController();
+    // _doctorStream = FirebaseFirestore.instance
+    //     .collection('Form_Requests_Info')
+    //     .where('Org Name', isEqualTo: widget.staffModel.orgName)
+    //     .where('Status', isEqualTo: "Verified")
+    //     .snapshots();
   }
 
   @override
@@ -102,20 +102,20 @@ class _HospitalMangmentAddDoctorsBodyState
     // );
   }
 
-  void _onSearchTextChanged(String searchText) {
-    setState(() {
-      _doctorStream = FirebaseFirestore.instance
-          .collection('Form_Requests_Info')
-          .where('Org Name', isEqualTo: widget.staffModel.orgName)
-          .where('Status', isEqualTo: "Verified")
-          .where('Name', isGreaterThanOrEqualTo: searchText)
-          .snapshots();
-    });
-  }
+  // void _onSearchTextChanged(String searchText) {
+  //   setState(() {
+  //     _doctorStream = FirebaseFirestore.instance
+  //         .collection('Form_Requests_Info')
+  //         .where('Org Name', isEqualTo: widget.staffModel.orgName)
+  //         .where('Status', isEqualTo: "Verified")
+  //         .where('Name', isGreaterThanOrEqualTo: searchText)
+  //         .snapshots();
+  //   });
+  // }
 
   @override
   void dispose() {
-    _searchController.dispose();
+    // _searchController.dispose();
     super.dispose();
   }
 }

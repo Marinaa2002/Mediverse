@@ -48,67 +48,58 @@ class _HospitalStaffManagementScreenAddDoctorsState
     if (args != null) {
       id = args['id'];
     }
-    BlocProvider.of<FetecHMInfoCubit>(context).getHMInforCubitFunction(id);
-    return BlocBuilder<FetecHMInfoCubit, FetechHMInfoState>(
-      builder: (context, state) {
-        if (state is FetechHMInfoStateSuccess) {
-          return Scaffold(
-            backgroundColor: backgroundColor,
-            appBar: AppBar(
-              backgroundColor: kprimaryColor,
-              automaticallyImplyLeading: false,
-              title: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0, 0),
-                      child: AppBarNameOfHospital(
-                        orgName: state.staffModel.orgName,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Icon(color: Colors.white, Icons.logout),
-                    onTap: () {
-                      AwesomeDialog(
-                        context: context,
-                        dialogType: DialogType.warning,
-                        animType: AnimType.rightSlide,
-                        //title: 'Error',
-                        title: 'Are you sure you want to Logout?',
-                        titleTextStyle: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                        btnOkOnPress: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ));
-                        },
-                        btnCancelOnPress: () {
-                          //Navigator.pop(context);
-                        },
-                      ).show();
-                    },
-                  ),
-                ],
+
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        backgroundColor: kprimaryColor,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Align(
+                alignment: const AlignmentDirectional(0, 0),
+                child: AppBarNameOfHospital(),
               ),
-              actions: const [],
-              centerTitle: false,
-              elevation: 2,
             ),
-            body: HospitalMangmentAddDoctorsBody(
-              // tabController: _tabController,
-              staffModel: state.staffModel,
+            GestureDetector(
+              child: Icon(color: Colors.white, Icons.logout),
+              onTap: () {
+                AwesomeDialog(
+                  context: context,
+                  dialogType: DialogType.warning,
+                  animType: AnimType.rightSlide,
+                  //title: 'Error',
+                  title: 'Are you sure you want to Logout?',
+                  titleTextStyle:
+                      TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  btnOkOnPress: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ));
+                  },
+                  btnCancelOnPress: () {
+                    //Navigator.pop(context);
+                  },
+                ).show();
+              },
             ),
-          );
-        }
-        return Container();
-      },
+          ],
+        ),
+        actions: const [],
+        centerTitle: false,
+        elevation: 2,
+      ),
+      body: HospitalMangmentAddDoctorsBody(
+          // tabController: _tabController,
+          // staffModel: state.staffModel,
+          ),
     );
   }
 }
