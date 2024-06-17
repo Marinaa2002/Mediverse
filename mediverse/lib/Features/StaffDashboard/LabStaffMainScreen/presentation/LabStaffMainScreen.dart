@@ -102,7 +102,8 @@ class LabStaffScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.add,color: Colors.white,),
+        backgroundColor: kprimaryColor,
         onPressed: () async {
           final national_id = await showTextFieldDialog(
             context,

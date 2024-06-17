@@ -7,6 +7,7 @@ import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoCubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/DoctorChat/presentation/Manager/getNameAndPhotoCubit/GetDoctorInfoStates.dart';
+import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Views/DoctorProfile.dart';
 
 import '../../PatientDashboard/PatientProfileScreen/data/models/PatientProfileModel.dart';
 
@@ -42,49 +43,60 @@ class AppBarDoctor extends StatelessWidget {
               PatientProfileModel.fromJson(snapshot.data!.data());
           return Align(
             alignment: const AlignmentDirectional(0, 0),
-            child: Row(
+            child:
+            Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 20, 5),
-                  child: Container(
-                    width: 55,
-                    height: 55,
-                    decoration: const BoxDecoration(
-                      color: kprimaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Hero(
-                        tag: 'profile',
-                        child: Container(
-                          width: MediaQuery.of(context).size.width*0.2,
-                          height: MediaQuery.of(context).size.width*0.2,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.network(
-                            profileModel.profilePicture,
-                            fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DoctorProfile(),
+                        ));
+                  },
+                  child:
+                  Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 20, 5),
+                          child: Container(
+                            width: 55,
+                            height: 55,
+                            decoration: const BoxDecoration(
+                              color: kprimaryColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: Hero(
+                                tag: 'profile',
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width*0.2,
+                                  height: MediaQuery.of(context).size.width*0.2,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.network(
+                                    profileModel.profilePicture,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
+                Expanded(
                   child: Column(
+                    mainAxisAlignment:
+                    MainAxisAlignment.start, // Center vertically
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
                         profileModel.name,
-                        style:
-                        TextStyle(
+                        style: TextStyle(
                             fontFamily: 'Readex Pro',
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -92,18 +104,84 @@ class AppBarDoctor extends StatelessWidget {
                       ),
                       Text(
                         profileModel.email,
-                        style:
-                        TextStyle(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white),
+                        style: const TextStyle(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 14,
+                          color: kThirdTextColor,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ],
                   ),
                 ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                ),
               ],
             ),
+
+            // Row(
+            //   mainAxisSize: MainAxisSize.max,
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     Padding(
+            //       padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 20, 5),
+            //       child: Container(
+            //         width: 55,
+            //         height: 55,
+            //         decoration: const BoxDecoration(
+            //           color: kprimaryColor,
+            //           shape: BoxShape.circle,
+            //         ),
+            //         child: Padding(
+            //           padding: const EdgeInsets.all(2),
+            //           child: Hero(
+            //             tag: 'profile',
+            //             child: Container(
+            //               width: MediaQuery.of(context).size.width*0.2,
+            //               height: MediaQuery.of(context).size.width*0.2,
+            //               clipBehavior: Clip.antiAlias,
+            //               decoration: const BoxDecoration(
+            //                 shape: BoxShape.circle,
+            //               ),
+            //               child: Image.network(
+            //                 profileModel.profilePicture,
+            //                 fit: BoxFit.cover,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //     Padding(
+            //       padding: const EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
+            //       child: Column(
+            //         mainAxisSize: MainAxisSize.max,
+            //         children: [
+            //           Text(
+            //             profileModel.name,
+            //             style:
+            //             TextStyle(
+            //                 fontFamily: 'Readex Pro',
+            //                 fontSize: 14,
+            //                 fontWeight: FontWeight.bold,
+            //                 color: Colors.white),
+            //           ),
+            //           Text(
+            //             profileModel.email,
+            //             style:
+            //             TextStyle(
+            //                 fontFamily: 'Readex Pro',
+            //                 fontSize: 14,
+            //                 fontWeight: FontWeight.normal,
+            //                 color: Colors.white),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ],
+            // ),
           );
         });
   }

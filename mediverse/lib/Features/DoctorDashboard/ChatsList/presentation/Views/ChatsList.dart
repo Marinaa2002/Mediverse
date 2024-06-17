@@ -17,6 +17,7 @@ class ChatsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: backgroundColor,
       // appBar:role!="Patient"? AppBar(
@@ -77,13 +78,13 @@ class ChatsList extends StatelessWidget {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.3,
                             ),
-                            const Center(
-                                child: Text(
-                              "No chats History",
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            )),
+                            Center(child: Text(
+                              "No Chat History",
+                              style: Themes.bodyLarge.copyWith(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey),
+                            ),)
                           ],
                         );
                       }
@@ -129,7 +130,14 @@ class ChatsList extends StatelessWidget {
                         )); // Show a loading indicator while waiting for data
                       }
                       if (!snapshot.hasData) {
-                        return Center(child: Text("No chat History"));
+                        return
+                          Center(child: Text(
+                            "No Chat History",
+                            style: Themes.bodyLarge.copyWith(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey),
+                          ),);
                       }
 
                       final chats = snapshot.data!.docs;
@@ -139,13 +147,13 @@ class ChatsList extends StatelessWidget {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.3,
                             ),
-                            const Center(
-                                child: Text(
-                              "No chats History",
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            )),
+                            Center(child: Text(
+                              "No Chat History",
+                              style: Themes.bodyLarge.copyWith(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey),
+                            ),)
                           ],
                         );
                       }

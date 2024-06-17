@@ -24,34 +24,37 @@ class RegisterChoice extends StatelessWidget {
           },
         ),
       ),
-      body: BeginWidget(
-        widget: Column(mainAxisSize: MainAxisSize.max, children: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                'assets/images/logo2.png',
-                width: 400,
-                height: 400,
-                fit: BoxFit.contain,
-                alignment: const Alignment(0, 0),
+      body:
+      SingleChildScrollView(
+        child: BeginWidget(
+          widget: Column(mainAxisSize: MainAxisSize.max, children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  'assets/images/logo2.png',
+                  width: 400,
+                  height: 400,
+                  fit: BoxFit.contain,
+                  alignment: const Alignment(0, 0),
+                ),
               ),
             ),
-          ),
-          ChoiceButton(
-            text: 'Patient',
-            screen: '/signUpPatient',
-          ),
-          ChoiceButton(
-            text: 'Doctor',
-            screen: '/signUpDoctor',
-          ),
-          ChoiceButton(
-            text: 'Staff',
-            screen: '/formStaff',
-          ),
-        ]),
+            ChoiceButton(
+              text: 'Patient',
+              screen: '/signUpPatient',
+            ),
+            ChoiceButton(
+              text: 'Doctor',
+              screen: '/signUpDoctor',
+            ),
+            ChoiceButton(
+              text: 'Staff',
+              screen: '/formStaff',
+            ),
+          ]),
+        ),
       ),
     );
   }

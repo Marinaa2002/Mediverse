@@ -26,9 +26,19 @@ class CustomTextFormField extends StatelessWidget {
               }
             }
             if (text == "Age") {
-              if (data.length > 2 || int.tryParse(data) == null) {
+              if (data.length > 2 || int.tryParse(data) == null || data=="0") {
                 return 'Valid age is required ';
             }
+            }
+            if (text == "National ID") {
+              if (data.length !=14  || int.tryParse(data) == null) {
+                return 'Valid national ID is required ';
+              }
+            }
+            if (text == "Phone Number") {
+              if (data.length !=11  || int.tryParse(data) == null) {
+                return 'Valid phone number is required ';
+              }
             }
           },
           controller: TextEditingController,

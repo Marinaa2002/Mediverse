@@ -248,8 +248,9 @@ class _FormStaffState extends State<FormStaff> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => LoginScreen()));
-                            } else {
-                              showSnackbar(context, "choose a valid option");
+                            }
+                            if( selectedIndex2 == 0 || selectedIndex == 0){
+                              showSnackBar(context, "Please choose a valid option");
                             }
                           }),
                       SizedBox(

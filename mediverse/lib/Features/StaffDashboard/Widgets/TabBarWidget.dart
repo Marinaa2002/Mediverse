@@ -19,7 +19,7 @@ class TabBarWidget extends StatelessWidget {
         fontWeight: FontWeight.normal,
       ),
       unselectedLabelStyle: const TextStyle(),
-      indicatorColor: Colors.grey,
+      indicatorColor: kprimaryColor,
       tabs: const [
         Tab(
           text: 'Verify Account',

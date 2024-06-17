@@ -8,6 +8,16 @@ class LabResultErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(errMessage, style: Themes.labelLarge18,));
+    return
+      //Center(child: Text(errMessage, style: Themes.labelLarge18,));
+      Center(
+        child: Text(
+          errMessage,
+          style: Themes.bodyLarge.copyWith(
+              fontSize: 17,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey),
+        ),
+      );
   }
 }

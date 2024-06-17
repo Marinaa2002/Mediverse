@@ -65,31 +65,31 @@ class _HospitalStaffManagementScreenAddDoctorsState
                 child: AppBarNameOfHospital(),
               ),
             ),
-            GestureDetector(
-              child: Icon(color: Colors.white, Icons.logout),
-              onTap: () {
-                AwesomeDialog(
-                  context: context,
-                  dialogType: DialogType.warning,
-                  animType: AnimType.rightSlide,
-                  //title: 'Error',
-                  title: 'Are you sure you want to Logout?',
-                  titleTextStyle:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  btnOkOnPress: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ));
-                  },
-                  btnCancelOnPress: () {
-                    //Navigator.pop(context);
-                  },
-                ).show();
-              },
-            ),
+            // GestureDetector(
+            //   child: Icon(color: Colors.white, Icons.logout),
+            //   onTap: () {
+            //     AwesomeDialog(
+            //       context: context,
+            //       dialogType: DialogType.warning,
+            //       animType: AnimType.rightSlide,
+            //       //title: 'Error',
+            //       title: 'Are you sure you want to Logout?',
+            //       titleTextStyle:
+            //           TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            //       btnOkOnPress: () {
+            //         Navigator.pop(context);
+            //         Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //               builder: (context) => LoginScreen(),
+            //             ));
+            //       },
+            //       btnCancelOnPress: () {
+            //         //Navigator.pop(context);
+            //       },
+            //     ).show();
+            //   },
+            // ),
           ],
         ),
         actions: const [],
