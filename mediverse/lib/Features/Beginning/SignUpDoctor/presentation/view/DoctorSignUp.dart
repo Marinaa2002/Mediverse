@@ -226,9 +226,9 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                           hospital = hospitalController.text.trim();
                           speciality = specialityController.text.trim();
                           if (formKey.currentState!.validate()) {
-                            BlocProvider.of<SignUpDocCubit>(context)
-                                .signUpDocUser(
-                                    email: email!, password: password!);
+                            // BlocProvider.of<SignUpDocCubit>(context)
+                            //     .signUpDocUser(
+                            //         email: email!, password: password!);
 
                             BlocProvider.of<SignUpDocCubit>(context)
                                 .signUpInfoDoctor(

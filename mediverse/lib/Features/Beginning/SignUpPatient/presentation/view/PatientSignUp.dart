@@ -151,8 +151,8 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
                           password = passwordController.text.trim();
                           phoneNum = phoneNumController.text.trim();
                           if (formKey.currentState!.validate()) {
-                            BlocProvider.of<SignUpCubit>(context)
-                                .signUpUser(email: email!, password: password!);
+                            // BlocProvider.of<SignUpCubit>(context)
+                            //     .signUpUser(email: email!, password: password!);
                             BlocProvider.of<SignUpCubit>(context)
                                 .signUpInfoPatient(
                               name: name!,
