@@ -266,11 +266,11 @@ class _chooseDetailsState extends State<chooseDetails> {
                   children: [
                     CustomButtonAppointmentDetails(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PatientChatScreen(),
-                            ));
+                       Navigator.pushNamed(context, '/DoctorChat', arguments: {
+                          'patient_id': globalcurrentUserId,
+                          'doctor_id': widget.doctor.id,
+                          'NowRole': "Patient"
+                        });
                       },
                       buttonName: 'Chat',
                       icon: Icons.chat,

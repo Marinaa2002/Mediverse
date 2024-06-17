@@ -6,6 +6,7 @@ import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/RecommendationText.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
 import '../Widgets/CustomCardRatings.dart';
@@ -120,6 +121,8 @@ class _AppointmentTabState extends State<AppointmentTab> {
                   }).toList(),
                 ),
               ),
+              SizedBox(height: 12,),
+              RecommendationText(speciality: 'Neurologist'),
               SizedBox(height: 12),
               StreamBuilder<QuerySnapshot>(
                 stream: _doctorStream,
