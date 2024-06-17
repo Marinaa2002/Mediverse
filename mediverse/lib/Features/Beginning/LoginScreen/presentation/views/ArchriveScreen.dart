@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 
 class ArchriveScreen extends StatelessWidget {
   const ArchriveScreen({Key? key}) : super(key: key);
@@ -12,7 +13,13 @@ class ArchriveScreen extends StatelessWidget {
             Icons.arrow_back,
           ),
           onPressed: () {
-            Navigator.of(context).popUntil((route) => route.isFirst);
+            isLoading = false;
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+                (Route<dynamic> route) => false);
           },
         ),
         title: Text('Archrived'),
