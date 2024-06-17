@@ -17,6 +17,12 @@ class _PatientHistoryState extends State<PatientHistory> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
+  void _onSearchChanged(String query) {
+    setState(() {
+      _searchQuery = query;
+    });
+  }
+
   DateTime parseDate(String dateString) {
     final months = {
       'January': '01',
@@ -133,9 +139,9 @@ class _PatientHistoryState extends State<PatientHistory> {
           children: [
             SearchBoxAppointmentWidget(
               controller: _searchController,
-              onChanged: (value) {},
-              onSearchPressed: _onSearchPressed,
-              onSubmitted: (value) => _onSearchPressed(), // Add this line
+              onChanged: _onSearchChanged,
+              onSearchPressed: () {},
+              onSubmitted: (value) => (value) {},
             ),
             Expanded(
               child: FutureBuilder<DocumentSnapshot>(

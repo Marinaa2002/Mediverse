@@ -25,6 +25,12 @@ class _MyBlogsState extends State<MyBlogs> {
     });
   }
 
+  void _onSearchChanged(String query) {
+    setState(() {
+      _searchQuery = query;
+    });
+  }
+
   void onDelete() {
     setState(() {});
   }
@@ -161,9 +167,9 @@ class _MyBlogsState extends State<MyBlogs> {
         children: [
           SearchBoxAppointmentWidget(
             controller: _searchController,
-            onChanged: (value) {},
-            onSearchPressed: _onSearchPressed,
-            onSubmitted: (value) => _onSearchPressed(),
+            onChanged: _onSearchChanged,
+            onSearchPressed: () {},
+            onSubmitted: (value) => (value) {},
           ),
           SizedBox(height: 10),
           Expanded(

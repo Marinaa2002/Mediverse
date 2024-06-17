@@ -45,7 +45,7 @@ class BookingHistoryCubit extends Cubit<BookingHistoryState> {
       } else {
         bookingWidgets.add(BookingCard(
             booking: bookings[i],
-            patient_name: doctorNames[i],
+            name: doctorNames[i],
             displayPatientName: false));
       }
     }
