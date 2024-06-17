@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -84,13 +85,17 @@ class StaffProfileSettingsWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text(
-                            userData['Org Type'] ?? 'Org Type',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
+                          SizedBox(
+                            width: 170,
+                            child: Text(
+                              userData['Org Type'] ?? 'Org Type',
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Readex Pro',
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ],
@@ -160,13 +165,17 @@ class StaffProfileSettingsWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text(
-                            userData['Location'] ?? 'Location',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
+                          SizedBox(
+                            width: 170,
+                            child: Text(
+                              userData['Location'] ?? 'Location',
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Readex Pro',
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ],

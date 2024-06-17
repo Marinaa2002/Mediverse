@@ -17,6 +17,7 @@ import 'package:mediverse/Features/StaffDashboard/Widgets/AppBarLabResultScreen.
 import 'package:mediverse/Features/StaffDashboard/Widgets/ListViewPatient.dart';
 
 import '../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
+import '../../StaffProfileScreen/presentation/Views/StaffProfileScreen.dart';
 
 class LabStaffScreen extends StatelessWidget {
   LabStaffScreen({Key? key});
@@ -44,7 +45,12 @@ class LabStaffScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
-        title: AppBarLabResultScreen(),
+        title: GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder:
+                (context) => StaffProfileScreen(),));
+          },
+            child: AppBarLabResultScreen()),
         actions: [],
         centerTitle: true,
         elevation: 0,
