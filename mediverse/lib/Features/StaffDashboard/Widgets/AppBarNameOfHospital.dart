@@ -11,6 +11,7 @@ import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/V
 import 'package:mediverse/Features/StaffDashboard/AdminMainScreen/presentation/Views/main.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_State.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreenAddDoctors/presentation/Manager/FetechHospitalMangementCubit/fetech_HM_info_cubit.dart';
+import 'package:mediverse/Features/StaffDashboard/StaffProfileScreen/presentation/Views/StaffProfileScreen.dart';
 
 import '../../../Constants/Themes.dart';
 
@@ -25,7 +26,7 @@ class AppBarNameOfHospital extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AdminScreenPage()),
+          MaterialPageRoute(builder: (context) => StaffProfileScreen()),
         );
       },
       child: StreamBuilder<DocumentSnapshot>(
