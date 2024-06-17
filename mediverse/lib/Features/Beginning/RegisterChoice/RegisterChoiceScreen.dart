@@ -11,6 +11,19 @@ class RegisterChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+            // popUntilRoute(context, '/registerChoice');
+          },
+        ),
+      ),
       body: BeginWidget(
         widget: Column(mainAxisSize: MainAxisSize.max, children: [
           Padding(

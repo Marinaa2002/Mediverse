@@ -51,7 +51,7 @@ class DelBookingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Patient Name',
+                          'Doctor Name',
                           style: Themes.bodyXLarge,
                         ),
                         Text(

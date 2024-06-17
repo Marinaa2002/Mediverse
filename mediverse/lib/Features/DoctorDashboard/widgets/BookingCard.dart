@@ -5,10 +5,10 @@ import 'package:mediverse/Constants/constant.dart';
 
 class BookingCard extends StatelessWidget {
   const BookingCard(
-      {super.key, required this.booking, required this.patient_name, required this.displayPatientName});
+      {super.key, required this.booking, required this.name, required this.displayPatientName});
 
   final Booking booking;
-  final String patient_name;
+  final String name;
   final bool displayPatientName;
 
   @override
@@ -47,7 +47,7 @@ class BookingCard extends StatelessWidget {
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          patient_name,
+                          name,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
