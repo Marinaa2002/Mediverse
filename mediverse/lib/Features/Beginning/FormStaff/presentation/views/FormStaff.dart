@@ -85,20 +85,9 @@ class _FormStaffState extends State<FormStaff> {
         return Form(
           key: formKey,
           child: Scaffold(
+            extendBodyBehindAppBar: true,
             appBar: AppBar(
               backgroundColor: Colors.transparent,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      kprimaryColor,
-                      kprimaryColor.withOpacity(0.9),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-              ),
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back,

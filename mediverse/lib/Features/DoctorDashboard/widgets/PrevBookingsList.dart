@@ -36,7 +36,7 @@ class _PrevBookingsListState extends State<PrevBookingsList> {
                       itemBuilder: (context, i) {
                         return BookingCard(
                           booking: state.newBookings[i],
-                          patient_name: state.newNames[i],
+                          name: state.newNames[i],
                           displayPatientName: true,
                         );
                       }),
@@ -53,7 +53,7 @@ class _PrevBookingsListState extends State<PrevBookingsList> {
                       itemBuilder: (context, i) {
                         return BookingCard(
                           booking: state.bookings[i],
-                          patient_name: state.names[i],
+                          name: state.names[i],
                           displayPatientName: true,
                         );
                       }),

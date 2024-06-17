@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Features/DoctorDashboard/AppointmentsDoctor/presentation/Managers/cubit/doc_appoints_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Appointment/BookingHistory/presentation/Managers/cubit/booking_history_cubit.dart';
 
-class BookingCard extends StatelessWidget {
-  const BookingCard(
-      {super.key, required this.booking, required this.name, required this.displayPatientName});
+class DelBookingCard extends StatelessWidget {
+  DelBookingCard({
+    super.key,
+    required this.booking,
+    required this.doctor_name,
+  });
 
-  final Booking booking;
-  final String name;
-  final bool displayPatientName;
+  Booking booking;
+  String doctor_name;
 
   @override
   Widget build(BuildContext context) {
+    final BookingHistorySuccess appState =
+        context.watch<BookingHistoryCubit>().state as BookingHistorySuccess;
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Material(
@@ -23,15 +31,15 @@ class BookingCard extends StatelessWidget {
         ),
         child: Container(
           width: 390,
-          height: 150,
+          height: 170,
           decoration: BoxDecoration(
             color: kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(12),
           ),
           alignment: const AlignmentDirectional(0, 0),
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 4),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 4),
+            child: Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,11 +51,11 @@ class BookingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                         (displayPatientName) ? 'Patient Name' : 'Doctor Name',
+                          'Doctor Name',
                           style: Themes.bodyXLarge,
                         ),
                         Text(
-                          name,
+                          doctor_name,
                           style: Themes.bodyXLarge
                               .copyWith(fontWeight: FontWeight.normal),
                         ),
@@ -91,19 +99,40 @@ class BookingCard extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 14, 0, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Status',
-                          style: Themes.bodyXLarge,
-                        ),
-                        Text(
-                          booking.State,
-                          style: Themes.bodyXLarge
-                              .copyWith(fontWeight: FontWeight.normal),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: 20),
+                          child: ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size(
+                                MediaQuery.sizeOf(context).width * 0.6,
+                                40,
+                              ),
+                              backgroundColor: Colors.red,
+                            ),
+                            onPressed: () {
+                              context.read<BookingHistoryCubit>().deleteBooking(
+                                  appState.bookings,
+                                  appState.doctorNames,
+                                  booking);
+                            },
+                            icon: const Icon(
+                              Icons.cancel_outlined,
+                              size: 20,
+                              color: backgroundColor,
+                            ),
+                            label: Text(
+                              'Cancel',
+                              style: Themes.bodyXLarge.copyWith(
+                                color: backgroundColor,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

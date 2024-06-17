@@ -70,6 +70,7 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             leading: IconButton(
@@ -80,18 +81,6 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                 Navigator.pop(context);
                 // popUntilRoute(context, '/registerChoice');
               },
-            ),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    kprimaryColor,
-                    kprimaryColor.withOpacity(0.9),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
             ),
           ),
           body: Form(
@@ -237,9 +226,9 @@ class _DoctorSignUpScreen extends State<DoctorSignUpScreen> {
                           hospital = hospitalController.text.trim();
                           speciality = specialityController.text.trim();
                           if (formKey.currentState!.validate()) {
-                            BlocProvider.of<SignUpDocCubit>(context)
-                                .signUpDocUser(
-                                    email: email!, password: password!);
+                            // BlocProvider.of<SignUpDocCubit>(context)
+                            //     .signUpDocUser(
+                            //         email: email!, password: password!);
 
                             BlocProvider.of<SignUpDocCubit>(context)
                                 .signUpInfoDoctor(

@@ -47,7 +47,7 @@ class CustomDoctorDetails extends StatelessWidget {
                           borderRadius: BorderRadius.circular(80.0),
                           child: CachedNetworkImage(
                             imageUrl:
-                                "https://firebasestorage.googleapis.com/v0/b/mediverse-app.appspot.com/o/photos%2Fimages.jpeg.jpg?alt=media&token=817e3dcf-a8dd-484b-913a-8fcf65b70638",
+                                state.doctor.profilePicture!,
                             width: 250,
                             height: 150,
                             fit: BoxFit.fill,
