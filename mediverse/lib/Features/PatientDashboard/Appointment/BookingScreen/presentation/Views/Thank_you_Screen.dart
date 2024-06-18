@@ -20,8 +20,7 @@ class ThankYouView extends StatelessWidget {
             size: 24,
           ),
           onPressed: () {
-            Navigator.of(context).popUntil(
-                (route) => route.settings.name == '/mainScreenPatient');
+            Navigator.pushReplacementNamed(context, '/mainScreenPatient');
           },
         ),
         title: Text(

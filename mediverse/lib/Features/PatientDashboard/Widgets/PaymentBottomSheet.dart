@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/CustomBottomBlocConsumer.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/PaymentMethodListView.dart';
 
 class PaymentBottomSheet extends StatefulWidget {
-  const PaymentBottomSheet({super.key});
-
+  const PaymentBottomSheet({super.key, required this.booking});
+  final Booking booking;
   @override
   State<PaymentBottomSheet> createState() => _PaymentBottomSheetState();
 }
@@ -44,6 +45,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
           CustomButtonBlocConsumer(
             isPaypal: isPaypal,
             isCash: isCash,
+            booking: widget.booking,
           ),
         ],
       ),

@@ -126,8 +126,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ForgetPasswordCubit(LoginRepoImpl())),
         BlocProvider(create: (context) => LoginCubit(LoginRepoImpl())),
         BlocProvider(
-          create: (context) => LabStaffProfileEditCubit(LabStaffProfileRepoImpl()),
+          create: (context) =>
+              LabStaffProfileEditCubit(LabStaffProfileRepoImpl()),
         ),
+
         // BlocProvider(
         //   create: (context) =>
         //       LabResultCubit(LabResultRepoImpl()),

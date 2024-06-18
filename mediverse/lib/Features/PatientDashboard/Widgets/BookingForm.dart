@@ -142,8 +142,11 @@ class _BookingFormState extends State<BookingForm> {
                         builder: (context) {
                           return BlocProvider(
                             create: (BuildContext context) =>
-                                PaymentStripeCubit(CheckoutRepoImpl(), widget.booking),
-                            child: const PaymentBottomSheet(),
+                                PaymentStripeCubit(
+                                    CheckoutRepoImpl(), widget.booking),
+                            child: PaymentBottomSheet(
+                              booking: widget.booking,
+                            ),
                           );
                         },
                       );
