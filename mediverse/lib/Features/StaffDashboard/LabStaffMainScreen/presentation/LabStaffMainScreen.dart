@@ -17,6 +17,7 @@ import 'package:mediverse/Features/StaffDashboard/Widgets/AppBarLabResultScreen.
 import 'package:mediverse/Features/StaffDashboard/Widgets/ListViewPatient.dart';
 
 import '../../../Beginning/LoginScreen/presentation/views/LoginScreen.dart';
+import '../../LabStaffProfileScreen/presentation/Views/LabStaffProfileScreen.dart';
 import '../../StaffProfileScreen/presentation/Views/StaffProfileScreen.dart';
 
 class LabStaffScreen extends StatelessWidget {
@@ -48,7 +49,7 @@ class LabStaffScreen extends StatelessWidget {
         title: GestureDetector(
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder:
-                (context) => StaffProfileScreen(),));
+                (context) => LabStaffProfileScreen(),));
           },
             child: AppBarLabResultScreen()),
         actions: [],

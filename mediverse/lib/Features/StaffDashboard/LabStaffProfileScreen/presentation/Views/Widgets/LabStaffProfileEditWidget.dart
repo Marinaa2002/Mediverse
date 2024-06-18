@@ -6,12 +6,12 @@ import 'package:mediverse/Features/DoctorDashboard/DoctorProfile/presentation/Ma
 
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
-import '../../Manager/staff_profile_edit_cubit.dart';
-import 'StaffProfileEditTextFormField.dart';
-import 'StaffProfileSaveButton.dart';
+import '../../Manager/lab_staff_profile_edit_cubit.dart';
+import 'LabStaffProfileEditTextFormField.dart';
+import 'LabStaffProfileSaveButton.dart';
 
 
-class StaffProfileEditWidget extends StatelessWidget {
+class LabStaffProfileEditWidget extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
   final currentUser = FirebaseAuth.instance.currentUser;
 
@@ -32,7 +32,7 @@ class StaffProfileEditWidget extends StatelessWidget {
   String? email;
   bool isLoading = false;
 
-  StaffProfileEditWidget({
+  LabStaffProfileEditWidget({
     super.key,
     required this.userData
   });
@@ -64,11 +64,11 @@ class StaffProfileEditWidget extends StatelessWidget {
           centerTitle: true,
           elevation: 2,
         ),
-        body: BlocBuilder<StaffProfileEditCubit, StaffProfileEditState>(
+        body: BlocBuilder<LabStaffProfileEditCubit, LabStaffProfileEditState>(
             builder: (context, state) {
-              if(state is StaffProfileEditLoading) {
+              if(state is LabStaffProfileEditLoading) {
                 return CircularProgressIndicator();
-              }else if (state is StaffProfileEditFailure) {
+              }else if (state is LabStaffProfileEditFailure) {
                 return Text('Try again');
               } else {
                 return Padding(
@@ -89,7 +89,7 @@ class StaffProfileEditWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
-                            child: StaffProfileEditTextFormField(
+                            child: LabStaffProfileEditTextFormField(
                               text: userData['Org Name'] ?? 'Org Name',
                               onChanged: (value) {
                                 orgName = value;
@@ -109,7 +109,7 @@ class StaffProfileEditWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 20),
-                            child: StaffProfileEditTextFormField(
+                            child: LabStaffProfileEditTextFormField(
                               text: userData['Org Type'] ?? 'Org Type',
                               onChanged: (value) {
                                 orgType = value;
@@ -129,7 +129,7 @@ class StaffProfileEditWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 12, 10),
-                            child: StaffProfileEditTextFormField(
+                            child: LabStaffProfileEditTextFormField(
                               text: userData['Location']?? "Location",
                               onChanged: (value) {
                                 location = value;
@@ -138,7 +138,7 @@ class StaffProfileEditWidget extends StatelessWidget {
                             ),
                           ),
 
-                          StaffProfileSaveButton(
+                          LabStaffProfileSaveButton(
                             text: "Save",
                             screen: null,
                             onPressed: () async {
@@ -146,21 +146,21 @@ class StaffProfileEditWidget extends StatelessWidget {
                                 orgName = userData['Org Name'];
                               }
                               else{
-                                await BlocProvider.of<StaffProfileEditCubit>(context)
+                                await BlocProvider.of<LabStaffProfileEditCubit>(context)
                                 .editOrgName(orgName: orgName);
                               }
                               if(locationController.text.isEmpty){
                                 location = userData['Location'];
                               }
                               else{
-                                await BlocProvider.of<StaffProfileEditCubit>(context)
+                                await BlocProvider.of<LabStaffProfileEditCubit>(context)
                                 .editLocation(location: location);
                               }
                               if(orgTypeController.text.isEmpty){
                                 orgType = userData['Org Type'];
                               }
                               else{
-                                await BlocProvider.of<StaffProfileEditCubit>(context)
+                                await BlocProvider.of<LabStaffProfileEditCubit>(context)
                                 .editOrgType(orgType: orgType);
                               }
                               Navigator.pop(context);
