@@ -72,179 +72,205 @@ class DoctorProfileEditWidget extends StatelessWidget {
               } else {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 20, 0, 10),
-                              child: Text('Change Your name:',
-                                  style: Themes.titleButton),
+                  child: Form(
+                    key: formKey,
+                    child: Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 20, 0, 10),
+                                child: Text('Change Your name:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: DoctorProfileTextFormField(
-                              text: userData['Name'] ?? 'Name',
-                              onChanged: (value) {
-                                name = value;
-                              },
-                              controller: nameController,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: DoctorProfileTextFormField(
+                                text: userData['Name'] ?? 'Name',
+                                onChanged: (value) {
+                                  name = value;
+                                },
+                                controller: nameController,
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your Age:',
-                                  style: Themes.titleButton),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 0, 10),
+                                child: Text('Change Your Age:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: DoctorProfileTextFormField(
-                              text: userData['Age'] ?? 'Age',
-                              onChanged: (value) {
-                                age = value;
-                              },
-                              controller: ageController,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: DoctorProfileTextFormField(
+                                text: userData['Age'] ?? 'Age',
+                                validator: (value){
+                                  if (value!.isEmpty) {
+                                    age = value;
+                                  } else if (value!.characters.length>2) {
+                                    return 'Please Enter a valid age';
+                                  }
+                                },
+                                onChanged: (value) {
+                                  age = value;
+                                },
+                                controller: ageController,
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your Phone Number:',
-                                  style: Themes.titleButton),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 0, 10),
+                                child: Text('Change Your Phone Number:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: DoctorProfileTextFormField(
-                              text: userData['Phone'] ?? 'Phone Number',
-                              onChanged: (value) {
-                                phoneNum = value;
-                              },
-                              controller: phoneNumController,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: DoctorProfileTextFormField(
+                                text: userData['Phone'] ?? 'Phone Number',
+                                validator: (value){
+                                  if (value!.isEmpty) {
+                                    phoneNum = value;
+                                  } else if (value!.characters.length!=11) {
+                                    return 'Please Enter a valid phone Number';
+                                  }
+                                },
+                                onChanged: (value) {
+                                  phoneNum = value;
+                                },
+                                controller: phoneNumController,
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your National ID:',
-                                  style: Themes.titleButton),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 0, 10),
+                                child: Text('Change Your National ID:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 10),
-                            child: DoctorProfileTextFormField(
-                              text: userData['NationalId']?? "National ID",
-                              onChanged: (value) {
-                                national_id = value;
-                              },
-                              controller: natIDController,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 10),
+                              child: DoctorProfileTextFormField(
+                                text: userData['NationalId']?? "National ID",
+                                validator: (value){
+                                  if (value!.isEmpty) {
+                                    national_id = value;
+                                  } else if (value!.characters.length!=14) {
+                                    return 'Please Enter a valid national ID';
+                                  }
+                                },
+                                onChanged: (value) {
+                                  national_id = value;
+                                },
+                                controller: natIDController,
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 10, 0, 10),
-                              child: Text('Change Your Speciality:',
-                                  style: Themes.titleButton),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 10, 0, 10),
+                                child: Text('Change Your Speciality:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 10),
-                            child: DoctorProfileTextFormField(
-                              text: userData['Speciality'] ?? "Speciality",
-                              onChanged: (value) {
-                                speciality = value;
-                              },
-                              controller: specialityController,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 10),
+                              child: DoctorProfileTextFormField(
+                                text: userData['Speciality'] ?? "Speciality",
+                                onChanged: (value) {
+                                  speciality = value;
+                                },
+                                controller: specialityController,
+                              ),
                             ),
-                          ),
 
 
-                          // Padding(
-                          //   padding: EdgeInsetsDirectional.fromSTEB(
-                          //       12, 0, 12, 10),
-                          //   child: DoctorProfileTextFormField(
-                          //     text: userData['Email'] ?? 'Email',
-                          //     onChanged: (value) async{
-                          //       email = value;
-                          //
-                          //       // BlocProvider.of<ProfileEditCubit>(context)
-                          //       //     .editNationalId(nationalId: national_id);
-                          //     },
-                          //     controller: emailController,
-                          //   ),
-                          // ),
+                            // Padding(
+                            //   padding: EdgeInsetsDirectional.fromSTEB(
+                            //       12, 0, 12, 10),
+                            //   child: DoctorProfileTextFormField(
+                            //     text: userData['Email'] ?? 'Email',
+                            //     onChanged: (value) async{
+                            //       email = value;
+                            //
+                            //       // BlocProvider.of<ProfileEditCubit>(context)
+                            //       //     .editNationalId(nationalId: national_id);
+                            //     },
+                            //     controller: emailController,
+                            //   ),
+                            // ),
 
 
-                          DoctorProfileSaveButton(
-                            text: "Save",
-                            screen: null,
-                            onPressed: () async {
-                              if(nameController.text.isEmpty){
-                                name = userData['Name'];
-                              }
-                              else{
-                                await BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editName(name: name);
-                              }
-                              if(ageController.text.isEmpty){
-                                age = userData['Age'];
-                              }
-                              else{
-                                await BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editAge(age: age);
-                              }
-                              if(phoneNumController.text.isEmpty){
-                                phoneNum = userData['Phone'];
-                              }
-                              else{
-                                await BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editPhoneNum(phoneNum: phoneNum);
-                              }
-                              if(natIDController.text.isEmpty){
-                                national_id = userData['NationalId'];
-                              }
-                              else{
-                                await BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editNationalId(nationalId: national_id);
-                              }
-                              if(specialityController.text.isEmpty){
-                                speciality = userData['Speciality'];
-                              }
-                              else{
-                                await BlocProvider.of<DoctorProfileEditCubit>(context)
-                                    .editSpeciality(speciality: speciality);
-                              }
-                              Navigator.pop(context);
+                            DoctorProfileSaveButton(
+                              text: "Save",
+                              screen: null,
+                              onPressed: () async {
+                                if (formKey.currentState!.validate()) {
+                                  if(nameController.text.isEmpty){
+                                    name = userData['Name'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                        .editName(name: name);
+                                  }
+                                  if(ageController.text.isEmpty){
+                                    age = userData['Age'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                        .editAge(age: age);
+                                  }
+                                  if(phoneNumController.text.isEmpty){
+                                    phoneNum = userData['Phone'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                        .editPhoneNum(phoneNum: phoneNum);
+                                  }
+                                  if(natIDController.text.isEmpty){
+                                    national_id = userData['NationalId'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                        .editNationalId(nationalId: national_id);
+                                  }
+                                  if(specialityController.text.isEmpty){
+                                    speciality = userData['Speciality'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<DoctorProfileEditCubit>(context)
+                                        .editSpeciality(speciality: speciality);
+                                  }
+                                  Navigator.pop(context);
+                                }
 
-                              // String newEmail = emailController.text.trim();
-                              // try {
-                              //   // EmailAuthProvider.credential(email: newEmail, password: '');
-                              //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
-                              // } catch (e) {
-                              //   print("Error updating email: $e");
-                              // }
-                            },
-                          ),
-                        ],
+                                // String newEmail = emailController.text.trim();
+                                // try {
+                                //   // EmailAuthProvider.credential(email: newEmail, password: '');
+                                //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
+                                // } catch (e) {
+                                //   print("Error updating email: $e");
+                                // }
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mediverse/Constants/constant.dart';
 
+import '../../../Constants/Themes.dart';
 import '../HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 
 // ignore: must_be_immutable
@@ -18,19 +19,21 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(kprimaryColor),
-        minimumSize: MaterialStateProperty.all<Size>(const Size(30, 30)),
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(
+          MediaQuery.sizeOf(context).width * 0.3,40,
+        ),
+        backgroundColor: kprimaryColor,
       ),
       onPressed: onPressed,
       icon: Icon(
         iconData,
+        size: 20,
         color: kSecondryBackgroundColor,
-        size: 20.0,
       ),
       label: Text(
         action,
-        style: const TextStyle(
+        style: Themes.bodyXLarge.copyWith(
           color: kSecondryBackgroundColor,
         ),
       ), // <-- Text

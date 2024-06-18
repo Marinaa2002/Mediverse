@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'StaffProfileRepo.dart';
+import 'LabStaffProfileRepo.dart';
 
 
-class StaffProfileRepoImpl extends StaffProfileRepo {
+class LabStaffProfileRepoImpl extends LabStaffProfileRepo {
   CollectionReference details =
   FirebaseFirestore.instance.collection("Staff");
 

@@ -66,94 +66,106 @@ class AdminProfileEditWidget extends StatelessWidget {
               } else {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 20, 0, 10),
-                              child: Text('Change Your name:',
-                                  style: Themes.titleButton),
+                  child: Form(
+                    key: formKey,
+                    child: Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 20, 0, 10),
+                                child: Text('Change Your name:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: AdminProfileTextFormField(
-                              text: userData['Name'] ?? 'Name',
-                              onChanged: (value) {
-                                name = value;
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: AdminProfileTextFormField(
+                                text: userData['Name'] ?? 'Name',
+                                onChanged: (value) {
+                                  name = value;
+                                },
+                                controller: nameController,
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 0, 10),
+                                child: Text('Change Your Phone Number:',
+                                    style: Themes.titleButton),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: AdminProfileTextFormField(
+                                text: userData['Phone'] ?? 'Phone',
+                                validator: (value){
+                                  if (value!.isEmpty) {
+                                    phoneNum = value;
+                                  } else if (value!.characters.length!=11) {
+                                    return 'Please Enter a valid phone Number';
+                                  }
+                                },
+                                onChanged: (value) {
+                                  phoneNum = value;
+                                },
+                                controller: phoneNumController,
+                              ),
+                            ),
+                            // Align(
+                            //   alignment: const AlignmentDirectional(-1, -1),
+                            //   child: Padding(
+                            //     padding: const EdgeInsetsDirectional.fromSTEB(
+                            //         15, 5, 0, 10),
+                            //     child: Text('Change Your Email:',
+                            //         style: Themes.titleButton),
+                            //   ),
+                            // ),
+                            // Padding(
+                            //   padding: EdgeInsetsDirectional.fromSTEB(
+                            //       12, 0, 12, 10),
+                            //   child: AdminProfileTextFormField(
+                            //     text: "Email",
+                            //     onChanged: (value) {
+                            //       email = value;
+                            //       BlocProvider.of<AdminProfileEditCubit>(context)
+                            //       .editEmail(email: email);
+                            //     },
+                            //     controller: emailController,
+                            //   ),
+                            // ),
+                            AdminProfileSaveButton(
+                              text: "Save",
+                              screen: null,
+                              onPressed: () async {
+                                if (formKey.currentState!.validate()) {
+                                  if(nameController.text.isEmpty){
+                                    name = userData['Name'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<AdminProfileEditCubit>(context)
+                                        .editName(name: name);
+                                  }
+                                  if(phoneNumController.text.isEmpty){
+                                    phoneNum = userData['Phone'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<AdminProfileEditCubit>(context)
+                                        .editPhoneNum(phoneNum: phoneNum);
+                                  }
+                                  Navigator.pop(context);
+                                }
                               },
-                              controller: nameController,
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your Phone Number:',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: AdminProfileTextFormField(
-                              text: userData['Phone'] ?? 'Phone',
-                              onChanged: (value) {
-                                phoneNum = value;
-                              },
-                              controller: phoneNumController,
-                            ),
-                          ),
-                          // Align(
-                          //   alignment: const AlignmentDirectional(-1, -1),
-                          //   child: Padding(
-                          //     padding: const EdgeInsetsDirectional.fromSTEB(
-                          //         15, 5, 0, 10),
-                          //     child: Text('Change Your Email:',
-                          //         style: Themes.titleButton),
-                          //   ),
-                          // ),
-                          // Padding(
-                          //   padding: EdgeInsetsDirectional.fromSTEB(
-                          //       12, 0, 12, 10),
-                          //   child: AdminProfileTextFormField(
-                          //     text: "Email",
-                          //     onChanged: (value) {
-                          //       email = value;
-                          //       BlocProvider.of<AdminProfileEditCubit>(context)
-                          //       .editEmail(email: email);
-                          //     },
-                          //     controller: emailController,
-                          //   ),
-                          // ),
-                          AdminProfileSaveButton(
-                            text: "Save",
-                            screen: null,
-                            onPressed: () async {
-                              if(nameController.text.isEmpty){
-                                name = userData['Name'];
-                              }
-                              else{
-                                await BlocProvider.of<AdminProfileEditCubit>(context)
-                                    .editName(name: name);
-                              }
-                              if(phoneNumController.text.isEmpty){
-                                phoneNum = userData['Phone'];
-                              }
-                              else{
-                                await BlocProvider.of<AdminProfileEditCubit>(context)
-                                    .editPhoneNum(phoneNum: phoneNum);
-                              }
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

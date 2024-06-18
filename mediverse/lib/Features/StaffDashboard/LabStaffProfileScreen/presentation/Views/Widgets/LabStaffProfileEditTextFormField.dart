@@ -3,17 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../../../Constants/Themes.dart';
 import '../../../../../../Constants/constant.dart';
 
-class DoctorProfileTextFormField extends StatelessWidget {
+class LabStaffProfileEditTextFormField extends StatelessWidget {
   String? text;
-  DoctorProfileTextFormField({
+  LabStaffProfileEditTextFormField({
     super.key,
     required this.text,
-    this.validator,
     required this.onChanged,
     required this.controller
   });
   Function(String)? onChanged;
-  String? Function(String?)? validator;
   TextEditingController? controller;
 
 
@@ -22,7 +20,6 @@ class DoctorProfileTextFormField extends StatelessWidget {
     return Container(
       width: 390,
       child: TextFormField(
-          validator: validator,
           onChanged: onChanged,
           controller: controller,
           autofocus: false,
