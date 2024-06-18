@@ -70,151 +70,177 @@ class ProfileEditWidget extends StatelessWidget {
               } else {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 20, 0, 10),
-                              child: Text('Change Your name:',
-                                  style: Themes.titleButton),
+                  child: Form(
+                    key: formKey,
+                    child: Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 20, 0, 10),
+                                child: Text('Change Your name:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: ProfileTextFormField(
-                              text:  userData['Name'] ?? 'Name',
-                              onChanged: (value) {
-                                name = value;
-                              },
-                              controller: nameController,
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your Age:',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: ProfileTextFormField(
-                              text: userData['Age'] ?? 'Age',
-                              onChanged: (value) {
-                                age = value;
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: ProfileTextFormField(
+                                text:  userData['Name'] ?? 'Name',
+                                onChanged: (value) {
+                                  name = value;
                                 },
-                              controller: ageController,
+                                controller: nameController,
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your Phone Number:',
-                                  style: Themes.titleButton),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 0, 10),
+                                child: Text('Change Your Age:',
+                                    style: Themes.titleButton),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 20),
-                            child: ProfileTextFormField(
-                              text: userData['Phone Number'] ?? 'Phone Number',
-                              onChanged: (value) {
-                                phoneNum = value;
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: ProfileTextFormField(
+                                text: userData['Age'] ?? 'Age',
+                                validator: (value){
+                                  if (value!.isEmpty) {
+                                    age = value;
+                                  } else if (value!.characters.length>2) {
+                                    return 'Please Enter a valid age';
+                                  }
+                                },
+                                onChanged: (value) {
+                                  age = value;
+                                  },
+                                controller: ageController,
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 0, 10),
+                                child: Text('Change Your Phone Number:',
+                                    style: Themes.titleButton),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 20),
+                              child: ProfileTextFormField(
+                                text: userData['Phone Number'] ?? 'Phone Number',
+                                validator: (value){
+                                  if (value!.isEmpty) {
+                                    phoneNum = value;
+                                  } else if (value!.characters.length!=11) {
+                                    return 'Please Enter a valid phone Number';
+                                  }
+                                },
+                                onChanged: (value) {
+                                  phoneNum = value;
+                                },
+                                controller: phoneNumController,
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1, -1),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 0, 10),
+                                child: Text('Change Your National ID:',
+                                    style: Themes.titleButton),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 10),
+                              child: ProfileTextFormField(
+                                text: userData['NationalId'] ?? 'NationalId',
+                                validator: (value){
+                                  if (value!.isEmpty) {
+                                    national_id = value;
+                                  } else if (value!.characters.length!=14) {
+                                    return 'Please Enter a valid national ID';
+                                  }
+                                },
+                                onChanged: (value) {
+                                  national_id = value;
+                                },
+                                controller: natIDController,
+                              ),
+                            ),
+
+
+                            // Padding(
+                            //   padding: EdgeInsetsDirectional.fromSTEB(
+                            //       12, 0, 12, 10),
+                            //   child: ProfileTextFormField(
+                            //     text: userData['Email'] ?? 'Email',
+                            //     onChanged: (value) async{
+                            //       email = value;
+                            //
+                            //       // BlocProvider.of<ProfileEditCubit>(context)
+                            //       //     .editNationalId(nationalId: national_id);
+                            //     },
+                            //     controller: emailController,
+                            //   ),
+                            // ),
+
+
+                            ProfileSaveButton(
+                              text: "Save",
+                              screen: null,
+                              onPressed: () async {
+                                if (formKey.currentState!.validate()) {
+                                  if(nameController.text.isEmpty){
+                                    name = userData['Name'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<ProfileEditCubit>(context)
+                                        .editName(name: name);
+                                  }
+                                  if(ageController.text.isEmpty){
+                                    age = userData['Age'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<ProfileEditCubit>(context)
+                                        .editAge(age: age);
+                                  }
+                                  if(phoneNumController.text.isEmpty){
+                                    phoneNum = userData['Phone Number'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<ProfileEditCubit>(context)
+                                        .editPhoneNum(phoneNum: phoneNum);
+                                  }
+                                  if(natIDController.text.isEmpty){
+                                    national_id = userData['NationalId'];
+                                  }
+                                  else{
+                                    await BlocProvider.of<ProfileEditCubit>(context)
+                                        .editNationalId(nationalId: national_id);
+                                  }
+                                  Navigator.pop(context);
+                                }
+
+                                // String newEmail = emailController.text.trim();
+                                // try {
+                                //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
+                                // } catch (e) {
+                                //   print("Error updating email: $e");
+                                // }
                               },
-                              controller: phoneNumController,
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, -1),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15, 5, 0, 10),
-                              child: Text('Change Your National ID:',
-                                  style: Themes.titleButton),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12, 0, 12, 10),
-                            child: ProfileTextFormField(
-                              text: userData['NationalId'] ?? 'NationalId',
-                              onChanged: (value) {
-                                national_id = value;
-                              },
-                              controller: natIDController,
-                            ),
-                          ),
-
-
-                          // Padding(
-                          //   padding: EdgeInsetsDirectional.fromSTEB(
-                          //       12, 0, 12, 10),
-                          //   child: ProfileTextFormField(
-                          //     text: userData['Email'] ?? 'Email',
-                          //     onChanged: (value) async{
-                          //       email = value;
-                          //
-                          //       // BlocProvider.of<ProfileEditCubit>(context)
-                          //       //     .editNationalId(nationalId: national_id);
-                          //     },
-                          //     controller: emailController,
-                          //   ),
-                          // ),
-
-
-                          ProfileSaveButton(
-                            text: "Save",
-                            screen: null,
-                            onPressed: () async {
-                              if(nameController.text.isEmpty){
-                                name = userData['Name'];
-                              }
-                              else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
-                                    .editName(name: name);
-                              }
-                              if(ageController.text.isEmpty){
-                                age = userData['Age'];
-                              }
-                              else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
-                                    .editAge(age: age);
-                              }
-                              if(phoneNumController.text.isEmpty){
-                                phoneNum = userData['Phone Number'];
-                              }
-                              else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
-                                    .editPhoneNum(phoneNum: phoneNum);
-                              }
-                              if(natIDController.text.isEmpty){
-                                national_id = userData['NationalId'];
-                              }
-                              else{
-                                await BlocProvider.of<ProfileEditCubit>(context)
-                                    .editNationalId(nationalId: national_id);
-                              }
-                              Navigator.pop(context);
-
-                              // String newEmail = emailController.text.trim();
-                              // try {
-                              //   await FirebaseAuth.instance.currentUser!.updateEmail(newEmail);
-                              // } catch (e) {
-                              //   print("Error updating email: $e");
-                              // }
-                            },
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
