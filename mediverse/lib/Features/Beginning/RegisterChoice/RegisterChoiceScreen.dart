@@ -24,10 +24,9 @@ class RegisterChoice extends StatelessWidget {
           },
         ),
       ),
-      body:
-      SingleChildScrollView(
-        child: BeginWidget(
-          widget: Column(mainAxisSize: MainAxisSize.max, children: [
+      body: BeginWidget(
+        widget: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.max, children: [
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
               child: ClipRRect(
