@@ -33,16 +33,16 @@ class DateOfChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (currentIndex == chatesSize) {
-      return SizedBox(
-        height: 50,
-        width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: Text(currentDate, style: Themes.DateText),
-        ),
-      );
-    }
-    if (lastMsgDate != currentDate && counterOfDateOfMessage == 0) {
+    // if (currentIndex == chatesSize) {
+    //   return SizedBox(
+    //     height: 50,
+    //     width: MediaQuery.of(context).size.width,
+    //     child: Center(
+    //       child: Text(currentDate, style: Themes.DateText),
+    //     ),
+    //   );
+    // }
+    if (lastMsgDate != currentDate) {
       counterOfDateOfMessage++;
       lastMsgDate = currentDate;
       return SizedBox(
@@ -52,11 +52,10 @@ class DateOfChat extends StatelessWidget {
           child: Text(currentDate, style: Themes.DateText),
         ),
       );
-    } else {
-      lastMsgDate = currentDate;
-      counterOfDateOfMessage = 0;
-      return SizedBox
-          .shrink(); // Return an empty widget if date has already been displayed
     }
+    lastMsgDate = currentDate;
+    // counterOfDateOfMessage = 0;
+    return SizedBox
+        .shrink(); // Return an empty widget if date has already been displayed
   }
 }

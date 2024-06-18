@@ -67,6 +67,7 @@ class SlotsWidget extends StatelessWidget {
                   slot: slotsList[index],
                   onDismissed: () {
                     deleteDocumentsByField('Appointments', documentIds[index]);
+                    deleteSlot(documentIds[index], id);
                   },
                 );
               },
@@ -99,5 +100,30 @@ void deleteDocumentsByField(String collectionPath, String slotId) async {
     });
   } catch (e) {
     print(e.toString());
+  }
+}
+
+Future<void> deleteSlot(String slotId, String doctor_id) async {
+  // Reference to the document containing the Slots array
+  DocumentReference doctorRef =
+      FirebaseFirestore.instance.collection('info_Doctors').doc(doctor_id);
+
+  // Get the document snapshot
+  DocumentSnapshot doctorSnapshot = await doctorRef.get();
+
+  if (doctorSnapshot.exists) {
+    // Extract the Slots array
+    Map<String, dynamic>? data = doctorSnapshot.data() as Map<String, dynamic>?;
+
+    List<dynamic> slots = data?['Slots'];
+
+    // Find and remove the slot with the specified slotId
+    slots.removeWhere((slot) => slot['slot_id'] == slotId);
+
+    // Update the Firestore document with the modified Slots array
+    await doctorRef.update({'Slots': slots});
+    print('Slot deleted successfully');
+  } else {
+    print('Document does not exist');
   }
 }

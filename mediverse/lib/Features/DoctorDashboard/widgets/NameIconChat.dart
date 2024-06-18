@@ -45,10 +45,10 @@ class NameIconChat extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Text(
-                      state.doctor.state!,
-                      style: Themes.bodysmall.copyWith(color: Colors.white),
-                    ),
+                    // Text(
+                    //   state.doctor.state!,
+                    //   style: Themes.bodysmall.copyWith(color: Colors.white),
+                    // ),
                   ],
                 ),
               ),

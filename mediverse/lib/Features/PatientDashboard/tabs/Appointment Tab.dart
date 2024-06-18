@@ -38,7 +38,7 @@ class _AppointmentTabState extends State<AppointmentTab> {
     _doctorStream = FirebaseFirestore.instance
         .collection('info_Doctors')
         .where('Condition', isEqualTo: 'Approved')
-        .snapshots();
+        .where('Slots', isGreaterThan: []).snapshots();
     super.initState();
   }
 
@@ -135,26 +135,29 @@ class _AppointmentTabState extends State<AppointmentTab> {
                   }
 
                   var doctors = snapshot.data!.docs.map((doc) {
-                    return Doctor.fromJson(doc.data() as Map<String, dynamic>, doc.id);
+                    return Doctor.fromJson(
+                        doc.data() as Map<String, dynamic>, doc.id);
                   }).toList();
 
                   doctors = _filterDoctors(doctors, _searchQuery);
 
                   return Expanded(
                     child: doctors.isEmpty
-                        ? Center(child: Text(
-                      "No Results Found",
-                      style: Themes.bodyLarge.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey),
-                    ),)
+                        ? Center(
+                            child: Text(
+                              "No Results Found",
+                              style: Themes.bodyLarge.copyWith(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey),
+                            ),
+                          )
                         : ListView.builder(
-                      itemCount: doctors.length,
-                      itemBuilder: (context, index) {
-                        return CustomCardRatings(doctor: doctors[index]);
-                      },
-                    ),
+                            itemCount: doctors.length,
+                            itemBuilder: (context, index) {
+                              return CustomCardRatings(doctor: doctors[index]);
+                            },
+                          ),
                   );
                 },
               ),
@@ -165,4 +168,3 @@ class _AppointmentTabState extends State<AppointmentTab> {
     );
   }
 }
-

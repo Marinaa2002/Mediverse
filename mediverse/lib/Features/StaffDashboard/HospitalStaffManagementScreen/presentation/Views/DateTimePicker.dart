@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mediverse/Constants/constant.dart';
 import 'package:mediverse/Core/utils/Functions.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/StaffDashboard/HospitalStaffManagementScreen/presentation/Views/HospitalStaffManagementScreen.dart';
 
 class DateTimePicker extends StatefulWidget {
@@ -48,9 +49,62 @@ class _DateTimePickerState extends State<DateTimePicker> {
     }
   }
 
+  Future<void> divideAndPushSlots(DateTime selectedDateTime,
+      String slotDuration, String doctor_id, String slotid) async {
+    // Parse the slot duration
+    int durationInMinutes = int.parse(slotDuration) * 60;
+
+    // Calculate the end time
+    DateTime endTime =
+        selectedDateTime.add(Duration(minutes: durationInMinutes));
+
+    // List to hold time slots
+    List<Map<String, dynamic>> timeSlots = [];
+
+    // Generate half-hour slots
+    DateTime currentTime = selectedDateTime;
+    while (currentTime.isBefore(endTime)) {
+      String formattedTime = DateFormat.jm()
+          .format(currentTime); // Format time to a string like "5 PM"
+      timeSlots.add({'Time': formattedTime, 'Status': 'free'});
+      currentTime =
+          currentTime.add(Duration(minutes: 30)); // Move to the next half-hour
+    }
+
+    // Prepare the document structure for Firestore
+    Map<String, dynamic> slotData = {
+      'Name': widget.orgName,
+      'slot_id': slotid,
+      'Time Slots': [
+        {
+          'Date': DateFormat('d-MMM').format(
+              selectedDateTime), // Format date to a string like "12 May"
+          'Day': DateFormat('EEEE')
+              .format(selectedDateTime), // Format day to a string like "Sunday"
+          'Status': timeSlots
+              .map((slot) => 'free')
+              .toList(), // Initialize status for each slot
+          'Time': timeSlots
+              .map((slot) => slot['Time'])
+              .toList() // Get list of times
+        }
+      ]
+    };
+
+    // Push to Firestore
+    await FirebaseFirestore.instance
+        .collection('info_Doctors')
+        .doc(doctor_id)
+        .update({
+      'Slots': FieldValue.arrayUnion([slotData])
+    });
+  }
+
   void SaveSlots() async {
     // Access the selected date and time from _selectedDateTime variable
     DateTime selectedDateTime = _selectedDateTime;
+    String nameOfDay = DateFormat('EEEE').format(selectedDateTime);
+
     final slot = await showTextFieldDialog(
       context,
       textEditingController: textEditingController,
@@ -58,7 +112,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
       title: 'Slots',
     );
     if (slot != null) {
-      appointments.add({
+      DocumentReference docRef = await appointments.add({
         'D_uid': widget.id,
         'HospitalName': widget.orgName,
         'FromDateDay': selectedDateTime.day,
@@ -73,6 +127,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
         'currency': 'egp',
         'availableSlotsInHr': num.parse(slot),
       });
+      divideAndPushSlots(selectedDateTime, slot, widget.id, docRef.id);
     }
     Navigator.of(context).pop();
   }
