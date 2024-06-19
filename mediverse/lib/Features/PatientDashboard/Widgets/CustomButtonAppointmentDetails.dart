@@ -20,6 +20,7 @@ class CustomButtonAppointmentDetails extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
+          width: MediaQuery.of(context).size.width * 0.275,
           height: 40,
           padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
           decoration: BoxDecoration(
