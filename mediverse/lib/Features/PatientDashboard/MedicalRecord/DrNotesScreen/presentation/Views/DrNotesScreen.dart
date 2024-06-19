@@ -18,7 +18,7 @@ class DrNotesScreen extends StatelessWidget {
         backgroundColor: kprimaryColor,
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
+            Icons.chevron_left,
             color: Colors.white,
           ),
           onPressed: () {
