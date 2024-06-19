@@ -25,9 +25,13 @@ class RecommendationCubit extends Cubit<RecommendationState> {
         List<String> recommendations = [];
 
         //check BMI
-        double heightInM = double.parse(r[r.length - 1]['Height']) / 100;
-        double Weight = double.parse(r[r.length - 1]['Weight']);
-        double BMI = Weight / pow(heightInM, 2);
+        double BMI = -1.0;
+        if (r[r.length - 1]['Height'] != "" &&
+            r[r.length - 1]['Weight'] != "") {
+          double heightInM = double.parse(r[r.length - 1]['Height']) / 100;
+          double Weight = double.parse(r[r.length - 1]['Weight']);
+          BMI = Weight / pow(heightInM, 2);
+        }
 
         // declare flags and buckets
         int pressureViolation = 0;
@@ -80,7 +84,8 @@ class RecommendationCubit extends Cubit<RecommendationState> {
         if (heartRateViolation > 0 &&
             pressureViolation < 3 &&
             respiratoryViolation == 0) recommendations.add('Cardiologist');
-        if (BMI > 35.0 || BMI < 25.0) recommendations.add('Nutritionist');
+        if ((BMI > 35.0 || BMI < 25.0) && BMI != -1.0)
+          recommendations.add('Nutritionist');
 
         if (recommendations.isEmpty) {
           emit(RecommendationEmpty());
