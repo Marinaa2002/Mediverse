@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mediverse/AllModels/requestModel.dart';
 import 'package:mediverse/Constants/constant.dart';
 
@@ -21,19 +23,25 @@ class RowOfRequestWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              requestField,
-              style: const TextStyle(
-                fontFamily: 'Readex Pro',
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+            Flexible(
+              flex: 1,
+              child: Text(
+                requestField,
+                style: const TextStyle(
+                  fontFamily: 'Readex Pro',
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-            Text(
-              requestModelField,
-              style: const TextStyle(
-                fontSize: 15,
-                overflow: TextOverflow.ellipsis,
+            // Space between the texts
+            Flexible(
+              child: Text(
+                requestModelField,
+                style: const TextStyle(
+                  fontSize: 15,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
           ],

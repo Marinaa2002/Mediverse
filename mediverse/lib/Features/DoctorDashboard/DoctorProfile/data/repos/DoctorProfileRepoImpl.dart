@@ -9,13 +9,14 @@ class DoctorProfileRepoImpl extends DoctorProfileRepo {
   FirebaseFirestore.instance.collection("info_Doctors");
   CollectionReference details2 =
   FirebaseFirestore.instance.collection("DoctorProfile");
-  final currentUser = FirebaseAuth.instance.currentUser!.uid;
+
 
   @override
   updateName({
     required String? name,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Name': name,
       });
@@ -32,6 +33,7 @@ class DoctorProfileRepoImpl extends DoctorProfileRepo {
     required String? age,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Age': age,
       });
@@ -48,6 +50,7 @@ class DoctorProfileRepoImpl extends DoctorProfileRepo {
     required String? nationalId,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'NationalId': nationalId,
       });
@@ -64,6 +67,7 @@ class DoctorProfileRepoImpl extends DoctorProfileRepo {
     required String? phoneNum,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({'Phone': phoneNum});
       await details2.doc(currentUser).update({'Phone Number': phoneNum});
     } on Exception catch (e) {
@@ -74,6 +78,7 @@ class DoctorProfileRepoImpl extends DoctorProfileRepo {
   @override
   updatePicture({required String? picture}) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({'Profile_Picture': picture});
       await details2.doc(currentUser).update({'Profile Picture': picture});
     } on Exception catch (e) {
@@ -84,6 +89,7 @@ class DoctorProfileRepoImpl extends DoctorProfileRepo {
   @override
   updateSpeciality({required String? speciality}) async{
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({'Speciality': speciality});
     } on Exception catch (e) {
       print("Error adding document: $e");

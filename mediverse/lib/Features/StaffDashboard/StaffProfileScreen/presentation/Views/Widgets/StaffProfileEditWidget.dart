@@ -64,11 +64,11 @@ class StaffProfileEditWidget extends StatelessWidget {
           centerTitle: true,
           elevation: 2,
         ),
-        body: BlocBuilder<DoctorProfileEditCubit, DoctorProfileEditState>(
+        body: BlocBuilder<StaffProfileEditCubit, StaffProfileEditState>(
             builder: (context, state) {
-              if(state is DoctorProfileEditLoading) {
+              if(state is StaffProfileEditLoading) {
                 return CircularProgressIndicator();
-              }else if (state is DoctorProfileEditFailure) {
+              }else if (state is StaffProfileEditFailure) {
                 return Text('Try again');
               } else {
                 return Padding(

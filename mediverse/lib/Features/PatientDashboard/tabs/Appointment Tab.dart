@@ -30,9 +30,12 @@ class _AppointmentTabState extends State<AppointmentTab> {
   late Stream<QuerySnapshot> _doctorStream;
   final Map<String, bool> _specialties = {
     'Cardiologist': false,
+    'Endocrinologist': false,
     'Neurologist': false,
     'Dentist': false,
     'Dermatologist': false,
+    'Internist': false,
+    'Nutritionist': false,
     'Psychiatrist': false,
   };
 
@@ -42,7 +45,7 @@ class _AppointmentTabState extends State<AppointmentTab> {
     _doctorStream = FirebaseFirestore.instance
         .collection('info_Doctors')
         .where('Condition', isEqualTo: 'Approved')
-        .snapshots();
+        .where('Slots', isGreaterThan: []).snapshots();
     super.initState();
   }
 

@@ -158,9 +158,8 @@ class MedicalRecordEditScreen extends StatelessWidget {
 
                                     );
                                   }
-
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreenWidget(),));
-                                },
+                                  Navigator.pop(context);
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreenWidget(),));                                },
                                 child: CustomEditConfirm(text: 'Save'),
                               ),
                             ),
@@ -255,8 +254,8 @@ class MedicalRecordEditScreen extends StatelessWidget {
 
                                     );
                                   }
-
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreenWidget(),));
+                                  Navigator.pop(context);
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreenWidget(),));
                                 },
                                 child: CustomEditConfirm(text: 'Save'),
                               ),

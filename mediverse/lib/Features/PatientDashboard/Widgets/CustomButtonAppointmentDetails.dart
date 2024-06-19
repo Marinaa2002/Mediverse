@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Constants/constant.dart';
 
 class CustomButtonAppointmentDetails extends StatelessWidget {
   CustomButtonAppointmentDetails(
@@ -23,7 +24,7 @@ class CustomButtonAppointmentDetails extends StatelessWidget {
           padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: Colors.indigo,
+            color:kprimaryColor,
           ),
           child: Row(
             children: [

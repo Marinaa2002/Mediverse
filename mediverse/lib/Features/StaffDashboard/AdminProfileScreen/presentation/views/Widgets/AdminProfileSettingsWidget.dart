@@ -142,7 +142,7 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                             padding:
                             EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.language,
+                              Icons.access_time_filled,
                               color: kSecondaryTextColor,
                               size: 24,
                             ),
@@ -152,14 +152,14 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
-                                'Language',
+                                'Working Hours',
                                 textAlign: TextAlign.start,
                                 style: Themes.bodyXLarge,
                               ),
                             ),
                           ),
                           Text(
-                            'English(eng)',
+                            '10 AM - 5 PM',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -250,23 +250,89 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                               ),
                             ),
                             onTap: (){
-                              AwesomeDialog(context: context,
-                                dialogType: DialogType.warning,
+                              // AwesomeDialog(context: context,
+                              //   dialogType: DialogType.warning,
+                              //   animType: AnimType.rightSlide,
+                              //   //title: 'Error',
+                              //   title: 'Are you sure you want to Logout?',
+                              //   titleTextStyle: TextStyle(
+                              //       fontSize: 14,
+                              //       fontWeight: FontWeight.bold
+                              //   ),
+                              //   btnOkOnPress: () {
+                              //     Navigator.pop(context);
+                              //     Navigator.pop(context);
+                              //     Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                              //   },
+                              //   btnCancelOnPress: () {
+                              //     //Navigator.pop(context);
+                              //   },
+                              // ).show();
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.noHeader,
+                                dialogBackgroundColor: Colors.white,
                                 animType: AnimType.rightSlide,
-                                //title: 'Error',
                                 title: 'Are you sure you want to Logout?',
                                 titleTextStyle: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: kprimaryColor,
                                 ),
-                                btnOkOnPress: () {
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                                },
-                                btnCancelOnPress: () {
-                                  //Navigator.pop(context);
-                                },
+                                customHeader: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color:kprimaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.indigo.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.warning_amber_rounded,
+                                      size: 40,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                btnOk: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: kprimaryColor,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    'OK',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                btnCancel:
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle(color: kprimaryColor),
+                                  ),
+                                ),
                               ).show();
                             },
                           ),

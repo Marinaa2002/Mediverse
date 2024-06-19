@@ -7,13 +7,14 @@ import 'StaffProfileRepo.dart';
 class StaffProfileRepoImpl extends StaffProfileRepo {
   CollectionReference details =
   FirebaseFirestore.instance.collection("Staff");
-  final currentUser = FirebaseAuth.instance.currentUser!.uid;
+
 
   @override
   updateName({
     required String? name,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Name': name,
       });
@@ -25,6 +26,7 @@ class StaffProfileRepoImpl extends StaffProfileRepo {
   @override
   updatePicture({required String? picture}) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({'Profile_Picture': picture});
     } on Exception catch (e) {
       print("Error adding document: $e");
@@ -34,6 +36,7 @@ class StaffProfileRepoImpl extends StaffProfileRepo {
   @override
   updateLocation({required String? location}) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Location': location,
       });
@@ -45,6 +48,7 @@ class StaffProfileRepoImpl extends StaffProfileRepo {
   @override
   updateOrgName({required String? orgName}) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Org Name': orgName,
       });
@@ -56,6 +60,7 @@ class StaffProfileRepoImpl extends StaffProfileRepo {
   @override
   updateOrgType({required String? orgType}) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Org Type': orgType,
       });

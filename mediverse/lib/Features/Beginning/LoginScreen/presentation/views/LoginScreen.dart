@@ -27,11 +27,12 @@ import '../../../../../Constants/Themes.dart';
 import '../../../../../GlobalWidgets/titleText.dart';
 import '../Manager/login_cubit/login_cubit.dart';
 
+bool isLoading = false;
+
 class LoginScreen extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
 
   static String id = 'LoginPage';
-  bool isLoading = false;
 
   String? email;
   String? password;
@@ -65,11 +66,13 @@ class LoginScreen extends StatelessWidget {
             globalcurrentUserId = documentid;
             // status=documentData['status']; // Change 'type' to the actual field name} else {
           } else {
-            Navigator.push(
+            isLoading = false;
+            Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
                   builder: (context) => WaitingForApprovalScreen(),
-                ));
+                ),
+                (Route<dynamic> route) => false);
           }
           if (type == 'Patient') {
             kNotesBox = documentid;
@@ -90,11 +93,17 @@ class LoginScreen extends StatelessWidget {
                 arguments: {'id': globalcurrentUserId},
               );
             } else {
-              Navigator.push(
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => ArchriveScreen(),
+              //     ));
+              Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ArchriveScreen(),
-                  ));
+                  ),
+                  (Route<dynamic> route) => false);
             }
           } else if (type == 'Hospital Staff') {
             DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
@@ -107,11 +116,13 @@ class LoginScreen extends StatelessWidget {
                   context, '/HospitalStaffManagementScreenAddDoctors',
                   arguments: {'id': globalcurrentUserId});
             } else {
-              Navigator.push(
+              isLoading = false;
+              Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ArchriveScreen(),
-                  ));
+                  ),
+                  (Route<dynamic> route) => false);
             }
           } else if (type == 'admin') {
             Navigator.pushReplacementNamed(context, '/AdminMainScreen');

@@ -58,11 +58,11 @@ class SlotWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Date(yyyy/mm/dd)',
+                            'Date',
                             style: Themes.bodyXLarge,
                           ),
                           Text(
-                            "${slot.fromDateYear.toString()}/${slot.fromDateMonth.toString()}/${slot.fromDateDay.toString()}",
+                            "${slot.date.toString()}-${slot.year.toString()}",
                             style: Themes.bodyXLarge
                                 .copyWith(fontWeight: FontWeight.normal),
                           ),
@@ -80,7 +80,7 @@ class SlotWidget extends StatelessWidget {
                             style: Themes.bodyXLarge,
                           ),
                           Text(
-                            "${slot.fromDateHour}:00",
+                            "${slot.timeSlots[0]}",
                             style: Themes.bodyXLarge
                                 .copyWith(fontWeight: FontWeight.normal),
                           ),
@@ -98,7 +98,7 @@ class SlotWidget extends StatelessWidget {
                             style: Themes.bodyXLarge,
                           ),
                           Text(
-                            "${slot.toDateHour}:00",
+                            "${slot.timeSlots[slot.timeSlots.length - 1]}",
                             style: Themes.bodyXLarge
                                 .copyWith(fontWeight: FontWeight.normal),
                           ),

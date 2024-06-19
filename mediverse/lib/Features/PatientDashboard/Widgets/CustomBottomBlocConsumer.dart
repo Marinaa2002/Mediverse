@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:mediverse/AllModels/booking.dart';
 import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Core/utils/api_keys.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/BookingScreen/data/models/PaymentIndentInputModel.dart';
@@ -22,10 +24,12 @@ class CustomButtonBlocConsumer extends StatelessWidget {
     super.key,
     required this.isPaypal,
     this.isCash = true,
+    required this.booking,
   });
 
   final bool isPaypal;
   final bool isCash;
+  final Booking booking;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentStripeCubit, PaymentStripeState>(
@@ -59,7 +63,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         } else {
           //paid in cash
           BlocProvider.of<PaymentStripeCubit>(context)
-                .completeBooking('paid in cash');
+              .completeBooking('paid in cash');
 
           Navigator.push(
               context,
@@ -81,7 +85,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
             } else if (isCash) {
               // paid in cash
               BlocProvider.of<PaymentStripeCubit>(context)
-                .completeBooking('paid in cash');
+                  .completeBooking('paid in cash');
 
               Navigator.push(
                   context,
@@ -148,11 +152,61 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           log("onSuccess: $params");
-          
-          //paid in paypal
-          BlocProvider.of<PaymentStripeCubit>(context)
-                .completeBooking('paid in paypal');
-          
+
+          // //paid in paypal
+          // BlocProvider.of<PaymentStripeCubit>(context)
+          //     .completeBooking('paid in paypal');
+          //kol da kan gwa completeBooking
+          final String doctor_id = booking.Doctor_id;
+          FirebaseFirestore.instance
+              .collection('info_Doctors')
+              .doc(doctor_id)
+              .update({
+            'Bookings': FieldValue.arrayUnion([booking.id]),
+          });
+          final String patient_id = booking.Patient_id;
+          FirebaseFirestore.instance
+              .collection('info_Patients')
+              .doc(patient_id)
+              .update({
+            'Bookings': FieldValue.arrayUnion([booking.id]),
+          });
+          DocumentSnapshot snapshot = await FirebaseFirestore.instance
+              .collection('info_Doctors')
+              .doc(booking.Doctor_id)
+              .get();
+
+          Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+
+          List slots = data['Slots'];
+
+          for (int i = 0; i < slots.length; i++) {
+            if (slots[i]['Name'] == booking.Location) {
+              for (int j = 0; j < slots[i]['Time Slots'].length; j++) {
+                if (slots[i]['Time Slots'][j]['Date'] == booking.Date) {
+                  for (int k = 0;
+                      k < slots[i]['Time Slots'][j]['Time'].length;
+                      k++) {
+                    if (slots[i]['Time Slots'][j]['Time'][k] == booking.Time) {
+                      slots[i]['Time Slots'][j]['Status'][k] = "booked";
+                      break;
+                    }
+                  }
+                  break;
+                }
+              }
+              break;
+            }
+          }
+
+          DocumentReference documentReference = FirebaseFirestore.instance
+              .collection('info_Doctors')
+              .doc(booking.Doctor_id);
+
+          documentReference.update({
+            'Slots': slots,
+          });
+
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) {
@@ -168,6 +222,12 @@ class CustomButtonBlocConsumer extends StatelessWidget {
               }
             },
           );
+          FirebaseFirestore.instance
+              .collection('Bookings')
+              .doc(booking.id)
+              .update({
+            'State': 'paid in paypal',
+          });
         },
         onError: (error) {
           log("onError $error");

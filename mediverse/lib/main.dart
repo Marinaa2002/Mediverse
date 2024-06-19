@@ -66,6 +66,8 @@ import 'Features/DoctorDashboard/DoctorProfile/presentation/Manager/Doctor_profi
 import 'Features/PatientDashboard/MainScreen.dart';
 import 'Features/StaffDashboard/AdminProfileScreen/data/Repos/AdminProfileRepoImpl.dart';
 import 'Features/StaffDashboard/AdminProfileScreen/presentation/Manager/Admin_Profile_Edit_Cubit/admin_profile_edit_cubit.dart';
+import 'Features/StaffDashboard/LabStaffProfileScreen/data/repos/LabStaffProfileRepoImpl.dart';
+import 'Features/StaffDashboard/LabStaffProfileScreen/presentation/Manager/lab_staff_profile_edit_cubit.dart';
 import 'Features/StaffDashboard/StaffProfileScreen/data/repos/StaffProfileRepoImpl.dart';
 import 'Features/StaffDashboard/StaffProfileScreen/presentation/Manager/staff_profile_edit_cubit.dart';
 
@@ -123,6 +125,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => ForgetPasswordCubit(LoginRepoImpl())),
         BlocProvider(create: (context) => LoginCubit(LoginRepoImpl())),
+        BlocProvider(
+          create: (context) =>
+              LabStaffProfileEditCubit(LabStaffProfileRepoImpl()),
+        ),
+
         // BlocProvider(
         //   create: (context) =>
         //       LabResultCubit(LabResultRepoImpl()),

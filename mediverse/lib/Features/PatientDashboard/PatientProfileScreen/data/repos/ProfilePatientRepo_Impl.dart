@@ -7,13 +7,14 @@ class ProfilePatientRepoImpl extends ProfilePatientRepo {
       FirebaseFirestore.instance.collection("info_Patients");
   CollectionReference details2 =
   FirebaseFirestore.instance.collection("Patient_Profile");
-  final currentUser = FirebaseAuth.instance.currentUser!.uid;
+
 
   @override
   updateName({
     required String? name,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Name': name,
       });
@@ -30,6 +31,7 @@ class ProfilePatientRepoImpl extends ProfilePatientRepo {
     required String? age,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'Age': age,
       });
@@ -46,6 +48,7 @@ class ProfilePatientRepoImpl extends ProfilePatientRepo {
     required String? nationalId,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({
         'NationalId': nationalId,
       });
@@ -62,6 +65,7 @@ class ProfilePatientRepoImpl extends ProfilePatientRepo {
     required String? phoneNum,
   }) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({'Phone Number': phoneNum});
       await details2.doc(currentUser).update({'Phone Number': phoneNum});
     } on Exception catch (e) {
@@ -72,6 +76,7 @@ class ProfilePatientRepoImpl extends ProfilePatientRepo {
   @override
   updatePicture({required String? picture}) async {
     try {
+      final currentUser = FirebaseAuth.instance.currentUser!.uid;
       await details.doc(currentUser).update({'Profile Picture': picture});
       await details2.doc(currentUser).update({'Profile Picture': picture});
     } on Exception catch (e) {

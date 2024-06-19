@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/LoginScreen.dart';
 
 class WaitingForApprovalScreen extends StatelessWidget {
   const WaitingForApprovalScreen({Key? key}) : super(key: key);
@@ -12,7 +13,13 @@ class WaitingForApprovalScreen extends StatelessWidget {
             Icons.arrow_back,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            isLoading = false;
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+                (Route<dynamic> route) => false);
           },
         ),
         title: Text('Waiting for Approval'),

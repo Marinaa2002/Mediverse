@@ -12,6 +12,7 @@ class CustomDayWidget extends StatelessWidget {
   });
   String day;
   String date;
+
   bool isChosen;
   // Color colorBox;
   // Color colorText;
@@ -32,7 +33,7 @@ class CustomDayWidget extends StatelessWidget {
           width: 120,
           height: 80,
           decoration: BoxDecoration(
-            color: (isChosen)? Colors.indigo : kSecondryBackgroundColor,
+            color: (isChosen) ? Colors.indigo : kSecondryBackgroundColor,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Align(
@@ -50,7 +51,7 @@ class CustomDayWidget extends StatelessWidget {
                       fontFamily: 'Readex Pro',
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
-                      color: (isChosen)? Colors.white : Colors.black,
+                      color: (isChosen) ? Colors.white : Colors.black,
                     ),
                   ),
                 ),
@@ -60,7 +61,7 @@ class CustomDayWidget extends StatelessWidget {
                     fontFamily: 'Readex Pro',
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
-                    color: (isChosen)? Colors.white : Colors.black,
+                    color: (isChosen) ? Colors.white : Colors.black,
                   ),
                 ),
               ],

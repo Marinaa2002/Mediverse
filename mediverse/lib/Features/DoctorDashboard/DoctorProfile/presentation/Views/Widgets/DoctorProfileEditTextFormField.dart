@@ -8,10 +8,12 @@ class DoctorProfileTextFormField extends StatelessWidget {
   DoctorProfileTextFormField({
     super.key,
     required this.text,
+    this.validator,
     required this.onChanged,
     required this.controller
   });
   Function(String)? onChanged;
+  String? Function(String?)? validator;
   TextEditingController? controller;
 
 
@@ -20,6 +22,7 @@ class DoctorProfileTextFormField extends StatelessWidget {
     return Container(
       width: 390,
       child: TextFormField(
+          validator: validator,
           onChanged: onChanged,
           controller: controller,
           autofocus: false,

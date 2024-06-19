@@ -81,7 +81,6 @@ class _BlogsAddState extends State<BlogsAdd> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,9 +119,6 @@ class _BlogsAddState extends State<BlogsAdd> {
   }
 
   Widget enableUpload() {
-    final TextEditingController _titleController = TextEditingController();
-    final TextEditingController _descriptionController = TextEditingController();
-
     return Container(
       child: Form(
         key: formKey,
@@ -131,16 +127,17 @@ class _BlogsAddState extends State<BlogsAdd> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               if (sampleImage != null)
-               Container(
-                 width: MediaQuery.of(context).size.width*0.85,
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.85,
                   height: 200,
-                 decoration: BoxDecoration(
-                   border:Border.all(
-                     color: kprimaryColor,
-                     width: 3
-                   )
-                 ),
-                 child:Image.file(sampleImage!, height: 200, width: 500,),),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: kprimaryColor,
+                          width: 3
+                      )
+                  ),
+                  child: Image.file(sampleImage!, height: 200, width: 500,),
+                ),
               SizedBox(height: 5),
               Align(
                 alignment: Alignment.center,
