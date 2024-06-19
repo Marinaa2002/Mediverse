@@ -4,8 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Recommendation%20System/data/repo/recommendation_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/Recommendation%20System/presentation/Manager/cubit/recommendation_cubit.dart';
 import 'package:mediverse/Features/PatientDashboard/Widgets/RecommendationText.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
@@ -121,9 +124,13 @@ class _AppointmentTabState extends State<AppointmentTab> {
                   }).toList(),
                 ),
               ),
-              SizedBox(height: 12,),
-              RecommendationText(speciality: 'Neurologist'),
-              SizedBox(height: 12),
+              SizedBox(
+                height: 10,
+              ),
+              BlocProvider(
+                create: (context) => RecommendationCubit(RecommendationRepoImpl())..createRecommendation(globalcurrentUserId),
+                child: RecommendationText(),
+              ),
               StreamBuilder<QuerySnapshot>(
                 stream: _doctorStream,
                 builder: (context, snapshot) {
@@ -138,26 +145,29 @@ class _AppointmentTabState extends State<AppointmentTab> {
                   }
 
                   var doctors = snapshot.data!.docs.map((doc) {
-                    return Doctor.fromJson(doc.data() as Map<String, dynamic>, doc.id);
+                    return Doctor.fromJson(
+                        doc.data() as Map<String, dynamic>, doc.id);
                   }).toList();
 
                   doctors = _filterDoctors(doctors, _searchQuery);
 
                   return Expanded(
                     child: doctors.isEmpty
-                        ? Center(child: Text(
-                      "No Results Found",
-                      style: Themes.bodyLarge.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey),
-                    ),)
+                        ? Center(
+                            child: Text(
+                              "No Results Found",
+                              style: Themes.bodyLarge.copyWith(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey),
+                            ),
+                          )
                         : ListView.builder(
-                      itemCount: doctors.length,
-                      itemBuilder: (context, index) {
-                        return CustomCardRatings(doctor: doctors[index]);
-                      },
-                    ),
+                            itemCount: doctors.length,
+                            itemBuilder: (context, index) {
+                              return CustomCardRatings(doctor: doctors[index]);
+                            },
+                          ),
                   );
                 },
               ),
@@ -168,4 +178,3 @@ class _AppointmentTabState extends State<AppointmentTab> {
     );
   }
 }
-
