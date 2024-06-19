@@ -4,8 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediverse/AllModels/doctor.dart';
 import 'package:mediverse/Constants/Themes.dart';
 import 'package:mediverse/Constants/constant.dart';
+import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/PatientDashboard/Appointment/AppointmentDetailsScreen/presentation/Manager/cubit/appointment_details_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Recommendation%20System/data/repo/recommendation_repo_impl.dart';
+import 'package:mediverse/Features/PatientDashboard/Recommendation%20System/presentation/Manager/cubit/recommendation_cubit.dart';
+import 'package:mediverse/Features/PatientDashboard/Widgets/RecommendationText.dart';
 import 'package:mediverse/Features/StaffDashboard/Widgets/SearchBar.dart';
 
 import '../Widgets/CustomCardRatings.dart';
@@ -123,7 +127,13 @@ class _AppointmentTabState extends State<AppointmentTab> {
                   }).toList(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(
+                height: 10,
+              ),
+              BlocProvider(
+                create: (context) => RecommendationCubit(RecommendationRepoImpl())..createRecommendation(globalcurrentUserId),
+                child: RecommendationText(),
+              ),
               StreamBuilder<QuerySnapshot>(
                 stream: _doctorStream,
                 builder: (context, snapshot) {
