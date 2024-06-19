@@ -29,7 +29,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
-      child: Column(
+      child: SingleChildScrollView(
+      child:Column(
         children: [
           const SizedBox(
             height: 32,
@@ -87,7 +88,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 16,
           ),
         ],
-      ),
+      ),),
     );
   }
 }

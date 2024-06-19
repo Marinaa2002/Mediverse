@@ -4,6 +4,7 @@ import 'package:mediverse/Core/utils/Globals.dart';
 import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Loading.dart';
 import 'package:mediverse/Features/DoctorDashboard/BookingDoctor/presentation/Managers/cubit/doc_bookings_cubit.dart';
 
+import '../../../Constants/Themes.dart';
 import 'BookingCard.dart';
 
 class PrevBookingsList extends StatefulWidget {
@@ -58,9 +59,18 @@ class _PrevBookingsListState extends State<PrevBookingsList> {
                         );
                       }),
                 )
-              : Center(
-                  child: Text('No Previous Bookings'),
-                );
+              :
+          Column(
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height*0.3,),
+              Center(
+                child: Text(
+                  "No Previous Bookings",
+                  style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
+                ),
+                    ),
+            ],
+          );
         } else if (state is DocBookingsFailure) {
           return Center(
             child: Text("Error"),

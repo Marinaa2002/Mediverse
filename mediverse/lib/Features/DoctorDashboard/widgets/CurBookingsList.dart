@@ -6,6 +6,8 @@ import 'package:mediverse/Features/Beginning/LoginScreen/presentation/views/Load
 import 'package:mediverse/Features/DoctorDashboard/AppointmentsDoctor/presentation/Managers/cubit/doc_appoints_cubit.dart';
 import 'package:mediverse/Features/DoctorDashboard/widgets/CurrentBookingCard.dart';
 
+import '../../../Constants/Themes.dart';
+
 class CurBookingsList extends StatefulWidget {
   const CurBookingsList({
     super.key,
@@ -40,8 +42,16 @@ class _CurBookingsListState extends State<CurBookingsList> {
                         );
                       }),
                 )
-              : Center(
-                  child: Text('No Active Bookings'),
+              :  Column(
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height*0.2,),
+              Center(
+                child: Text(
+                  "No Active Bookings",
+                  style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
+                ),
+              ),
+            ],
                 );
         } else if (state is DocAppointsFailed) {
           return Center(
