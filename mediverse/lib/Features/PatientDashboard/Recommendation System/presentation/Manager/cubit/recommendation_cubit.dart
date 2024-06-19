@@ -19,7 +19,7 @@ class RecommendationCubit extends Cubit<RecommendationState> {
       (l) => emit(RecommendationFailure()),
       (r) {
         // check if list is empty
-        if (r.isEmpty) emit(RecommendationEmpty());
+        if (r.isEmpty || r == []) emit(RecommendationEmpty());
 
         //create list of recommendations
         List<String> recommendations = [];
