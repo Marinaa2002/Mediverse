@@ -98,7 +98,7 @@ class AppBarDoctor extends StatelessWidget {
                         profileModel.name,
                         style: TextStyle(
                             fontFamily: 'Readex Pro',
-                            fontSize: 14,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -106,7 +106,7 @@ class AppBarDoctor extends StatelessWidget {
                         profileModel.email,
                         style: const TextStyle(
                           fontFamily: 'Readex Pro',
-                          fontSize: 14,
+                          fontSize: 16,
                           color: kThirdTextColor,
                           fontWeight: FontWeight.normal,
                         ),

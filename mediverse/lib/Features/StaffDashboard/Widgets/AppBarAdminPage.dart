@@ -87,13 +87,13 @@ class AppBarAdminPage extends StatelessWidget {
                     Text(
                       admin.name,
                       style:
-                          const TextStyle(fontSize: 14, color: kThirdTextColor),
+                          const TextStyle(fontSize: 20, color: kThirdTextColor),
                     ),
                     Text(
                       admin.email,
                       style: const TextStyle(
                         fontFamily: 'Readex Pro',
-                        fontSize: 14,
+                        fontSize: 16,
                         color: kThirdTextColor,
                         fontWeight: FontWeight.normal,
                       ),

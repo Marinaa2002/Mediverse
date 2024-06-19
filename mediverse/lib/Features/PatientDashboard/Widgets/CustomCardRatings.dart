@@ -69,7 +69,7 @@ class CustomCardRatings extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(doctor.name,
+                                Text('Dr. ' + doctor.name,
                                     style: const TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.bold,

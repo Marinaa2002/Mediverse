@@ -39,17 +39,27 @@ class AppBarLabResultScreen extends StatelessWidget {
           StaffModel staffModel = StaffModel.fromJson(snapshot.data!.data());
           return Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
-                  child: Center(
-                    child: Text(
-                      staffModel.orgName,
-                      style: Themes.headlineSmall,
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Center(
+                      child: Text(
+                        staffModel.orgName,
+                        style: Themes.headlineSmall.copyWith(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+              ),
               //),
               // GestureDetector(
               //   child: Icon(color: Colors.white, Icons.logout),
