@@ -1,51 +1,34 @@
 // Define a model class for Appointment
+import 'dart:convert';
+
 class SlotsModel {
   final String dUid;
   final String hospitalName;
-  final int fromDateDay;
-  final int fromDateHour;
-  final int fromDateMonth;
-  final int fromDateYear;
-  final int toDateDay;
-  final int toDateHour;
-  final int toDateMonth;
-  final int toDateYear;
-  final String currency;
-  final bool isPaid;
-  final int availableSlotsInHr;
+  final String isoDate;
+  final List<dynamic> timeSlots;
+  final String date;
+  final String day;
+  final int year;
 
   SlotsModel({
     required this.dUid,
     required this.hospitalName,
-    required this.fromDateDay,
-    required this.fromDateHour,
-    required this.fromDateMonth,
-    required this.fromDateYear,
-    required this.toDateDay,
-    required this.toDateHour,
-    required this.toDateMonth,
-    required this.toDateYear,
-    required this.currency,
-    required this.isPaid,
-    required this.availableSlotsInHr,
+    required this.timeSlots,
+    required this.date,
+    required this.day,
+    required this.year,
+    required this.isoDate,
   });
 
   // Factory method to create an Appointment object from a Firestore document snapshot
   factory SlotsModel.fromJson(jsonData) {
     return SlotsModel(
-      dUid: jsonData['D_uid'],
-      hospitalName: jsonData['HospitalName'],
-      fromDateDay: jsonData['FromDateDay'],
-      fromDateHour: jsonData['FromDateHour'],
-      fromDateMonth: jsonData['FromDateMonth'],
-      fromDateYear: jsonData['FromDateYear'],
-      toDateDay: jsonData['TODateDay'],
-      toDateHour: jsonData['TODateHour'],
-      toDateMonth: jsonData['TODateMonth'],
-      toDateYear: jsonData['TODateYear'],
-      currency: jsonData['currency'],
-      isPaid: jsonData['isPaid'],
-      availableSlotsInHr: jsonData['availableSlotsInHr'],
-    );
+        dUid: jsonData['D_uid'],
+        hospitalName: jsonData['HospitalName'],
+        timeSlots: jsonData['Time'],
+        date: jsonData['Date'],
+        day: jsonData['Day'],
+        year: jsonData['year'],
+        isoDate: jsonData['isoDate']);
   }
 }
