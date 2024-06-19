@@ -110,7 +110,7 @@ class MessagesListView extends StatelessWidget {
               //     ),
               //   ],
               // );
-              ChatMessageWithPhoto(
+              return ChatMessageWithPhoto(
                 message: messagesList[index],
                 isMe: false,
               );
@@ -171,7 +171,7 @@ class MessagesListView extends StatelessWidget {
               //     ),
               //   ],
               // );
-              ChatMessage(
+              return ChatMessage(
                 message: messagesList[index],
                 isMe: false,
               );
@@ -191,7 +191,7 @@ class MessagesListView extends StatelessWidget {
               //     ),
               //   ],
               // );
-              ChatMessageWithPhoto(
+              return ChatMessageWithPhoto(
                 message: messagesList[index],
                 isMe: false,
               );
