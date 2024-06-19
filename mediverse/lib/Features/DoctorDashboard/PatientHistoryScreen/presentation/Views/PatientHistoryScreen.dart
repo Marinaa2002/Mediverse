@@ -47,47 +47,42 @@ class _PatientHistoryState extends State<PatientHistory> {
     return DateTime.parse(formattedDate);
   }
 
-  Future<List<DocumentSnapshot>> fetchBookingDocs(List<dynamic> bookingIds) {
-    return Future.wait(bookingIds.map((bookingId) =>
-        FirebaseFirestore.instance
-            .collection('Bookings')
-            .doc(bookingId)
-            .get()
-    ).toList());
+  Future<List<DocumentSnapshot>> fetchBookingDocs(List<dynamic> bookingIds) async {
+    List<Future<DocumentSnapshot>> futures = bookingIds.map((bookingId) =>
+        FirebaseFirestore.instance.collection('Bookings').doc(bookingId).get()
+    ).toList();
+
+    List<DocumentSnapshot> results = await Future.wait(futures);
+    return results;
   }
 
-  Future<List<DocumentSnapshot>> filterPrevBookings(List<dynamic> bookings, List<dynamic> prevBookings) async {
-    final bookingDocs = await fetchBookingDocs(bookings);
-    final prevBookingDocs = await fetchBookingDocs(prevBookings);
+  Future<List<DocumentSnapshot>> filterBookings(List<dynamic> bookings, List<dynamic> prevBookings) async {
+    List<DocumentSnapshot> bookingDocs = await fetchBookingDocs([...bookings, ...prevBookings]);
+    bookingDocs.sort((a, b) => b['Date'].compareTo(a['Date']));
+    Set<String> patientIds = {};
+    List<DocumentSnapshot> uniqueBookings = [];
 
-    final allBookings = [...bookingDocs, ...prevBookingDocs];
-    allBookings.sort((a, b) {
-      final dateA = parseDate((a.data() as Map<String, dynamic>)['Date']);
-      final dateB = parseDate((b.data() as Map<String, dynamic>)['Date']);
-      return dateB.compareTo(dateA);
-    });
-
-    final uniqueBookings = <String, DocumentSnapshot>{};
-    for (var doc in allBookings) {
-      final bookingData = doc.data() as Map<String, dynamic>?;
-      final patientId = bookingData?['Patient_id'];
-      if (patientId != null && !uniqueBookings.containsKey(patientId)) {
-        uniqueBookings[patientId] = doc;
+    for (var doc in bookingDocs) {
+      String patientId = doc['Patient_id'];
+      if (!patientIds.contains(patientId)) {
+        patientIds.add(patientId);
+        uniqueBookings.add(doc);
       }
     }
-    return uniqueBookings.values.toList();
+
+    return uniqueBookings;
   }
 
   Future<Map<String, DocumentSnapshot>> fetchAllPatients(List<DocumentSnapshot> bookings) async {
-    final patientIds = bookings.map((doc) {
-      final bookingData = doc.data() as Map<String, dynamic>?;
-      return bookingData?['Patient_id'];
-    }).whereType<String>().toSet();
+    Set patientIds = bookings.map((booking) => booking['Patient_id']).toSet();
 
-    final patientDocs = await Future.wait(
-        patientIds.map((patientId) => FirebaseFirestore.instance.collection('info_Patients').doc(patientId).get())
-    );
-    return {for (var doc in patientDocs) doc.id: doc};
+    List<Future<DocumentSnapshot>> futures = patientIds.map((patientId) =>
+        FirebaseFirestore.instance.collection('info_Patients').doc(patientId).get()
+    ).toList();
+
+    List<DocumentSnapshot> results = await Future.wait(futures);
+
+    return { for (var doc in results) doc.id: doc };
   }
 
   void _onSearchPressed() {
@@ -140,8 +135,8 @@ class _PatientHistoryState extends State<PatientHistory> {
             SearchBoxAppointmentWidget(
               controller: _searchController,
               onChanged: _onSearchChanged,
-              onSearchPressed: () {},
-              onSubmitted: (value) => (value) {},
+              onSearchPressed: _onSearchPressed,
+              onSubmitted: (value) => _onSearchPressed(),
             ),
             Expanded(
               child: FutureBuilder<DocumentSnapshot>(
@@ -168,124 +163,114 @@ class _PatientHistoryState extends State<PatientHistory> {
                       ),
                     );
                   }
-                  try {
-                    final data = snapshot.data!.data() as Map<String, dynamic>?;
-                    List<dynamic> bookings = List<dynamic>.from(data?['Bookings'] ?? []);
-                    List<dynamic> prevBookings = List<dynamic>.from(data?['Previous_Appointments'] ?? []);
 
-                    if (bookings.isEmpty && prevBookings.isEmpty) {
-                      return
-                        Column(
-                          children: [
-                            SizedBox(height: MediaQuery.of(context).size.height*0.3,),
-                            Center(
-                              child: Text(
-                                "No Patient History Found",
-                                style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
-                              ),
-                            ),
-                          ],
-                        );
-                    }
+                  final data = snapshot.data!.data() as Map<String, dynamic>?;
+                  List<dynamic> bookings = List<dynamic>.from(data?['Bookings'] ?? []);
+                  List<dynamic> prevBookings = List<dynamic>.from(data?['Previous_Appointments'] ?? []);
 
-                    return FutureBuilder<List<DocumentSnapshot>>(
-                      future: filterPrevBookings(bookings, prevBookings),
-                      builder: (context, filteredBookingsSnapshot) {
-                        if (filteredBookingsSnapshot.connectionState == ConnectionState.waiting) {
-                          return Loading();
-                        }
-
-                        if (!filteredBookingsSnapshot.hasData) {
-                          return const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text("Error loading previous bookings"),
-                          );
-                        }
-
-                        List<DocumentSnapshot> filteredBookings = filteredBookingsSnapshot.data!;
-
-                        return FutureBuilder<Map<String, DocumentSnapshot>>(
-                          future: fetchAllPatients(filteredBookings),
-                          builder: (context, patientsSnapshot) {
-                            if (patientsSnapshot.connectionState == ConnectionState.waiting) {
-                              return Loading();
-                            }
-
-                            if (!patientsSnapshot.hasData) {
-                              return const Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Text("Error loading patients data"),
-                              );
-                            }
-
-                            final patientsData = patientsSnapshot.data!;
-
-                            final searchQueryLower = _searchQuery.toLowerCase();
-                            final filteredByName = filteredBookings.where((doc) {
-                              final bookingData = doc.data() as Map<String, dynamic>?;
-                              final patientData = patientsData[bookingData?['Patient_id']]?.data() as Map<String, dynamic>?;
-                              return patientData?['Name'].toString().toLowerCase().contains(searchQueryLower) ?? false;
-                            }).toList();
-
-                            final displayedBookings = _searchQuery.isEmpty
-                                ? filteredByName.take(8).toList()
-                                : filteredByName;
-
-                            return displayedBookings.isEmpty ? Center(
-                              child: Text(
-                                "No Results Found",
-                                style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
-                              ),
-                            )
-                                : ListView.builder(
-                              itemCount: displayedBookings.length,
-                              itemBuilder: (context, index) {
-                                final bookingData = displayedBookings[index].data() as Map<String, dynamic>?;
-                                final patientData = patientsData[bookingData?['Patient_id']]?.data() as Map<String, dynamic>?;
-
-                                if (bookingData == null || patientData == null) {
-                                  return const ListTile(
-                                    title: Text("Error loading booking or patient data"),
-                                  );
-                                }
-
-                                final List<Map<String, String>> medicalHistoryList = List<Map<String, String>>.from(
-                                  (patientData['Medical Records'] ?? []).map((item) => Map<String, String>.from(item)),
-                                );
-
-                                Map<String, String>? lastMedicalHistory;
-
-                                if (medicalHistoryList.isNotEmpty) {
-                                  lastMedicalHistory = medicalHistoryList.last;
-                                }
-
-                                return ListTile(
-                                  title: HistoryCard(
-                                    patientName: patientData['Name'],
-                                    email: patientData['Email'],
-                                    profilePicture: patientData['Profile Picture'],
-                                    appointmentDate: bookingData['Date'],
-                                    age: patientData['Age'],
-                                    medicalHistory: lastMedicalHistory != null ? [lastMedicalHistory] : [],
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        );
-                      },
-                    );
-                  } catch (e) {
-                    return Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          "Error loading data",
-                          style: Themes.bodyMedium.copyWith(fontSize: 18),
+                  if (bookings.isEmpty && prevBookings.isEmpty) {
+                    return Column(
+                      children: [
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.3),
+                        Center(
+                          child: Text(
+                            "No Patient History Found",
+                            style: Themes.bodyLarge.copyWith(
+                                fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
+                          ),
                         ),
-                      ),
+                      ],
                     );
                   }
+
+                  return FutureBuilder<List<DocumentSnapshot>>(
+                    future: filterBookings(bookings, prevBookings),
+                    builder: (context, filteredBookingsSnapshot) {
+                      if (filteredBookingsSnapshot.connectionState == ConnectionState.waiting) {
+                        return Loading();
+                      }
+
+                      if (!filteredBookingsSnapshot.hasData) {
+                        return const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text("Error loading bookings"),
+                        );
+                      }
+
+                      List<DocumentSnapshot> filteredBookings = filteredBookingsSnapshot.data!;
+
+                      return FutureBuilder<Map<String, DocumentSnapshot>>(
+                        future: fetchAllPatients(filteredBookings),
+                        builder: (context, patientsSnapshot) {
+                          if (patientsSnapshot.connectionState == ConnectionState.waiting) {
+                            return Loading();
+                          }
+
+                          if (!patientsSnapshot.hasData) {
+                            return const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text("Error loading patients data"),
+                            );
+                          }
+
+                          final patientsData = patientsSnapshot.data!;
+
+                          final searchQueryLower = _searchQuery.toLowerCase();
+                          final filteredByName = filteredBookings.where((doc) {
+                            final patientData = patientsData[doc['Patient_id']]?.data() as Map<String, dynamic>?;
+                            return patientData?['Name'].toString().toLowerCase().contains(searchQueryLower) ?? false;
+                          }).toList();
+
+                          final displayedBookings = _searchQuery.isEmpty
+                              ? filteredByName.take(8).toList()
+                              : filteredByName;
+
+                          return displayedBookings.isEmpty
+                              ? Center(
+                            child: Text(
+                              "No Results Found",
+                              style: Themes.bodyLarge.copyWith(
+                                  fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
+                            ),
+                          )
+                              : ListView.builder(
+                            itemCount: displayedBookings.length,
+                            itemBuilder: (context, index) {
+                              final bookingData = displayedBookings[index].data() as Map<String, dynamic>?;
+                              final patientData = patientsData[bookingData?['Patient_id']]?.data() as Map<String, dynamic>?;
+
+                              if (bookingData == null || patientData == null) {
+                                return const ListTile(
+                                  title: Text("Error loading booking or patient data"),
+                                );
+                              }
+
+                              final List<Map<String, String>> medicalHistoryList = List<Map<String, String>>.from(
+                                (patientData['Medical Records'] ?? []).map((item) => Map<String, String>.from(item)),
+                              );
+
+                              Map<String, String>? lastMedicalHistory;
+
+                              if (medicalHistoryList.isNotEmpty) {
+                                lastMedicalHistory = medicalHistoryList.last;
+                              }
+
+                              return ListTile(
+                                title: HistoryCard(
+                                  patientName: patientData['Name'],
+                                  email: patientData['Email'],
+                                  profilePicture: patientData['Profile Picture'],
+                                  appointmentDate: bookingData['Date'],
+                                  age: patientData['Age'],
+                                  medicalHistory: lastMedicalHistory != null ? [lastMedicalHistory] : [],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  );
                 },
               ),
             ),
