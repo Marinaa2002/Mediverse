@@ -37,131 +37,163 @@ class MessagesListView extends StatelessWidget {
             if (messagesList[index].sender == "Doctor" &&
                 messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessage(
-                    message: messagesList[index],
-                    isMe: true,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessage(
+              //       message: messagesList[index],
+              //       isMe: true,
+              //     ),
+              //   ],
+              // );
+              return ChatMessage(
+                message: messagesList[index],
+                isMe: true,
               );
             } else if (messagesList[index].sender == "Doctor" &&
                 messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessageWithPhoto(
-                    message: messagesList[index],
-                    isMe: true,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessageWithPhoto(
+              //       message: messagesList[index],
+              //       isMe: true,
+              //     ),
+              //   ],
+              // );
+              return ChatMessageWithPhoto(
+                message: messagesList[index],
+                isMe: true,
               );
             } else if (messagesList[index].sender != "Doctor" &&
                 messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessage(
-                    message: messagesList[index],
-                    isMe: false,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessage(
+              //       message: messagesList[index],
+              //       isMe: false,
+              //     ),
+              //   ],
+              // );
+              return ChatMessage(
+                message: messagesList[index],
+                isMe: false,
               );
             } else if (messagesList[index].sender != "Doctor" &&
                 messagesList[index].doctor_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessageWithPhoto(
-                    message: messagesList[index],
-                    isMe: false,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessageWithPhoto(
+              //       message: messagesList[index],
+              //       isMe: false,
+              //     ),
+              //   ],
+              // );
+              ChatMessageWithPhoto(
+                message: messagesList[index],
+                isMe: false,
               );
             }
             if (messagesList[index].sender == "Patient" &&
                 messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessage(
-                    message: messagesList[index],
-                    isMe: true,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessage(
+              //       message: messagesList[index],
+              //       isMe: true,
+              //     ),
+              //   ],
+              // );
+              return ChatMessage(
+                message: messagesList[index],
+                isMe: true,
               );
             } else if (messagesList[index].sender == "Patient" &&
                 messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessageWithPhoto(
-                    message: messagesList[index],
-                    isMe: true,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessageWithPhoto(
+              //       message: messagesList[index],
+              //       isMe: true,
+              //     ),
+              //   ],
+              // );
+              return ChatMessageWithPhoto(
+                message: messagesList[index],
+                isMe: true,
               );
             } else if (messagesList[index].sender != "Patient" &&
                 messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl == '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessage(
-                    message: messagesList[index],
-                    isMe: false,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessage(
+              //       message: messagesList[index],
+              //       isMe: false,
+              //     ),
+              //   ],
+              // );
+              ChatMessage(
+                message: messagesList[index],
+                isMe: false,
               );
             } else if (messagesList[index].sender != "Patient" &&
                 messagesList[index].patient_id == globalcurrentUserId &&
                 messagesList[index].imageUrl != '') {
-              return Column(
-                children: [
-                  DateOfChat(
-                    currentDate: dates[index],
-                    chatesSize: messagesList.length,
-                    currentIndex: index,
-                  ),
-                  ChatMessageWithPhoto(
-                    message: messagesList[index],
-                    isMe: false,
-                  ),
-                ],
+              // return Column(
+              //   children: [
+              //     DateOfChat(
+              //       currentDate: dates[index],
+              //       chatesSize: messagesList.length,
+              //       currentIndex: index,
+              //     ),
+              //     ChatMessageWithPhoto(
+              //       message: messagesList[index],
+              //       isMe: false,
+              //     ),
+              //   ],
+              // );
+              ChatMessageWithPhoto(
+                message: messagesList[index],
+                isMe: false,
               );
             }
           }),

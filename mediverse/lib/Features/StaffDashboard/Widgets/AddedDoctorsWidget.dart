@@ -84,10 +84,7 @@ class AddedDoctorsWidget extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               backgroundColor: kprimaryColor,
-              child: Icon(
-                Icons.add,
-                color:Colors.white
-              ),
+              child: Icon(Icons.add, color: Colors.white),
               onPressed: () async {
                 final license_Number = await showTextFieldDialog(context,
                     textEditingController: textEditingController,
