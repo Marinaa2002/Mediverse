@@ -509,6 +509,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.pop(context);
                                     Navigator.pop(context);
+                                    Navigator.pop(context);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
