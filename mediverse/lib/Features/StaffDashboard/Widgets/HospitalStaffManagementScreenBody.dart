@@ -77,6 +77,7 @@ class HospitalStaffManagementScreenBody extends StatelessWidget {
           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
           child: SlotsWidget(
             id: id,
+            orgName: doctorOrgName,
           ),
         ),
       ],

@@ -10,9 +10,11 @@ class SlotsWidget extends StatelessWidget {
   SlotsWidget({
     super.key,
     required this.id,
+    required this.orgName,
   });
   final scrollController = ScrollController();
   final String id;
+  final String orgName;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class SlotsWidget extends StatelessWidget {
             isEqualTo: currentMonth,
           )
           .where('D_uid', isEqualTo: id)
+          .where('HospitalName', isEqualTo: orgName)
           .orderBy(
             'FromDateDay',
             descending: false,

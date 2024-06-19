@@ -62,6 +62,15 @@ class _chooseDetailsState extends State<chooseDetails> {
                         widget.doctor, state.clinicListBool, index);
                   },
                   children: state.clinicsList,
+                  // children: state.clinicsList.map((clinic) {
+                  //   return Container(
+                  //     width:
+                  //         MediaQuery.of(context).size.width*0.5, // Specify a fixed width for each toggle button
+                  //     alignment: Alignment
+                  //         .center, // Center the content within the container
+                  //     child: clinic,
+                  //   );
+                  // }).toList(),
                 ),
               ),
               Align(
