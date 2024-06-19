@@ -142,7 +142,7 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                             padding:
                             EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                             child: Icon(
-                              Icons.language,
+                              Icons.access_time_filled,
                               color: kSecondaryTextColor,
                               size: 24,
                             ),
@@ -152,14 +152,14 @@ class AdminProfileSettingsWidget extends StatelessWidget {
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Text(
-                                'Language',
+                                'Working Hours',
                                 textAlign: TextAlign.start,
                                 style: Themes.bodyXLarge,
                               ),
                             ),
                           ),
                           Text(
-                            'English(eng)',
+                            '10 AM - 5 PM',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
