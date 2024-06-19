@@ -174,12 +174,18 @@ class _PatientHistoryState extends State<PatientHistory> {
                     List<dynamic> prevBookings = List<dynamic>.from(data?['Previous_Appointments'] ?? []);
 
                     if (bookings.isEmpty && prevBookings.isEmpty) {
-                      return Center(
-                        child: Text(
-                          "No Patient History Found",
-                          style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
-                        ),
-                      );
+                      return
+                        Column(
+                          children: [
+                            SizedBox(height: MediaQuery.of(context).size.height*0.3,),
+                            Center(
+                              child: Text(
+                                "No Patient History Found",
+                                style: Themes.bodyLarge.copyWith(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.grey),
+                              ),
+                            ),
+                          ],
+                        );
                     }
 
                     return FutureBuilder<List<DocumentSnapshot>>(
