@@ -26,11 +26,13 @@ class RecommendationCubit extends Cubit<RecommendationState> {
 
         //check BMI
         double BMI = -1.0;
-        if (r[r.length - 1]['Height'] != "" &&
-            r[r.length - 1]['Weight'] != "") {
-          double heightInM = double.parse(r[r.length - 1]['Height']) / 100;
-          double Weight = double.parse(r[r.length - 1]['Weight']);
-          BMI = Weight / pow(heightInM, 2);
+        if (r.isNotEmpty) {
+          if (r[r.length - 1]['Height'] != "" &&
+              r[r.length - 1]['Weight'] != "") {
+            double heightInM = double.parse(r[r.length - 1]['Height']) / 100;
+            double Weight = double.parse(r[r.length - 1]['Weight']);
+            BMI = Weight / pow(heightInM, 2);
+          }
         }
 
         // declare flags and buckets
