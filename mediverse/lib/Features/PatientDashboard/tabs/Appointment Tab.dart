@@ -26,9 +26,12 @@ class _AppointmentTabState extends State<AppointmentTab> {
   late Stream<QuerySnapshot> _doctorStream;
   final Map<String, bool> _specialties = {
     'Cardiologist': false,
+    'Endocrinologist': false,
     'Neurologist': false,
     'Dentist': false,
     'Dermatologist': false,
+    'Internist': false,
+    'Nutritionist': false,
     'Psychiatrist': false,
   };
 

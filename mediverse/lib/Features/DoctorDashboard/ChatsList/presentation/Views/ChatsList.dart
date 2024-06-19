@@ -202,7 +202,7 @@ class ChatsList extends StatelessWidget {
     required this.role,
   });
   CollectionReference chatHistory =
-  FirebaseFirestore.instance.collection('ChatHistory');
+      FirebaseFirestore.instance.collection('ChatHistory');
   final String role;
 
   @override
@@ -215,153 +215,158 @@ class ChatsList extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            role == "Patient"
+            role == "Patient" //Patient
                 ? StreamBuilder<QuerySnapshot>(
-                stream: chatHistory
-                    .where('patient_id', isEqualTo: globalcurrentUserId)
-                    .orderBy(kCreatedAt, descending: true)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                        child: SpinKitChasingDots(
+                    stream: chatHistory
+                        .where('patient_id', isEqualTo: globalcurrentUserId)
+                        .orderBy(kCreatedAt, descending: true)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                            child: SpinKitChasingDots(
                           color: kprimaryColor,
                         ));
-                  }
+                      }
 
-                  if (!snapshot.hasData) {
-                    return const Center(child: Text("No chats History"));
-                  }
+                      if (!snapshot.hasData) {
+                        return const Center(child: Text("No chats History"));
+                      }
 
-                  final chats = snapshot.data!.docs;
-                  if (snapshot.data!.docs.isEmpty) {
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.3,
-                        ),
-                        Center(
-                          child: Text(
-                            "No Chat History",
-                            style: Themes.bodyLarge.copyWith(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey),
-                          ),
-                        )
-                      ],
-                    );
-                  }
-                  return Expanded(
-                    child: Padding(
-                      padding:
-                      const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
-                      child: ListView.builder(
-                        itemCount: chats.length,
-                        itemBuilder: (context, index) {
-                          final doctorId = chats[index]
-                              .get('doctor_id'); // Extract doctor_id
-
-                          // Use doctorId for further processing or display
-                          return ChatHead(
-                            patient_id: globalcurrentUserId,
-                            doctor_id: doctorId,
-                            chatterRole: "DoctorProfile",
-                            isPhoto: chats[index].get('isPhoto'),
-                            lattestSender: chats[index].get('latestSender'),
-                            latestMsg: chats[index].get('latestMsg'),
-                            isRead: chats[index].get('isRead'),
-                            latestMsgWidget: Text(
-                              chats[index].get('latestMsg'),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
+                      final chats = snapshot.data!.docs;
+                      if (snapshot.data!.docs.isEmpty) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.3,
                             ),
-                          ); // Assuming ChatHead takes doctorId
-                        },
-                      ),
-                    ),
-                  );
-                })
-                : StreamBuilder<QuerySnapshot>(
-                stream: chatHistory
-                    .orderBy(kCreatedAt, descending: true)
-                    .where('doctor_id', isEqualTo: globalcurrentUserId)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                        child: SpinKitSpinningCircle(
-                          color: kprimaryColor,
-                          size: 50,
-                        )); // Show a loading indicator while waiting for data
-                  }
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: Text(
-                        "No Chat History",
-                        style: Themes.bodyLarge.copyWith(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.grey),
-                      ),
-                    );
-                  }
+                            Center(
+                              child: Text(
+                                "No Chat History",
+                                style: Themes.bodyLarge.copyWith(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
+                            )
+                          ],
+                        );
+                      }
+                      return Expanded(
+                        child: Padding(
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
+                          child: ListView.builder(
+                            itemCount: chats.length,
+                            itemBuilder: (context, index) {
+                              final doctorId = chats[index]
+                                  .get('doctor_id'); // Extract doctor_id
 
-                  final chats = snapshot.data!.docs;
-                  if (snapshot.data!.docs.isEmpty) {
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.3,
-                        ),
-                        Center(
-                          child: Text(
-                            "No Chat History",
-                            style: Themes.bodyLarge.copyWith(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey),
+                              // Use doctorId for further processing or display
+                              return ChatHead(
+                                patient_id: globalcurrentUserId,
+                                doctor_id: doctorId,
+                                chatterRole: "DoctorProfile",
+                                isPhoto: chats[index].get('isPhoto'),
+                                lattestSender: chats[index].get('latestSender'),
+                                latestMsg: chats[index].get('latestMsg'),
+                                isRead: chats[index].get('isRead'),
+                                latestMsgWidget: Text(
+                                  chats[index].get('latestMsg'),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                              ); // Assuming ChatHead takes doctorId
+                            },
                           ),
-                        )
-                      ],
-                    );
-                  }
-                  return Expanded(
-                    child: Padding(
-                      padding:
-                      const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
-                      child: ListView.builder(
-                        itemCount: chats.length,
-                        itemBuilder: (context, index) {
-                          final patient_id = chats[index]
-                              .get('patient_id'); // Extract doctor_id
+                        ),
+                      );
+                    })
+                : role == "Doctor"
+                    ? StreamBuilder<QuerySnapshot>(
+                        stream: chatHistory
+                            .orderBy(kCreatedAt, descending: true)
+                            .where('doctor_id', isEqualTo: globalcurrentUserId)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                                child: SpinKitSpinningCircle(
+                              color: kprimaryColor,
+                              size: 50,
+                            )); // Show a loading indicator while waiting for data
+                          }
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: Text(
+                                "No Chat History",
+                                style: Themes.bodyLarge.copyWith(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
+                            );
+                          }
 
-                          // Use doctorId for further processing or display
-                          return ChatHead(
-                            patient_id: patient_id,
-                            doctor_id: globalcurrentUserId,
-                            chatterRole: "Patient_Profile",
-                            isPhoto: chats[index].get('isPhoto'),
-                            lattestSender: chats[index].get('latestSender'),
-                            latestMsg: chats[index].get('latestMsg'),
-                            isRead: chats[index].get('isRead'),
-                            latestMsgWidget: Text(
-                              chats[index].get('latestMsg'),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
+                          final chats = snapshot.data!.docs;
+                          if (snapshot.data!.docs.isEmpty) {
+                            return Column(
+                              children: [
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.3,
+                                ),
+                                Center(
+                                  child: Text(
+                                    "No Chat History",
+                                    style: Themes.bodyLarge.copyWith(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey),
+                                  ),
+                                )
+                              ],
+                            );
+                          }
+                          return Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8, 8, 8, 0),
+                              child: ListView.builder(
+                                itemCount: chats.length,
+                                itemBuilder: (context, index) {
+                                  final patient_id = chats[index]
+                                      .get('patient_id'); // Extract doctor_id
+
+                                  // Use doctorId for further processing or display
+                                  return ChatHead(
+                                    patient_id: patient_id,
+                                    doctor_id: globalcurrentUserId,
+                                    chatterRole: "Patient_Profile",
+                                    isPhoto: chats[index].get('isPhoto'),
+                                    lattestSender:
+                                        chats[index].get('latestSender'),
+                                    latestMsg: chats[index].get('latestMsg'),
+                                    isRead: chats[index].get('isRead'),
+                                    latestMsgWidget: Text(
+                                      chats[index].get('latestMsg'),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                  ); // Assuming ChatHead takes doctorId
+                                },
+                              ),
                             ),
-                          ); // Assuming ChatHead takes doctorId
-                        },
-                      ),
-                    ),
-                  );
-                }),
+                          );
+                        })
+                    : Container(),
           ],
         ),
       ),

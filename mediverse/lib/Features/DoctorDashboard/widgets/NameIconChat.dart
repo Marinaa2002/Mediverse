@@ -86,10 +86,10 @@ class NameIconChat extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Text(
-                      "Online",
-                      style: Themes.bodysmall.copyWith(color: Colors.white),
-                    ),
+                    // Text(
+                    //   "Online",
+                    //   style: Themes.bodysmall.copyWith(color: Colors.white),
+                    // ),
                   ],
                 ),
               ),

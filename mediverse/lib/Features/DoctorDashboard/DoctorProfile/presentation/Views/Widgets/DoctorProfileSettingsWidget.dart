@@ -286,44 +286,6 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
-                            child: Icon(
-                              Icons.language,
-                              color: kSecondaryTextColor,
-                              size: 24,
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                              child: Text(
-                                'Language',
-                                textAlign: TextAlign.start,
-                                style: Themes.bodyXLarge,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            'English(eng)',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -507,6 +469,7 @@ class DoctorProfileSettingsWidget extends StatelessWidget {
                                     backgroundColor: kprimaryColor,
                                   ),
                                   onPressed: () {
+                                    Navigator.pop(context);
                                     Navigator.pop(context);
                                     Navigator.pop(context);
                                     Navigator.push(
