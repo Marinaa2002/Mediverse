@@ -58,8 +58,11 @@ class AddedDoctorsWidget extends StatelessWidget {
                   return Dismissible(
                     key: UniqueKey(),
                     direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
-                      deleteElemetInArray(
+                    onDismissed: (DismissDirection) async {
+                      await deleteDoctorIdInAppointments(
+                          staff!.jobs[i], staff!.orgName);
+                      await deleteEntryInSlots(staff!.jobs[i], staff!.orgName);
+                      await deleteElemetInArray(
                           'Staff', globalcurrentUserId, 'Jobs', staff!.jobs[i]);
                     },
                     // Background when swiping to delete
@@ -106,27 +109,47 @@ class AddedDoctorsWidget extends StatelessWidget {
                           "No Doctor With this license Number"); // Handle case when no document is found
                     }
                     if (id != "") {
-                      // Update the array in Firestore using arrayUnion
-                      await FirebaseFirestore.instance
+                      // Reference to the 'Staff' collection
+                      DocumentReference staffDocRef = FirebaseFirestore.instance
                           .collection('Staff')
-                          .doc(globalcurrentUserId)
-                          .update({
-                        'Jobs': FieldValue.arrayUnion([id]),
-                      });
-                      FirebaseFirestore.instance
-                          .collection('info_Doctors')
-                          .doc(id)
-                          .update({
-                        'Condition': 'Approved',
-                        'Clinics': FieldValue.arrayUnion([
-                          {
-                            'cost': 0,
-                            'name': staff!.orgName,
-                            'type': staff!.orgType,
-                          }
-                        ]),
-                      });
-                      print('license Number added to the array successfully');
+                          .doc(globalcurrentUserId);
+                      DocumentSnapshot staffDocSnapshot =
+                          await staffDocRef.get();
+                      if (staffDocSnapshot.exists &&
+                          staffDocSnapshot.data() != null) {
+                        // Update the array in Firestore using arrayUnion
+                        // Check if the 'id' is already in the 'Jobs' array
+                        Map<String, dynamic> data =
+                            staffDocSnapshot.data() as Map<String, dynamic>;
+                        List<dynamic> jobsArray = data['Jobs'] ?? [];
+
+                        if (!jobsArray.contains(id)) {
+                          // Update the array in Firestore using arrayUnion
+                          await staffDocRef.update({
+                            'Jobs': FieldValue.arrayUnion([id]),
+                          });
+
+                          // Update the 'info_Doctors' collection
+                          await FirebaseFirestore.instance
+                              .collection('info_Doctors')
+                              .doc(id)
+                              .update({
+                            'Condition': 'Approved',
+                            'Clinics': FieldValue.arrayUnion([
+                              {
+                                'cost': 0,
+                                'name': staff!.orgName,
+                                'type': staff!.orgType,
+                              }
+                            ]),
+                          });
+
+                          showSnackBar(context, 'ID added successfully');
+                        } else {
+                          showSnackBar(context,
+                              'ID is already present in the Jobs array');
+                        }
+                      }
                     } else {
                       showSnackBar(
                           context, "No Doctor With this license Number");
@@ -141,5 +164,52 @@ class AddedDoctorsWidget extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+Future<void> deleteDoctorIdInAppointments(
+    String doctorId, String hospitalName) async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('Appointments')
+        .where('D_uid', isEqualTo: doctorId)
+        .where('HospitalName', isEqualTo: hospitalName)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      await doc.reference.delete();
+    }
+    print(
+        'Appointments with Doctor_id $doctorId and HospitalName $hospitalName deleted');
+  } catch (e) {
+    print('Error deleting appointments: $e');
+  }
+}
+
+Future<void> deleteEntryInSlots(String doctorId, String orgName) async {
+  try {
+    DocumentReference doctorRef =
+        FirebaseFirestore.instance.collection('info_Doctors').doc(doctorId);
+    DocumentSnapshot doctorSnapshot = await doctorRef.get();
+
+    if (doctorSnapshot.exists) {
+      Map<String, dynamic> doctorData =
+          doctorSnapshot.data() as Map<String, dynamic>;
+      List<dynamic> slots = List.from(doctorData['Slots']);
+      List<dynamic> clinics = List.from(doctorData['Clinics']);
+      clinics.removeWhere((clinic) => clinic['name'] == orgName);
+
+      slots.removeWhere((slot) => slot['Name'] == orgName);
+
+      await doctorRef.update({
+        'Slots': slots,
+        'Clinics': clinics,
+      });
+      print('Entry with name $orgName removed from Slots array');
+    } else {
+      print('Doctor document does not exist');
+    }
+  } catch (e) {
+    print('Error deleting entry in Slots: $e');
   }
 }

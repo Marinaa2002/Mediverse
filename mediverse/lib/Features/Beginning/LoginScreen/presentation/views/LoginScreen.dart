@@ -64,15 +64,21 @@ class LoginScreen extends StatelessWidget {
             documentid = querySnapshot.docs.first.id;
             type = documentData['type'];
             globalcurrentUserId = documentid;
+
             // status=documentData['status']; // Change 'type' to the actual field name} else {
           } else {
             isLoading = false;
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => WaitingForApprovalScreen(),
-                ),
-                (Route<dynamic> route) => false);
+            if (type != 'Patient' &&
+                type != 'Doctor' &&
+                type != 'Lab Staff' &&
+                type != 'Hospital Staff') {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WaitingForApprovalScreen(),
+                  ),
+                  (Route<dynamic> route) => false);
+            }
           }
           if (type == 'Patient') {
             kNotesBox = documentid;
@@ -127,6 +133,84 @@ class LoginScreen extends StatelessWidget {
           } else if (type == 'admin') {
             Navigator.pushReplacementNamed(context, '/AdminMainScreen');
           }
+          isLoading = false;
+          // If document(s) found, return the ID of the first one
+          // if (querySnapshot.docs.isNotEmpty) {
+          //   DocumentSnapshot firstDocument = querySnapshot.docs.first;
+          //   Map<String, dynamic> documentData =
+          //       firstDocument.data() as Map<String, dynamic>;
+          //   documentid = querySnapshot.docs.first.id;
+          //   type = documentData['type'];
+          //   globalcurrentUserId = documentid;
+
+          //   // Navigate based on the user type
+          //   if (type == 'Patient') {
+          //     kNotesBox = documentid;
+          //     await Hive.openBox<NoteModel>(kNotesBox);
+          //     Navigator.pushReplacementNamed(context, '/mainScreenPatient');
+          //   } else if (type == 'Doctor') {
+          //     Navigator.pushReplacementNamed(context, '/mainScreenDoctor');
+          //   } else if (type == 'Lab Staff') {
+          //     DocumentSnapshot documentSnapshot = await FirebaseFirestore
+          //         .instance
+          //         .collection('Staff')
+          //         .doc(globalcurrentUserId)
+          //         .get();
+          //     var condition = documentSnapshot['Condition'];
+          //     if (condition == 'Show') {
+          //       Navigator.pushReplacementNamed(
+          //         context,
+          //         '/LabStaffScreen',
+          //         arguments: {'id': globalcurrentUserId},
+          //       );
+          //     } else {
+          //       Navigator.pushAndRemoveUntil(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => ArchriveScreen(),
+          //           ),
+          //           (Route<dynamic> route) => false);
+          //     }
+          //   } else if (type == 'Hospital Staff') {
+          //     DocumentSnapshot documentSnapshot = await FirebaseFirestore
+          //         .instance
+          //         .collection('Staff')
+          //         .doc(globalcurrentUserId)
+          //         .get();
+          //     var condition = documentSnapshot['Condition'];
+          //     if (condition == 'Show') {
+          //       Navigator.pushReplacementNamed(
+          //           context, '/HospitalStaffManagementScreenAddDoctors',
+          //           arguments: {'id': globalcurrentUserId});
+          //     } else {
+          //       Navigator.pushAndRemoveUntil(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => ArchriveScreen(),
+          //           ),
+          //           (Route<dynamic> route) => false);
+          //     }
+          //   } else if (type == 'admin') {
+          //     Navigator.pushReplacementNamed(context, '/AdminMainScreen');
+          //   } else {
+          //     // If type is none of the known roles
+          //     Navigator.pushAndRemoveUntil(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => WaitingForApprovalScreen(),
+          //         ),
+          //         (Route<dynamic> route) => false);
+          //   }
+          // } else {
+          //   // If no document found in MetaData
+          //   isLoading = false;
+          //   Navigator.pushAndRemoveUntil(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => WaitingForApprovalScreen(),
+          //       ),
+          //       (Route<dynamic> route) => false);
+          // }
           isLoading = false;
         } else if (state is LoginFailure) {
           isLoading = false;

@@ -47,10 +47,13 @@ class LabStaffScreen extends StatelessWidget {
         backgroundColor: kprimaryColor,
         automaticallyImplyLeading: false,
         title: GestureDetector(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder:
-                (context) => LabStaffProfileScreen(),));
-          },
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LabStaffProfileScreen(),
+                  ));
+            },
             child: AppBarLabResultScreen()),
         actions: [],
         centerTitle: true,
@@ -103,7 +106,10 @@ class LabStaffScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add,color: Colors.white,),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: kprimaryColor,
         onPressed: () async {
           final national_id = await showTextFieldDialog(
@@ -122,12 +128,29 @@ class LabStaffScreen extends StatelessWidget {
 
               if (snapshot.docs.isNotEmpty) {
                 id = snapshot.docs.first.id;
-                await FirebaseFirestore.instance
+                DocumentReference staffDocRef = FirebaseFirestore.instance
                     .collection('Staff')
-                    .doc(globalcurrentUserId)
-                    .update({
-                  'Jobs': FieldValue.arrayUnion([id]),
-                });
+                    .doc(globalcurrentUserId);
+                DocumentSnapshot staffDocSnapshot = await staffDocRef.get();
+                if (staffDocSnapshot.exists &&
+                    staffDocSnapshot.data() != null) {
+                  // Update the array in Firestore using arrayUnion
+                  // Check if the 'id' is already in the 'Jobs' array
+                  Map<String, dynamic> data =
+                      staffDocSnapshot.data() as Map<String, dynamic>;
+                  List<dynamic> jobsArray = data['Jobs'] ?? [];
+
+                  if (!jobsArray.contains(id)) {
+                    // Update the array in Firestore using arrayUnion
+                    await staffDocRef.update({
+                      'Jobs': FieldValue.arrayUnion([id]),
+                    });
+                    showSnackBar(context, 'ID added successfully');
+                  } else {
+                    showSnackBar(
+                        context, 'ID is already present in the Jobs array');
+                  }
+                }
               } else {
                 showSnackBar(context,
                     "No Patient With this national id"); // Handle case when no document is found
@@ -154,7 +177,7 @@ class LabStaffScreen extends StatelessWidget {
   }
 }
 
-void deleteElemetInArray(String collectionPath, String documentId,
+Future<void> deleteElemetInArray(String collectionPath, String documentId,
     String fieldPath, dynamic elementToRemove) async {
   try {
     // Get a reference to the document
